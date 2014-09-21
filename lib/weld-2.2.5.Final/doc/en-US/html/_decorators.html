@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">Chapter 10. Decorators</title><link rel="stylesheet" href="css/seamframework.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Weld - CDI Reference Implementation"/><link rel="up" href="_loose_coupling_with_strong_typing.html" title="Part III. Loose coupling with strong typing"/><link rel="prev" href="_interceptors.html" title="Chapter 9. Interceptors"/><link rel="next" href="_events.html" title="Chapter 11. Events"/></head><body><p id="title"><a href="http://www.seamframework.org" class="site_href"><strong>SeamFramework.org</strong></a><a href="http://www.seamframework.org/Documentation" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="_interceptors.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="_events.html"><strong>Next</strong></a></li></ul><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_decorators"/>Chapter 10. Decorators</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="_decorators.html#_delegate_object">10.1. Delegate object</a></span></dt><dt><span class="section"><a href="_decorators.html#_enabling_decorators">10.2. Enabling decorators</a></span></dt></dl></div>
+
+<p>Interceptors are a powerful way to capture and separate concerns which
+are <span class="emphasis"><em>orthogonal</em></span> to the application (and type system). Any interceptor
+is able to intercept invocations of any Java type. This makes them
+perfect for solving technical concerns such as transaction management,
+security and call logging. However, by nature, interceptors are unaware
+of the actual semantics of the events they intercept. Thus, interceptors
+aren’t an appropriate tool for separating business-related concerns.</p>
+<p>The reverse is true of <span class="emphasis"><em>decorators</em></span>. A decorator intercepts invocations
+only for a certain Java interface, and is therefore aware of all the
+semantics attached to that interface. Since decorators directly
+implement operations with business semantics, it makes them the perfect
+tool for modeling some kinds of business concerns. It also means that a
+decorator doesn’t have the generality of an interceptor. Decorators
+aren’t able to solve technical concerns that cut across many disparate
+types. Interceptors and decorators, though similar in many ways, are
+complementary. Let’s look at some cases where decorators fit the bill.</p>
+<p>Suppose we have an interface that represents accounts:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">public</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">interface</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Account</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;getBalance</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">User</span><span class="java_plain">&nbsp;getOwner</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;withdraw</span><span class="java_separator">(</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;deposit</span><span class="java_separator">(</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>Several different beans in our system implement the <code class="literal">Account</code> interface.
+However, we have a common legal requirement that; for any kind of
+account, large transactions must be recorded by the system in a special
+log. This is a perfect job for a decorator.</p>
+<p>A decorator is a bean (possibly even an abstract class) that implements
+the type it decorates and is annotated <code class="literal">@Decorator</code>.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Decorator</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">abstract</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">LargeTransactionDecorator</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">implements</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>The decorator implements the methods of the decorated type that it wants
+to intercept.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Decorator</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">abstract</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">LargeTransactionDecorator</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">implements</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;@</span><span class="java_type">Delegate</span><span class="java_plain">&nbsp;@</span><span class="java_type">Any</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;account</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">PersistenceContext</span><span class="java_plain">&nbsp;</span><span class="java_type">EntityManager</span><span class="java_plain">&nbsp;em</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;withdraw</span><span class="java_separator">(</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;deposit</span><span class="java_separator">(</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>Unlike other beans, a decorator may be an abstract class. Therefore, if
+there’s nothing special the decorator needs to do for a particular
+method of the decorated interface, you don’t need to implement that
+method.</p>
+<p>Interceptors for a method are called before decorators that apply to the
+method.</p>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_delegate_object"/>10.1. Delegate object</h2></div></div></div>
+
+<p>Decorators have a special injection point, called the <span class="emphasis"><em>delegate
+injection point</em></span>, with the same type as the beans they decorate, and the
+annotation <code class="literal">@Delegate</code>. There must be exactly one delegate injection
+point, which can be a constructor parameter, initializer method
+parameter or injected field.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Decorator</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">abstract</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">LargeTransactionDecorator</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">implements</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;@</span><span class="java_type">Delegate</span><span class="java_plain">&nbsp;@</span><span class="java_type">Any</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;account</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>A decorator is bound to any bean which:</p>
+<div class="itemizedlist"><ul><li>
+has the type of the delegate injection point as a bean type, and
+</li><li>
+has all qualifiers that are declared at the delegate injection point.
+</li></ul></div>
+
+<p>This delegate injection point specifies that the decorator is bound to
+all beans that implement <code class="literal">Account</code>:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Delegate</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Any</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Account</span><!-- <br/> --><span class="java_plain">&nbsp;account</span><!-- <br/> --><span class="java_separator">;</span></pre>
+
+<p>A delegate injection point may specify any number of qualifier
+annotations. The decorator will only be bound to beans with the same
+qualifiers.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Delegate</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Foreign</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Account</span><!-- <br/> --><span class="java_plain">&nbsp;account</span><!-- <br/> --><span class="java_separator">;</span></pre>
+
+<p>The decorator may invoke the delegate object, which has much the same
+effect as calling <code class="literal">InvocationContext.proceed()</code> from an interceptor. The
+main difference is that the decorator can invoke <span class="emphasis"><em>any</em></span> business method
+on the delegate object.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Decorator</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">abstract</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">LargeTransactionDecorator</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">implements</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;@</span><span class="java_type">Delegate</span><span class="java_plain">&nbsp;@</span><span class="java_type">Any</span><span class="java_plain">&nbsp;</span><span class="java_type">Account</span><span class="java_plain">&nbsp;account</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">PersistenceContext</span><span class="java_plain">&nbsp;</span><span class="java_type">EntityManager</span><span class="java_plain">&nbsp;em</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;withdraw</span><span class="java_separator">(</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;account</span><span class="java_separator">.</span><span class="java_plain">withdraw</span><span class="java_separator">(</span><span class="java_plain">amount</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">if</span><span class="java_plain">&nbsp;</span><span class="java_separator">(</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">.</span><span class="java_plain">compareTo</span><span class="java_separator">(</span><span class="java_plain">LARGE_AMOUNT</span><span class="java_separator">)</span><span class="java_operator">&gt;</span><span class="java_literal">0</span><span class="java_plain">&nbsp;</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;em</span><span class="java_separator">.</span><span class="java_plain">persist</span><span class="java_separator">(</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">LoggedWithdrawl</span><span class="java_separator">(</span><span class="java_plain">amount</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;deposit</span><span class="java_separator">(</span><span class="java_type">BigDecimal</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;account</span><span class="java_separator">.</span><span class="java_plain">deposit</span><span class="java_separator">(</span><span class="java_plain">amount</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">if</span><span class="java_plain">&nbsp;</span><span class="java_separator">(</span><span class="java_plain">&nbsp;amount</span><span class="java_separator">.</span><span class="java_plain">compareTo</span><span class="java_separator">(</span><span class="java_plain">LARGE_AMOUNT</span><span class="java_separator">)</span><span class="java_operator">&gt;</span><span class="java_literal">0</span><span class="java_plain">&nbsp;</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;em</span><span class="java_separator">.</span><span class="java_plain">persist</span><span class="java_separator">(</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">LoggedDeposit</span><span class="java_separator">(</span><span class="java_plain">amount</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_enabling_decorators"/>10.2. Enabling decorators</h2></div></div></div>
+
+<p>By default, all decorators are disabled. We need to <span class="emphasis"><em>enable</em></span> our
+decorator. We can do it using <code class="literal">beans.xml</code> descriptor of a bean archive.
+However, this activation only applies to the beans in that archive. From
+CDI 1.1 onwards the decorator can be enabled for the whole application
+using <code class="literal">@Priority</code> annotation.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">beans</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_name">xmlns</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;http://xmlns.jcp.org/xml/ns/javaee&quot;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_name">xmlns:xsi</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_name">xsi:schemaLocation</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;</span><br />
+<span class="xml_attribute_value">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://xmlns.jcp.org/xml/ns/javaee</span><br />
+<span class="xml_attribute_value">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">decorators</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.mycompany.myapp.LargeTransactionDecorator</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">decorators</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">beans</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>This declaration serves the same purpose for decorators that the
+<code class="literal">&lt;interceptors&gt;</code> declaration serves for interceptors:</p>
+<div class="itemizedlist"><ul><li>
+it enables us to specify an ordering for decorators in our system,
+ensuring deterministic behavior, and
+</li><li>
+it lets us enable or disable decorator classes at deployment time.
+</li></ul></div>
+
+<p>Decorators enabled using <code class="literal">@Priority</code> are called before decorators
+enabled using <code class="literal">beans.xml</code>, the lower priority values are called first.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Decorators with the <code class="literal">@Priority</code> that are listed in the <code class="literal">beans.xml</code>
+descriptor will be called twice in Weld. However, this behaviour is
+non-portable and this combination should not be used as it can behave
+differently in other implementations!</p>
+</div>
+
+</div>
+</div><ul class="docnav"><li class="previous"><a accesskey="p" href="_interceptors.html"><strong>Prev</strong>Chapter 9. Interceptors</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="_events.html"><strong>Next</strong>Chapter 11. Events</a></li></ul></body></html>

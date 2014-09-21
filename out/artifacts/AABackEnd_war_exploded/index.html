@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <script type="application/javascript" src="jquery/jquery.js"></script>
+</head>
+<body>
+    <h1>Users</h1>
+
+    <table id="users"></table>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.getJSON("api/users/all",function(data) {
+                $.each(data, function(index, user) {
+                    console.log(user);
+                    $("#users").append("<tr><td>" + user.email.string + "</td></tr>")
+                })
+            })
+        })
+    </script>
+</body>
+</html>

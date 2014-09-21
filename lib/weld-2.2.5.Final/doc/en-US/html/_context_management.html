@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">Chapter 19. Context Management</title><link rel="stylesheet" href="css/seamframework.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Weld - CDI Reference Implementation"/><link rel="up" href="_weld_reference_guide.html" title="Part V. Weld Reference Guide"/><link rel="prev" href="_application_servers_and_environments_supported_by_weld.html" title="Chapter 18. Application servers and environments supported by Weld"/><link rel="next" href="_configuration.html" title="Chapter 20. Configuration"/></head><body><p id="title"><a href="http://www.seamframework.org" class="site_href"><strong>SeamFramework.org</strong></a><a href="http://www.seamframework.org/Documentation" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="_application_servers_and_environments_supported_by_weld.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="_configuration.html"><strong>Next</strong></a></li></ul><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_context_management"/>Chapter 19. Context Management</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="_context_management.html#_managing_the_built_in_contexts">19.1. Managing the built in contexts</a></span></dt></dl></div>
+
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_managing_the_built_in_contexts"/>19.1. Managing the built in contexts</h2></div></div></div>
+
+<p>Weld allows you to easily manage the built in contexts by injecting them
+and calling lifecycle methods. Weld defines two types of context,
+<span class="emphasis"><em>managed</em></span> and <span class="emphasis"><em>unmanaged</em></span>. Managed contexts can be activated (allowing
+bean instances to be retrieved from the context), invalidated
+(scheduling bean instances for destruction) and deactivated (stopping
+bean instances from being retrieved, and if the context has been
+invalidated, causing the bean instances to be destroyed). Unmanaged
+contexts are always active; some may offer the ability to destroy
+instances.</p>
+<p>Managed contexts can either be <span class="emphasis"><em>bound</em></span> or <span class="emphasis"><em>unbound</em></span>. An unbound context
+is scoped to the thread in which it is activated (instances placed in
+the context in one thread are not visible in other threads), and is
+destroyed upon invalidation and deactivation. Bound contexts are
+attached to some external data store (such as the HTTP Session or a
+manually propagated map) by <span class="emphasis"><em>associating</em></span> the data store with the
+context before calling activate, and dissociating the data store after
+calling activate.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="tip"><h2>Tip</h2>
+<p>Weld automatically controls context lifecycle in many scenarios such as
+HTTP requests, EJB remote invocations, and MDB invocations. Many of the
+extensions for CDI offer context lifecycle for other environments, it’s
+worth checking to see if there is a suitable extension before deciding
+to manage the context yourself.</p>
+</div>
+
+<p>Weld provides a number of built in contexts, which are shown in <a href="_context_management.html#_available_contexts_in_weld" title="Table 19.1. Available Contexts in Weld">Table 19.1, “Available Contexts in Weld”</a>.</p>
+<div class="table"><a id="_available_contexts_in_weld"/><p class="title"><b>Table 19.1. Available Contexts in Weld</b></p><div class="table-contents">
+
+  
+  <table summary="Available Contexts in Weld" border="1"><colgroup><col/><col/><col/><col/></colgroup><thead><tr><th align="left" valign="top">Scope</th><th align="left" valign="top">Qualifiers</th><th align="left" valign="top">Context</th><th align="left" valign="top">Notes</th></tr></thead><tbody><tr><td align="left" valign="top"><p><code class="literal">@Dependent</code></p></td><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">DependentContext</code></p></td><td align="left" valign="top"><p>The dependent context is
+unbound and unmanaged</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@RequestScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Unbound</code></p></td><td align="left" valign="top"><p><code class="literal">RequestContext</code></p></td><td align="left" valign="top"><p>An unbound request
+context, useful for testing</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@RequestScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Bound</code></p></td><td align="left" valign="top"><p><code class="literal">RequestContext</code></p></td><td align="left" valign="top"><p>A request context bound
+to a manually propagated map, useful for testing or non-Servlet
+environments</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">BoundRequestContext</code></p></td><td align="left" valign="top"><p><code class="literal">@RequestScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Http</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">RequestContext</code></p></td><td align="left" valign="top"><p>A request context bound to
+a Servlet request, used for any Servlet based request context</p></td><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">HttpRequestContext</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@RequestScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Ejb</code></p></td><td align="left" valign="top"><p><code class="literal">RequestContext</code></p></td><td align="left" valign="top"><p>A request context bound to
+a an interceptor’s invocation context, used for EJB invocations outside
+of Servlet requests</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">EjbRequestContext</code></p></td><td align="left" valign="top"><p><code class="literal">@ConversationScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Bound</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">ConversationContext</code></p></td><td align="left" valign="top"><p>A conversation
+context bound to two manually propagated maps (one which represents the
+request and one which represents the session), useful for testing or
+non-Servlet environments</p></td><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">BoundConversationContext</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@ConversationScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Http</code></p></td><td align="left" valign="top"><p><code class="literal">ConversationContext</code></p></td><td align="left" valign="top"><p>A conversation
+context bound to a Servlet request, used for any Servlet based
+conversation context</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">HttpConversationContext</code></p></td><td align="left" valign="top"><p><code class="literal">@SessionScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Bound</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">SessionContext</code></p></td><td align="left" valign="top"><p>A session context bound
+to a manually propagated map, useful for testing or non-Servlet
+environments</p></td><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">BoundSessionContext</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@SessionScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Http</code></p></td><td align="left" valign="top"><p><code class="literal">SessionContext</code></p></td><td align="left" valign="top"><p>A session context bound to
+a Servlet request, used for any Servlet based session context</p></td></tr><tr><td align="left" valign="top"><p><code class="literal">@Default</code></p></td><td align="left" valign="top"><p><code class="literal">HttpSessionContext</code></p></td><td align="left" valign="top"><p><code class="literal">@ApplicationScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Default</code></p></td></tr><tr><td align="left" valign="top"><p><code class="literal">ApplicationContext</code></p></td><td align="left" valign="top"><p>An application
+context backed by an application scoped singleton, it is unmanaged and
+unbound but does offer an option to destroy all entries</p></td><td align="left" valign="top"><p><code class="literal">@SingletonScoped</code></p></td><td align="left" valign="top"><p><code class="literal">@Default</code></p></td></tr></tbody></table>
+</div></div><br class="table-break"/>
+
+<p>Unmanaged contexts offer little of interest in a discussion about
+managing context lifecycles, so from here on in we will concentrate on
+the managed contexts (unmanaged contexts of course play a vital role in
+the functioning of your application and Weld!). As you can see from the
+table above, the managed contexts offer a number of different
+implementations for the same scope; in general, each flavor of context
+for a scope has the same API. We’ll walk through a number of common
+lifecycle management scenarios below; armed with this knowledge, and the
+Javadoc, you should be able to work with any of the context
+implementations Weld offers.</p>
+<p>We’ll start simple with the <code class="literal">BoundRequestContext</code>, which you might use
+to provide the request scope outside of a Servlet request or EJB
+Invocation.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><!-- <br/> --><span class="java_comment">/*&nbsp;Inject&nbsp;the&nbsp;BoundRequestContext.&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Alternatively,&nbsp;you&nbsp;could&nbsp;look&nbsp;this&nbsp;up&nbsp;from&nbsp;the&nbsp;BeanManager&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;</span><span class="java_type">BoundRequestContext</span><span class="java_plain">&nbsp;requestContext</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Start&nbsp;the&nbsp;request,&nbsp;providing&nbsp;a&nbsp;data&nbsp;store&nbsp;which&nbsp;will&nbsp;last&nbsp;the&nbsp;lifetime&nbsp;of&nbsp;the&nbsp;request&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;startRequest</span><span class="java_separator">(</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;requestDataStore</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_type">Associate</span><span class="java_plain">&nbsp;the&nbsp;store&nbsp;with&nbsp;the&nbsp;context&nbsp;and&nbsp;activate&nbsp;the&nbsp;context</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requestContext</span><span class="java_separator">.</span><span class="java_plain">associate</span><span class="java_separator">(</span><span class="java_plain">requestDataStore</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requestContext</span><span class="java_separator">.</span><span class="java_plain">activate</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;End&nbsp;the&nbsp;request,&nbsp;providing&nbsp;the&nbsp;same&nbsp;data&nbsp;store&nbsp;as&nbsp;was&nbsp;used&nbsp;to&nbsp;start&nbsp;the&nbsp;request&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;endRequest</span><span class="java_separator">(</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;requestDataStore</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">try</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Invalidate&nbsp;the&nbsp;request&nbsp;(all&nbsp;bean&nbsp;instances&nbsp;will&nbsp;be&nbsp;scheduled&nbsp;for&nbsp;destruction)&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requestContext</span><span class="java_separator">.</span><span class="java_plain">invalidate</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Deactivate&nbsp;the&nbsp;request,&nbsp;causing&nbsp;all&nbsp;bean&nbsp;instances&nbsp;to&nbsp;be&nbsp;destroyed&nbsp;(as&nbsp;the&nbsp;context&nbsp;is&nbsp;invalid)&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requestContext</span><span class="java_separator">.</span><span class="java_plain">deactivate</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span><span class="java_plain">&nbsp;</span><span class="java_keyword">finally</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Ensure&nbsp;that&nbsp;whatever&nbsp;happens&nbsp;we&nbsp;dissociate&nbsp;to&nbsp;prevent&nbsp;any&nbsp;memory&nbsp;leaks&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;requestContext</span><span class="java_separator">.</span><span class="java_plain">dissociate</span><span class="java_separator">(</span><span class="java_plain">requestDataStore</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span></pre>
+
+<p>The bound session context works in much the same way, excepting that
+invalidating and deactivating the session context causes the any
+conversations in the session to be destroyed as well. The HTTP session
+context and HTTP request context also work similarly, and might be of
+use if you find yourself creating threads from an HTTP request). The
+HTTP session context additionally offers a method which can immediately
+destroy the context.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Weld’s session contexts are "lazy" and don’t require a session to
+actually exist until a bean instance must be written.</p>
+</div>
+
+<p>The conversation context offers a few more options, which we will walk
+through here.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">BoundConversationContext</span><!-- <br/> --><span class="java_plain">&nbsp;conversationContext</span><!-- <br/> --><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Start&nbsp;a&nbsp;transient&nbsp;conversation&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Provide&nbsp;a&nbsp;data&nbsp;store&nbsp;which&nbsp;will&nbsp;last&nbsp;the&nbsp;lifetime&nbsp;of&nbsp;the&nbsp;request&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;and&nbsp;one&nbsp;that&nbsp;will&nbsp;last&nbsp;the&nbsp;lifetime&nbsp;of&nbsp;the&nbsp;session&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;startTransientConversation</span><span class="java_separator">(</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;requestDataStore</span><span class="java_separator">,</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;sessionDataStore</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;resumeOrStartConversation</span><span class="java_separator">(</span><span class="java_plain">requestDataStore</span><span class="java_separator">,</span><span class="java_plain">&nbsp;sessionDataStore</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_literal">null</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Start&nbsp;a&nbsp;transient&nbsp;conversation&nbsp;(if&nbsp;cid&nbsp;is&nbsp;null)&nbsp;or&nbsp;resume&nbsp;a&nbsp;non-transient&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;conversation.&nbsp;Provide&nbsp;a&nbsp;data&nbsp;store&nbsp;which&nbsp;will&nbsp;last&nbsp;the&nbsp;lifetime&nbsp;of&nbsp;the&nbsp;request&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;and&nbsp;one&nbsp;that&nbsp;will&nbsp;last&nbsp;the&nbsp;lifetime&nbsp;of&nbsp;the&nbsp;session&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;resumeOrStartConversation</span><span class="java_separator">(</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;requestDataStore</span><span class="java_separator">,</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;sessionDataStore</span><span class="java_separator">,</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_type">String</span><span class="java_plain">&nbsp;cid</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Associate&nbsp;the&nbsp;stores&nbsp;with&nbsp;the&nbsp;context&nbsp;and&nbsp;activate&nbsp;the&nbsp;context&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_operator">*</span><span class="java_plain">&nbsp;</span><span class="java_type">BoundRequest</span><span class="java_plain">&nbsp;just&nbsp;wraps&nbsp;the&nbsp;two&nbsp;datastores&nbsp;</span><span class="java_operator">*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversationContext</span><span class="java_separator">.</span><span class="java_plain">associate</span><span class="java_separator">(</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">MutableBoundRequest</span><span class="java_separator">(</span><span class="java_plain">requestDataStore</span><span class="java_separator">,</span><span class="java_plain">&nbsp;sessionDataStore</span><span class="java_separator">));</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_type">Pass</span><span class="java_plain">&nbsp;the&nbsp;cid&nbsp;in</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversationContext</span><span class="java_separator">.</span><span class="java_plain">activate</span><span class="java_separator">(</span><span class="java_plain">cid</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;End&nbsp;the&nbsp;conversations,&nbsp;providing&nbsp;the&nbsp;same&nbsp;data&nbsp;store&nbsp;as&nbsp;was&nbsp;used&nbsp;to&nbsp;start&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;the&nbsp;request.&nbsp;Any&nbsp;transient&nbsp;conversations&nbsp;will&nbsp;be&nbsp;destroyed,&nbsp;any&nbsp;newly-promoted&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;conversations&nbsp;will&nbsp;be&nbsp;placed&nbsp;into&nbsp;the&nbsp;session&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;endOrPassivateConversation</span><span class="java_separator">(</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;requestDataStore</span><span class="java_separator">,</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_type">Map</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;sessionDataStore</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">try</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Invalidate&nbsp;the&nbsp;conversation&nbsp;(all&nbsp;transient&nbsp;conversations&nbsp;will&nbsp;be&nbsp;scheduled&nbsp;for&nbsp;destruction)&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversationContext</span><span class="java_separator">.</span><span class="java_plain">invalidate</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Deactivate&nbsp;the&nbsp;conversation,&nbsp;causing&nbsp;all&nbsp;transient&nbsp;conversations&nbsp;to&nbsp;be&nbsp;destroyed&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversationContext</span><span class="java_separator">.</span><span class="java_plain">deactivate</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span><span class="java_plain">&nbsp;</span><span class="java_keyword">finally</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_comment">/*&nbsp;Ensure&nbsp;that&nbsp;whatever&nbsp;happens&nbsp;we&nbsp;dissociate&nbsp;to&nbsp;prevent&nbsp;memory&nbsp;leaks*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversationContext</span><span class="java_separator">.</span><span class="java_plain">dissociate</span><span class="java_separator">(</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">MutableBoundRequest</span><span class="java_separator">(</span><span class="java_plain">requestDataStore</span><span class="java_separator">,</span><span class="java_plain">&nbsp;sessionDataStore</span><span class="java_separator">));</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span></pre>
+
+<p>The conversation context also offers a number of properties which
+control the behavior of conversation expiration (after this period of
+inactivity the conversation will be ended and destroyed by the
+container), and the duration of lock timeouts (the conversation context
+ensures that a single thread is accessing any bean instances by locking
+access, if a lock can’t be obtained after a certain time Weld will error
+rather than continue to wait for the lock). Additionally, you can alter
+the name of the parameter used to transfer the conversation id (by
+default, <code class="literal">cid</code>).</p>
+<p>Weld also introduces the notion of a <code class="literal">ManagedConversation</code>, which
+extends the <code class="literal">Conversation</code> interface with the ability to lock, unlock
+and touch (update the last used timestamp) a conversation. Finally, all
+non-transient conversations in a session can be obtained from the
+conversation context, as can the current conversation.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Weld’s conversations are not assigned ids until they become
+non-transient.</p>
+</div>
+
+</div>
+</div><ul class="docnav"><li class="previous"><a accesskey="p" href="_application_servers_and_environments_supported_by_weld.html"><strong>Prev</strong>Chapter 18. Application servers and environments ...</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="_configuration.html"><strong>Next</strong>Chapter 20. Configuration</a></li></ul></body></html>

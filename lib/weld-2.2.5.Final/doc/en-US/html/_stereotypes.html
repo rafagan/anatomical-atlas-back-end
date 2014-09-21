@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">Chapter 12. Stereotypes</title><link rel="stylesheet" href="css/seamframework.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Weld - CDI Reference Implementation"/><link rel="up" href="_loose_coupling_with_strong_typing.html" title="Part III. Loose coupling with strong typing"/><link rel="prev" href="_events.html" title="Chapter 11. Events"/><link rel="next" href="_specialization_inheritance_and_alternatives.html" title="Chapter 13. Specialization, inheritance and alternatives"/></head><body><p id="title"><a href="http://www.seamframework.org" class="site_href"><strong>SeamFramework.org</strong></a><a href="http://www.seamframework.org/Documentation" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="_events.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="_specialization_inheritance_and_alternatives.html"><strong>Next</strong></a></li></ul><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_stereotypes"/>Chapter 12. Stereotypes</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="_stereotypes.html#_default_scope_for_a_stereotype">12.1. Default scope for a stereotype</a></span></dt><dt><span class="section"><a href="_stereotypes.html#_interceptor_bindings_for_stereotypes">12.2. Interceptor bindings for stereotypes</a></span></dt><dt><span class="section"><a href="_stereotypes.html#_name_defaulting_with_stereotypes">12.3. Name defaulting with stereotypes</a></span></dt><dt><span class="section"><a href="_stereotypes.html#_alternative_stereotypes">12.4. Alternative stereotypes</a></span></dt><dt><span class="section"><a href="_stereotypes.html#_stereotype_stacking">12.5. Stereotype stacking</a></span></dt><dt><span class="section"><a href="_stereotypes.html#_built_in_stereotypes">12.6. Built-in stereotypes</a></span></dt></dl></div>
+
+<p>The CDI specification defines a stereotype as follows:</p>
+<div class="blockquote"><blockquote class="blockquote">
+  
+<p>In many systems, use of architectural patterns produces a set of
+recurring bean roles. A stereotype allows a framework developer to
+identify such a role and declare some common metadata for beans with
+that role in a central place.</p>
+<p>A stereotype encapsulates any combination of:</p>
+<div class="itemizedlist"><ul><li>
+a default scope, and
+</li><li>
+a set of interceptor bindings.
+</li></ul></div>
+
+<p>A stereotype may also specify that:</p>
+<div class="itemizedlist"><ul><li>
+all beans with the stereotype have defaulted bean names, or that
+</li><li>
+all beans with the stereotype are alternatives.
+</li></ul></div>
+
+<p>A bean may declare zero, one or multiple stereotypes. Stereotype
+annotations may be applied to a bean class or producer method or field.</p>
+</blockquote></div>
+
+<p>A stereotype is an annotation, annotated <code class="literal">@Stereotype</code>, that packages
+several other annotations. For instance, the following stereotype
+identifies action classes in some MVC framework:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">(</span><span class="java_plain">TYPE</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_separator">...</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">Action</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>We use the stereotype by applying the annotation to a bean.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Action</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">LoginAction</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span><span class="java_plain">&nbsp;</span><span class="java_separator">}</span></pre>
+
+<p>Of course, we need to apply some other annotations to our stereotype or
+else it wouldn’t be adding much value.</p>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_default_scope_for_a_stereotype"/>12.1. Default scope for a stereotype</h2></div></div></div>
+
+<p>A stereotype may specify a default scope for beans annotated with the
+stereotype. For example:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">RequestScoped</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">(</span><span class="java_plain">TYPE</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">Action</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>A particular action may still override this default if necessary:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Dependent</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Action</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">DependentScopedLoginAction</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span><span class="java_plain">&nbsp;</span><span class="java_separator">}</span></pre>
+
+<p>Naturally, overriding a single default isn’t much use. But remember,
+stereotypes can define more than just the default scope.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_interceptor_bindings_for_stereotypes"/>12.2. Interceptor bindings for stereotypes</h2></div></div></div>
+
+<p>A stereotype may specify a set of interceptor bindings to be inherited
+by all beans with that stereotype.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">RequestScoped</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Transactional</span><span class="java_separator">(</span><span class="java_plain">requiresNew</span><span class="java_operator">=</span><span class="java_literal">true</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Secure</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">(</span><span class="java_plain">TYPE</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">Action</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>This helps us get technical concerns, like transactions and security,
+even further away from the business code!</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_name_defaulting_with_stereotypes"/>12.3. Name defaulting with stereotypes</h2></div></div></div>
+
+<p>We can specify that all beans with a certain stereotype have a defaulted
+EL name when a name is not explicitly defined for that bean. All we need
+to do is add an empty <code class="literal">@Named</code> annotation:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">RequestScoped</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Transactional</span><span class="java_separator">(</span><span class="java_plain">requiresNew</span><span class="java_operator">=</span><span class="java_literal">true</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Secure</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Named</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">(</span><span class="java_plain">TYPE</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">Action</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>Now, the <code class="literal">LoginAction</code> bean will have the defaulted name <code class="literal">loginAction</code>.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_alternative_stereotypes"/>12.4. Alternative stereotypes</h2></div></div></div>
+
+<p>A stereotype can indicate that all beans to which it is applied are
+`@Alternative`s. An <span class="emphasis"><em>alternative stereotype</em></span> lets us classify beans by
+deployment scenario.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Alternative</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">(</span><span class="java_plain">TYPE</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">Mock</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>We can apply an alternative stereotype to a whole set of beans, and
+activate them all with one line of code in <code class="literal">beans.xml</code>.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Mock</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">MockLoginAction</span><span class="java_plain">&nbsp;</span><span class="java_keyword">extends</span><span class="java_plain">&nbsp;</span><span class="java_type">LoginAction</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span><span class="java_plain">&nbsp;</span><span class="java_separator">}</span></pre>
+
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">beans</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">alternatives</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">stereotype</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.mycompany.testing.Mock</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">stereotype</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">alternatives</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">beans</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_stereotype_stacking"/>12.5. Stereotype stacking</h2></div></div></div>
+
+<p>This may blow your mind a bit, but stereotypes may declare other
+stereotypes, which we’ll call <span class="emphasis"><em>stereotype stacking</em></span>. You may want to do
+this if you have two distinct stereotypes which are meaningful on their
+own, but in other situation may be meaningful when combined.</p>
+<p>Here’s an example that combines the <code class="literal">@Action</code> and <code class="literal">@Auditable</code>
+stereotypes:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Auditable</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Action</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">(</span><span class="java_plain">TYPE</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">AuditableAction</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_built_in_stereotypes"/>12.6. Built-in stereotypes</h2></div></div></div>
+
+<p>CDI defines one standard stereotype, <code class="literal">@Model</code>, which is expected to be
+used frequently in web applications:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Named</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">RequestScoped</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Stereotype</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">({</span><span class="java_plain">TYPE</span><span class="java_separator">,</span><span class="java_plain">&nbsp;METHOD</span><span class="java_separator">,</span><span class="java_plain">&nbsp;FIELD</span><span class="java_separator">})</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">Model</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>Instead of using JSF managed beans, just annotate a bean <code class="literal">@Model</code>, and
+use it directly in your JSF view!</p>
+</div>
+</div><ul class="docnav"><li class="previous"><a accesskey="p" href="_events.html"><strong>Prev</strong>Chapter 11. Events</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="_specialization_inheritance_and_alternatives.html"><strong>Next</strong>Chapter 13. Specialization, inheritance and alter...</a></li></ul></body></html>

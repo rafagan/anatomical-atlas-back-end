@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">Chapter 5. Scopes and contexts</title><link rel="stylesheet" href="css/seamframework.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Weld - CDI Reference Implementation"/><link rel="up" href="_beans.html" title="Part I. Beans"/><link rel="prev" href="_dependency_injection_and_programmatic_lookup.html" title="Chapter 4. Dependency injection and programmatic lookup"/><link rel="next" href="_getting_start_with_weld_the_cdi_reference_implementation.html" title="Part II. Getting Start with Weld, the CDI Reference Implementation"/></head><body><p id="title"><a href="http://www.seamframework.org" class="site_href"><strong>SeamFramework.org</strong></a><a href="http://www.seamframework.org/Documentation" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="_dependency_injection_and_programmatic_lookup.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="_getting_start_with_weld_the_cdi_reference_implementation.html"><strong>Next</strong></a></li></ul><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_scopes_and_contexts"/>Chapter 5. Scopes and contexts</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="_scopes_and_contexts.html#_scope_types">5.1. Scope types</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_built_in_scopes">5.2. Built-in scopes</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_the_conversation_scope">5.3. The conversation scope</a></span></dt><dd><dl><dt><span class="section"><a href="_scopes_and_contexts.html#_conversation_demarcation">5.3.1. Conversation demarcation</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_conversation_propagation">5.3.2. Conversation propagation</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_conversation_timeout">5.3.3. Conversation timeout</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_cdi_conversation_filter">5.3.4. CDI Conversation filter</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_lazy_and_eager_conversation_context_initialization">5.3.5. Lazy and eager conversation context initialization</a></span></dt></dl></dd><dt><span class="section"><a href="_scopes_and_contexts.html#_the_singleton_pseudo_scope">5.4. The singleton pseudo-scope</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_the_dependent_pseudo_scope">5.5. The dependent pseudo-scope</a></span></dt><dt><span class="section"><a href="_scopes_and_contexts.html#_the_literal_new_literal_qualifier">5.6. The <code class="literal">@New</code> qualifier</a></span></dt></dl></div>
+
+<p>So far, we’ve seen a few examples of <span class="emphasis"><em>scope type annotations</em></span>. The scope
+of a bean determines the lifecycle of instances of the bean. The scope
+also determines which clients refer to which instances of the bean.
+According to the CDI specification, a scope determines:</p>
+<div class="blockquote"><blockquote class="blockquote">
+  
+<div class="itemizedlist"><ul><li>
+When a new instance of any bean with that scope is created
+</li><li>
+When an existing instance of any bean with that scope is destroyed
+</li><li>
+Which injected references refer to any instance of a bean with that
+scope
+</li></ul></div>
+
+</blockquote></div>
+
+<p>For example, if we have a session-scoped bean, <code class="literal">CurrentUser</code>, all beans
+that are called in the context of the same <code class="literal">HttpSession</code> will see the
+same instance of <code class="literal">CurrentUser</code>. This instance will be automatically
+created the first time a <code class="literal">CurrentUser</code> is needed in that session, and
+automatically destroyed when the session ends.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>JPA entities aren’t a great fit for this model. Entities have their
+whole own lifecycle and identity model which just doesn’t map naturally
+to the model used in CDI. Therefore, we recommend against treating
+entities as CDI beans. You’re certainly going to run into problems if
+you try to give an entity a scope other than the default scope
+<code class="literal">@Dependent</code>. The client proxy will get in the way if you try to pass an
+injected instance to the JPA <code class="literal">EntityManager</code>.</p>
+</div>
+
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_scope_types"/>5.1. Scope types</h2></div></div></div>
+
+<p>CDI features an <span class="emphasis"><em>extensible context model</em></span>. It’s possible to define new
+scopes by creating a new scope type annotation:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">ScopeType</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Retention</span><span class="java_separator">(</span><span class="java_plain">RUNTIME</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Target</span><span class="java_separator">({</span><span class="java_plain">TYPE</span><span class="java_separator">,</span><span class="java_plain">&nbsp;METHOD</span><span class="java_separator">})</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;@</span><span class="java_keyword">interface</span><span class="java_plain">&nbsp;</span><span class="java_type">ClusterScoped</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span></pre>
+
+<p>Of course, that’s the easy part of the job. For this scope type to be
+useful, we will also need to define a <code class="literal">Context</code> object that implements
+the scope! Implementing a <code class="literal">Context</code> is usually a very technical task,
+intended for framework development only.</p>
+<p>We can apply a scope type annotation to a bean implementation class to
+specify the scope of the bean:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">ClusterScoped</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">SecondLevelCache</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span><span class="java_plain">&nbsp;</span><span class="java_separator">}</span></pre>
+
+<p>Usually, you’ll use one of CDI’s built-in scopes.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_built_in_scopes"/>5.2. Built-in scopes</h2></div></div></div>
+
+<p>CDI defines four built-in scopes:</p>
+<div class="itemizedlist"><ul><li>
+<code class="literal">@RequestScoped</code>
+</li><li>
+<code class="literal">@SessionScoped</code>
+</li><li>
+<code class="literal">@ApplicationScoped</code>
+</li><li>
+<code class="literal">@ConversationScoped</code>
+</li></ul></div>
+
+<p>For a web application that uses CDI, any servlet request has access to
+active request, session and application scopes. Furthermore, since CDI
+1.1 the conversation context is active during every servlet request.</p>
+<p>The request and application scopes are also active:</p>
+<div class="itemizedlist"><ul><li>
+during invocations of EJB remote methods,
+</li><li>
+during invocations of EJB asynchronous methods,
+</li><li>
+during EJB timeouts,
+</li><li>
+during message delivery to a message-driven bean,
+</li><li>
+during web service invocations, and
+</li><li>
+during <code class="literal">@PostConstruct</code> callback of any bean
+</li></ul></div>
+
+<p>If the application tries to invoke a bean with a scope that does not
+have an active context, a <code class="literal">ContextNotActiveException</code> is thrown by the
+container at runtime.</p>
+<p>Managed beans with scope <code class="literal">@SessionScoped</code> or <code class="literal">@ConversationScoped</code> must
+be serializable, since the container passivates the HTTP session from
+time to time.</p>
+<p>Three of the four built-in scopes should be extremely familiar to every
+Java EE developer, so let’s not waste time discussing them here. One of
+the scopes, however, is new.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_the_conversation_scope"/>5.3. The conversation scope</h2></div></div></div>
+
+<p>The conversation scope is a bit like the traditional session scope in
+that it holds state associated with a user of the system, and spans
+multiple requests to the server. However, unlike the session scope, the
+conversation scope:</p>
+<div class="itemizedlist"><ul><li>
+is demarcated explicitly by the application, and
+</li><li>
+holds state associated with a particular web browser tab in a web
+application (browsers tend to share domain cookies, and hence the
+session cookie, between tabs, so this is not the case for the session
+scope).
+</li></ul></div>
+
+<p>A conversation represents a task—a unit of work from the point of view
+of the user. The conversation context holds state associated with what
+the user is currently working on. If the user is doing multiple things
+at the same time, there are multiple conversations.</p>
+<p>The conversation context is active during any servlet request (since CDI
+1.1). Most conversations are destroyed at the end of the request. If a
+conversation should hold state across multiple requests, it must be
+explicitly promoted to a <span class="emphasis"><em>long-running conversation</em></span>.</p>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_conversation_demarcation"/>5.3.1. Conversation demarcation</h3></div></div></div>
+
+<p>CDI provides a built-in bean for controlling the lifecycle of
+conversations in a CDI application. This bean may be obtained by
+injection:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Conversation</span><!-- <br/> --><span class="java_plain">&nbsp;conversation</span><!-- <br/> --><span class="java_separator">;</span></pre>
+
+<p>To promote the conversation associated with the current request to a
+long-running conversation, call the <code class="literal">begin()</code> method from application
+code. To schedule the current long-running conversation context for
+destruction at the end of the current request, call <code class="literal">end()</code>.</p>
+<p>In the following example, a conversation-scoped bean controls the
+conversation with which it is associated:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">import</span><!-- <br/> --><span class="java_plain">&nbsp;javax</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">enterprise</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">inject</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_type">Produces</span><!-- <br/> --><span class="java_separator">;</span>
+<!--  --><br/><span class="java_keyword">import</span><span class="java_plain">&nbsp;javax</span><span class="java_separator">.</span><span class="java_plain">inject</span><span class="java_separator">.</span><span class="java_type">Inject</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_keyword">import</span><span class="java_plain">&nbsp;javax</span><span class="java_separator">.</span><span class="java_plain">persistence</span><span class="java_separator">.</span><span class="java_type">PersistenceContextType</span><span class="java_separator">.</span><span class="java_plain">EXTENDED</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">ConversationScoped</span><span class="java_plain">&nbsp;@</span><span class="java_type">Stateful</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">OrderBuilder</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">private</span><span class="java_plain">&nbsp;</span><span class="java_type">Order</span><span class="java_plain">&nbsp;order</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">private</span><span class="java_plain">&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;</span><span class="java_type">Conversation</span><span class="java_plain">&nbsp;conversation</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">private</span><span class="java_plain">&nbsp;@</span><span class="java_type">PersistenceContext</span><span class="java_separator">(</span><span class="java_plain">type&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;EXTENDED</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_type">EntityManager</span><span class="java_plain">&nbsp;em</span><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Produces</span><span class="java_plain">&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">Order</span><span class="java_plain">&nbsp;getOrder</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">return</span><span class="java_plain">&nbsp;order</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">Order</span><span class="java_plain">&nbsp;createOrder</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Order</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversation</span><span class="java_separator">.</span><span class="java_plain">begin</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">return</span><span class="java_plain">&nbsp;order</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;addLineItem</span><span class="java_separator">(</span><span class="java_type">Product</span><span class="java_plain">&nbsp;product</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">int</span><span class="java_plain">&nbsp;quantity</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;order</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">LineItem</span><span class="java_separator">(</span><span class="java_plain">product</span><span class="java_separator">,</span><span class="java_plain">&nbsp;quantity</span><span class="java_separator">));</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;saveOrder</span><span class="java_separator">(</span><span class="java_type">Order</span><span class="java_plain">&nbsp;order</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;em</span><span class="java_separator">.</span><span class="java_plain">persist</span><span class="java_separator">(</span><span class="java_plain">order</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;conversation</span><span class="java_separator">.</span><span class="java_plain">end</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Remove</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;destroy</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{}</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>This bean is able to control its own lifecycle through use of the
+<code class="literal">Conversation</code> API. But some other beans have a lifecycle which depends
+completely upon another object.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_conversation_propagation"/>5.3.2. Conversation propagation</h3></div></div></div>
+
+<p>The conversation context automatically propagates with any JSF faces
+request (JSF form submission) or redirect. It does not automatically
+propagate with non-faces requests, for example, navigation via a link.</p>
+<p>We can force the conversation to propagate with a non-faces request by
+including the unique identifier of the conversation as a request
+parameter. The CDI specification reserves the request parameter named
+<code class="literal">cid</code> for this use. The unique identifier of the conversation may be
+obtained from the <code class="literal">Conversation</code> object, which has the EL bean name
+<code class="literal">javax.enterprise.context.conversation</code>.</p>
+<p>Therefore, the following link propagates the conversation:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">a</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">href</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;/addProduct.jsp?cid=#{javax.enterprise.context.conversation.id}&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">Add&nbsp;Product</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">a</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>It’s probably better to use one of the link components in JSF 2:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">h:link</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">outcome</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;/addProduct.xhtml&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">value</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;Add&nbsp;Product&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">f:param</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">name</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;cid&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">value</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;#{javax.enterprise.context.conversation.id}&quot;</span><span class="xml_tag_symbols">/&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">h:link</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="tip"><h2>Tip</h2>
+<p>The conversation context propagates across redirects, making it very
+easy to implement the common POST-then-redirect pattern, without resort
+to fragile constructs such as a "flash" object. The container
+automatically adds the conversation id to the redirect URL as a request
+parameter.</p>
+</div>
+
+<p>In certain scenarios it may be desired to suppress propagation of a
+long-running conversation. The <code class="literal">conversationPropagation</code> request
+parameter (introduced in CDI 1.1) may be used for this purpose. If the
+<code class="literal">conversationPropagation</code> request parameter has the value <code class="literal">none</code> , the
+container will not reassociate the existing conversation but will
+instead associate the request with a new transient conversation even
+though the conversation id was propagated.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_conversation_timeout"/>5.3.3. Conversation timeout</h3></div></div></div>
+
+<p>The container is permitted to destroy a conversation and all state held
+in its context at any time in order to conserve resources. A CDI
+implementation will normally do this on the basis of some kind of
+timeout—though this is not required by the specification. The timeout is
+the period of inactivity before the conversation is destroyed (as
+opposed to the amount of time the conversation is active).</p>
+<p>The <code class="literal">Conversation</code> object provides a method to set the timeout. This is
+a hint to the container, which is free to ignore the setting.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">conversation</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">setTimeout</span><!-- <br/> --><span class="java_separator">(</span><!-- <br/> --><span class="java_plain">timeoutInMillis</span><!-- <br/> --><span class="java_separator">);</span></pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_cdi_conversation_filter"/>5.3.4. CDI Conversation filter</h3></div></div></div>
+
+<p>The conversation management is not always smooth. For example, if the
+propagated conversation cannot be restored, the
+<code class="literal">javax.enterprise.context.NonexistentConversationException</code> is thrown.
+Or if there are concurrent requests for a one long-running conversation,
+`javax.enterprise.context.BusyConversationException ` is thrown. For
+such cases, developer has no opportunity to deal with the exception by
+default, as the conversation associated with a Servlet request is
+determined at the beginning of the request before calling any service()
+method of any servlet in the web application, even before calling any of
+the filters in the web application and before the container calls any
+ServletRequestListener or AsyncListener in the web application.</p>
+<p>To be allowed to handle the exceptions, a filter defined in the CDI 1.1
+with the name ` CDI
+            Conversation Filter ` can be used. By mapping the
+` CDI Conversation Filter ` in the web.xml just after some other
+filters, we are able to catch the exceptions in them since the ordering
+in the web.xml specifies the ordering in which the filters will be
+called (described in the servlet specification).</p>
+<p>In the following example, a filter MyFilter checks for the
+BusyConversationException thrown during the conversation association. In
+the web.xml example, the filter is mapped before the CDI Conversation
+Filter.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">public</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">class</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">MyFilter</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">implements</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Filter</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_separator">{</span>
+<!--  --><br/><span class="java_separator">...</span>
+</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Override</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;doFilter</span><span class="java_separator">(</span><span class="java_type">ServletRequest</span><span class="java_plain">&nbsp;request</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">ServletResponse</span><span class="java_plain">&nbsp;response</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">FilterChain</span><span class="java_plain">&nbsp;chain</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">throws</span><span class="java_plain">&nbsp;</span><span class="java_type">IOException</span><span class="java_separator">,</span><span class="java_plain">&nbsp;</span><span class="java_type">ServletException</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">try</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;chain</span><span class="java_separator">.</span><span class="java_plain">doFilter</span><span class="java_separator">(</span><span class="java_plain">request</span><span class="java_separator">,</span><span class="java_plain">&nbsp;response</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span><span class="java_plain">&nbsp;</span><span class="java_keyword">catch</span><span class="java_plain">&nbsp;</span><span class="java_separator">(</span><span class="java_type">BusyConversationException</span><span class="java_plain">&nbsp;e</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response</span><span class="java_separator">.</span><span class="java_plain">setContentType</span><span class="java_separator">(</span><span class="java_literal">&quot;text/plain&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response</span><span class="java_separator">.</span><span class="java_plain">getWriter</span><span class="java_separator">().</span><span class="java_plain">print</span><span class="java_separator">(</span><span class="java_literal">&quot;BusyConversationException&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_separator">...</span></pre>
+
+<p>To make it work, we need to map our MyFilter before the CDI Conversation
+Filter in the web.xml file.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">filter-mapping</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">filter-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">My&nbsp;Filter</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">filter-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">url-pattern</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">/*</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">url-pattern</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">filter-mapping</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">filter-mapping</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">filter-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">CDI&nbsp;Conversation&nbsp;Filter</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">filter-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">url-pattern</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">/*</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">url-pattern</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">filter-mapping</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="tip"><h2>Tip</h2>
+<p>The mapping of the <code class="literal">CDI Conversation Filter</code> determines when Weld reads
+the <code class="literal">cid</code> request parameter. This process forces request body parsing.
+If your application relies on setting a custom character encoding for
+the request or parsing the request body itself by reading an
+<code class="literal">InputStream</code> or <code class="literal">Reader</code>, make sure that this is performed in a filter
+that executes before the CDI Conversation Filter is executed. See
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://weld.cdi-spec.org/documentation/#3">this FAQ page for details</a>.
+Alternatively, the lazy conversation context initialization (see below)
+may be used.</p>
+</div>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_lazy_and_eager_conversation_context_initialization"/>5.3.5. Lazy and eager conversation context initialization</h3></div></div></div>
+
+<p>Conversation context may be initialized lazily or eagerly.</p>
+<p>When initialized lazily, the conversation context (no matter if
+transient or long-running) is only initialized when a
+<code class="literal">@ConversationScoped</code> bean is accessed for the first time. At that
+point, the <code class="literal">cid</code> parameter is read and the conversation is restored. The
+conversation context may not be initialized at all throughout the
+request processing if no conversation state is accessed. Note that if a
+problem occurs during this delayed initialization, the conversation
+state access (bean method invocation) may result in
+<code class="literal">BusyConversationException</code> or <code class="literal">NonexistentConversationException</code> being
+thrown.</p>
+<p>When initialized eagerly, the conversation context is initialized at a
+predefined time. Either at the beginning of the request processing
+before any listener, filter or servlet is invoked or, if the
+<code class="literal">CDI Conversation Filter</code> is mapped, during execution of this filter.</p>
+<p>Conversation context initialization mode may be configured using the
+<code class="literal">org.jboss.weld.context.conversation.lazy</code> init parameter.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">context-param</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">param-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.jboss.weld.context.conversation.lazy</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">param-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">param-value</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">true</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">param-value</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">context-param</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>If the init parameter is not set, the following default behavior
+applies:</p>
+<div class="itemizedlist"><ul><li>
+If the <code class="literal">CDI Conversation Filter</code> is mapped, the conversation context is
+initialized eagerly within this filter
+</li><li>
+If an observer for <code class="literal">@Initialized(ConversationScoped.class)</code> or
+<code class="literal">@Destroyed(ConversationScoped.class)</code> event exists in the application,
+the conversation context is initialized eagerly
+</li><li>
+Otherwise, the conversation context is initialized lazily
+</li></ul></div>
+
+</div>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_the_singleton_pseudo_scope"/>5.4. The singleton pseudo-scope</h2></div></div></div>
+
+<p>In addition to the four built-in scopes, CDI also supports two
+<span class="emphasis"><em>pseudo-scopes</em></span>. The first is the <span class="emphasis"><em>singleton pseudo-scope</em></span>, which we
+specify using the annotation <code class="literal">@Singleton</code>.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Unlike the other scopes, which belong to the package
+<code class="literal">javax.enterprise.context</code>, the <code class="literal">@Singleton</code> annotation is defined in
+the package <code class="literal">javax.inject</code>.</p>
+</div>
+
+<p>You can guess what "singleton" means here. It means a bean that is
+instantiated once. Unfortunately, there’s a little problem with this
+pseudo-scope. Beans with scope <code class="literal">@Singleton</code> don’t have a proxy object.
+Clients hold a direct reference to the singleton instance. So we need to
+consider the case of a client that can be serialized, for example, any
+bean with scope <code class="literal">@SessionScoped</code> or <code class="literal">@ConversationScoped</code>, any dependent
+object of a bean with scope <code class="literal">@SessionScoped</code> or <code class="literal">@ConversationScoped</code>,
+or any stateful session bean.</p>
+<p>Now, if the singleton instance is a simple, immutable, serializable
+object like a string, a number or a date, we probably don’t mind too
+much if it gets duplicated via serialization. However, that makes it no
+stop being a true singleton, and we may as well have just declared it
+with the default scope.</p>
+<p>There are several ways to ensure that the singleton bean remains a
+singleton when its client gets serialized:</p>
+<div class="itemizedlist"><ul><li>
+have the singleton bean implement <code class="literal">writeResolve()</code> and <code class="literal">readReplace()</code>
+(as defined by the Java serialization specification),
+</li><li>
+make sure the client keeps only a transient reference to the singleton
+bean, or
+</li><li>
+give the client a reference of type <code class="literal">Instance&lt;X&gt;</code> where <code class="literal">X</code> is the
+bean type of the singleton bean.
+</li></ul></div>
+
+<p>A fourth, better solution is to instead use <code class="literal">@ApplicationScoped</code>,
+allowing the container to proxy the bean, and take care of serialization
+problems automatically.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_the_dependent_pseudo_scope"/>5.5. The dependent pseudo-scope</h2></div></div></div>
+
+<p>Finally, CDI features the so-called <span class="emphasis"><em>dependent pseudo-scope</em></span>. This is
+the default scope for a bean which does not explicitly declare a scope
+type.</p>
+<p>For example, this bean has the scope type <code class="literal">@Dependent</code>:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">public</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">class</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Calculator</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_separator">{</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_separator">...</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_separator">}</span></pre>
+
+<p>An instance of a dependent bean is never shared between different
+clients or different injection points. It is strictly a <span class="emphasis"><em>dependent
+object</em></span> of some other object. It is instantiated when the object it
+belongs to is created, and destroyed when the object it belongs to is
+destroyed.</p>
+<p>If a Unified EL expression refers to a dependent bean by EL name, an
+instance of the bean is instantiated every time the expression is
+evaluated. The instance is not reused during any other expression
+evaluation.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>If you need to access a bean directly by EL name in a JSF page, you
+probably need to give it a scope other than <code class="literal">@Dependent</code>. Otherwise, any
+value that gets set to the bean by a JSF input will be lost immediately.
+That’s why CDI features the <code class="literal">@Model</code> stereotype; it lets you give a bean
+a name, and set its scope to <code class="literal">@RequestScoped</code> in one stroke. If you need
+to access a bean that really <span class="emphasis"><em>has</em></span> to have the scope <code class="literal">@Dependent</code> from a
+JSF page, inject it into a different bean, and expose it to EL via a
+getter method.</p>
+</div>
+
+<p>Beans with scope <code class="literal">@Dependent</code> don’t need a proxy object. The client
+holds a direct reference to its instance.</p>
+<p>CDI makes it easy to obtain a dependent instance of a bean, even if the
+bean is already declared as a bean with some other scope type.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_the_literal_new_literal_qualifier"/>5.6. The <code class="literal">@New</code> qualifier</h2></div></div></div>
+
+<p>The built-in qualifier <code class="literal">@New</code> allows us to obtain a dependent object of
+a specified class.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">New</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Calculator</span><!-- <br/> --><span class="java_plain">&nbsp;calculator</span><!-- <br/> --><span class="java_separator">;</span></pre>
+
+<p>The class must be a valid managed bean or session bean, but need not be
+an enabled bean.</p>
+<p>This works even if <code class="literal">Calculator</code> is <span class="emphasis"><em>already</em></span> declared with a different
+scope type, for example:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">ConversationScoped</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">Calculator</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span><span class="java_plain">&nbsp;</span><span class="java_separator">}</span></pre>
+
+<p>So the following injected attributes each get a different instance of
+<code class="literal">Calculator</code>:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">public</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">class</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">PaymentCalc</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;</span><span class="java_type">Calculator</span><span class="java_plain">&nbsp;calculator</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;@</span><span class="java_type">Inject</span><span class="java_plain">&nbsp;@</span><span class="java_type">New</span><span class="java_plain">&nbsp;</span><span class="java_type">Calculator</span><span class="java_plain">&nbsp;newCalculator</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>The <code class="literal">calculator</code> field has a conversation-scoped instance of
+<code class="literal">Calculator</code> injected. The <code class="literal">newCalculator</code> field has a new instance of
+<code class="literal">Calculator</code> injected, with a lifecycle that is bound to the owning
+<code class="literal">PaymentCalc</code>.</p>
+<p>This feature is particularly useful with producer methods, as we’ll see
+in <a href="producer_methods.html" title="Chapter 8. Producer methods">Chapter 8, <i xmlns:xlink="http://www.w3.org/1999/xlink">Producer methods</i></a>.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="warning"><h2>Warning</h2>
+<p>The <code class="literal">@New</code> qualifier was deprecated in CDI 1.1. CDI applications are
+encouraged to inject @Dependent scoped beans instead.</p>
+</div>
+
+</div>
+</div><ul class="docnav"><li class="previous"><a accesskey="p" href="_dependency_injection_and_programmatic_lookup.html"><strong>Prev</strong>Chapter 4. Dependency injection and programmatic ...</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="_getting_start_with_weld_the_cdi_reference_implementation.html"><strong>Next</strong>Part II. Getting Start with Weld, the CDI Referen...</a></li></ul></body></html>

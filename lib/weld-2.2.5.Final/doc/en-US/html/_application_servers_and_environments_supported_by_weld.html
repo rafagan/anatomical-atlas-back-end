@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">Chapter 18. Application servers and environments supported by Weld</title><link rel="stylesheet" href="css/seamframework.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Weld - CDI Reference Implementation"/><link rel="up" href="_weld_reference_guide.html" title="Part V. Weld Reference Guide"/><link rel="prev" href="_weld_reference_guide.html" title="Part V. Weld Reference Guide"/><link rel="next" href="_context_management.html" title="Chapter 19. Context Management"/></head><body><p id="title"><a href="http://www.seamframework.org" class="site_href"><strong>SeamFramework.org</strong></a><a href="http://www.seamframework.org/Documentation" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="_weld_reference_guide.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="_context_management.html"><strong>Next</strong></a></li></ul><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_application_servers_and_environments_supported_by_weld"/>Chapter 18. Application servers and environments supported by Weld</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_using_weld_with_wildfly">18.1. Using Weld with WildFly</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_glassfish">18.2. GlassFish</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_servlet_containers_such_as_tomcat_or_jetty">18.3. Servlet containers (such as Tomcat or Jetty)</a></span></dt><dd><dl><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_tomcat">18.3.1. Tomcat</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_jetty">18.3.2. Jetty</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_bean_archive_isolation">18.3.3. Bean Archive Isolation</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_implicit_bean_archive_support">18.3.4. Implicit Bean Archive Support</a></span></dt></dl></dd><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_java_se">18.4. Java SE</a></span></dt><dd><dl><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_cdi_se_module">18.4.1. CDI SE Module</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_bootstrapping_cdi_se">18.4.2. Bootstrapping CDI SE</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_thread_context">18.4.3. Thread Context</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_setting_the_classpath">18.4.4. Setting the Classpath</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_bean_archive_isolation_2">18.4.5. Bean Archive Isolation</a></span></dt><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_implicit_bean_archive_support_2">18.4.6. Implicit Bean Archive Support</a></span></dt></dl></dd><dt><span class="section"><a href="_application_servers_and_environments_supported_by_weld.html#_osgi">18.5. OSGi</a></span></dt></dl></div>
+
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_using_weld_with_wildfly"/>18.1. Using Weld with WildFly</h2></div></div></div>
+
+<p>If you are using WildFly 8.0 or better, no additional configuration is
+required to use Weld (or CDI for that matter).</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_glassfish"/>18.2. GlassFish</h2></div></div></div>
+
+<p>Weld is also built into GlassFish from V3 onwards. Since GlassFish V3 is
+the Java EE 6 reference implementation, it must support all features of
+CDI. What better way for GlassFish to support these features than to use
+Weld, the CDI reference implementation? Just package up your CDI
+application and deploy.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_servlet_containers_such_as_tomcat_or_jetty"/>18.3. Servlet containers (such as Tomcat or Jetty)</h2></div></div></div>
+
+<p>While CDI does not require support for servlet environments, Weld can be
+used in a servlet container, such as Tomcat or Jetty.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>There is a major limitation to using a servlet container. Weld doesn’t
+support deploying session beans, injection using <code class="literal">@EJB</code>
+or`@PersistenceContext`, or using transactional events in servlet
+containers. For enterprise features such as these, you should really be
+looking at a Java EE application server.</p>
+</div>
+
+<p>Weld can be used as a library in an web application that is deployed to
+a Servlet container. You should place <code class="literal">weld-servlet.jar</code> within the
+<code class="literal">WEB-INF/lib</code> directory relative to the web root. <code class="literal">weld-servlet.jar</code> is
+an "uber-jar", meaning it bundles all the bits of Weld and CDI required
+for running in a Servlet container, for your convenience. Alternatively,
+you can use its component jars. A list of transitive dependencies can be
+found in the <code class="literal">META-INF/DEPENDENCIES.txt</code> file inside the
+<code class="literal">weld-servlet.jar</code> artifact.</p>
+<p>You also need to explicitly specify the servlet listener (used to boot
+Weld, and control its interaction with requests) in WEB-INF/web.xml in
+the web root:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">listener</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">listener-class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.jboss.weld.environment.servlet.Listener</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">listener-class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">listener</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>Actually, you don’t have to register this listener in Servlet 3.x
+compliant containers which support
+<code class="literal">javax.servlet.ServletContainerInitializer</code> service properly (e.g.
+Tomcat 7.0.50). In this case
+<code class="literal">org.jboss.weld.environment.servlet.EnhancedListener</code> will do all the
+necessary work automatically, and what is more important - injection
+into Listeners will work on some containers as well (see <a href="_application_servers_and_environments_supported_by_weld.html#_tomcat" title="18.3.1. Tomcat">Section 18.3.1, “Tomcat”</a> and <a href="_application_servers_and_environments_supported_by_weld.html#_jetty" title="18.3.2. Jetty">Section 18.3.2, “Jetty”</a> for
+more info).</p>
+<p>The downside of <code class="literal">javax.servlet.ServletContainerInitializer</code> approach is
+that the Weld listener will be added to the end of the ordered list of
+discovered listeners. In practice the request and session context will
+not be active during <code class="literal">ServletRequestListener</code> and <code class="literal">HttpSessionListener</code>
+notifications. Fortunately, it’s possible to combine the
+<code class="literal">EnhancedListener</code> and the old <code class="literal">Listener</code> to fix this problem - simply
+add the old <code class="literal">Listener</code> to the <code class="literal">web.xml</code> as mentioned above. Note that it
+must be defined before the listeners using request and session context.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>There is quite a special use-case where one more special component must
+be involved. If you want the session context to be active during
+<code class="literal">HttpSessionListener.sessionDestroyed()</code> invocation when the session
+times out or when all the sessions are destroyed because the deployment
+is being removed then <code class="literal">org.jboss.weld.servlet.WeldTerminalListener</code> must
+be specified as the last one in your <code class="literal">web.xml</code>. This listener activates
+the session context before other listeners are invoked (note that the
+listeners are notified in reverse order when a session is being
+destroyed).</p>
+</div>
+
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_tomcat"/>18.3.1. Tomcat</h3></div></div></div>
+
+<p>Since version 2.2.0.Final only Tomcat 7 and 8 are supported.</p>
+<p>Tomcat has a read-only JNDI, so Weld can’t automatically bind the
+BeanManager extension SPI. To bind the BeanManager into JNDI, you should
+populate <code class="literal">META-INF/context.xml</code> in the web root with the following
+contents:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Context</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Resource</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">name</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;BeanManager&quot;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_name">auth</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;Container&quot;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_name">type</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;javax.enterprise.inject.spi.BeanManager&quot;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_name">factory</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;org.jboss.weld.resources.ManagerObjectFactory&quot;</span><span class="xml_tag_symbols">/&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Context</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>and make it available to your deployment by adding this to the bottom
+of <code class="literal">web.xml</code>:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">resource-env-ref</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">resource-env-ref-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">BeanManager</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">resource-env-ref-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">resource-env-ref-type</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;javax.enterprise.inject.spi.BeanManager</span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">resource-env-ref-type</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">resource-env-ref</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>Tomcat only allows you to bind entries to <code class="literal">java:comp/env</code>, so the
+BeanManager will be available at <code class="literal">java:comp/env/BeanManager</code></p>
+<p>Weld also supports Servlet and Filter injection in Tomcat containers.
+Listener injection should also work on Tomcat 7.0.50 and newer versions.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_jetty"/>18.3.2. Jetty</h3></div></div></div>
+
+<p>Since version 2.0.2.Final only Jetty 7, 8 and 9 are supported.</p>
+<p>To bind the BeanManager into JNDI, you should either populate
+<code class="literal">WEB-INF/jetty-env.xml</code> with the following contents:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_plain">!</span><span class="xml_attribute_name">DOCTYPE</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">Configure</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">PUBLIC</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_value">&quot;-//Mort&nbsp;Bay&nbsp;Consulting//DTD&nbsp;Configure//EN&quot;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_attribute_value">&quot;http://www.eclipse.org/jetty/configure.dtd&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Configure</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">id</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;webAppCtx&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">class</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;org.eclipse.jetty.webapp.WebAppContext&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">New</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">id</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;BeanManager&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">class</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;org.eclipse.jetty.plus.jndi.Resource&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Ref</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">id</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;webAppCtx&quot;</span><span class="xml_tag_symbols">/&gt;</span><span class="xml_plain">&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">BeanManager</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">New</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">class</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;javax.naming.Reference&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">javax.enterprise.inject.spi.BeanManager</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.jboss.weld.resources.ManagerObjectFactory</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">/&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">New</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Arg</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">New</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Configure</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>Or you can configure a special Servlet listener to bind the BeanManager
+automatically:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">listener</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">listener-class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.jboss.weld.environment.servlet.BeanManagerResourceBindingListener</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">listener-class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">listener</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>Just like in Tomcat, you need to make the BeanManager available to your
+deployment by adding this to the bottom of <code class="literal">web.xml</code>:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">resource-env-ref</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">resource-env-ref-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">BeanManager</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">resource-env-ref-name</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">resource-env-ref-type</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;javax.enterprise.inject.spi.BeanManager</span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">resource-env-ref-type</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">resource-env-ref</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>Jetty only allows you to bind entries to <code class="literal">java:comp/env</code>, so the
+BeanManager will be available at <code class="literal">java:comp/env/BeanManager</code>.</p>
+<p>Since Jetty 8 the class <code class="literal">org.eclipse.jetty.servlet.ServletContextHandler.Decorator</code> is not visible from the web application.
+Therefore, one more step is required - we have to tell Jetty not to hide this system class.</p>
+<p>Simply place the following <code class="literal">jetty-context.xml</code> file in the WEB-INF dir:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_plain">!</span><span class="xml_attribute_name">DOCTYPE</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">Configure</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">PUBLIC</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_value">&quot;-//Jetty//Configure//EN&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_value">&quot;http://www.eclipse.org/jetty/configure.dtd&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Configure</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">class</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;org.eclipse.jetty.webapp.WebAppContext&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Set</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">name</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;serverClasses&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Array</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">type</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;java.lang.String&quot;</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">Item</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">-org.eclipse.jetty.servlet.ServletContextHandler.Decorator</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Item</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Array</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Set</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">Configure</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>See also <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://www.eclipse.org/jetty/documentation/current/jetty-classloading.html#setting-server-classes">Jetty Classloading documentation</a>.</p>
+<p>Weld also supports Servlet and Filter injection in Jetty containers.
+Listener injection should also work on Jetty 9.1.1 and newer versions.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_bean_archive_isolation"/>18.3.3. Bean Archive Isolation</h3></div></div></div>
+
+<p>By default, bean archive isolation is enabled. It means that alternatives, interceptors and decorators can be selected/enabled for a bean archive by using a beans.xml descriptor.</p>
+<p>This behaviour can be changed by setting the servlet initialization parameter <code class="literal">org.jboss.weld.environment.servlet.archive.isolation</code> to false.
+In this case, Weld will use a "flat" deployment structure - all bean classes share the same bean archive and all beans.xml descriptors are automatically merged into one. Thus alternatives, interceptors and decorators selected/enabled for a bean archive will be enabled for the whole application.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Bean archive isolation is supported (and enabled by default) from version 2.2.5.Final. Previous versions only operated with the "flat" deployment structure.</p>
+</div>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_implicit_bean_archive_support"/>18.3.4. Implicit Bean Archive Support</h3></div></div></div>
+
+<p>CDI 1.1 introduced the bean discovery mode of <code class="literal">annotated</code> used for implicit bean archives (see also <a href="_java_ee_integration.html#packaging-and-deployment" title="15.6. Packaging and deployment">Section 15.6, “Packaging and deployment”</a>).
+This mode may bring additional overhead during container bootstrap. Therefore, Weld Servlet supports the use of <a xmlns:xlink="http://www.w3.org/1999/xlink" href="https://github.com/wildfly/jandex">Jandex</a> bytecode scanning library to speed up the scanning process. Simply put the <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://search.maven.org/#search|gav|1|g%3A%22org.jboss%22%20AND%20a%3A%22jandex%22">jandex.jar</a> on the classpath.
+If Jandex is not found on the classpath Weld will use the Java Reflection as a fallback.</p>
+<p>In general, an implicit bean archive does not have to contain a beans.xml descriptor. However, such a bean archive is not supported by Weld Servlet, i.e. it’s excluded from discovery.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>The bean discovery mode of <code class="literal">annotated</code> is supported from version 2.2.5.Final. Previous versions processed implicit bean archives in the same way as explicit bean archives.</p>
+</div>
+
+</div>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_java_se"/>18.4. Java SE</h2></div></div></div>
+
+<p>In addition to improved integration of the Enterprise Java stack, the
+"Contexts and Dependency Injection for the Java EE platform"
+specification also defines a state of the art typesafe, stateful
+dependency injection framework, which can prove useful in a wide range
+of application types. To help developers take advantage of this, Weld
+provides a simple means for being executed in the Java Standard Edition
+(SE) environment independently of any Java EE APIs.</p>
+<p>When executing in the SE environment the following features of Weld are
+available:</p>
+<div class="itemizedlist"><ul><li>
+Managed beans with <code class="literal">@PostConstruct</code> and <code class="literal">@PreDestroy</code> lifecycle
+callbacks
+</li><li>
+Dependency injection with qualifiers and alternatives
+</li><li>
+<code class="literal">@Application</code>, <code class="literal">@Dependent</code> and <code class="literal">@Singleton</code> scopes
+</li><li>
+Interceptors and decorators
+</li><li>
+Stereotypes
+</li><li>
+Events
+</li><li>
+Portable extension support
+</li></ul></div>
+
+<p>EJB beans are not supported.</p>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_cdi_se_module"/>18.4.1. CDI SE Module</h3></div></div></div>
+
+<p>Weld provides an extension which will boot a CDI bean manager in Java
+SE, automatically registering all simple beans found on the classpath.
+The command line parameters can be injected using either of the
+following:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Parameters</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">List</span><!-- <br/> --><span class="java_operator">&lt;</span><!-- <br/> --><span class="java_type">String</span><!-- <br/> --><span class="java_operator">&gt;</span><!-- <br/> --><span class="java_plain">&nbsp;params</span><!-- <br/> --><span class="java_separator">;</span></pre>
+
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">@</span><!-- <br/> --><span class="java_type">Inject</span><!-- <br/> --><span class="java_plain">&nbsp;@</span><!-- <br/> --><span class="java_type">Parameters</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">String</span><!-- <br/> --><span class="java_separator">[]</span><!-- <br/> --><span class="java_plain">&nbsp;paramsArray</span><!-- <br/> --><span class="java_separator">;</span></pre>
+
+<p>The second form is useful for compatibility with existing classes.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>The command line parameters do not become available for injection until
+the <code class="literal">ContainerInitialized</code> event is fired. If you need access to the
+parameters during initialization you can do so via the
+<code class="literal">public static String[] getParameters()</code> method in <code class="literal">StartMain</code>.</p>
+</div>
+
+<p>Here’s an example of a simple CDI SE application:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">import</span><!-- <br/> --><span class="java_plain">&nbsp;javax</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">inject</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_type">Singleton</span><!-- <br/> --><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_plain">@</span><span class="java_type">Singleton</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">HelloWorld</span>
+<!--  --><br/><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;printHello</span><span class="java_separator">(</span><span class="java_plain">@</span><span class="java_type">Observes</span><span class="java_plain">&nbsp;</span><span class="java_type">ContainerInitialized</span><span class="java_plain">&nbsp;event</span><span class="java_separator">,</span><span class="java_plain">&nbsp;@</span><span class="java_type">Parameters</span><span class="java_plain">&nbsp;</span><span class="java_type">List</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;parameters</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_type">System</span><span class="java_separator">.</span><span class="java_plain">out</span><span class="java_separator">.</span><span class="java_plain">println</span><span class="java_separator">(</span><span class="java_literal">&quot;Hello&nbsp;&quot;</span><span class="java_plain">&nbsp;</span><span class="java_operator">+</span><span class="java_plain">&nbsp;parameters</span><span class="java_separator">.</span><span class="java_plain">get</span><span class="java_separator">(</span><span class="java_literal">0</span><span class="java_separator">));</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_bootstrapping_cdi_se"/>18.4.2. Bootstrapping CDI SE</h3></div></div></div>
+
+<p>CDI SE applications can be bootstrapped in the following ways.</p>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a id="_the_literal_containerinitialized_literal_event"/>18.4.2.1. The <code class="literal">ContainerInitialized</code> Event</h4></div></div></div>
+
+<p>Thanks to the power of CDI’s typesafe event model, application
+developers need not write any bootstrapping code. The Weld SE module
+comes with a built-in main method which will bootstrap CDI for you and
+then fire a <code class="literal">ContainerInitialized</code> event. The entry point for your
+application code would therefore be a simple bean which observes the
+<code class="literal">ContainerInitialized</code> event, as in the previous example.</p>
+<p>In this case your application can be started by calling the provided
+main method like so:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">java&nbsp;org</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">jboss</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">weld</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">environment</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">se</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_type">StartMain</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_operator">&lt;</span><!-- <br/> --><span class="java_plain">args</span><!-- <br/> --><span class="java_operator">&gt;</span></pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h4 class="title"><a id="_programmatic_bootstrap_api"/>18.4.2.2. Programmatic Bootstrap API</h4></div></div></div>
+
+<p>For added flexibility, CDI SE also comes with a bootstrap API which can
+be called from within your application in order to initialize CDI and
+obtain references to your application’s beans and events. The API
+consists of two classes: <code class="literal">Weld</code> and <code class="literal">WeldContainer</code>.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">public</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">class</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">Weld</span>
+<!--  --><br/><span class="java_separator">{</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_javadoc_comment">/**&nbsp;Boots&nbsp;Weld&nbsp;and&nbsp;creates&nbsp;and&nbsp;returns&nbsp;a&nbsp;WeldContainer&nbsp;instance,&nbsp;through&nbsp;which</span>
+<!--  --><br/><span class="java_javadoc_comment">&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;beans&nbsp;and&nbsp;events&nbsp;can&nbsp;be&nbsp;accesed.&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">WeldContainer</span><span class="java_plain">&nbsp;initialize</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{...}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_javadoc_comment">/**&nbsp;Convenience&nbsp;method&nbsp;for&nbsp;shutting&nbsp;down&nbsp;the&nbsp;container.&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;shutdown</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{...}</span>
+</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">public</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_keyword">class</span><!-- <br/> --><span class="java_plain">&nbsp;</span><!-- <br/> --><span class="java_type">WeldContainer</span>
+<!--  --><br/><span class="java_separator">{</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_javadoc_comment">/**&nbsp;Provides&nbsp;access&nbsp;to&nbsp;all&nbsp;beans&nbsp;within&nbsp;the&nbsp;application.&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">Instance</span><span class="java_operator">&lt;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;instance</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{...}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_javadoc_comment">/**&nbsp;Provides&nbsp;access&nbsp;to&nbsp;all&nbsp;events&nbsp;within&nbsp;the&nbsp;application.&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">Event</span><span class="java_operator">&lt;</span><span class="java_type">Object</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;event</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{...}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_javadoc_comment">/**&nbsp;Provides&nbsp;direct&nbsp;access&nbsp;to&nbsp;the&nbsp;BeanManager.&nbsp;*/</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">BeanManager</span><span class="java_plain">&nbsp;getBeanManager</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">{...}</span>
+</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>Here’s an example application main method which uses this API to
+initialize a bean of type <code class="literal">MyApplicationBean</code>.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_keyword">import</span><!-- <br/> --><span class="java_plain">&nbsp;org</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">jboss</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">weld</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">environment</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">se</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_type">Weld</span><!-- <br/> --><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">static</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;main</span><span class="java_separator">(</span><span class="java_type">String</span><span class="java_separator">[]</span><span class="java_plain">&nbsp;args</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">Weld</span><span class="java_plain">&nbsp;weld&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Weld</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">WeldContainer</span><span class="java_plain">&nbsp;container&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;weld</span><span class="java_separator">.</span><span class="java_plain">initialize</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;container</span><span class="java_separator">.</span><span class="java_plain">instance</span><span class="java_separator">().</span><span class="java_plain">select</span><span class="java_separator">(</span><span class="java_type">MyApplicationBean</span><span class="java_separator">.</span><span class="java_keyword">class</span><span class="java_separator">).</span><span class="java_plain">get</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;weld</span><span class="java_separator">.</span><span class="java_plain">shutdown</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+<p>Alternatively the application could be started by firing a custom event
+which would then be observed by another simple bean. The following
+example fires <code class="literal">MyEvent</code> on startup.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"><!-- <br/> --><span class="java_plain">org</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">jboss</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">weld</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">environment</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_plain">se</span><!-- <br/> --><span class="java_separator">.</span><!-- <br/> --><span class="java_type">Weld</span><!-- <br/> --><span class="java_separator">;</span>
+</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">static</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;main</span><span class="java_separator">(</span><span class="java_type">String</span><span class="java_separator">[]</span><span class="java_plain">&nbsp;args</span><span class="java_separator">)</span><span class="java_plain">&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">Weld</span><span class="java_plain">&nbsp;weld&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Weld</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">WeldContainer</span><span class="java_plain">&nbsp;container&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;weld</span><span class="java_separator">.</span><span class="java_plain">initialize</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;container</span><span class="java_separator">.</span><span class="java_plain">event</span><span class="java_separator">().</span><span class="java_plain">select</span><span class="java_separator">(</span><span class="java_type">MyEvent</span><span class="java_separator">.</span><span class="java_keyword">class</span><span class="java_separator">).</span><span class="java_plain">fire</span><span class="java_separator">(</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">MyEvent</span><span class="java_separator">()</span><span class="java_plain">&nbsp;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;weld</span><span class="java_separator">.</span><span class="java_plain">shutdown</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_separator">}</span></pre>
+
+</div>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_thread_context"/>18.4.3. Thread Context</h3></div></div></div>
+
+<p>In contrast to Java EE applications, Java SE applications place no
+restrictions on developers regarding the creation and usage of threads.
+Therefore Weld SE provides a custom scope annotation, <code class="literal">@ThreadScoped</code>,
+and corresponding context implementation which can be used to bind bean
+instances to the current thread. It is intended to be used in scenarios
+where you might otherwise use <code class="literal">ThreadLocal</code>, and does in fact use
+<code class="literal">ThreadLocal</code> under the hood.</p>
+<p>To use the <code class="literal">@ThreadScoped</code> annotation you need to enable the
+<code class="literal">RunnableDecorator</code> which <span class="emphasis"><em>listens</em></span> for all executions of
+<code class="literal">Runnable.run()</code> and decorates them by setting up the thread context
+beforehand, bound to the current thread, and destroying the context
+afterwards.</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">beans</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">decorators</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.jboss.weld.environment.se.threading.RunnableDecorator</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">class</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">decorator</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">beans</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>It is not necessary to use <code class="literal">@ThreadScoped</code> in all multithreaded
+applications. The thread context is not intended as a replacement for
+defining your own application-specific contexts. It is generally only
+useful in situations where you would otherwise have used <code class="literal">ThreadLocal</code>
+directly, which are typically rare.</p>
+</div>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_setting_the_classpath"/>18.4.4. Setting the Classpath</h3></div></div></div>
+
+<p>Weld SE comes packaged as a <span class="emphasis"><em>shaded</em></span> jar which includes the CDI API,
+Weld Core and all dependent classes bundled into a single jar. Therefore
+the only Weld jar you need on the classpath, in addition to your
+application’s classes and dependent jars, is the Weld SE jar. If you are
+working with a pure Java SE application you launch using <code class="literal">java</code>, this
+may be simpler for you.</p>
+<p>If you prefer to work with individual dependencies, then you can use the
+<code class="literal">weld-core</code> jar which just contains the Weld SE classes. Of course in
+this mode you will need to assemble the classpath yourself.</p>
+<p>If you work with a dependency management solution such as Maven you can
+declare a dependency such as:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">dependency</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">groupId</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">org.jboss.weld.se</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">groupId</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_plain">&nbsp;&nbsp;&nbsp;</span><span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">artifactId</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain">weld-se</span><span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">artifactId</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+<span class="xml_tag_symbols">&lt;/</span><span class="xml_tag_name">dependency</span><span class="xml_tag_symbols">&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_bean_archive_isolation_2"/>18.4.5. Bean Archive Isolation</h3></div></div></div>
+
+<p>By default, bean archive isolation is enabled. It means that alternatives, interceptors and decorators can be selected/enabled for a bean archive by using a beans.xml descriptor.</p>
+<p>This behaviour can be changed by providing a system property <code class="literal">org.jboss.weld.se.archive.isolation</code> with value of <code class="literal">false</code>. In this case, Weld will use a "flat" deployment structure - all bean classes share the same bean archive and all beans.xml descriptors are automatically merged into one. Thus alternatives, interceptors and decorators selected/enabled for a bean archive will be enabled for the whole application.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Bean archive isolation is supported (and enabled by default) from version 2.2.0.Final. Previous versions only operated with the "flat" deployment structure.</p>
+</div>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h3 class="title"><a id="_implicit_bean_archive_support_2"/>18.4.6. Implicit Bean Archive Support</h3></div></div></div>
+
+<p>CDI 1.1 introduced the bean discovery mode of <code class="literal">annotated</code> used for implicit bean archives (see also <a href="_java_ee_integration.html#packaging-and-deployment" title="15.6. Packaging and deployment">Section 15.6, “Packaging and deployment”</a>). This mode may bring additional overhead during container bootstrap.
+Therefore, Weld Servlet supports the use of <a xmlns:xlink="http://www.w3.org/1999/xlink" href="https://github.com/wildfly/jandex">Jandex</a> bytecode scanning library to speed up the scanning process. Simply put the <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://search.maven.org/#search|gav|1|g%3A%22org.jboss%22%20AND%20a%3A%22jandex%22">jandex.jar</a> on the classpath.
+If Jandex is not found on the classpath Weld will use the Java Reflection as a fallback.</p>
+<p>In general, an implicit bean archive does not have to contain a beans.xml descriptor. However, such a bean archive is not supported by Weld SE, i.e. it’s excluded from discovery.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>The bean discovery mode of <code class="literal">annotated</code> is supported from version 2.2.0.Final. Previous versions processed implicit bean archives in the same way as explicit bean archives.</p>
+</div>
+
+</div>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_osgi"/>18.5. OSGi</h2></div></div></div>
+
+<p>Weld supports OSGi environment through Pax CDI. For more information on
+using Weld in OSGi environment check
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="https://ops4j1.jira.com/wiki/display/PAXCDI/Pax+CDI">Pax CDI
+documentation</a> . In addition, Weld comes with a sample application
+called Paint which demonstrates how to use CDI with OSGi. Check
+<code class="literal">examples/osgi/README.md</code> for more information.</p>
+</div>
+</div><ul class="docnav"><li class="previous"><a accesskey="p" href="_weld_reference_guide.html"><strong>Prev</strong>Part V. Weld Reference Guide</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="_context_management.html"><strong>Next</strong>Chapter 19. Context Management</a></li></ul></body></html>

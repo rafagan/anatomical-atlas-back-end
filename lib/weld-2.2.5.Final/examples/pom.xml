@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.jboss.weld</groupId>
+        <artifactId>weld-core-parent</artifactId>
+        <version>2.2.5.Final</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <groupId>org.jboss.weld.examples</groupId>
+    <artifactId>weld-examples-parent</artifactId>
+    <packaging>pom</packaging>
+    <name>Weld Examples</name>
+
+    <description>
+        Examples for Weld, the reference implementation of CDI
+    </description>
+
+    <url>http://weld.cdi-spec.org</url>
+
+    <developers>
+        <developer>
+            <name>Pete Muir</name>
+            <roles>
+                <role>Project Founder</role>
+            </roles>
+            <email>pete.muir@jboss.org</email>
+            <organization>JBoss, a division of Red Hat</organization>
+            <url>http://in.relation.to/Bloggers/Pete</url>
+        </developer>
+
+        <developer>
+            <name>Ales Justin</name>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+            <email>ales.justin@jboss.org</email>
+            <organization>JBoss, a division of Red Hat</organization>
+            <url>http://in.relation.to/Bloggers/Ales</url>
+        </developer>
+
+        <developer>
+            <name>Jozef Hartinger</name>
+            <roles>
+                <role>Project Lead</role>
+            </roles>
+            <email>jharting@redhat.com</email>
+            <organization>JBoss, a division of Red Hat</organization>
+            <url>http://in.relation.to/Bloggers/Jozef</url>
+        </developer>
+
+        <developer>
+            <name>Shane Bryzak</name>
+            <organization>JBoss, a division of Red Hat</organization>
+        </developer>
+
+        <developer>
+            <name>David Allen</name>
+        </developer>
+
+        <developer>
+            <name>Nicklas Karlsson</name>
+        </developer>
+
+        <developer>
+            <name>Clint Popetz</name>
+        </developer>
+
+        <developer>
+            <name>Pete Royle</name>
+        </developer>
+
+    </developers>
+    <ciManagement>
+        <system>Hudson</system>
+        <url>http://hudson.jboss.org</url>
+    </ciManagement>
+
+    <issueManagement>
+        <system>JIRA</system>
+        <url>http://jira.jboss.org/browse/WELD</url>
+    </issueManagement>
+
+    <inceptionYear>2008</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <modules>
+        <module>jsf/numberguess</module>
+        <module>jsf/translator</module>
+        <module>jsf/login</module>
+        <module>jsf/permalink</module>
+        <module>jsf/pastecode</module>
+        <module>se/numberguess</module>
+        <module>se/hello-world</module>
+        <module>osgi</module>
+        <module>webstart</module>
+    </modules>
+
+    <properties>
+        <jsf.version>2.1</jsf.version>
+        <jsf-impl.version>2.2.6</jsf-impl.version>
+        <facelets.version>1.1.15</facelets.version>
+        <tomcat.version>7.0.53</tomcat.version>
+        <jetty.version>8.1.13.v20130916</jetty.version>
+        <!-- Override HTMLUnit version -->
+        <htmlunit.version>2.8</htmlunit.version>
+        <wildfly.plugin.version>1.0.1.Final</wildfly.plugin.version>
+        <glassfish.plugin.version>2.1</glassfish.plugin.version>
+
+        <!-- UEL Impl -->
+        <uel.version>2.2</uel.version>
+        <!-- Testing deps -->
+        <selenium.java.client.version>1.0.1</selenium.java.client.version>
+        <ant.junit.version>1.6.2</ant.junit.version>
+        <ftest.version.discriminator />
+        <selenium.browser>*firefoxproxy</selenium.browser>
+        <selenium.browser.url>http://localhost:8080</selenium.browser.url>
+        <selenium.server.port>14444</selenium.server.port>
+        <selenium.server.host>localhost</selenium.server.host>
+        <selenium.speed>0</selenium.speed>
+        <selenium.timeout>30000</selenium.timeout>
+        <selenium.debug>false</selenium.debug>
+        <selenium.log.dir>${project.build.directory}/ftest-logs</selenium.log.dir>
+        <application.deploy.timeout>300</application.deploy.timeout>
+        <richfaces.selenium.version>1.5.1.Final</richfaces.selenium.version>
+        <ftest.sources.directory>src/ftest/java</ftest.sources.directory>
+        <ftest.resources.directory>src/ftest/resources</ftest.resources.directory>
+        <!-- richfaces-selenium -->
+        <browserSessionReuse>true</browserSessionReuse>
+        <context.host>localhost</context.host>
+        <context.root>http://${context.host}:8080/</context.root>
+        <context.path>/${project.build.finalName}/</context.path>
+        <context.deploy.path>${context.path}</context.deploy.path>
+        <jboss.master.configuration>${env.JBOSS_HOME}/server/all</jboss.master.configuration>
+        <deployable.location />
+        <deployable.type>war</deployable.type>
+        <method>*</method>
+        <selenium.maximize>false</selenium.maximize>
+        <selenium.timeout.ajax>15000</selenium.timeout.ajax>
+        <selenium.timeout.default>30000</selenium.timeout.default>
+        <selenium.timeout.gui>5000</selenium.timeout.gui>
+        <selenium.timeout.model>30000</selenium.timeout.model>
+
+        <glassfish.home>${env.GLASSFISH_HOME}</glassfish.home>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>javax.faces</groupId>
+                <artifactId>jsf-api</artifactId>
+                <version>${jsf.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish</groupId>
+                <artifactId>javax.faces</artifactId>
+                <version>${jsf-impl.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-plus</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-jndi</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-webapp</artifactId>
+                <version>${jetty.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.glassfish.web</groupId>
+                <artifactId>el-impl</artifactId>
+                <version>${uel.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.seleniumhq.selenium.client-drivers</groupId>
+                <artifactId>selenium-java-client-driver</artifactId>
+                <version>${selenium.java.client.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>catalina</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>jasper</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>coyote</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>${arquillian.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-drone-bom</artifactId>
+                <version>${arquillian.drone.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.test</groupId>
+                <artifactId>arquillian-test-impl-base</artifactId>
+                <version>${arquillian.version}</version>
+                <classifier>tests</classifier>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.graphene</groupId>
+                <artifactId>arquillian-graphene</artifactId>
+                <version>${arquillian.graphene.version}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.jboss.arquillian.graphene</groupId>
+                <artifactId>graphene-webdriver</artifactId>
+                <version>${arquillian.graphene.version}</version>
+                <type>pom</type>
+                <scope>test</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration combine.self="override">
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <configuration>
+                        <ejbVersion>3.2</ejbVersion>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.9</version>
+                </plugin>
+                <!-- Work around issues encountered with http://jira.codehaus.org/browse/MWAR-187
+                    during release -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <configuration>
+                        <useCache>false</useCache>
+                    </configuration>
+                </plugin>
+                <!-- JBoss AS plugin to deploy war -->
+                <plugin>
+                    <groupId>org.wildfly.plugins</groupId>
+                    <artifactId>wildfly-maven-plugin</artifactId>
+                    <version>${wildfly.plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.glassfish.maven.plugin</groupId>
+                    <artifactId>maven-glassfish-plugin</artifactId>
+                    <version>${glassfish.plugin.version}</version>
+                    <configuration>
+                        <user>admin</user>
+                        <passwordFile>${project.basedir}/src/glassfish/password_file</passwordFile>
+                        <echo>true</echo>
+                        <glassfishDirectory>${glassfish.home}</glassfishDirectory>
+                        <domain>
+                            <name>${project.artifactId}</name>
+                            <adminPort>4848</adminPort>
+                            <httpPort>7070</httpPort>
+                            <httpsPort>8443</httpsPort>
+                            <iiopPort>3700</iiopPort>
+                            <jmsPort>7676</jmsPort>
+                            <reuse>false</reuse>
+                        </domain>
+                        <components>
+                            <component>
+                                <name>${project.artifactId}</name>
+                                <artifact>${project.build.directory}/${project.build.finalName}.${project.packaging}</artifact>
+                            </component>
+                        </components>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat6-maven-plugin</artifactId>
+                    <version>2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+
+        <profile>
+            <id>ftest</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>build-helper-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>add-ftest-source</id>
+                                    <goals>
+                                        <goal>add-test-source</goal>
+                                    </goals>
+                                    <configuration>
+                                        <sources>
+                                            <source>${ftest.sources.directory}</source>
+                                        </sources>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>add-ftest-resource</id>
+                                    <goals>
+                                        <goal>add-test-resource</goal>
+                                    </goals>
+                                    <configuration>
+                                        <resources>
+                                            <resource>
+                                                <directory>${ftest.resources.directory}</directory>
+                                                <targetPath>.</targetPath>
+                                            </resource>
+                                        </resources>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <configuration>
+                                <systemProperties>
+                                    <arquillian.launch>${arquillian}</arquillian.launch>
+                                    <jacoco.agent>${jacoco.agent}</jacoco.agent>
+                                </systemProperties>
+                            </configuration>
+                            <executions>
+                                <execution>
+                                    <id>surefire-it</id>
+                                    <phase>integration-test</phase>
+                                    <goals>
+                                        <goal>test</goal>
+                                    </goals>
+                                    <configuration>
+                                        <skip>false</skip>
+                                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                        <trimStackTrace>false</trimStackTrace>
+                                        <printSummary>true</printSummary>
+                                        <includes>
+                                            <include>**/ftest/*Test.java</include>
+                                        </includes>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
+            <id>arquillian-wildfly-managed-8</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>wildfly-managed-8</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>arquillian-wildfly-remote-8</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>wildfly-remote-8</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-remote</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>arquillian-tomcat-embdedded-7</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>tomcat-embedded-7</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-tomcat-embedded-7</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                    <artifactId>shrinkwrap-descriptors-impl</artifactId>
+                    <scope>test</scope>
+                </dependency>
+      
+                <dependency>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-jasper</artifactId>
+                    <version>${tomcat.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                
+                <dependency>
+                    <groupId>org.apache.tomcat.embed</groupId>
+                    <artifactId>tomcat-embed-logging-juli</artifactId>
+                    <version>${tomcat.version}</version>
+                    <scope>test</scope>
+                </dependency>
+
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>arquillian-jetty-embedded-7</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>jetty-embedded-7</value>
+                </property>
+            </activation>
+
+            <dependencies>
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-jetty-embedded-7</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+                    <artifactId>shrinkwrap-descriptors-impl</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-plus</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-jndi</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-webapp</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.glassfish.web</groupId>
+                    <artifactId>el-impl</artifactId>
+                    <scope>runtime</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>javax.el</groupId>
+                            <artifactId>el-api</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+                <dependency>
+                    <groupId>javax.servlet.jsp</groupId>
+                    <artifactId>jsp-api</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>arquillian-wildfly-cluster-8</id>
+            <activation>
+                <property>
+                    <name>arquillian</name>
+                    <value>wildfly-cluster-8</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>org.wildfly</groupId>
+                    <artifactId>wildfly-arquillian-container-managed</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>surefire-it</id>
+                                    <phase>integration-test</phase>
+                                    <goals>
+                                        <goal>test</goal>
+                                    </goals>
+                                    <configuration>
+                                        <systemPropertyVariables>
+                                            <node1.contextPath>${node1.contextPath}</node1.contextPath>
+                                            <node1.managementAddress>${node1.managementAddress}
+                                            </node1.managementAddress>
+                                            <node1.managementPort>${node1.managementPort}</node1.managementPort>
+                                            <node1.jbossHome>${node1.jbossHome}</node1.jbossHome>
+                                            <node1.nodeName>${node1.nodeName}</node1.nodeName>
+
+                                            <node2.contextPath>${node2.contextPath}</node2.contextPath>
+                                            <node2.managementAddress>${node2.managementAddress}
+                                            </node2.managementAddress>
+                                            <node2.managementPort>${node2.managementPort}</node2.managementPort>
+                                            <node2.jbossHome>${node2.jbossHome}</node2.jbossHome>
+                                            <node2.nodeName>${node2.nodeName}</node2.nodeName>
+                                        </systemPropertyVariables>
+
+                                        <skip>false</skip>
+                                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                        <trimStackTrace>false</trimStackTrace>
+                                        <printSummary>true</printSummary>
+                                        <includes>
+                                            <include>**/ftest/cluster/*Test.java</include>
+                                        </includes>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
+            <id>jacoco</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+                <property>
+                    <name>jacoco</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jacoco</groupId>
+                        <artifactId>jacoco-maven-plugin</artifactId>
+                        <configuration>
+                            <propertyName>jacoco.agent</propertyName>
+                            <excludes>
+                                <exclude>org.jboss.weld.examples.*</exclude>
+                            </excludes>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>prepare-agent</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>jboss-public-repository</id>
+            <!-- Repository is active unless explicitly disabled e.g. -P!jboss-public-repository -->
+            <activation>
+                <property>
+                    <name>jboss-public-repository</name>
+                    <value>!false</value>
+                </property>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>jboss-public-repository-group</id>
+                    <name>JBoss Public Maven Repository Group</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <layout>default</layout>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jboss-public-repository-group</id>
+                    <name>JBoss Public Maven Repository Group</name>
+                    <url>http://repository.jboss.org/nexus/content/groups/public</url>
+                    <layout>default</layout>
+                    <releases>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                        <updatePolicy>never</updatePolicy>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+</project>

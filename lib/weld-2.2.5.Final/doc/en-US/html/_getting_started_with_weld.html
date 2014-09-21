@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">Chapter 6. Getting started with Weld</title><link rel="stylesheet" href="css/seamframework.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/><link rel="start" href="index.html" title="Weld - CDI Reference Implementation"/><link rel="up" href="_getting_start_with_weld_the_cdi_reference_implementation.html" title="Part II. Getting Start with Weld, the CDI Reference Implementation"/><link rel="prev" href="_getting_start_with_weld_the_cdi_reference_implementation.html" title="Part II. Getting Start with Weld, the CDI Reference Implementation"/><link rel="next" href="_diving_into_the_weld_examples.html" title="Chapter 7. Diving into the Weld examples"/></head><body><p id="title"><a href="http://www.seamframework.org" class="site_href"><strong>SeamFramework.org</strong></a><a href="http://www.seamframework.org/Documentation" class="doc_href"><strong>Community Documentation</strong></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="_getting_start_with_weld_the_cdi_reference_implementation.html"><strong>Prev</strong></a></li><li class="next"><a accesskey="n" href="_diving_into_the_weld_examples.html"><strong>Next</strong></a></li></ul><div class="chapter" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_getting_started_with_weld"/>Chapter 6. Getting started with Weld</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="_getting_started_with_weld.html#_prerequisites">6.1. Prerequisites</a></span></dt><dt><span class="section"><a href="_getting_started_with_weld.html#_deploying_to_wildfly">6.2. Deploying to WildFly</a></span></dt><dt><span class="section"><a href="_getting_started_with_weld.html#_deploying_to_glassfish">6.3. Deploying to GlassFish</a></span></dt><dt><span class="section"><a href="_getting_started_with_weld.html#_deploying_to_apache_tomcat">6.4. Deploying to Apache Tomcat</a></span></dt><dt><span class="section"><a href="_getting_started_with_weld.html#_deploying_to_jetty">6.5. Deploying to Jetty</a></span></dt></dl></div>
+
+<p>Weld comes with a number of examples. We recommend you start with
+<code class="literal">examples/jsf/numberguess</code> and <code class="literal">examples/jsf/translator</code>. Numberguess is
+a web (war) example containing only non-transactional managed beans.
+This example can be run on a wide range of servers, including WildFly ,
+GlassFish, Apache Tomcat, Jetty, Google App Engine, and any compliant
+Java EE 7 container. Translator is an enterprise (ear) example that
+contains session beans. This example must be run on WildFly 8 or better,
+GlassFish 4 or better, or any compliant Java EE 7 container.</p>
+<p>Both examples use JSF 2.2 as the web framework and, as such, can be
+found in the <code class="literal">examples/jsf</code> directory of the Weld distribution.</p>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_prerequisites"/>6.1. Prerequisites</h2></div></div></div>
+
+<p>To run the examples with the provided build scripts, you’ll need the
+following:</p>
+<div class="itemizedlist"><ul><li>
+the latest release of Weld, which contains the examples
+</li><li>
+Maven 3, to build and deploy the examples
+</li><li>
+<p>a supported runtime environment (minimum versions shown)</p>
+<div class="itemizedlist"><ul><li>
+WildFly 8.0.0.Final,
+</li><li>
+GlassFish 4.0,
+</li><li>
+Apache Tomcat 7 or better (war example only), or
+</li><li>
+Jetty 7 or better (war example only)
+</li></ul></div>
+
+</li></ul></div>
+
+<p>In the next few sections, you’ll be using the Maven command (<code class="literal">mvn</code>) to
+invoke the Maven project file in each example to compile, assemble and
+deploy the example to WildFly and, for the war example, Apache Tomcat.
+You can also deploy the generated artifact (war or ear) to any other
+container that supports Java EE 7, such as GlassFish 4.</p>
+<p>The sections below cover the steps for deploying with Maven in detail.
+Let’s start with WildFly.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_deploying_to_wildfly"/>6.2. Deploying to WildFly</h2></div></div></div>
+
+<p>To deploy the examples to WildFly, you’ll need
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://wildfly.org/downloads/">WildFly 8.0.0.Final</a> or above. The good
+news is that there are no additional modifications you have to make to
+the server. It’s ready to go!</p>
+<p>After you have downloaded WildFly, extract it. (We recommended renaming
+the folder to include the <code class="literal">as</code> qualifier so it’s clear that it’s the
+application server). You can move the extracted folder anywhere you
+like. Wherever it lays to rest, that’s what we’ll call the WildFly
+installation directory, or <code class="literal">JBOSS_HOME</code>.</p>
+<pre class="programlisting">$&gt; unzip wildfly-8.0.0.Final.zip
+$&gt; mv wildfly-8.*/ wildfly-8</pre>
+
+<p>In order for the build scripts to know where to deploy the example, you
+have to tell them where to find your WildFly installation. Set the
+<code class="literal">JBOSS_HOME</code> environment variable to point to the WildFly installation,
+e.g.:</p>
+<pre class="programlisting">$&gt; export JBOSS_HOME=/path/to/wildfly-8</pre>
+
+<p>You’re now ready to run your first example!</p>
+<p>Switch to the <code class="literal">examples/jsf/numberguess</code> directory and execute the Maven
+<code class="literal">deploy</code> target:</p>
+<pre class="programlisting">$&gt; cd examples/jsf/numberguess
+$&gt; mvn jboss-as:run</pre>
+
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>If you are using Eclipse, you should seriously consider installing the
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://www.jboss.org/tools">JBoss Tools</a> add-ons, which include a wide
+variety of tooling for CDI and Java EE development, as well as an
+enhanced WildFly server view.</p>
+</div>
+
+<p>Wait a few seconds for the application to deploy (or the application
+server to start) and see if you can determine the most efficient
+approach to pinpoint the random number at the local URL
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://localhost:8080/weld-numberguess">http://localhost:8080/weld-numberguess</a>.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>The Maven WildFly plugin includes additional goals for WildFly to deploy
+and undeploy the archive.</p>
+<div class="itemizedlist"><ul><li>
+<code class="literal">mvn wildfly:deploy</code> - deploy the example to a running WildFly
+instance
+</li><li>
+<code class="literal">mvn wildfly:undeploy</code> - undeploy the example from a running WildFly
+instance
+</li><li>
+<code class="literal">mvn wildfly:redeploy</code> - redeploys the example
+</li></ul></div>
+
+<p>For more information on the WildFly Maven plugin see the
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="https://docs.jboss.org/wildfly/plugins/maven/latest/">plugin
+documentation</a>.</p>
+</div>
+
+<p>You can also run functional tests to verify that the example works as
+expected. Run:</p>
+<pre class="programlisting">$&gt; mvn verify -Darquillian=wildfly-managed-8</pre>
+
+<p>You should see the following output:</p>
+<pre class="programlisting">Tests run: 2, Failures: 0, Errors: 0, Skipped: 0</pre>
+
+<p>The second starter example, <code class="literal">weld-translator</code>, will translate your text
+into Latin. (Well, not really, but the stub is there for you to
+implement, at least. Good luck!) To try it out, switch to the translator
+example directory and execute the deploy target:</p>
+<pre class="programlisting">$&gt; cd examples/jsf/translator/ear
+$&gt; mvn jboss-as:run</pre>
+
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>The translator uses session beans, which are packaged in an EJB module
+within an ear. Java EE 7 allows session beans to be deployed in war
+modules, but that’s a topic for a later chapter.</p>
+</div>
+
+<p>Again, wait a few seconds for the application to deploy (if you’re
+really bored, read the log messages), and visit
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://localhost:8080/weld-translator">http://localhost:8080/weld-translator</a> to begin pseudo-translating.</p>
+<p>Again, functional tests can be running by executing:</p>
+<pre class="programlisting">$&gt; cd examples/jsf/translator/ftest
+$&gt; mvn verify -Darquillian=wildfly-managed-8</pre>
+
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_deploying_to_glassfish"/>6.3. Deploying to GlassFish</h2></div></div></div>
+
+<p>Deploying to GlassFish should be easy and familiar, right? After all,
+it’s the Java EE 7 reference implementation and Weld is the CDI
+reference implementation, meaning Weld gets bundled with GlassFish. So
+yes, it’s all quite easy and familiar.</p>
+<p>To deploy the examples to GlassFish, you’ll need a
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="https://glassfish.java.net/download.html">GlassFish 4.0</a> release. Select
+the release that ends in either <code class="literal">-unix.sh</code> or <code class="literal">-windows.exe</code> depending
+on your platform. After the download is complete, execute the installer.
+On Linux/Unix, you’ll need to first make the script executable.</p>
+<pre class="programlisting">$&gt; chmod 755 glassfish-4.0-unix.sh
+$&gt; ./glassfish-4.0-unix.sh</pre>
+
+<p>On Windows you can just click on the executable. Follow the instructions
+in the installer. It will create a single domain named <code class="literal">domain1</code>. You’ll
+use that domain to deploy the example. We recommend that you choose
+<code class="literal">7070</code> as the main HTTP port to avoid conflicts with a running instance
+of WildFly (or Apache Tomcat).</p>
+<p>Next, make sure the <code class="literal">GLASSFISH_HOME</code> environment variable is set to
+point to the GlassFish installation.</p>
+<p>Now switch to the example directory again and create a new GlassFish
+domain for the example.</p>
+<pre class="programlisting">$&gt; cd examples/jsf/numberguess
+$&gt; mvn glassfish:create-domain</pre>
+
+<p>You are now ready to deploy the example by running:</p>
+<pre class="programlisting">$&gt; mvn package glassfish:deploy</pre>
+
+<p>Once the command completes the application is available at
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://localhost:7070/weld-numberguess">http://localhost:7070/weld-numberguess</a></p>
+<p>The example is deployed using the <code class="literal">maven-glassfish-plugin</code>. For more
+information about the plugin see the
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://maven-glassfish-plugin.java.net/">plugin documentation</a></p>
+<p>There are alternative ways of,deploying applications to GlassFish either
+by using the <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://localhost:4848">GlassFish Admin Console</a> or the
+<code class="literal">asadmin</code> command.</p>
+<p>The reason the same artifact can be deployed to both WildFly and
+GlassFish, without any modifications, is because all of the features
+being used are part of the standard platform. And what a capable
+platform it has become!</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_deploying_to_apache_tomcat"/>6.4. Deploying to Apache Tomcat</h2></div></div></div>
+
+<p>Servlet containers are not required to support Java EE services like
+CDI. However, you can use CDI in a servlet container like Tomcat by
+embedding a standalone CDI implementation such as Weld.</p>
+<p>Weld comes with servlet integration extension which bootstraps the CDI
+environment and provides injection into servlets components. Basically,
+it emulates some of the work done by the Java EE container, but you
+don’t get the enterprise features such as session beans and
+container-managed transactions.</p>
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="note"><h2>Note</h2>
+<p>Note that due to limitations of servlet containers (e.g. read-only JNDI)
+your application might require some additional configuration as well
+(see <a href="_application_servers_and_environments_supported_by_weld.html#_tomcat" title="18.3.1. Tomcat">Section 18.3.1, “Tomcat”</a> and <a href="_application_servers_and_environments_supported_by_weld.html#_jetty" title="18.3.2. Jetty">Section 18.3.2, “Jetty”</a> for more info).</p>
+</div>
+
+<p>Let’s give the Weld servlet extension a spin on Apache Tomcat. First,
+you’ll need to download Tomcat 7.0.50 or later from
+<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://tomcat.apache.org/download-70.cgi">tomcat.apache.org</a> and extract
+it.</p>
+<pre class="programlisting">$&gt; unzip apache-tomcat-7.0.53.zip</pre>
+
+<p>The Maven plugin communicates with Tomcat over HTTP, so it doesn’t care
+where you have installed Tomcat. However, the plugin configuration
+assumes you are running Tomcat in its default configuration, with a
+hostname of localhost and port <code class="literal">8080</code>. The <code class="literal">readme.txt</code> file in the
+example directory has information about how to modify the Maven settings
+to accommodate a different setup.</p>
+<p>To allow Maven to communicate with Tomcat over HTTP, edit the
+<code class="literal">conf/tomcat-users.xml</code> file in your Tomcat installation. For Tomcat 7
+and higher add the following line:</p>
+<pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="XML"><!-- XML : generated by JHighlight v1.0 (http://jhighlight.dev.java.net) -->
+<span class="xml_tag_symbols">&lt;</span><span class="xml_tag_name">user</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">username</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;admin&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">password</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;&quot;</span><span class="xml_plain">&nbsp;</span><span class="xml_attribute_name">roles</span><span class="xml_tag_symbols">=</span><span class="xml_attribute_value">&quot;manager-script&quot;</span><span class="xml_tag_symbols">/&gt;</span><span class="xml_plain"></span><br />
+</pre>
+
+<p>Next, start Tomcat. You can either start Tomcat from a Linux shell:</p>
+<pre class="programlisting">$&gt; cd /path/to/apache-tomcat-7
+$&gt; ./bin/start.sh</pre>
+
+<p>a Windows command window:</p>
+<pre class="programlisting">$&gt; cd c:\path\to\apache-tomcat-7\bin
+$&gt; start</pre>
+
+<p>or you can start the server using an IDE, like Eclipse.</p>
+<p>Now you’re ready to deploy the numberguess example to Tomcat!</p>
+<p>Change to the <code class="literal">examples/jsf/numberguess</code> directory again and run the
+following Maven command:</p>
+<pre class="programlisting">$&gt; cd examples/jsf/numberguess
+$&gt; mvn clean compile war:exploded tomcat7:deploy -Ptomcat</pre>
+
+<p>Once the application is deployed, you can redeploy it using this
+command:</p>
+<pre class="programlisting">$&gt; mvn tomcat7:redeploy -Ptomcat</pre>
+
+<p>The <code class="literal">-Ptomcat</code> argument activates the <code class="literal">tomcat</code> profile defined in the
+Maven POM (<code class="literal">pom.xml</code>). Among other things, this profile activates the
+Tomcat plugin.</p>
+<p>Rather than shipping the container off to a standalone Tomcat
+installation, you can also execute the application in an embedded Tomcat
+6 container:</p>
+<pre class="programlisting">$&gt; mvn war:inplace tomcat7:run -Ptomcat</pre>
+
+<p>The advantage of using the embedded server is that changes to assets in
+<code class="literal">src/main/webapp</code> take effect immediately. If a change to a webapp
+configuration file is made, the application may automatically redeploy
+(depending on the plugin configuration). If you make a change to a
+classpath resource, you need to execute a build:</p>
+<pre class="programlisting">$&gt; mvn compile war:inplace -Ptomcat</pre>
+
+<p>Finally, you can run the functional tests:</p>
+<pre class="programlisting">$&gt; mvn verify -Darquillian=tomcat-embedded-7 -Ptomcat</pre>
+
+<p>There are several other Maven goals that you can use if you are hacking
+on the example, which are documented in the example’s <code class="literal">README.md</code> file.</p>
+</div>
+<div class="section" lang="en-US"><div class="titlepage"><div><div><h2 class="title"><a id="_deploying_to_jetty"/>6.5. Deploying to Jetty</h2></div></div></div>
+
+<div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="warning"><h2>Warning</h2>
+<p>Jetty Maven plugin is temporarily unsupported in Weld examples.</p>
+</div>
+
+<p>If you’ve read through the entire Tomcat section, then you’re all ready
+to go. The Maven build parallels the embedded Tomcat deployment. If not,
+don’t worry. We’ll still go over everything that you need to know again
+in this section.</p>
+<p>The Maven POM (<code class="literal">pom.xml</code>) includes a profile named <code class="literal">jetty</code> that
+activates the Maven Jetty plugin, which you can use to start Jetty in
+embedded mode and deploy the application in place. You don’t need
+anything else installed except to have the Maven command (<code class="literal">mvn</code>) on your
+path. The rest will be downloaded from the internet when the build is
+run.</p>
+<p>To run the <code class="literal">weld-numberguess</code> example on Jetty, switch to the example
+directory and execute the <code class="literal">inplace</code> goal of the Maven war plugin
+followed by the <code class="literal">run</code> goal of the Maven Jetty plugin with the <code class="literal">jetty</code>
+profile enabled, as follows:</p>
+<pre class="programlisting">$&gt; cd examples/jsf/numberguess
+$&gt; mvn war:inplace jetty:run -Pjetty</pre>
+
+<p>The log output of Jetty will be shown in the console. Once Jetty reports
+that the application has deployed, you can access it at the following
+local URL: <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://localhost:9090/weld-numberguess">http://localhost:9090/weld-numberguess</a>. The port is defined
+in the Maven Jetty plugin configuration within the <code class="literal">jetty</code> profile.</p>
+<p>Any changes to assets in <code class="literal">src/main/webapp</code> take effect immediately. If a
+change to a webapp configuration file is made, the application may
+automatically redeploy. The redeploy behavior can be fined-tuned in the
+plugin configuration. If you make a change to a classpath resource, you
+need to execute a build and the <code class="literal">inplace</code> goal of the Maven war plugin,
+again with the <code class="literal">jetty</code> profile enabled.</p>
+<pre class="programlisting">$&gt; mvn compile war:inplace -Pjetty</pre>
+
+<p>The <code class="literal">war:inplace</code> goal copies the compiled classes and jars inside
+<code class="literal">src/main/webapp</code>, under <code class="literal">WEB-INF/classes</code> and <code class="literal">WEB-INF/lib</code>,
+respectively, mixing source and compiled files. However, the build does
+work around these temporary files by excluding them from the packaged
+war and cleaning them during the Maven clean phase.</p>
+<p>Finally, you can run the functional tests:</p>
+<pre class="programlisting">$&gt; mvn verify -Darquillian=jetty-embedded-7 -Pjetty</pre>
+
+<p>Now that you have gotten the starter applications deployed on the server
+of your choice, you probably want to know a little bit about how they
+actually work.</p>
+</div>
+</div><ul class="docnav"><li class="previous"><a accesskey="p" href="_getting_start_with_weld_the_cdi_reference_implementation.html"><strong>Prev</strong>Part II. Getting Start with Weld, the CDI Referen...</a></li><li class="up"><a accesskey="u" href="#"><strong>Top of page</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Front page</strong></a></li><li class="next"><a accesskey="n" href="_diving_into_the_weld_examples.html"><strong>Next</strong>Chapter 7. Diving into the Weld examples</a></li></ul></body></html>

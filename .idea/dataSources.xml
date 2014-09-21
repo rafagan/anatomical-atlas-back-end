@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2579064529">
+    <data-source source="LOCAL" name="MySQL - @localhost" uuid="3a9b1807-38a9-482a-8d66-29c25a17eb7e">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <user-name>root</user-name>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="TestPersistenceUnit" uuid="d12bbee9-01f7-4f7c-a3df-2bceab565984">
+      <driver-ref>mysql</driver-ref>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/test</jdbc-url>
+      <user-name>root</user-name>
+      <libraries>
+        <library>
+          <url>file://$PROJECT_DIR$/lib/Log4j_ApacheUtils_MySQLConnector/slf4j-api-1.6.1.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

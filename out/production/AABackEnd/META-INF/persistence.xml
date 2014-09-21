@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="TestPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>models.User</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/test" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+
+    <persistence-unit name="AtlasPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>models.Bone</class>
+        <class>models.BoneHasBone</class>
+        <class>models.BonePart</class>
+        <class>models.BoneSet</class>
+        <class>models.Clazz</class>
+        <class>models.ClassHasStudent</class>
+        <class>models.MultipleChoice</class>
+        <class>models.Organization</class>
+        <class>models.Question</class>
+        <class>models.QuestionReferencesBoneSet</class>
+        <class>models.QuizTest</class>
+        <class>models.QuizTestHasQuestion</class>
+        <class>models.Resolution</class>
+        <class>models.Student</class>
+        <class>models.Teacher</class>
+        <class>models.TeacherAuthoredQuestion</class>
+        <class>models.TeacherWorkAtOrganization</class>
+        <class>models.TrueOrFalse</class>
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.archive.autodetection" value="class"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.use_sql_comments" value="true"/>
+
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
