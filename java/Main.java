@@ -1,6 +1,8 @@
+import controllers.BoneController;
+import models.Bone;
 import models.User;
-import services.UserService;
 import utils.EntityManagerUtil;
+import utils.WebserviceResponseFactory;
 
 import javax.ejb.Stateless;
 import javax.json.Json;
@@ -8,7 +10,9 @@ import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -17,7 +21,14 @@ import java.util.ArrayList;
 @Stateless
 public class Main {
     public static void main(String[] args) {
-        new Main().test();
+        new Main().testBoneQuery();
+    }
+
+
+    void testBoneQuery() {
+        BoneController controller = new BoneController();
+        List<Bone> bs = controller.getAllBones();
+        Bone b = controller.getBone(1);
     }
 
     void test() {
@@ -27,7 +38,7 @@ public class Main {
         users.add(new User());
         users.get(0).setEmail("rafagan@abreu.com");
 
-        EntityManager em = EntityManagerUtil.getEntityManager("AtlasPersistenceUnit");
+        EntityManager em = EntityManagerUtil.pullEntityManager("AtlasPersistenceUnit");
 
         TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
 

@@ -380,6 +380,7 @@
     <orderEntry type="library" name="javax.json-1.0.4" level="project" />
     <orderEntry type="library" name="Log4j, Apache Utils and MySQL Connector" level="project" />
     <orderEntry type="library" name="Jersey old" level="project" />
+    <orderEntry type="library" name="JUnit" level="project" />
   </component>
 </module>
 
