@@ -25,13 +25,14 @@ public class BoneSetResource {
     }
 
     @GET
+    @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getBoneSet(@PathParam("id") int boneSetId) {
         return boneSetController.getBoneSet(boneSetId);
     }
 
     @GET
-    @Path("{id}")
+    @Path("{id}/bones")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getBoneSetBones(@PathParam("id") int boneSetId) {
         return boneSetController.getBoneSetBones(boneSetId);
