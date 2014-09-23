@@ -15,58 +15,40 @@ import javax.ws.rs.core.Response;
 @Path("bones")
 public class BoneResource {
     private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
+    BoneController boneController = new BoneController();
 
     @Context
     HttpServletRequest request;
 
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getAllBones() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        BoneController controller = new BoneController();
-
-        wResponse = WebserviceResponseFactory.normalListResponse();
-        wResponse.setResult(controller.getAllBones());
-
-        return Response.ok(wResponse).build();
-    }
+    public Response getAllBones() { return boneController.getAllBones(); }
 
     @GET
     @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getBone(@PathParam("id") int boneId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        BoneController controller = new BoneController();
-
-        wResponse = WebserviceResponseFactory.normalSingleResponse(controller.getBone(boneId));
-
-        return Response.ok(wResponse).build();
+        return boneController.getBone(boneId);
     }
 
     @GET
     @Path("{id}/questions")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getQuestionAboutBone(@PathParam("id") long questionId) {
-
-
         return Response.ok("").build();
     }
 
     @GET
-    @Path("{id}/neighbours")
+    @Path("{id}/neighbors")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getBoneNeighbours(@PathParam("id") long boneId) {
-
-
-        return Response.ok("").build();
+    public Response getBoneNeighbors(@PathParam("id") int boneId) {
+        return boneController.getBoneNeighbors(boneId);
     }
 
     @GET
     @Path("{id}/quiztests")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getQuizTestsAboutBone(@PathParam("id") long boneId) {
-
-
         return Response.ok("").build();
     }
 }

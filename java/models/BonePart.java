@@ -1,9 +1,9 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.persistence.*;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -14,23 +14,26 @@ public class BonePart {
     private String description;
     private String name;
     private String synonymous;
+    private Bone parentBone;
 
     @Id
     @Column(name = "idBonePart", nullable = false, insertable = true, updatable = true)
     public int getIdBonePart() {
         return idBonePart;
     }
+    public void setIdBonePart(int idBonePart) { this.idBonePart = idBonePart; }
 
-    public void setIdBonePart(int idBonePart) {
-        this.idBonePart = idBonePart;
-    }
+    @ManyToOne
+    @JoinColumn(name="Bone_idBone")
+    @JsonBackReference
+    public Bone getParentBone() { return parentBone; }
+    public void setParentBone(Bone parentBone) { this.parentBone = parentBone; }
 
     @Basic
     @Column(name = "Description", nullable = false, insertable = true, updatable = true, length = 65535)
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -40,7 +43,6 @@ public class BonePart {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -50,7 +52,6 @@ public class BonePart {
     public String getSynonymous() {
         return synonymous;
     }
-
     public void setSynonymous(String synonymous) {
         this.synonymous = synonymous;
     }

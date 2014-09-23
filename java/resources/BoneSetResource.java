@@ -1,5 +1,6 @@
 package resources;
 
+import controllers.BoneSetController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
@@ -15,47 +16,45 @@ public class BoneSetResource {
     private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
     @Context
     HttpServletRequest request;
+    BoneSetController boneSetController = new BoneSetController();
 
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getAllBoneSets() {
+        return boneSetController.getAllBoneSets();
+    }
 
-        return Response.ok("bonesets").build();
+    @GET
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response getBoneSet(@PathParam("id") int boneSetId) {
+        return boneSetController.getBoneSet(boneSetId);
     }
 
     @GET
     @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getBoneSetBones(@PathParam("id") long boneSetId) {
-
-
-        return Response.ok("").build();
+    public Response getBoneSetBones(@PathParam("id") int boneSetId) {
+        return boneSetController.getBoneSetBones(boneSetId);
     }
 
     @GET
     @Path("{id}/parent")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getBoneSetParent(@PathParam("id") long questionId) {
-
-
-        return Response.ok("").build();
+    public Response getBoneSetParent(@PathParam("id") int questionId) {
+        return boneSetController.getBoneSetParent(questionId);
     }
 
     @GET
     @Path("{id}/questions")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuestionsAboutBoneSet(@PathParam("id") long boneId) {
-
-
-        return Response.ok("").build();
+    public Response getQuestionsAboutBoneSet(@PathParam("id") int boneId) {
+        return boneSetController.getQuestionsAboutBoneSet(boneId);
     }
 
     @GET
     @Path("{id}/quiztests")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuizTestsAboutBoneSet(@PathParam("id") long boneId) {
-
-
-        return Response.ok("").build();
+    public Response getQuizTestsAboutBoneSet(@PathParam("id") int boneId) {
+        return boneSetController.getQuizTestsAboutBoneSet(boneId);
     }
 }

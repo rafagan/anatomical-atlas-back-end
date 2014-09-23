@@ -1,8 +1,7 @@
 import controllers.BoneController;
 import models.Bone;
-import models.User;
+import models.UserModelExample;
 import utils.EntityManagerUtil;
-import utils.WebserviceResponseFactory;
 
 import javax.ejb.Stateless;
 import javax.json.Json;
@@ -10,7 +9,6 @@ import javax.json.JsonArray;
 import javax.json.JsonArrayBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,28 +19,21 @@ import java.util.List;
 @Stateless
 public class Main {
     public static void main(String[] args) {
-        new Main().testBoneQuery();
-    }
-
-
-    void testBoneQuery() {
-        BoneController controller = new BoneController();
-        List<Bone> bs = controller.getAllBones();
-        Bone b = controller.getBone(1);
+        new Main().test();
     }
 
     void test() {
         JsonArrayBuilder builder = Json.createArrayBuilder();
 
-        ArrayList<User> users = new ArrayList<User>();
-        users.add(new User());
+        ArrayList<UserModelExample> users = new ArrayList<UserModelExample>();
+        users.add(new UserModelExample());
         users.get(0).setEmail("rafagan@abreu.com");
 
         EntityManager em = EntityManagerUtil.pullEntityManager("AtlasPersistenceUnit");
 
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
+        TypedQuery<UserModelExample> query = em.createQuery("SELECT u FROM UserModelExample u", UserModelExample.class);
 
-        for (User user : query.getResultList()) {
+        for (UserModelExample user : query.getResultList()) {
             builder.add(Json.createObjectBuilder().add("email",user.getEmail()));
         }
 

@@ -1,5 +1,7 @@
 package resources;
 
+import controllers.QuizTestController;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -12,6 +14,7 @@ import javax.ws.rs.core.Response;
 @Path("quiztests")
 public class QuizTestResource {
     private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
+    QuizTestController boneSetController = new QuizTestController();
 
     @Context
     HttpServletRequest request;

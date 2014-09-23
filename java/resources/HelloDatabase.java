@@ -1,6 +1,6 @@
 package resources;
 
-import models.User;
+import models.UserModelExample;
 import services.UserService;
 import utils.EntityManagerUtil;
 
@@ -27,9 +27,9 @@ public class HelloDatabase {
         JsonArrayBuilder builder = Json.createArrayBuilder();
 
         EntityManager em = EntityManagerUtil.pullEntityManager("TestPersistenceUnit");
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User AS u", User.class);
+        TypedQuery<UserModelExample> query = em.createQuery("SELECT u FROM UserModelExample AS u", UserModelExample.class);
 
-        for (User user : query.getResultList()) {
+        for (UserModelExample user : query.getResultList()) {
             builder.add(Json.createObjectBuilder().add("email",user.getEmail()));
         }
 

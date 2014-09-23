@@ -1,6 +1,6 @@
 package services;
 
-import models.User;
+import models.UserModelExample;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -16,8 +16,8 @@ public class UserService {
     @PersistenceContext
     private EntityManager em;
 
-    public List<User> getAll(){
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
+    public List<UserModelExample> getAll(){
+        TypedQuery<UserModelExample> query = em.createQuery("SELECT u FROM UserModelExample u", UserModelExample.class);
         return query.getResultList();
     }
 }

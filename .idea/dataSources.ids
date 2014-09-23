@@ -7,6 +7,7 @@
     </database-info>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="upper"/>
     <schema name="" catalog="AnatomicalAtlas"/>
+    <schema name="" catalog="hello-world"/>
     <table name="Bone" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idBone" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="BoneSet_idBoneSet" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -17,6 +18,7 @@
       <foreign-key name="fk_Bone_BoneSet1" columns="BoneSet_idBoneSet" ref-table="BoneSet" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBoneSet" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="fk_Bone_has_Bone_Bone3" table="BoneHasBone" schema="" catalog="AnatomicalAtlas" columns="Bone_idBone"/>
       <exported-key name="fk_Bone_has_Bone_Bone4" table="BoneHasBone" schema="" catalog="AnatomicalAtlas" columns="Bone_idNeighbor"/>
+      <exported-key name="FK_ryukynofgbbkbpk43h4inkn6y" table="BonePart" schema="" catalog="AnatomicalAtlas" columns="parentBone_idBone"/>
       <exported-key name="fk_Bone_Bone1" table="BonePart" schema="" catalog="AnatomicalAtlas" columns="Bone_idBone"/>
       <index name="fk_Bone_BoneSet1_idx" unique="false" columns="BoneSet_idBoneSet"/>
     </table>
@@ -35,9 +37,12 @@
       <column name="Description" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="Synonymous" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="parentBone_idBone" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idBonePart"/>
+      <foreign-key name="FK_ryukynofgbbkbpk43h4inkn6y" columns="parentBone_idBone" ref-table="Bone" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBone" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="fk_Bone_Bone1" columns="Bone_idBone" ref-table="Bone" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBone" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="fk_Bone_Bone1_idx" unique="false" columns="Bone_idBone"/>
+      <index name="FK_ryukynofgbbkbpk43h4inkn6y" unique="false" columns="parentBone_idBone"/>
     </table>
     <table name="BoneSet" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idBoneSet" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -58,8 +63,8 @@
       <column name="Teacher_idTeacher" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="Organization_idOrganization" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idClass"/>
-      <foreign-key name="fk_Class_Teacher2" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="fk_Class_Organization2" columns="Organization_idOrganization" ref-table="Organization" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idOrganization" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_Class_Teacher2" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="fk_Class_has_Student_Class1" table="ClassHasStudent" schema="" catalog="AnatomicalAtlas" columns="Class_idClass"/>
       <index name="fk_Class_Organization2_idx" unique="false" columns="Organization_idOrganization"/>
       <index name="fk_Class_Teacher2_idx" unique="false" columns="Teacher_idTeacher"/>
@@ -189,8 +194,8 @@
       <column name="Teacher_idTeacher" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="Question_idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="Teacher_idTeacher,Question_idQuestion"/>
-      <foreign-key name="fk_Teacher_has_Question_Teacher3" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="fk_Teacher_has_Question_Question3" columns="Question_idQuestion" ref-table="Question" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuestion" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="fk_Teacher_has_Question_Teacher3" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="fk_Teacher_has_Question_Question3_idx" unique="false" columns="Question_idQuestion"/>
       <index name="fk_Teacher_has_Question_Teacher3_idx" unique="false" columns="Teacher_idTeacher"/>
     </table>
@@ -210,6 +215,75 @@
       <column name="Figure" sqlType="BLOB" precision="65535" scale="0" nullable="true" jdbcType="-4"/>
       <primary-key name="PRIMARY" columns="Question_idQuestion"/>
       <foreign-key name="fk_TrueOrFalse_Question1" columns="Question_idQuestion" ref-table="Question" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuestion" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="users" schema="" catalog="AnatomicalAtlas" type="TABLE">
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="email"/>
+    </table>
+    <table name="Actor" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_ajdqvhwxqsxneys3ti0q693lh" table="movie_actor" schema="" catalog="hello-world" columns="actor_id"/>
+    </table>
+    <table name="Customer" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="passport_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_eqsqcfe0n0al6jf5ewnx392nl" columns="passport_id" ref-table="Passport" ref-schema="" ref-catalog="hello-world" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="UK_eqsqcfe0n0al6jf5ewnx392nl" unique="true" columns="passport_id"/>
+    </table>
+    <table name="Guide" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="salary" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="staff_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_kf6egxhj81a1pp6596ox4c0ul" table="Student" schema="" catalog="hello-world" columns="guide_id"/>
+    </table>
+    <table name="Movie" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_4bngxc3mkdpf5vkuij4yk2egf" table="movie_actor" schema="" catalog="hello-world" columns="movie_id"/>
+    </table>
+    <table name="Passport" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="passport_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="FK_eqsqcfe0n0al6jf5ewnx392nl" table="Customer" schema="" catalog="hello-world" columns="passport_id"/>
+    </table>
+    <table name="Person" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="address_city" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address_street" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address_zipcode" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="Student" schema="" catalog="hello-world" type="TABLE">
+      <column name="id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="enrollment_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="guide_id" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="dedication" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="FK_kf6egxhj81a1pp6596ox4c0ul" columns="guide_id" ref-table="Guide" ref-schema="" ref-catalog="hello-world" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_kf6egxhj81a1pp6596ox4c0ul" unique="false" columns="guide_id"/>
+    </table>
+    <table name="message" schema="" catalog="hello-world" type="TABLE">
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" autoIncrement="true"/>
+      <column name="TEXT" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID"/>
+    </table>
+    <table name="movie_actor" schema="" catalog="hello-world" type="TABLE">
+      <column name="movie_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <column name="actor_id" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
+      <primary-key name="PRIMARY" columns="movie_id,actor_id"/>
+      <foreign-key name="FK_4bngxc3mkdpf5vkuij4yk2egf" columns="movie_id" ref-table="Movie" ref-schema="" ref-catalog="hello-world" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_ajdqvhwxqsxneys3ti0q693lh" columns="actor_id" ref-table="Actor" ref-schema="" ref-catalog="hello-world" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_ajdqvhwxqsxneys3ti0q693lh" unique="false" columns="actor_id"/>
     </table>
   </data-source>
 </component>

@@ -19,7 +19,6 @@ public class BoneHasBone {
     public int getBoneIdBone() {
         return boneIdBone;
     }
-
     public void setBoneIdBone(int boneIdBone) {
         this.boneIdBone = boneIdBone;
     }
@@ -29,7 +28,6 @@ public class BoneHasBone {
     public int getBoneIdNeighbor() {
         return boneIdNeighbor;
     }
-
     public void setBoneIdNeighbor(int boneIdNeighbor) {
         this.boneIdNeighbor = boneIdNeighbor;
     }

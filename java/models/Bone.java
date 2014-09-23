@@ -1,9 +1,11 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -15,22 +17,39 @@ public class Bone {
     private String name;
     private String synonymous;
 
+    private Set<BonePart> boneParts = new HashSet<BonePart>();
+    private Set<Bone> neighbors = new HashSet<Bone>();
+
     @Id
     @Column(name = "idBone", nullable = false, insertable = true, updatable = true)
     public int getIdBone() {
         return idBone;
     }
-
     public void setIdBone(int idBone) {
         this.idBone = idBone;
     }
+
+    @OneToMany(mappedBy="parentBone")
+    @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<BonePart> getBoneParts() { return boneParts; }
+    public void setBoneParts(Set<BonePart> boneParts) { this.boneParts = boneParts; }
+
+    @ManyToMany
+    @JoinTable(
+            name="BoneHasBone",
+            joinColumns={@JoinColumn(name="Bone_idBone")},
+            inverseJoinColumns={@JoinColumn(name="Bone_idNeighbor")}
+    )
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<Bone> getNeighbors() { return neighbors; }
+    public void setNeighbors(Set<Bone> neighbors) { this.neighbors = neighbors; }
 
     @Basic
     @Column(name = "Description", nullable = false, insertable = true, updatable = true, length = 65535)
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -40,7 +59,6 @@ public class Bone {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -50,7 +68,6 @@ public class Bone {
     public String getSynonymous() {
         return synonymous;
     }
-
     public void setSynonymous(String synonymous) {
         this.synonymous = synonymous;
     }
