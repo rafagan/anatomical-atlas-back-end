@@ -1,5 +1,6 @@
 package models;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
@@ -19,6 +20,7 @@ public class Bone {
 
     private Set<BonePart> boneParts = new HashSet<BonePart>();
     private Set<Bone> neighbors = new HashSet<Bone>();
+    private BoneSet parentBoneSet;
 
     @Id
     @Column(name = "idBone", nullable = false, insertable = true, updatable = true)
@@ -44,6 +46,12 @@ public class Bone {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Bone> getNeighbors() { return neighbors; }
     public void setNeighbors(Set<Bone> neighbors) { this.neighbors = neighbors; }
+
+    @ManyToOne
+    @JoinColumn(name="BoneSet_idBoneSet")
+    @JsonBackReference
+    public BoneSet getParentBoneSet() { return parentBoneSet; }
+    public void setParentBoneSet(BoneSet parent) { this.parentBoneSet = parent; }
 
     @Basic
     @Column(name = "Description", nullable = false, insertable = true, updatable = true, length = 65535)

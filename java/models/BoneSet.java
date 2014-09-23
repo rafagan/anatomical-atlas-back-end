@@ -1,9 +1,12 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -16,22 +19,42 @@ public class BoneSet {
     private String synonymous;
     private int boneNumber;
 
+    private Set<Bone> sonBones = new HashSet<>();
+    private Set<BoneSet> sonBonesSets = new HashSet<>();
+    private BoneSet parent;
+
     @Id
     @Column(name = "idBoneSet", nullable = false, insertable = true, updatable = true)
     public int getIdBoneSet() {
         return idBoneSet;
     }
-
     public void setIdBoneSet(int idBoneSet) {
         this.idBoneSet = idBoneSet;
     }
+
+    @OneToMany(mappedBy = "parentBoneSet")
+    @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<Bone> getSonBones() { return sonBones; }
+    public void setSonBones(Set<Bone> sonBones) { this.sonBones = sonBones; }
+
+    @OneToMany(mappedBy = "parent")
+    @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<BoneSet> getSonBonesSets() { return sonBonesSets; }
+    public void setSonBonesSets(Set<BoneSet> sonBonesSets) { this.sonBonesSets = sonBonesSets; }
+
+    @ManyToOne
+    @JoinColumn(name="BoneSet_idParent")
+    @JsonBackReference
+    public BoneSet getParent() { return parent; }
+    public void setParent(BoneSet parent) { this.parent = parent; }
 
     @Basic
     @Column(name = "Category", nullable = false, insertable = true, updatable = true, length = 45)
     public String getCategory() {
         return category;
     }
-
     public void setCategory(String category) {
         this.category = category;
     }
@@ -41,7 +64,6 @@ public class BoneSet {
     public String getDescription() {
         return description;
     }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -51,7 +73,6 @@ public class BoneSet {
     public String getSynonymous() {
         return synonymous;
     }
-
     public void setSynonymous(String synonymous) {
         this.synonymous = synonymous;
     }
@@ -61,7 +82,6 @@ public class BoneSet {
     public int getBoneNumber() {
         return boneNumber;
     }
-
     public void setBoneNumber(int boneNumber) {
         this.boneNumber = boneNumber;
     }

@@ -41,21 +41,21 @@ public class BoneSetResource {
     @GET
     @Path("{id}/parent")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getBoneSetParent(@PathParam("id") int questionId) {
-        return boneSetController.getBoneSetParent(questionId);
+    public Response getBoneSetParent(@PathParam("id") int boneSetId) {
+        return boneSetController.getBoneSetParent(boneSetId);
     }
 
     @GET
     @Path("{id}/questions")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuestionsAboutBoneSet(@PathParam("id") int boneId) {
-        return boneSetController.getQuestionsAboutBoneSet(boneId);
+    public Response getQuestionsAboutBoneSet(@PathParam("id") int boneSetId) {
+        return boneSetController.getQuestionsAboutBoneSet(boneSetId);
     }
 
     @GET
     @Path("{id}/quiztests")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuizTestsAboutBoneSet(@PathParam("id") int boneId) {
-        return boneSetController.getQuizTestsAboutBoneSet(boneId);
+    public Response getQuizTestsAboutBoneSet(@PathParam("id") int boneSetId) {
+        return boneSetController.getQuizTestsAboutBoneSet(boneSetId);
     }
 }

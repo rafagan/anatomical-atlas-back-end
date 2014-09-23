@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class BoneResourceTest {
+public class BoneTest {
 
     @Before
     public void setUp() throws Exception {
@@ -25,7 +25,7 @@ public class BoneResourceTest {
     }
 
     @Test
-    public void testGetAllBones() throws Exception {
+    public void shouldGetAllBones() throws Exception {
         try {
             new BoneController().getAllBones();
         } catch (Exception e) {
@@ -43,15 +43,15 @@ public class BoneResourceTest {
         for (Bone bone : bones) {
             for (BonePart part : bone.getBoneParts())
                 System.out.println(part.getName());
-//            for (Bone neighbor : bone.getNeighbors())
-//                System.out.println(neighbor.getName());
+            for (Bone neighbor : bone.getNeighbors())
+                System.out.println(neighbor.getName());
         }
 
         dao.getDao().closeConnection();
     }
 
     @Test
-    public void testGetBone() throws Exception {
+    public void shouldGetBone() throws Exception {
         try {
             new BoneController().getBone(1);
         } catch (Exception e) {
@@ -77,7 +77,7 @@ public class BoneResourceTest {
     }
 
     @Test
-    public void testGetBoneNeighbors() throws Exception {
+    public void shouldGetBoneNeighbors() throws Exception {
         try {
             new BoneController().getBoneNeighbors(1);
         } catch (Exception e) {

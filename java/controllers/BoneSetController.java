@@ -1,6 +1,7 @@
 package controllers;
 
 import dao.BoneSetDao;
+import models.Bone;
 import models.BoneSet;
 import utils.EntityManagerUtil;
 import utils.WebserviceResponseFactory;
@@ -29,11 +30,31 @@ public class BoneSetController {
     }
 
     public Response getBoneSetBones(int boneSetId) {
-        return Response.ok("").build();
+        WebserviceResponseFactory.WebserviceResponse wResponse;
+        wResponse = WebserviceResponseFactory.normalListResponse();
+
+        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
+        List<Bone> bones = dao.queryBoneSetsBones(boneSetId);
+
+        wResponse.setResult(bones);
+        Response r = Response.ok(wResponse).build();
+        dao.getDao().closeConnection();
+
+        return r;
     }
 
-    public Response getBoneSetParent(int questionId) {
-        return Response.ok("").build();
+    public Response getBoneSetParent(int boneSetId) {
+        WebserviceResponseFactory.WebserviceResponse wResponse;
+        wResponse = WebserviceResponseFactory.normalListResponse();
+
+        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
+        BoneSet boneSet = dao.queryBoneSetParent(boneSetId);
+
+        wResponse.setResult(boneSet);
+        Response r = Response.ok(wResponse).build();
+        dao.getDao().closeConnection();
+
+        return r;
     }
 
     public Response getQuestionsAboutBoneSet(int boneId) {
