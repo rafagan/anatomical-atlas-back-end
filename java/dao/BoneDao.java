@@ -11,12 +11,11 @@ public class BoneDao extends AbstractDao {
     public List<Bone> queryBones() {
         TypedQuery<Bone> query =
                 dao.getEntityManager().createQuery(
-                        "SELECT b FROM Bone AS b ", Bone.class);
+                        "SELECT b FROM Bone AS b", Bone.class);
         List<Bone> bones = null;
 
         try {
             bones = query.getResultList();
-
         } catch(Exception e) {
             e.printStackTrace();
         }
