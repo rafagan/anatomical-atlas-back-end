@@ -34,7 +34,7 @@ public class BoneTest {
         }
 
         BoneDao dao = new BoneDao();
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
+        dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Bone> bones = dao.queryBones();
 
         if(bones.size() == 0)
@@ -47,7 +47,7 @@ public class BoneTest {
                 System.out.println(neighbor.getName());
         }
 
-        dao.getDao().closeConnection();
+        dao.get().closeConnection();
     }
 
     @Test
@@ -60,7 +60,7 @@ public class BoneTest {
         }
 
         BoneDao dao = new BoneDao();
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
+        dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Bone bone = dao.queryBone(1);
 
         for (BonePart part : bone.getBoneParts())
@@ -68,7 +68,7 @@ public class BoneTest {
         for (Bone neighbor : bone.getNeighbors())
             System.out.println(neighbor.getName());
 
-        dao.getDao().closeConnection();
+        dao.get().closeConnection();
     }
 
     @Test
@@ -85,13 +85,13 @@ public class BoneTest {
         }
 
         BoneDao dao = new BoneDao();
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
+        dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Bone> neighbors = dao.queryBoneNeighbors(1);
 
         if(neighbors.size() == 0)
             fail("Não encontrou nenhum BoneNeighbour no banco");
 
-        dao.getDao().closeConnection();
+        dao.get().closeConnection();
     }
 
     @Test

@@ -3,6 +3,7 @@ package models;
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -24,6 +25,7 @@ public class Bone {
 
     @Id
     @Column(name = "idBone", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdBone() {
         return idBone;
     }
@@ -54,7 +56,8 @@ public class Bone {
     public void setParentBoneSet(BoneSet parent) { this.parentBoneSet = parent; }
 
     @Basic
-    @Column(name = "Description", nullable = false, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Description", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
     public String getDescription() {
         return description;
     }

@@ -2,6 +2,7 @@ package models;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ public class BonePart {
 
     @Id
     @Column(name = "idBonePart", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdBonePart() {
         return idBonePart;
     }
@@ -30,7 +32,8 @@ public class BonePart {
     public void setParentBone(Bone parentBone) { this.parentBone = parentBone; }
 
     @Basic
-    @Column(name = "Description", nullable = false, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Description", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
     public String getDescription() {
         return description;
     }

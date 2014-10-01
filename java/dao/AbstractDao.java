@@ -6,7 +6,7 @@ package dao;
 public class AbstractDao {
     protected DaoManager dao = new DaoManager();
 
-    public DaoManager getDao() {
+    public DaoManager get() {
         return dao;
     }
 }

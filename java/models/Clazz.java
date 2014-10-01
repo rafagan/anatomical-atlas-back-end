@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -15,6 +12,7 @@ public class Clazz {
 
     @Id
     @Column(name = "idClass", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdClass() {
         return idClass;
     }

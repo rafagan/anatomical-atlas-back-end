@@ -7,12 +7,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("questions")
-public class QuestionResource {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
-
-    @Context
-    HttpServletRequest request;
-
+public class QuestionResource extends AbstractResource {
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getAllPublicQuestions() {

@@ -1,19 +1,10 @@
 package resources;
 
-
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("organizations")
-public class Organization {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
-
-    @Context
-    HttpServletRequest request;
-
+public class OrganizationResource extends AbstractResource {
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getAllOrganizations() {

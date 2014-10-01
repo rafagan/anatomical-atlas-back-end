@@ -5,7 +5,7 @@ import javax.xml.ws.Response;
 /**
  * Created by rafaganabreu on 23/09/14.
  */
-public class QuizTestController {
+public class QuizTestController extends AbstractController {
 
     public Response getAllPublicQuizTests() {
         return null;

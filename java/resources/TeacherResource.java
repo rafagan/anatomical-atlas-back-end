@@ -1,36 +1,34 @@
 package resources;
 
-import javax.servlet.http.HttpServletRequest;
+import controllers.TeacherController;
+import models.Teacher;
+
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("teachers")
-public class TeacherResource {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
-
-    @Context
-    HttpServletRequest request;
+public class TeacherResource extends AbstractResource {
+    TeacherController teacherController = new TeacherController();
 
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getAllTeachers() {
-        return Response.ok("").build();
+        return teacherController.getAllTeachers();
     }
 
     @POST
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertTeacher(/*FixedPinpoint fixedPinpoint,*/) {
-        return Response.ok("").build();
+    public Response insertTeacher(Teacher teacher)
+    {
+        return teacherController.add(teacher);
     }
 
     @GET
     @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getTeacher(@PathParam("id") long teacherId) {
-        return Response.ok("").build();
+    public Response getTeacher(@PathParam("id") int teacherId) {
+        return teacherController.getTeacher(teacherId);
     }
 
     //Organizations which he is owner

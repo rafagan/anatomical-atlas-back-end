@@ -12,19 +12,23 @@ import java.util.List;
 /**
  * Created by rafaganabreu on 23/09/14.
  */
-public class BoneSetController {
-    BoneSetDao dao = new BoneSetDao();
+public class BoneSetController extends AbstractController {
+    private BoneSetDao bsDao;
+
+    public BoneSetController() {
+        dao = bsDao = new BoneSetDao();
+    }
 
     public Response getAllBoneSets() {
         WebserviceResponseFactory.WebserviceResponse wResponse;
         wResponse = WebserviceResponseFactory.normalListResponse();
 
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<BoneSet> bonesSets = dao.queryBoneSets();
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        List<BoneSet> bonesSets = bsDao.queryBoneSets();
 
         wResponse.setResult(bonesSets);
         Response r = Response.ok(wResponse).build();
-        dao.getDao().closeConnection();
+        bsDao.get().closeConnection();
 
         return r;
     }
@@ -33,12 +37,12 @@ public class BoneSetController {
         WebserviceResponseFactory.WebserviceResponse wResponse;
         wResponse = WebserviceResponseFactory.normalListResponse();
 
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<Bone> bones = dao.queryBoneSetsBones(boneSetId);
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        List<Bone> bones = bsDao.queryBoneSetsBones(boneSetId);
 
         wResponse.setResult(bones);
         Response r = Response.ok(wResponse).build();
-        dao.getDao().closeConnection();
+        bsDao.get().closeConnection();
 
         return r;
     }
@@ -47,12 +51,12 @@ public class BoneSetController {
         WebserviceResponseFactory.WebserviceResponse wResponse;
         wResponse = WebserviceResponseFactory.normalListResponse();
 
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
-        BoneSet boneSet = dao.queryBoneSetParent(boneSetId);
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        BoneSet boneSet = bsDao.queryBoneSetParent(boneSetId);
 
         wResponse.setResult(boneSet);
         Response r = Response.ok(wResponse).build();
-        dao.getDao().closeConnection();
+        bsDao.get().closeConnection();
 
         return r;
     }
@@ -69,15 +73,15 @@ public class BoneSetController {
     public Response getBoneSet(int id) {
         WebserviceResponseFactory.WebserviceResponse wResponse;
 
-        dao.getDao().startConnection(EntityManagerUtil.ATLAS_PU);
-        BoneSet boneSet = dao.queryBoneSet(id);
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        BoneSet boneSet = bsDao.queryBoneSet(id);
 
         wResponse = WebserviceResponseFactory.normalSingleResponse(boneSet);
 
         // TODO: Anular referência aos boneSets filhos do Parent
 
         Response r = Response.ok(wResponse).build();
-        dao.getDao().closeConnection();
+        bsDao.get().closeConnection();
 
         return r;
     }

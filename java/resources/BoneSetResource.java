@@ -12,10 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("bonesets")
-public class BoneSetResource {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
-    @Context
-    HttpServletRequest request;
+public class BoneSetResource extends AbstractResource {
     BoneSetController boneSetController = new BoneSetController();
 
     @GET

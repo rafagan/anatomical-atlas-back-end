@@ -1,9 +1,6 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -15,6 +12,7 @@ public class QuizTest {
 
     @Id
     @Column(name = "idQuizTest", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdQuizTest() {
         return idQuizTest;
     }

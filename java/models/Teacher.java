@@ -1,11 +1,14 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import models.utils.Sex;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -14,42 +17,43 @@ import java.util.Arrays;
 public class Teacher {
     private int idTeacher;
     private String name;
-    private String description;
     private byte[] photo;
     private String resume;
-    private String sex;
+    private Sex sex;
     private Date birthday;
     private String country;
     private String scholarity;
 
+    //Organizações em que trabalha
+    private Set<Organization> workingOrganizations = new HashSet<>();
+
     @Id
     @Column(name = "idTeacher", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdTeacher() {
         return idTeacher;
     }
-
-    public void setIdTeacher(int idTeacher) {
+    private void setIdTeacher(int idTeacher) {
         this.idTeacher = idTeacher;
     }
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name="TeacherWorkAtOrganization",
+            joinColumns={@JoinColumn(name="Teacher_idEmployee")},
+            inverseJoinColumns={@JoinColumn(name="Organization_idOrganizaton")}
+    )
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<Organization> getWorkingOrganizations() { return workingOrganizations; }
+    public void setWorkingOrganizations(Set<Organization> workingOrganizations) { this.workingOrganizations = workingOrganizations; }
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Basic
-    @Column(name = "Description", nullable = true, insertable = true, updatable = true, length = 65535)
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Basic
@@ -57,28 +61,27 @@ public class Teacher {
     public byte[] getPhoto() {
         return photo;
     }
-
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
 
     @Basic
-    @Column(name = "Resume", nullable = true, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Resume", nullable = true, insertable = true, updatable = true)
+    @Type(type = "text")
     public String getResume() {
         return resume;
     }
-
     public void setResume(String resume) {
         this.resume = resume;
     }
 
     @Basic
-    @Column(name = "Sex", nullable = true, insertable = true, updatable = true, length = 6)
-    public String getSex() {
+    @Column(name = "Sex", nullable = true, insertable = true, updatable = true, columnDefinition = "enum('MALE','FEMALE')")
+    @Enumerated(EnumType.STRING)
+    public Sex getSex() {
         return sex;
     }
-
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
@@ -87,7 +90,6 @@ public class Teacher {
     public Date getBirthday() {
         return birthday;
     }
-
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
@@ -97,7 +99,6 @@ public class Teacher {
     public String getCountry() {
         return country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }
@@ -107,7 +108,6 @@ public class Teacher {
     public String getScholarity() {
         return scholarity;
     }
-
     public void setScholarity(String scholarity) {
         this.scholarity = scholarity;
     }
@@ -122,12 +122,12 @@ public class Teacher {
         if (idTeacher != teacher.idTeacher) return false;
         if (birthday != null ? !birthday.equals(teacher.birthday) : teacher.birthday != null) return false;
         if (country != null ? !country.equals(teacher.country) : teacher.country != null) return false;
-        if (description != null ? !description.equals(teacher.description) : teacher.description != null) return false;
         if (name != null ? !name.equals(teacher.name) : teacher.name != null) return false;
         if (!Arrays.equals(photo, teacher.photo)) return false;
         if (resume != null ? !resume.equals(teacher.resume) : teacher.resume != null) return false;
         if (scholarity != null ? !scholarity.equals(teacher.scholarity) : teacher.scholarity != null) return false;
         if (sex != null ? !sex.equals(teacher.sex) : teacher.sex != null) return false;
+        if (workingOrganizations != null ? !workingOrganizations.equals(teacher.workingOrganizations) : teacher.workingOrganizations != null) return false;
 
         return true;
     }
@@ -136,13 +136,14 @@ public class Teacher {
     public int hashCode() {
         int result = idTeacher;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (photo != null ? Arrays.hashCode(photo) : 0);
         result = 31 * result + (resume != null ? resume.hashCode() : 0);
         result = 31 * result + (sex != null ? sex.hashCode() : 0);
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (scholarity != null ? scholarity.hashCode() : 0);
+        result = 31 * result + (workingOrganizations != null ? workingOrganizations.hashCode() : 0);
+
         return result;
     }
 }

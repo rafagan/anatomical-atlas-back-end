@@ -1,9 +1,8 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Arrays;
 
@@ -25,6 +24,7 @@ public class Student {
 
     @Id
     @Column(name = "idStudent", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getIdStudent() {
         return idStudent;
     }
@@ -44,7 +44,8 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "Description", nullable = true, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Description", nullable = true, insertable = true, updatable = true)
+    @Type(type="text")
     public String getDescription() {
         return description;
     }
@@ -74,7 +75,8 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "Resume", nullable = true, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Resume", nullable = true, insertable = true, updatable = true)
+    @Type(type="text")
     public String getResume() {
         return resume;
     }

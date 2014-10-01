@@ -19,7 +19,6 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`Teacher` ;
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Teacher` (
   `idTeacher` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(128) NOT NULL,
-  `Description` TEXT NULL,
   `Photo` BLOB NULL,
   `Resume` TEXT NULL,
   `Sex` ENUM('male', 'female'),

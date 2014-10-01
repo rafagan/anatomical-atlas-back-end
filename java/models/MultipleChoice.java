@@ -1,9 +1,8 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.util.Arrays;
 
 /**
@@ -23,6 +22,7 @@ public class MultipleChoice {
 
     @Id
     @Column(name = "Question_idQuestion", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getQuestionIdQuestion() {
         return questionIdQuestion;
     }
@@ -42,7 +42,8 @@ public class MultipleChoice {
     }
 
     @Basic
-    @Column(name = "AnswerA", nullable = false, insertable = true, updatable = true, length = 65535)
+    @Column(name = "AnswerA", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
     public String getAnswerA() {
         return answerA;
     }
@@ -52,7 +53,8 @@ public class MultipleChoice {
     }
 
     @Basic
-    @Column(name = "AnswerB", nullable = false, insertable = true, updatable = true, length = 65535)
+    @Column(name = "AnswerB", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
     public String getAnswerB() {
         return answerB;
     }
@@ -62,7 +64,8 @@ public class MultipleChoice {
     }
 
     @Basic
-    @Column(name = "AnswerC", nullable = true, insertable = true, updatable = true, length = 65535)
+    @Column(name = "AnswerC", nullable = true, insertable = true, updatable = true)
+    @Type(type="text")
     public String getAnswerC() {
         return answerC;
     }
@@ -72,7 +75,8 @@ public class MultipleChoice {
     }
 
     @Basic
-    @Column(name = "AnswerD", nullable = true, insertable = true, updatable = true, length = 65535)
+    @Column(name = "AnswerD", nullable = true, insertable = true, updatable = true)
+    @Type(type="text")
     public String getAnswerD() {
         return answerD;
     }
@@ -82,7 +86,8 @@ public class MultipleChoice {
     }
 
     @Basic
-    @Column(name = "AnswerE", nullable = true, insertable = true, updatable = true, length = 65535)
+    @Column(name = "AnswerE", nullable = true, insertable = true, updatable = true)
+    @Type(type="text")
     public String getAnswerE() {
         return answerE;
     }
@@ -92,7 +97,8 @@ public class MultipleChoice {
     }
 
     @Basic
-    @Column(name = "Statement", nullable = false, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Statement", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
     public String getStatement() {
         return statement;
     }

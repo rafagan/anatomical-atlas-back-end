@@ -12,12 +12,7 @@ GetStudentResolution: /students/resolutions/{id}
  */
 
 @Path("students")
-public class StudentResource {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
-
-    @Context
-    HttpServletRequest request;
-
+public class StudentResource extends AbstractResource {
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getAllStudens() {

@@ -6,6 +6,7 @@
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/test" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value=""/>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -38,8 +39,9 @@
         <class>models.TeacherWorkAtOrganization</class>
         <class>models.TrueOrFalse</class>
         <properties>
-            <property name="hibernate.connection.url" value="jdbc:mysql://http://anatomicalatlas.elasticbeanstalk.com//AnatomicalAtlas" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/AnatomicalAtlas" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.connection.username" value="root"/>
             <property name="hibernate.connection.password" value=""/>
             <property name="hibernate.archive.autodetection" value="class"/>

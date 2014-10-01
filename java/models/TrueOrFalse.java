@@ -1,9 +1,8 @@
 package models;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.util.Arrays;
 
 /**
@@ -18,6 +17,7 @@ public class TrueOrFalse {
 
     @Id
     @Column(name = "Question_idQuestion", nullable = false, insertable = true, updatable = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getQuestionIdQuestion() {
         return questionIdQuestion;
     }
@@ -37,7 +37,8 @@ public class TrueOrFalse {
     }
 
     @Basic
-    @Column(name = "Statement", nullable = false, insertable = true, updatable = true, length = 65535)
+    @Column(name = "Statement", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
     public String getStatement() {
         return statement;
     }
