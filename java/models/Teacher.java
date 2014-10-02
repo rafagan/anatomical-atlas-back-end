@@ -1,6 +1,7 @@
 package models;
 
 import models.utils.Sex;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
 
@@ -26,16 +27,14 @@ public class Teacher {
 
     //Organizações em que trabalha
     private Set<Organization> workingOrganizations = new HashSet<>();
+    private Set<Organization> ownerOfOrganizations = new HashSet<>();
+    private Set<TeacherClass> ownerOfClasses = new HashSet<>();
 
     @Id
-    @Column(name = "idTeacher", nullable = false, insertable = true, updatable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getIdTeacher() {
-        return idTeacher;
-    }
-    private void setIdTeacher(int idTeacher) {
-        this.idTeacher = idTeacher;
-    }
+    @Column(name="idTeacher", nullable = false, insertable = true, updatable = true)
+    public int getIdTeacher() { return this.idTeacher; }
+    public void setIdTeacher(int idTeacher) { this.idTeacher = idTeacher; }
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -46,6 +45,17 @@ public class Teacher {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Organization> getWorkingOrganizations() { return workingOrganizations; }
     public void setWorkingOrganizations(Set<Organization> workingOrganizations) { this.workingOrganizations = workingOrganizations; }
+
+    @OneToMany(mappedBy = "owner")
+    @JsonManagedReference
+    public Set<Organization> getOwnerOfOrganizations() { return ownerOfOrganizations; }
+    public void setOwnerOfOrganizations(Set<Organization> ownerOfOrganizations) { this.ownerOfOrganizations = ownerOfOrganizations; }
+
+    @OneToMany(mappedBy = "creator")
+    @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<TeacherClass> getOwnerOfClasses() { return ownerOfClasses; }
+    public void setOwnerOfClasses(Set<TeacherClass> ownerOfClasses) { this.ownerOfClasses = ownerOfClasses; }
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
@@ -142,7 +152,12 @@ public class Teacher {
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (scholarity != null ? scholarity.hashCode() : 0);
-        result = 31 * result + (workingOrganizations != null ? workingOrganizations.hashCode() : 0);
+
+        if(workingOrganizations != null)
+            for(Organization org : workingOrganizations)
+                result = 31 * result + org.getIdOrganization();
+        else
+            result *= 31;
 
         return result;
     }

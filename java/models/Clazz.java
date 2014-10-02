@@ -6,20 +6,26 @@ import javax.persistence.*;
  * Created by rafaganabreu on 21/09/14.
  */
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "Class", schema = "", catalog = "AnatomicalAtlas")
-public class Clazz {
+public abstract class Clazz {
     private int idClass;
+    private String name;
 
     @Id
     @Column(name = "idClass", nullable = false, insertable = true, updatable = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     public int getIdClass() {
         return idClass;
     }
-
     public void setIdClass(int idClass) {
         this.idClass = idClass;
     }
+
+    @Basic
+    @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     @Override
     public boolean equals(Object o) {
@@ -35,6 +41,9 @@ public class Clazz {
 
     @Override
     public int hashCode() {
-        return idClass;
+        int result = idClass;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+
+        return result;
     }
 }

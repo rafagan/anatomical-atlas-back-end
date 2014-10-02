@@ -38,17 +38,19 @@ public class TeacherTest {
         t.setScholarity("Graduated");
         //t.setPhoto();
 
+        Organization o1 = new Organization();
+        o1.setName("PUCPR");
+        o1.setOwner(t);
+        Organization o2 = new Organization();
+        o2.setName("UP");
+        o2.setOwner(t);
+
         Set<Organization> orgs = new HashSet<>();
-        orgs.add(new Organization());
-        orgs.add(new Organization());
-        orgs.add(new Organization());
-        orgs.add(new Organization());
-        orgs.add(new Organization());
+        orgs.add(o1);
+        orgs.add(o2);
         t.setWorkingOrganizations(orgs);
 
         TeacherController tc = new TeacherController();
-
-        //tc.add(new Organization());
         tc.add(t);
     }
 }

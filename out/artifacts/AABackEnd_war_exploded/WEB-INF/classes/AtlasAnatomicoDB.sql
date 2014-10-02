@@ -8,6 +8,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema AnatomicalAtlas
 -- -----------------------------------------------------
+DROP DATABASE IF EXISTS `AnatomicalAtlas`;
 CREATE SCHEMA IF NOT EXISTS `AnatomicalAtlas` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `AnatomicalAtlas` ;
 
@@ -35,6 +36,7 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`Organization` ;
 
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Organization` (
   `idOrganization` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(128) NOT NULL,
   `Teacher_idResponsible` INT NOT NULL,
   PRIMARY KEY (`idOrganization`),
   INDEX `fk_Organization_Teacher2_idx` (`Teacher_idResponsible` ASC),
@@ -53,6 +55,7 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`Class` ;
 
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Class` (
   `idClass` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(128) NOT NULL,
   `Teacher_idTeacher` INT NULL,
   `Organization_idOrganization` INT NULL,
   PRIMARY KEY (`idClass`),

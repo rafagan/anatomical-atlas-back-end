@@ -21,7 +21,6 @@
         <datasource-mapping>
           <factory-entry name="AtlasPersistenceUnit" value="910ff7ec-fb03-4c12-8579-331dd5346e10" />
           <factory-entry name="NewPersistenceUnit" value="910ff7ec-fb03-4c12-8579-331dd5346e10" />
-          <factory-entry name="TestPersistenceUnit" value="d12bbee9-01f7-4f7c-a3df-2bceab565984" />
         </datasource-mapping>
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/resources/META-INF/persistence.xml" />
       </configuration>
