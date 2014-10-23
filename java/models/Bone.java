@@ -94,6 +94,9 @@ public class Bone {
         if (description != null ? !description.equals(bone.description) : bone.description != null) return false;
         if (name != null ? !name.equals(bone.name) : bone.name != null) return false;
         if (synonymous != null ? !synonymous.equals(bone.synonymous) : bone.synonymous != null) return false;
+        if (parentBoneSet != null ? !parentBoneSet.equals(bone.parentBoneSet) : bone.parentBoneSet != null) return false;
+        if(boneParts != null ? !boneParts.equals(bone.boneParts) : bone.boneParts != null) return false;
+        if(neighbors != null ? !neighbors.equals(bone.neighbors) : bone.neighbors != null) return false;
 
         return true;
     }
@@ -104,6 +107,15 @@ public class Bone {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);
+        result = 31 * result + (parentBoneSet != null ? parentBoneSet.getIdBoneSet() : 0);
+
+        if(boneParts != null)
+            for(BonePart p : boneParts)
+                result = 31 * result + p.getIdBonePart();
+        if(neighbors != null)
+            for(Bone b : neighbors)
+                result = 31 * result + b.getIdBone();
+
         return result;
     }
 }

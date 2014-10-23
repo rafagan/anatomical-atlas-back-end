@@ -13,7 +13,6 @@ import java.util.Arrays;
 public class Student {
     private int idStudent;
     private String name;
-    private String description;
     private Float generalKnowledge;
     private byte[] photo;
     private String resume;
@@ -28,7 +27,6 @@ public class Student {
     public int getIdStudent() {
         return idStudent;
     }
-
     public void setIdStudent(int idStudent) {
         this.idStudent = idStudent;
     }
@@ -38,20 +36,8 @@ public class Student {
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Basic
-    @Column(name = "Description", nullable = true, insertable = true, updatable = true)
-    @Type(type="text")
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     @Basic
@@ -59,7 +45,6 @@ public class Student {
     public Float getGeneralKnowledge() {
         return generalKnowledge;
     }
-
     public void setGeneralKnowledge(Float generalKnowledge) {
         this.generalKnowledge = generalKnowledge;
     }
@@ -69,7 +54,6 @@ public class Student {
     public byte[] getPhoto() {
         return photo;
     }
-
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
@@ -80,7 +64,6 @@ public class Student {
     public String getResume() {
         return resume;
     }
-
     public void setResume(String resume) {
         this.resume = resume;
     }
@@ -90,7 +73,6 @@ public class Student {
     public String getSex() {
         return sex;
     }
-
     public void setSex(String sex) {
         this.sex = sex;
     }
@@ -100,7 +82,6 @@ public class Student {
     public Date getBirthday() {
         return birthday;
     }
-
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
@@ -110,7 +91,6 @@ public class Student {
     public String getCountry() {
         return country;
     }
-
     public void setCountry(String country) {
         this.country = country;
     }
@@ -120,7 +100,6 @@ public class Student {
     public String getScholarity() {
         return scholarity;
     }
-
     public void setScholarity(String scholarity) {
         this.scholarity = scholarity;
     }
@@ -135,7 +114,6 @@ public class Student {
         if (idStudent != student.idStudent) return false;
         if (birthday != null ? !birthday.equals(student.birthday) : student.birthday != null) return false;
         if (country != null ? !country.equals(student.country) : student.country != null) return false;
-        if (description != null ? !description.equals(student.description) : student.description != null) return false;
         if (generalKnowledge != null ? !generalKnowledge.equals(student.generalKnowledge) : student.generalKnowledge != null)
             return false;
         if (name != null ? !name.equals(student.name) : student.name != null) return false;
@@ -151,7 +129,6 @@ public class Student {
     public int hashCode() {
         int result = idStudent;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (generalKnowledge != null ? generalKnowledge.hashCode() : 0);
         result = 31 * result + (photo != null ? Arrays.hashCode(photo) : 0);
         result = 31 * result + (resume != null ? resume.hashCode() : 0);

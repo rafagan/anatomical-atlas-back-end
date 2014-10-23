@@ -37,6 +37,8 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`Organization` ;
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Organization` (
   `idOrganization` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(128) NOT NULL,
+  `Acronym` VARCHAR(128) NULL,
+  `Country` VARCHAR(128) NOT NULL,
   `Teacher_idResponsible` INT NOT NULL,
   PRIMARY KEY (`idOrganization`),
   INDEX `fk_Organization_Teacher2_idx` (`Teacher_idResponsible` ASC),
@@ -83,7 +85,6 @@ CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Student` (
   `idStudent` INT NOT NULL AUTO_INCREMENT,
   `Organization_idOrganization` INT NOT NULL,
   `Name` VARCHAR(128) NOT NULL,
-  `Description` TEXT NULL,
   `GeneralKnowledge` FLOAT ZEROFILL NULL, -- Knowledge Rate
   `Photo` BLOB NULL,
   `Resume` TEXT NULL,

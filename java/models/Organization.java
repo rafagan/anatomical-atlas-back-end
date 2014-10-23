@@ -13,6 +13,8 @@ import java.util.Set;
 public class Organization {
     private int idOrganization;
     private String name;
+    private String acronym;
+    private String country;
 
     private Set<Teacher> teachers = new HashSet<>();
     private Teacher owner;
@@ -38,6 +40,16 @@ public class Organization {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
+    @Basic
+    @Column(name = "Acronym", nullable = true, insertable = true, updatable = true, length = 128)
+    public String getAcronym() { return acronym; }
+    public void setAcronym(String acronym) { this.acronym = acronym; }
+
+    @Basic
+    @Column(name = "Country", nullable = false, insertable = true, updatable = true, length = 128)
+    public String getCountry() { return country; }
+    public void setCountry(String country) { this.country = country; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,6 +60,8 @@ public class Organization {
         if (idOrganization != that.idOrganization) return false;
         if (teachers != null ? !teachers.equals(that.teachers) : that.teachers != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (acronym != null ? !acronym.equals(that.name) : that.acronym != null) return false;
+        if (country != null ? !country.equals(that.country) : that.country != null) return false;
         if (owner != null ? !owner.equals(that.owner) : that.owner != null) return false;
 
         return true;
@@ -57,14 +71,13 @@ public class Organization {
     public int hashCode() {
         int result = idOrganization;
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + (acronym != null ? acronym.hashCode() : 0);
         result = 31 * result + (owner != null ? owner.hashCode() : 0);
 
         if(teachers != null)
             for(Teacher t : teachers)
                 result = 31 * result + t.getIdTeacher();
-        else
-            result *= 31;
-
 
         return result;
     }
