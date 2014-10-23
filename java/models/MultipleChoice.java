@@ -9,8 +9,7 @@ import java.util.Arrays;
  * Created by rafaganabreu on 21/09/14.
  */
 @Entity
-public class MultipleChoice {
-    private int questionIdQuestion;
+public class MultipleChoice extends Question {
     private String correctAnswer;
     private String answerA;
     private String answerB;
@@ -20,23 +19,11 @@ public class MultipleChoice {
     private String statement;
     private byte[] figure;
 
-    @Id
-    @Column(name = "Question_idQuestion", nullable = false, insertable = true, updatable = true)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getQuestionIdQuestion() {
-        return questionIdQuestion;
-    }
-
-    public void setQuestionIdQuestion(int questionIdQuestion) {
-        this.questionIdQuestion = questionIdQuestion;
-    }
-
     @Basic
     @Column(name = "CorrectAnswer", nullable = false, insertable = true, updatable = true, length = 2)
     public String getCorrectAnswer() {
         return correctAnswer;
     }
-
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
@@ -44,10 +31,7 @@ public class MultipleChoice {
     @Basic
     @Column(name = "AnswerA", nullable = false, insertable = true, updatable = true)
     @Type(type="text")
-    public String getAnswerA() {
-        return answerA;
-    }
-
+    public String getAnswerA() {return answerA;}
     public void setAnswerA(String answerA) {
         this.answerA = answerA;
     }
@@ -58,7 +42,6 @@ public class MultipleChoice {
     public String getAnswerB() {
         return answerB;
     }
-
     public void setAnswerB(String answerB) {
         this.answerB = answerB;
     }
@@ -69,7 +52,6 @@ public class MultipleChoice {
     public String getAnswerC() {
         return answerC;
     }
-
     public void setAnswerC(String answerC) {
         this.answerC = answerC;
     }
@@ -80,7 +62,6 @@ public class MultipleChoice {
     public String getAnswerD() {
         return answerD;
     }
-
     public void setAnswerD(String answerD) {
         this.answerD = answerD;
     }
@@ -91,7 +72,6 @@ public class MultipleChoice {
     public String getAnswerE() {
         return answerE;
     }
-
     public void setAnswerE(String answerE) {
         this.answerE = answerE;
     }
@@ -102,7 +82,6 @@ public class MultipleChoice {
     public String getStatement() {
         return statement;
     }
-
     public void setStatement(String statement) {
         this.statement = statement;
     }
@@ -112,19 +91,17 @@ public class MultipleChoice {
     public byte[] getFigure() {
         return figure;
     }
-
     public void setFigure(byte[] figure) {
         this.figure = figure;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if(!super.equals(o))
+            return false;
 
         MultipleChoice that = (MultipleChoice) o;
 
-        if (questionIdQuestion != that.questionIdQuestion) return false;
         if (answerA != null ? !answerA.equals(that.answerA) : that.answerA != null) return false;
         if (answerB != null ? !answerB.equals(that.answerB) : that.answerB != null) return false;
         if (answerC != null ? !answerC.equals(that.answerC) : that.answerC != null) return false;
@@ -140,7 +117,7 @@ public class MultipleChoice {
 
     @Override
     public int hashCode() {
-        int result = questionIdQuestion;
+        int result = super.hashCode();
         result = 31 * result + (correctAnswer != null ? correctAnswer.hashCode() : 0);
         result = 31 * result + (answerA != null ? answerA.hashCode() : 0);
         result = 31 * result + (answerB != null ? answerB.hashCode() : 0);

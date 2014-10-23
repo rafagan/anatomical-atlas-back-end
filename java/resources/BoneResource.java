@@ -30,8 +30,8 @@ public class BoneResource extends AbstractResource {
     @GET
     @Path("{id}/questions")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuestionAboutBone(@PathParam("id") long questionId) {
-        return Response.ok("").build();
+    public Response getQuestionAboutBone(@PathParam("id") int questionId) {
+        return boneController.getQuestionAboutBone(questionId);
     }
 
     @GET
@@ -44,7 +44,7 @@ public class BoneResource extends AbstractResource {
     @GET
     @Path("{id}/quiztests")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuizTestsAboutBone(@PathParam("id") long boneId) {
-        return Response.ok("").build();
+    public Response getQuizTestsAboutBone(@PathParam("id") int boneId) {
+        return boneController.getQuizTestsAboutBone(boneId);
     }
 }

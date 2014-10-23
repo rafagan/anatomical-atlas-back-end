@@ -1,10 +1,14 @@
 package models;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -21,15 +25,23 @@ public class Student {
     private String country;
     private String scholarity;
 
+    private Set<Clazz> myClasses = new HashSet<>();
+    private Set<Resolution> myResolutions = new HashSet<>();
+
     @Id
     @Column(name = "idStudent", nullable = false, insertable = true, updatable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int getIdStudent() {
-        return idStudent;
-    }
-    public void setIdStudent(int idStudent) {
-        this.idStudent = idStudent;
-    }
+    public int getIdStudent() {return idStudent;}
+    public void setIdStudent(int idStudent) {this.idStudent = idStudent;}
+
+    @ManyToMany(mappedBy = "classStudents", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    public Set<Clazz> getMyClasses() {return myClasses;}
+    public void setMyClasses(Set<Clazz> myClasses) {this.myClasses = myClasses;}
+
+    @OneToMany(mappedBy = "owner", cascade = {CascadeType.ALL})
+    @JsonManagedReference
+    public Set<Resolution> getMyResolutions() {return myResolutions;}
+    public void setMyResolutions(Set<Resolution> myResolutions) {this.myResolutions = myResolutions;}
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)

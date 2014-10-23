@@ -10,6 +10,7 @@
     <schema name="" catalog="hello-world"/>
     <table name="Bone" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idBone" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="BonePartNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="Description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
       <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="Synonymous" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
@@ -50,10 +51,19 @@
       <foreign-key name="FK_561aqk5nu18gsdk11utpp443k" columns="BoneSet_idParent" ref-table="BoneSet" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBoneSet" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_8hg6a6hjb0cv26ftykjqje880" table="Bone" schema="" catalog="AnatomicalAtlas" columns="BoneSet_idBoneSet"/>
       <exported-key name="FK_561aqk5nu18gsdk11utpp443k" table="BoneSet" schema="" catalog="AnatomicalAtlas" columns="BoneSet_idParent"/>
+      <exported-key name="FK_2nbedgn22so54n7gr9v7wak7g" table="QuestionReferencesBoneSet" schema="" catalog="AnatomicalAtlas" columns="BoneSet_idBoneSet"/>
       <index name="FK_561aqk5nu18gsdk11utpp443k" unique="false" columns="BoneSet_idParent"/>
     </table>
+    <table name="ClassHasStudent" schema="" catalog="AnatomicalAtlas" type="TABLE">
+      <column name="Class_idClass" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Student_idStudent" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Class_idClass,Student_idStudent"/>
+      <foreign-key name="FK_9e0el9s65gkcglj4xbi700qwh" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_9e0el9s65gkcglj4xbi700qwh" unique="false" columns="Student_idStudent"/>
+    </table>
     <table name="MultipleChoice" schema="" catalog="AnatomicalAtlas" type="TABLE">
-      <column name="Question_idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PublicDomain" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="AnswerA" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
       <column name="AnswerB" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
       <column name="AnswerC" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="true" jdbcType="-1"/>
@@ -62,44 +72,64 @@
       <column name="CorrectAnswer" sqlType="VARCHAR" precision="2" scale="0" nullable="false" jdbcType="12"/>
       <column name="Figure" sqlType="TINYBLOB" precision="255" scale="0" nullable="true" jdbcType="-2"/>
       <column name="Statement" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
-      <primary-key name="PRIMARY" columns="Question_idQuestion"/>
+      <primary-key name="PRIMARY" columns="idQuestion"/>
     </table>
     <table name="Organization" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idOrganization" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="Acronym" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
       <column name="Country" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
-      <column name="Teacher_idResponsible" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Teacher_idResponsible" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idOrganization"/>
-      <foreign-key name="fk_Organization_Teacher2" columns="Teacher_idResponsible" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_70owjqrrdkxd48w2nk2m4q479" columns="Teacher_idResponsible" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_33v15w3yjacx9he2gr2hfww1y" table="OrganizationClass" schema="" catalog="AnatomicalAtlas" columns="Organization_idOrganization"/>
       <exported-key name="FK_ox16y3g5h646ceef2otsamd4h" table="TeacherWorkAtOrganization" schema="" catalog="AnatomicalAtlas" columns="Organization_idOrganizaton"/>
-      <index name="fk_Organization_Teacher2_idx" unique="false" columns="Teacher_idResponsible"/>
+      <index name="FK_70owjqrrdkxd48w2nk2m4q479" unique="false" columns="Teacher_idResponsible"/>
     </table>
     <table name="OrganizationClass" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idClass" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NumberOfStudents" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="Organization_idOrganization" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idClass"/>
       <foreign-key name="FK_33v15w3yjacx9he2gr2hfww1y" columns="Organization_idOrganization" ref-table="Organization" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idOrganization" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_33v15w3yjacx9he2gr2hfww1y" unique="false" columns="Organization_idOrganization"/>
     </table>
-    <table name="Question" schema="" catalog="AnatomicalAtlas" type="TABLE">
-      <column name="idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="PublicDomain" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
-      <primary-key name="PRIMARY" columns="idQuestion"/>
+    <table name="QuestionReferencesBoneSet" schema="" catalog="AnatomicalAtlas" type="TABLE">
+      <column name="Question_idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="BoneSet_idBoneSet" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Question_idQuestion,BoneSet_idBoneSet"/>
+      <foreign-key name="FK_2nbedgn22so54n7gr9v7wak7g" columns="BoneSet_idBoneSet" ref-table="BoneSet" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBoneSet" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_2nbedgn22so54n7gr9v7wak7g" unique="false" columns="BoneSet_idBoneSet"/>
     </table>
     <table name="QuizTest" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idQuizTest" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="DifficultLevel" sqlType="TINYINT" precision="3" scale="0" nullable="true" jdbcType="-6"/>
+      <column name="Teacher_idQuestionOwner" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idQuizTest"/>
+      <foreign-key name="FK_gvqrxtbdrsumqe7gl0gmv5t4y" columns="Teacher_idQuestionOwner" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FK_4qmrbv17uamdvn7whhvi1fi6v" table="QuizTestHasQuestion" schema="" catalog="AnatomicalAtlas" columns="QuizTest_idQuizTest"/>
+      <exported-key name="FK_qfexufchk5we2nk474pa04wfn" table="Resolution" schema="" catalog="AnatomicalAtlas" columns="QuizTest_idQuizTest"/>
+      <index name="FK_gvqrxtbdrsumqe7gl0gmv5t4y" unique="false" columns="Teacher_idQuestionOwner"/>
+    </table>
+    <table name="QuizTestHasQuestion" schema="" catalog="AnatomicalAtlas" type="TABLE">
+      <column name="QuizTest_idQuizTest" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Question_idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="QuizTest_idQuizTest,Question_idQuestion"/>
+      <foreign-key name="FK_4qmrbv17uamdvn7whhvi1fi6v" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="Resolution" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idResolution" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="TotalCorrectAnswers" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="TotalQuestions" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="TotalWrongAnswers" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Student_idStudent" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="QuizTest_idQuizTest" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idResolution"/>
+      <foreign-key name="FK_qfexufchk5we2nk474pa04wfn" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_lf91oacs0n6glsde7f4tcp5yy" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FK_lf91oacs0n6glsde7f4tcp5yy" unique="false" columns="Student_idStudent"/>
+      <index name="FK_qfexufchk5we2nk474pa04wfn" unique="false" columns="QuizTest_idQuizTest"/>
     </table>
     <table name="Student" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idStudent" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -112,6 +142,8 @@
       <column name="Scholarity" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="Sex" sqlType="VARCHAR" precision="6" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="idStudent"/>
+      <exported-key name="FK_9e0el9s65gkcglj4xbi700qwh" table="ClassHasStudent" schema="" catalog="AnatomicalAtlas" columns="Student_idStudent"/>
+      <exported-key name="FK_lf91oacs0n6glsde7f4tcp5yy" table="Resolution" schema="" catalog="AnatomicalAtlas" columns="Student_idStudent"/>
     </table>
     <table name="Teacher" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idTeacher" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -123,17 +155,33 @@
       <column name="Scholarity" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="Sex" sqlType="ENUM" precision="6" scale="0" nullable="true" jdbcType="1"/>
       <primary-key name="PRIMARY" columns="idTeacher"/>
-      <exported-key name="fk_Organization_Teacher2" table="Organization" schema="" catalog="AnatomicalAtlas" columns="Teacher_idResponsible"/>
+      <exported-key name="FK_70owjqrrdkxd48w2nk2m4q479" table="Organization" schema="" catalog="AnatomicalAtlas" columns="Teacher_idResponsible"/>
+      <exported-key name="FK_gvqrxtbdrsumqe7gl0gmv5t4y" table="QuizTest" schema="" catalog="AnatomicalAtlas" columns="Teacher_idQuestionOwner"/>
+      <exported-key name="FK_tpblponyfndh4si47uvcia44p" table="TeacherAuthoredQuestion" schema="" catalog="AnatomicalAtlas" columns="Teacher_idTeacher"/>
       <exported-key name="FK_kuj3g7jvq8sdgkxa990rgn53l" table="TeacherClass" schema="" catalog="AnatomicalAtlas" columns="Teacher_idTeacher"/>
+      <exported-key name="FK_ecfg67m5wahcvpf3tbcex9qbi" table="TeacherMonitoratesClass" schema="" catalog="AnatomicalAtlas" columns="Teacher_idTeacher"/>
       <exported-key name="FK_208jwgqu2aplamv7ha59qsyq5" table="TeacherWorkAtOrganization" schema="" catalog="AnatomicalAtlas" columns="Teacher_idEmployee"/>
+    </table>
+    <table name="TeacherAuthoredQuestion" schema="" catalog="AnatomicalAtlas" type="TABLE">
+      <column name="Teacher_idTeacher" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Question_idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Teacher_idTeacher,Question_idQuestion"/>
+      <foreign-key name="FK_tpblponyfndh4si47uvcia44p" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="TeacherClass" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idClass" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
+      <column name="NumberOfStudents" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="Teacher_idTeacher" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idClass"/>
       <foreign-key name="FK_kuj3g7jvq8sdgkxa990rgn53l" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_kuj3g7jvq8sdgkxa990rgn53l" unique="false" columns="Teacher_idTeacher"/>
+    </table>
+    <table name="TeacherMonitoratesClass" schema="" catalog="AnatomicalAtlas" type="TABLE">
+      <column name="Teacher_idTeacher" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Class_idClass" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="Teacher_idTeacher,Class_idClass"/>
+      <foreign-key name="FK_ecfg67m5wahcvpf3tbcex9qbi" columns="Teacher_idTeacher" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
     </table>
     <table name="TeacherWorkAtOrganization" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="Teacher_idEmployee" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -144,11 +192,12 @@
       <index name="FK_ox16y3g5h646ceef2otsamd4h" unique="false" columns="Organization_idOrganizaton"/>
     </table>
     <table name="TrueOrFalse" schema="" catalog="AnatomicalAtlas" type="TABLE">
-      <column name="Question_idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="idQuestion" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="PublicDomain" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="CorrectAnswer" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
       <column name="Figure" sqlType="TINYBLOB" precision="255" scale="0" nullable="true" jdbcType="-2"/>
       <column name="Statement" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
-      <primary-key name="PRIMARY" columns="Question_idQuestion"/>
+      <primary-key name="PRIMARY" columns="idQuestion"/>
     </table>
     <table name="hibernate_sequences" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="sequence_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>

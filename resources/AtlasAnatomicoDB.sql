@@ -58,6 +58,7 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`Class` ;
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Class` (
   `idClass` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(128) NOT NULL,
+  `NumberOfStudents` INT NULL DEFAULT 0,
   `Teacher_idTeacher` INT NULL,
   `Organization_idOrganization` INT NULL,
   PRIMARY KEY (`idClass`),
@@ -108,7 +109,7 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`Question` ;
 
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Question` (
   `idQuestion` INT NOT NULL AUTO_INCREMENT,
-  `QuestionOwner_idQuestionOwner` INT NOT NULL,
+  `Teacher_idQuestionOwner` INT NOT NULL,
   `PublicDomain` TINYINT(1) NOT NULL,
   PRIMARY KEY (`idQuestion`),
   INDEX `fk_Question_QuestionOwner2_idx` (`QuestionOwner_idQuestionOwner` ASC),
@@ -152,6 +153,7 @@ CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`Bone` (
   `Description` TEXT NOT NULL,
   `Name` VARCHAR(128) NOT NULL,
   `Synonymous` VARCHAR(128) NULL,
+  `BonePartNumber` INT NULL DEFAULT 0,
   PRIMARY KEY (`idBone`),
   INDEX `fk_Bone_BoneSet1_idx` (`BoneSet_idBoneSet` ASC),
   CONSTRAINT `fk_Bone_BoneSet1`
@@ -182,31 +184,6 @@ CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`BonePart` (
     ON UPDATE NO ACTION)
   ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `AnatomicalAtlas`.`TeacherAuthoredQuestion`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AnatomicalAtlas`.`TeacherAuthoredQuestion` ;
-
-CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`TeacherAuthoredQuestion` (
-  `Teacher_idTeacher` INT NOT NULL,
-  `Question_idQuestion` INT NOT NULL,
-  PRIMARY KEY (`Teacher_idTeacher`, `Question_idQuestion`),
-  INDEX `fk_Teacher_has_Question_Question3_idx` (`Question_idQuestion` ASC),
-  INDEX `fk_Teacher_has_Question_Teacher3_idx` (`Teacher_idTeacher` ASC),
-  CONSTRAINT `fk_Teacher_has_Question_Teacher3`
-    FOREIGN KEY (`Teacher_idTeacher`)
-    REFERENCES `AnatomicalAtlas`.`Teacher` (`idTeacher`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Teacher_has_Question_Question3`
-    FOREIGN KEY (`Question_idQuestion`)
-    REFERENCES `AnatomicalAtlas`.`Question` (`idQuestion`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `AnatomicalAtlas`.`QuizTest`
 -- -----------------------------------------------------
@@ -214,131 +191,13 @@ DROP TABLE IF EXISTS `AnatomicalAtlas`.`QuizTest` ;
 
 CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`QuizTest` (
   `idQuizTest` INT NOT NULL AUTO_INCREMENT,
-  `Teacher_idTeacher` INT NOT NULL,
+  `Teacher_idQuestionOwner` INT NOT NULL,
   `DifficultLevel` TINYINT UNSIGNED NULL,
   PRIMARY KEY (`idQuizTest`),
   INDEX `fk_QuizTest_Teacher1_idx` (`Teacher_idTeacher` ASC),
   CONSTRAINT `fk_QuizTest_Teacher1`
     FOREIGN KEY (`Teacher_idTeacher`)
     REFERENCES `AnatomicalAtlas`.`Teacher` (`idTeacher`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AnatomicalAtlas`.`BoneHasBone`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AnatomicalAtlas`.`BoneHasBone` ;
-
-CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`BoneHasBone` (
-  `Bone_idBone` INT NOT NULL,
-  `Bone_idNeighbor` INT NOT NULL,
-  PRIMARY KEY (`Bone_idBone`, `Bone_idNeighbor`),
-  INDEX `fk_Bone_has_Bone_Bone4_idx` (`Bone_idNeighbor` ASC),
-  INDEX `fk_Bone_has_Bone_Bone3_idx` (`Bone_idBone` ASC),
-  CONSTRAINT `fk_Bone_has_Bone_Bone3`
-    FOREIGN KEY (`Bone_idBone`)
-    REFERENCES `AnatomicalAtlas`.`Bone` (`idBone`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Bone_has_Bone_Bone4`
-    FOREIGN KEY (`Bone_idNeighbor`)
-    REFERENCES `AnatomicalAtlas`.`Bone` (`idBone`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AnatomicalAtlas`.`QuestionReferencesBoneSet`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AnatomicalAtlas`.`QuestionReferencesBoneSet` ;
-
-CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`QuestionReferencesBoneSet` (
-  `Question_idQuestion` INT NOT NULL,
-  `BoneSet_idBoneSet` INT NOT NULL,
-  PRIMARY KEY (`Question_idQuestion`, `BoneSet_idBoneSet`),
-  INDEX `fk_BoneSet_has_Question_Question1_idx` (`Question_idQuestion` ASC),
-  INDEX `fk_BoneSet_has_Question_BoneSet1_idx` (`BoneSet_idBoneSet` ASC),
-  CONSTRAINT `fk_BoneSet_has_Question_BoneSet1`
-    FOREIGN KEY (`BoneSet_idBoneSet`)
-    REFERENCES `AnatomicalAtlas`.`BoneSet` (`idBoneSet`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_BoneSet_has_Question_Question1`
-    FOREIGN KEY (`Question_idQuestion`)
-    REFERENCES `AnatomicalAtlas`.`Question` (`idQuestion`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `AnatomicalAtlas`.`TeacherWorkAtOrganization`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AnatomicalAtlas`.`TeacherWorkAtOrganization` ;
-
-CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`TeacherWorkAtOrganization` (
-  `Teacher_idEmployee` INT NOT NULL,
-  `Organization_idOrganization` INT NOT NULL,
-  PRIMARY KEY (`Teacher_idEmployee`, `Organization_idOrganization`),
-  INDEX `fk_Organization_has_Teacher_Teacher1_idx` (`Teacher_idEmployee` ASC),
-  INDEX `fk_Organization_has_Teacher_Organization1_idx` (`Organization_idOrganization` ASC),
-  CONSTRAINT `fk_Organization_has_Teacher_Organization1`
-    FOREIGN KEY (`Organization_idOrganization`)
-    REFERENCES `AnatomicalAtlas`.`Organization` (`idOrganization`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Organization_has_Teacher_Teacher1`
-    FOREIGN KEY (`Teacher_idEmployee`)
-    REFERENCES `AnatomicalAtlas`.`Teacher` (`idTeacher`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `AnatomicalAtlas`.`QuizTestHasQuestion`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AnatomicalAtlas`.`QuizTestHasQuestion` ;
-
-CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`QuizTestHasQuestion` (
-  `Question_idQuestion` INT NOT NULL,
-  `QuizTest_idQuizTest` INT NOT NULL,
-  PRIMARY KEY (`Question_idQuestion`, `QuizTest_idQuizTest`),
-  INDEX `fk_Question_has_QuizTest_QuizTest2_idx` (`QuizTest_idQuizTest` ASC),
-  INDEX `fk_Question_has_QuizTest_Question2_idx` (`Question_idQuestion` ASC),
-  CONSTRAINT `fk_Question_has_QuizTest_Question2`
-    FOREIGN KEY (`Question_idQuestion`)
-    REFERENCES `AnatomicalAtlas`.`Question` (`idQuestion`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Question_has_QuizTest_QuizTest2`
-    FOREIGN KEY (`QuizTest_idQuizTest`)
-    REFERENCES `AnatomicalAtlas`.`QuizTest` (`idQuizTest`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
--- -----------------------------------------------------
--- Table `AnatomicalAtlas`.`ClassHasStudent`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `AnatomicalAtlas`.`ClassHasStudent` ;
-
-CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`ClassHasStudent` (
-  `Class_idClass` INT NOT NULL,
-  `Student_idStudent` INT NOT NULL,
-  PRIMARY KEY (`Class_idClass`, `Student_idStudent`),
-  INDEX `fk_Class_has_Student_Student1_idx` (`Student_idStudent` ASC),
-  INDEX `fk_Class_has_Student_Class1_idx` (`Class_idClass` ASC),
-  CONSTRAINT `fk_Class_has_Student_Class1`
-    FOREIGN KEY (`Class_idClass`)
-    REFERENCES `AnatomicalAtlas`.`Class` (`idClass`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Class_has_Student_Student1`
-    FOREIGN KEY (`Student_idStudent`)
-    REFERENCES `AnatomicalAtlas`.`Student` (`idStudent`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -413,6 +272,150 @@ CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`MultipleChoice` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AnatomicalAtlas`.`BoneHasBone`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AnatomicalAtlas`.`BoneHasBone` ;
+
+CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`BoneHasBone` (
+  `Bone_idBone` INT NOT NULL,
+  `Bone_idNeighbor` INT NOT NULL,
+  PRIMARY KEY (`Bone_idBone`, `Bone_idNeighbor`),
+  INDEX `fk_Bone_has_Bone_Bone4_idx` (`Bone_idNeighbor` ASC),
+  INDEX `fk_Bone_has_Bone_Bone3_idx` (`Bone_idBone` ASC),
+  CONSTRAINT `fk_Bone_has_Bone_Bone3`
+  FOREIGN KEY (`Bone_idBone`)
+  REFERENCES `AnatomicalAtlas`.`Bone` (`idBone`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Bone_has_Bone_Bone4`
+  FOREIGN KEY (`Bone_idNeighbor`)
+  REFERENCES `AnatomicalAtlas`.`Bone` (`idBone`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AnatomicalAtlas`.`QuestionReferencesBoneSet`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AnatomicalAtlas`.`QuestionReferencesBoneSet` ;
+
+CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`QuestionReferencesBoneSet` (
+  `Question_idQuestion` INT NOT NULL,
+  `BoneSet_idBoneSet` INT NOT NULL,
+  PRIMARY KEY (`Question_idQuestion`, `BoneSet_idBoneSet`),
+  INDEX `fk_BoneSet_has_Question_Question1_idx` (`Question_idQuestion` ASC),
+  INDEX `fk_BoneSet_has_Question_BoneSet1_idx` (`BoneSet_idBoneSet` ASC),
+  CONSTRAINT `fk_BoneSet_has_Question_BoneSet1`
+  FOREIGN KEY (`BoneSet_idBoneSet`)
+  REFERENCES `AnatomicalAtlas`.`BoneSet` (`idBoneSet`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_BoneSet_has_Question_Question1`
+  FOREIGN KEY (`Question_idQuestion`)
+  REFERENCES `AnatomicalAtlas`.`Question` (`idQuestion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AnatomicalAtlas`.`TeacherAuthoredQuestion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AnatomicalAtlas`.`TeacherAuthoredQuestion` ;
+
+CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`TeacherAuthoredQuestion` (
+  `Teacher_idTeacher` INT NOT NULL,
+  `Question_idQuestion` INT NOT NULL,
+  PRIMARY KEY (`Teacher_idTeacher`, `Question_idQuestion`),
+  INDEX `fk_Teacher_has_Question_Question3_idx` (`Question_idQuestion` ASC),
+  INDEX `fk_Teacher_has_Question_Teacher3_idx` (`Teacher_idTeacher` ASC),
+  CONSTRAINT `fk_Teacher_has_Question_Teacher3`
+  FOREIGN KEY (`Teacher_idTeacher`)
+  REFERENCES `AnatomicalAtlas`.`Teacher` (`idTeacher`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Teacher_has_Question_Question3`
+  FOREIGN KEY (`Question_idQuestion`)
+  REFERENCES `AnatomicalAtlas`.`Question` (`idQuestion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AnatomicalAtlas`.`TeacherWorkAtOrganization`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AnatomicalAtlas`.`TeacherWorkAtOrganization` ;
+
+CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`TeacherWorkAtOrganization` (
+  `Teacher_idEmployee` INT NOT NULL,
+  `Organization_idOrganization` INT NOT NULL,
+  PRIMARY KEY (`Teacher_idEmployee`, `Organization_idOrganization`),
+  INDEX `fk_Organization_has_Teacher_Teacher1_idx` (`Teacher_idEmployee` ASC),
+  INDEX `fk_Organization_has_Teacher_Organization1_idx` (`Organization_idOrganization` ASC),
+  CONSTRAINT `fk_Organization_has_Teacher_Organization1`
+  FOREIGN KEY (`Organization_idOrganization`)
+  REFERENCES `AnatomicalAtlas`.`Organization` (`idOrganization`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Organization_has_Teacher_Teacher1`
+  FOREIGN KEY (`Teacher_idEmployee`)
+  REFERENCES `AnatomicalAtlas`.`Teacher` (`idTeacher`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AnatomicalAtlas`.`QuizTestHasQuestion`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AnatomicalAtlas`.`QuizTestHasQuestion` ;
+
+CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`QuizTestHasQuestion` (
+  `QuizTest_idQuizTest` INT NOT NULL,
+  `Question_idQuestion` INT NOT NULL,
+  PRIMARY KEY (`Question_idQuestion`, `QuizTest_idQuizTest`),
+  INDEX `fk_Question_has_QuizTest_QuizTest2_idx` (`QuizTest_idQuizTest` ASC),
+  INDEX `fk_Question_has_QuizTest_Question2_idx` (`Question_idQuestion` ASC),
+  CONSTRAINT `fk_Question_has_QuizTest_Question2`
+  FOREIGN KEY (`Question_idQuestion`)
+  REFERENCES `AnatomicalAtlas`.`Question` (`idQuestion`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Question_has_QuizTest_QuizTest2`
+  FOREIGN KEY (`QuizTest_idQuizTest`)
+  REFERENCES `AnatomicalAtlas`.`QuizTest` (`idQuizTest`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `AnatomicalAtlas`.`ClassHasStudent`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `AnatomicalAtlas`.`ClassHasStudent` ;
+
+CREATE TABLE IF NOT EXISTS `AnatomicalAtlas`.`ClassHasStudent` (
+  `Class_idClass` INT NOT NULL,
+  `Student_idStudent` INT NOT NULL,
+  PRIMARY KEY (`Class_idClass`, `Student_idStudent`),
+  INDEX `fk_Class_has_Student_Student1_idx` (`Student_idStudent` ASC),
+  INDEX `fk_Class_has_Student_Class1_idx` (`Class_idClass` ASC),
+  CONSTRAINT `fk_Class_has_Student_Class1`
+  FOREIGN KEY (`Class_idClass`)
+  REFERENCES `AnatomicalAtlas`.`Class` (`idClass`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Class_has_Student_Student1`
+  FOREIGN KEY (`Student_idStudent`)
+  REFERENCES `AnatomicalAtlas`.`Student` (`idStudent`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+  ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -1,6 +1,8 @@
 package models;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -18,6 +20,7 @@ public class Organization {
 
     private Set<Teacher> teachers = new HashSet<>();
     private Teacher owner;
+    private Set<OrganizationClass> ownerOfClasses = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +37,12 @@ public class Organization {
     @JsonBackReference
     public Teacher getOwner() { return owner; }
     public void setOwner(Teacher owner) { this.owner = owner; }
+
+    @OneToMany(mappedBy = "creator")
+    @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<OrganizationClass> getOwnerOfClasses() { return ownerOfClasses; }
+    public void setOwnerOfClasses(Set<OrganizationClass> ownerOfClasses) { this.ownerOfClasses = ownerOfClasses; }
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)

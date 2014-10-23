@@ -72,7 +72,7 @@ public class BoneTest {
     }
 
     @Test
-    public void testGetQuestionAboutBone() throws Exception {
+    public void shouldGetQuestionAboutBone() throws Exception {
 
     }
 
@@ -95,7 +95,7 @@ public class BoneTest {
     }
 
     @Test
-    public void testGetQuizTestsAboutBone() throws Exception {
+    public void shouldGetQuizTestsAboutBone() throws Exception {
 
     }
 }

@@ -23,6 +23,7 @@ public class BoneSet {
     private Set<Bone> sonBones = new HashSet<>();
     private Set<BoneSet> sonBonesSets = new HashSet<>();
     private BoneSet parent;
+    private Set<Question> relatedQuestions = new HashSet<>();
 
     @Id
     @Column(name = "idBoneSet", nullable = false, insertable = true, updatable = true)
@@ -51,6 +52,10 @@ public class BoneSet {
     @JsonBackReference
     public BoneSet getParent() { return parent; }
     public void setParent(BoneSet parent) { this.parent = parent; }
+
+    @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    public Set<Question> getRelatedQuestions() {return relatedQuestions;}
+    public void setRelatedQuestions(Set<Question> relatedQuestions) {this.relatedQuestions = relatedQuestions;}
 
     @Basic
     @Column(name = "Category", nullable = false, insertable = true, updatable = true, length = 45)
@@ -101,6 +106,9 @@ public class BoneSet {
         if (category != null ? !category.equals(boneSet.category) : boneSet.category != null) return false;
         if (description != null ? !description.equals(boneSet.description) : boneSet.description != null) return false;
         if (synonymous != null ? !synonymous.equals(boneSet.synonymous) : boneSet.synonymous != null) return false;
+        if (sonBones != null ? !sonBones.equals(boneSet.sonBones) : boneSet.sonBones != null) return false;
+        if (sonBonesSets != null ? !sonBonesSets.equals(boneSet.sonBonesSets) : boneSet.sonBonesSets != null) return false;
+        if (parent != null ? !parent.equals(boneSet.parent) : boneSet.parent != null) return false;
 
         return true;
     }
@@ -112,6 +120,14 @@ public class BoneSet {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);
         result = 31 * result + boneNumber;
+        result = 31 * result + (parent != null ? parent.getIdBoneSet() : 0);
+
+        if(sonBones != null)
+            for(Bone b : sonBones)
+                result = 31 * result + b.getIdBone();
+        if(sonBonesSets != null)
+            for(BoneSet s : sonBonesSets)
+                result = 31 * result + s.getIdBoneSet();
         return result;
     }
 }

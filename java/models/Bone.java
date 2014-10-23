@@ -18,6 +18,7 @@ public class Bone {
     private String description;
     private String name;
     private String synonymous;
+    private int bonePartNumber;
 
     private Set<BonePart> boneParts = new HashSet<BonePart>();
     private Set<Bone> neighbors = new HashSet<Bone>();
@@ -83,6 +84,15 @@ public class Bone {
         this.synonymous = synonymous;
     }
 
+    @Basic
+    @Column(name = "BonePartNumber", nullable = true, insertable = true, updatable = true)
+    public int getBonePartNumber() {
+        return bonePartNumber;
+    }
+    public void setBonePartNumber(int bonePartNumber) {
+        this.bonePartNumber = bonePartNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,6 +101,7 @@ public class Bone {
         Bone bone = (Bone) o;
 
         if (idBone != bone.idBone) return false;
+        if (bonePartNumber != bone.bonePartNumber) return false;
         if (description != null ? !description.equals(bone.description) : bone.description != null) return false;
         if (name != null ? !name.equals(bone.name) : bone.name != null) return false;
         if (synonymous != null ? !synonymous.equals(bone.synonymous) : bone.synonymous != null) return false;
@@ -104,6 +115,7 @@ public class Bone {
     @Override
     public int hashCode() {
         int result = idBone;
+        result = 31 * result + bonePartNumber;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);

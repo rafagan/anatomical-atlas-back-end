@@ -25,10 +25,12 @@ public class Teacher {
     private String country;
     private String scholarity;
 
-    //Organizações em que trabalha
     private Set<Organization> workingOrganizations = new HashSet<>();
     private Set<Organization> ownerOfOrganizations = new HashSet<>();
     private Set<TeacherClass> ownerOfClasses = new HashSet<>();
+    private Set<Clazz> monitoratedClasses = new HashSet<>();
+    private Set<QuizTest> myQuizTests = new HashSet<>();
+    private Set<Question> myQuestions = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,6 +58,30 @@ public class Teacher {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<TeacherClass> getOwnerOfClasses() { return ownerOfClasses; }
     public void setOwnerOfClasses(Set<TeacherClass> ownerOfClasses) { this.ownerOfClasses = ownerOfClasses; }
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name="TeacherMonitoratesClass",
+            joinColumns={@JoinColumn(name="Teacher_idTeacher")},
+            inverseJoinColumns={@JoinColumn(name="Class_idClass")}
+    )
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<Clazz> getMonitoratedClasses() {return monitoratedClasses;}
+    public void setMonitoratedClasses(Set<Clazz> monitoratedClasses) {this.monitoratedClasses = monitoratedClasses;}
+
+    @OneToMany(mappedBy = "author")
+    @JsonManagedReference
+    public Set<QuizTest> getMyQuizTests() {return myQuizTests;}
+    public void setMyQuizTests(Set<QuizTest> quizTestsAuthor) {this.myQuizTests = quizTestsAuthor;}
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name="TeacherAuthoredQuestion",
+            joinColumns={@JoinColumn(name="Teacher_idTeacher")},
+            inverseJoinColumns={@JoinColumn(name="Question_idQuestion")}
+    )
+    public Set<Question> getMyQuestions() {return myQuestions;}
+    public void setMyQuestions(Set<Question> questionsAuthor) {this.myQuestions = questionsAuthor;}
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
@@ -106,21 +132,13 @@ public class Teacher {
 
     @Basic
     @Column(name = "Country", nullable = true, insertable = true, updatable = true, length = 128)
-    public String getCountry() {
-        return country;
-    }
-    public void setCountry(String country) {
-        this.country = country;
-    }
+    public String getCountry() {return country;}
+    public void setCountry(String country) {this.country = country;}
 
     @Basic
     @Column(name = "Scholarity", nullable = false, insertable = true, updatable = true, length = 128)
-    public String getScholarity() {
-        return scholarity;
-    }
-    public void setScholarity(String scholarity) {
-        this.scholarity = scholarity;
-    }
+    public String getScholarity() {return scholarity;}
+    public void setScholarity(String scholarity) {this.scholarity = scholarity;}
 
     @Override
     public boolean equals(Object o) {

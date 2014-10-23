@@ -71,6 +71,8 @@ public class BonePart {
             return false;
         if (name != null ? !name.equals(bonePart.name) : bonePart.name != null) return false;
         if (synonymous != null ? !synonymous.equals(bonePart.synonymous) : bonePart.synonymous != null) return false;
+        if (parentBone != null ? !parentBone.equals(bonePart.parentBone) : bonePart.parentBone != null) return false;
+
 
         return true;
     }
@@ -81,6 +83,7 @@ public class BonePart {
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);
+        result = 31 * result + (parentBone != null ? parentBone.getIdBone() : 0);
         return result;
     }
 }

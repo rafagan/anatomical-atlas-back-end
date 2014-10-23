@@ -1,6 +1,9 @@
 package models;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -9,8 +12,12 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "Class", schema = "", catalog = "AnatomicalAtlas")
 public abstract class Clazz {
-    private int idClass;
-    private String name;
+    protected int idClass;
+    protected String name;
+    protected int numberOfStudents;
+
+    private Set<Teacher> monitors = new HashSet<>();
+    private Set<Student> classStudents = new HashSet<>();
 
     @Id
     @Column(name = "idClass", nullable = false, insertable = true, updatable = true)
@@ -22,10 +29,33 @@ public abstract class Clazz {
         this.idClass = idClass;
     }
 
+    @ManyToMany(mappedBy = "monitoratedClasses", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    public Set<Teacher> getMonitors() { return monitors; }
+    public void setMonitors(Set<Teacher> monitors) { this.monitors = monitors; }
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name="ClassHasStudent",
+            joinColumns={@JoinColumn(name="Class_idClass")},
+            inverseJoinColumns={@JoinColumn(name="Student_idStudent")}
+    )
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<Student> getClassStudents() {return classStudents;}
+    public void setClassStudents(Set<Student> classStudents) {this.classStudents = classStudents;}
+
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
+    @Basic
+    @Column(name = "NumberOfStudents", nullable = true, insertable = true, updatable = true)
+    public int getNumberOfStudents() {
+        return numberOfStudents;
+    }
+    public void setNumberOfStudents(int numberOfStudents) {
+        this.numberOfStudents = numberOfStudents;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -35,6 +65,8 @@ public abstract class Clazz {
         Clazz clazz = (Clazz) o;
 
         if (idClass != clazz.idClass) return false;
+        if (numberOfStudents != clazz.numberOfStudents) return false;
+        if (name != null ? !name.equals(clazz.name) : clazz.name != null) return false;
 
         return true;
     }
@@ -42,6 +74,7 @@ public abstract class Clazz {
     @Override
     public int hashCode() {
         int result = idClass;
+        result = 31 * result + numberOfStudents;
         result = 31 * result + (name != null ? name.hashCode() : 0);
 
         return result;
