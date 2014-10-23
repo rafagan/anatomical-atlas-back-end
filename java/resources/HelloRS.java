@@ -9,7 +9,6 @@ import javax.ws.rs.core.Response;
 /**
  * Created by rafaganabreu on 20/09/14.
  */
-
 @Path("hello_rs")
 public class HelloRS {
     private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";

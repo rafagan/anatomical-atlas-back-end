@@ -1,6 +1,6 @@
 package controllers;
 
-import javax.xml.ws.Response;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by rafaganabreu on 23/09/14.
@@ -8,10 +8,10 @@ import javax.xml.ws.Response;
 public class QuizTestController extends AbstractController {
 
     public Response getAllPublicQuizTests() {
-        return null;
+        return Response.ok("").build();
     }
 
     public Response getPublicQuizTest(int quizTestId) {
-        return null;
+        return Response.ok("").build();
     }
 }

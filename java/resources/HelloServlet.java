@@ -10,7 +10,6 @@ import java.io.IOException;
 /**
  * Created by rafaganabreu on 20/09/14.
  */
-
 @WebServlet(name = "hello_atlas", urlPatterns = "/hello_servlet")
 public class HelloServlet extends HttpServlet {
     @Override

@@ -44,4 +44,40 @@ public class TeacherController extends AbstractController {
 
         return r;
     }
+
+    public Response getTeacherOrganizations(int teacherId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherClasses(int teacherId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherStudents(int teacherId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherClassStudents(int teacherId, int classId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherClass(int teacherId, int classId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherQuestions(int teacherId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherQuestion(int teacherId, int questionId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherTrueOrFalseQuestions(int teacherId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherMultipleChoiceQuestions(int teacherId) {
+        return Response.ok("").build();
+    }
 }

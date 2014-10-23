@@ -1,7 +1,6 @@
 package controllers;
 
 import dao.BoneDao;
-import dao.TeacherDao;
 import models.Bone;
 import org.hibernate.Hibernate;
 import utils.EntityManagerUtil;
@@ -81,10 +80,10 @@ public class BoneController extends AbstractController {
     }
 
     public Response getQuestionAboutBone(int questionId) {
-        return null;
+        return Response.ok("").build();
     }
 
     public Response getQuizTestsAboutBone(int boneId) {
-        return null;
+        return Response.ok("").build();
     }
 }

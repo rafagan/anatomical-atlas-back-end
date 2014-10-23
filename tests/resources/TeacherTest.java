@@ -1,10 +1,12 @@
-package database;
+package resources;
 
 import controllers.TeacherController;
 import models.Organization;
 import models.Teacher;
 import models.utils.Sex;
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.sql.Date;
@@ -13,13 +15,27 @@ import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by rafaganabreu on 01/10/14.
- */
+import static org.junit.Assert.*;
+
 public class TeacherTest {
 
+    @Before
+    public void setUp() throws Exception {
+
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
+    }
+
     @Test
-    public void shouldInsertValuesOnTeacherTable() {
+    public void testGetAllTeachers() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertTeacher() throws Exception {
 
         Teacher t = new Teacher();
 
@@ -52,5 +68,80 @@ public class TeacherTest {
 
         TeacherController tc = new TeacherController();
         tc.add(t);
+    }
+
+    @Test
+    public void testGetTeacher() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherOrganizations() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertOrganization() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherClasses() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertTeacherClass() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherStudents() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherClassStudents() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertStudentInTeacherClass() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherClass() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherQuestions() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherQuestion() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherTrueOrFalseQuestions() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertTeacherTrueOrFalseQuestion() throws Exception {
+
+    }
+
+    @Test
+    public void testGetTeacherMultipleChoiceQuestions() throws Exception {
+
+    }
+
+    @Test
+    public void testInsertTeacherMultipleChoiceQuestion() throws Exception {
+
     }
 }

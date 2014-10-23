@@ -1,6 +1,5 @@
 package resources;
 
-import controllers.BoneController;
 import controllers.BoneSetController;
 import org.junit.After;
 import org.junit.Before;
@@ -60,5 +59,15 @@ public class BoneSetTest {
             e.printStackTrace();
             fail();
         }
+    }
+
+    @Test
+    public void shouldGetQuestionsAboutBoneSet() throws Exception {
+
+    }
+
+    @Test
+    public void shouldGetQuizTestsAboutBoneSet() throws Exception {
+
     }
 }

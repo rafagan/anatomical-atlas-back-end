@@ -30,7 +30,7 @@ public class OrganizationResource extends AbstractResource {
     @Path("{id}/teachers")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertTeacherInOrganization(@PathParam("id") long organizationId /*FixedPinpoint fixedPinpoint,*/) {
+    public Response insertTeacherInOrganization(@PathParam("id") long organizationId) {
         return Response.ok("").build();
     }
 
@@ -45,7 +45,7 @@ public class OrganizationResource extends AbstractResource {
     @Path("{id}/students")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertStudentInOrganization(@PathParam("id") long organizationId /*FixedPinpoint fixedPinpoint,*/) {
+    public Response insertStudentInOrganization(@PathParam("id") long organizationId) {
         return Response.ok("").build();
     }
 
@@ -68,7 +68,7 @@ public class OrganizationResource extends AbstractResource {
     @Path("{id}/classes")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertOrganizationClass(@PathParam("id") long classId /*FixedPinpoint fixedPinpoint,*/) {
+    public Response insertOrganizationClass(@PathParam("id") long classId) {
         return Response.ok("").build();
     }
 
@@ -92,7 +92,7 @@ public class OrganizationResource extends AbstractResource {
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertStudentInOrganizationClass(@PathParam("id1") long organizationId,
-                                                     @PathParam("id2") long classId /*FixedPinpoint fixedPinpoint,*/) {
+                                                     @PathParam("id2") long classId) {
         return Response.ok("").build();
     }
 }
