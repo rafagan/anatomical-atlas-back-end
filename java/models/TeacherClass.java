@@ -17,7 +17,10 @@ public class TeacherClass extends Clazz {
     @JoinColumn(name="Teacher_idTeacher")
     @JsonBackReference
     public Teacher getCreator() { return creator; }
-    public void setCreator(Teacher creator) { this.creator = creator; }
+    public void setCreator(Teacher creator) {
+        this.creator = creator;
+        creator.getOwnerOfClasses().add(this);
+    }
 
     @Override
     public boolean equals(Object o) {

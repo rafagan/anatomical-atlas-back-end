@@ -34,7 +34,7 @@ public class Bone {
         this.idBone = idBone;
     }
 
-    @OneToMany(mappedBy="parentBone")
+    @OneToMany(mappedBy="parentBone", cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<BonePart> getBoneParts() { return boneParts; }
@@ -50,11 +50,19 @@ public class Bone {
     public Set<Bone> getNeighbors() { return neighbors; }
     public void setNeighbors(Set<Bone> neighbors) { this.neighbors = neighbors; }
 
+    public void addNeighbor(Bone neighbor) {
+        neighbors.add(neighbor);
+        neighbor.getNeighbors().add(this);
+    }
+
     @ManyToOne
     @JoinColumn(name="BoneSet_idBoneSet")
     @JsonBackReference
     public BoneSet getParentBoneSet() { return parentBoneSet; }
-    public void setParentBoneSet(BoneSet parent) { this.parentBoneSet = parent; }
+    public void setParentBoneSet(BoneSet parent) {
+        this.parentBoneSet = parent;
+        parent.getSonBones().add(this);
+    }
 
     @Basic
     @Column(name = "Description", nullable = false, insertable = true, updatable = true)
@@ -85,7 +93,7 @@ public class Bone {
     }
 
     @Basic
-    @Column(name = "BonePartNumber", nullable = true, insertable = true, updatable = true)
+    @Column(name = "BonePartNumber", nullable = true, insertable = true, updatable = true, columnDefinition="int default '0'")
     public int getBonePartNumber() {
         return bonePartNumber;
     }

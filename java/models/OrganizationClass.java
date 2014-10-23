@@ -17,7 +17,10 @@ public class OrganizationClass extends Clazz {
     @JoinColumn(name = "Organization_idOrganization")
     @JsonBackReference
     public Organization getCreator() { return creator; }
-    public void setCreator(Organization creator) { this.creator = creator; }
+    public void setCreator(Organization creator) {
+        this.creator = creator;
+        creator.getOwnerOfClasses().add(this);
+    }
 
     @Override
     public boolean equals(Object o) {

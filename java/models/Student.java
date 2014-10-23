@@ -1,5 +1,6 @@
 package models;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
@@ -27,6 +28,7 @@ public class Student {
 
     private Set<Clazz> myClasses = new HashSet<>();
     private Set<Resolution> myResolutions = new HashSet<>();
+    private Organization studentOrganization;
 
     @Id
     @Column(name = "idStudent", nullable = false, insertable = true, updatable = true)
@@ -42,6 +44,15 @@ public class Student {
     @JsonManagedReference
     public Set<Resolution> getMyResolutions() {return myResolutions;}
     public void setMyResolutions(Set<Resolution> myResolutions) {this.myResolutions = myResolutions;}
+
+    @ManyToOne
+    @JoinColumn(name="Organization_idOrganization")
+    @JsonBackReference
+    public Organization getStudentOrganization() {return studentOrganization;}
+    public void setStudentOrganization(Organization studentOrganization) {
+        this.studentOrganization = studentOrganization;
+        studentOrganization.getStudents().add(this);
+    }
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
@@ -133,6 +144,9 @@ public class Student {
         if (resume != null ? !resume.equals(student.resume) : student.resume != null) return false;
         if (scholarity != null ? !scholarity.equals(student.scholarity) : student.scholarity != null) return false;
         if (sex != null ? !sex.equals(student.sex) : student.sex != null) return false;
+        if (studentOrganization != null ? !studentOrganization.equals(student.studentOrganization) : student.studentOrganization != null) return false;
+        if (myClasses != null ? !myClasses.equals(student.myClasses) : student.myClasses != null) return false;
+        if (myResolutions != null ? !myResolutions.equals(student.myResolutions) : student.myResolutions != null) return false;
 
         return true;
     }
@@ -148,6 +162,15 @@ public class Student {
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (scholarity != null ? scholarity.hashCode() : 0);
+        result = 31 * result + (studentOrganization != null ? studentOrganization.getIdOrganization() : 0);
+
+        if(myClasses != null)
+            for(Clazz c : myClasses)
+                result = 31 * result + c.getIdClass();
+        if(myResolutions != null)
+            for(Resolution r : myResolutions)
+                result = 31 * result + r.getIdResolution();
+
         return result;
     }
 }

@@ -29,7 +29,10 @@ public class BonePart {
     @JoinColumn(name="Bone_idBone")
     @JsonBackReference
     public Bone getParentBone() { return parentBone; }
-    public void setParentBone(Bone parentBone) { this.parentBone = parentBone; }
+    public void setParentBone(Bone parentBone) {
+        this.parentBone = parentBone;
+        parentBone.getBoneParts().add(this);
+    }
 
     @Basic
     @Column(name = "Description", nullable = false, insertable = true, updatable = true)
@@ -72,7 +75,6 @@ public class BonePart {
         if (name != null ? !name.equals(bonePart.name) : bonePart.name != null) return false;
         if (synonymous != null ? !synonymous.equals(bonePart.synonymous) : bonePart.synonymous != null) return false;
         if (parentBone != null ? !parentBone.equals(bonePart.parentBone) : bonePart.parentBone != null) return false;
-
 
         return true;
     }

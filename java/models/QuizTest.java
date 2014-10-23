@@ -39,12 +39,19 @@ public class QuizTest {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Question> getQuestions() {return questions;}
     public void setQuestions(Set<Question> questions) {this.questions = questions;}
+    public void addQuestion(Question question) {
+        questions.add(question);
+        question.getQuizTests().add(this);
+    }
 
     @ManyToOne
     @JoinColumn(name="Teacher_idQuestionOwner")
     @JsonBackReference
     public Teacher getAuthor() {return author;}
-    public void setAuthor(Teacher author) {this.author = author;}
+    public void setAuthor(Teacher author) {
+        this.author = author;
+        author.getMyQuizTests().add(this);
+    }
 
     @OneToMany(mappedBy = "relatedQuiz")
     @JsonManagedReference
@@ -66,6 +73,9 @@ public class QuizTest {
         if (idQuizTest != quizTest.idQuizTest) return false;
         if (difficultLevel != null ? !difficultLevel.equals(quizTest.difficultLevel) : quizTest.difficultLevel != null)
             return false;
+        if (author != null ? !author.equals(quizTest.author) : quizTest.author != null) return false;
+        if (questions != null ? !questions.equals(quizTest.questions) : quizTest.questions != null) return false;
+        if (resolutions != null ? !resolutions.equals(quizTest.resolutions) : quizTest.resolutions != null) return false;
 
         return true;
     }
@@ -74,6 +84,13 @@ public class QuizTest {
     public int hashCode() {
         int result = idQuizTest;
         result = 31 * result + (difficultLevel != null ? difficultLevel.hashCode() : 0);
+        result = 31 * result + (author != null ? author.getIdTeacher() : 0);
+        if(questions != null)
+            for(Question q : questions)
+                result = 31 * result + q.getIdQuestion();
+        if(resolutions != null)
+            for(Resolution r : resolutions)
+                result = 31 * result + r.getIdResolution();
         return result;
     }
 }

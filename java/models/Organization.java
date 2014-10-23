@@ -21,6 +21,7 @@ public class Organization {
     private Set<Teacher> teachers = new HashSet<>();
     private Teacher owner;
     private Set<OrganizationClass> ownerOfClasses = new HashSet<>();
+    private Set<Student> students = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,13 +37,22 @@ public class Organization {
     @JoinColumn(name="Teacher_idResponsible")
     @JsonBackReference
     public Teacher getOwner() { return owner; }
-    public void setOwner(Teacher owner) { this.owner = owner; }
+    public void setOwner(Teacher owner) {
+        this.owner = owner;
+        owner.getOwnerOfOrganizations().add(this);
+    }
 
     @OneToMany(mappedBy = "creator")
     @JsonManagedReference
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<OrganizationClass> getOwnerOfClasses() { return ownerOfClasses; }
     public void setOwnerOfClasses(Set<OrganizationClass> ownerOfClasses) { this.ownerOfClasses = ownerOfClasses; }
+
+    @OneToMany(mappedBy = "studentOrganization")
+    @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    public Set<Student> getStudents() {return students;}
+    public void setStudents(Set<Student> students) {this.students = students;}
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
@@ -72,6 +82,8 @@ public class Organization {
         if (acronym != null ? !acronym.equals(that.name) : that.acronym != null) return false;
         if (country != null ? !country.equals(that.country) : that.country != null) return false;
         if (owner != null ? !owner.equals(that.owner) : that.owner != null) return false;
+        if (ownerOfClasses != null ? !ownerOfClasses.equals(that.ownerOfClasses) : that.ownerOfClasses != null) return false;
+        if (students != null ? !students.equals(that.students) : that.students != null) return false;
 
         return true;
     }
@@ -87,6 +99,12 @@ public class Organization {
         if(teachers != null)
             for(Teacher t : teachers)
                 result = 31 * result + t.getIdTeacher();
+        if(ownerOfClasses != null)
+            for(Clazz c : ownerOfClasses)
+                result = 31 * result + c.getIdClass();
+        if(students != null)
+            for(Student s : students)
+                result = 31 * result + s.getIdStudent();
 
         return result;
     }

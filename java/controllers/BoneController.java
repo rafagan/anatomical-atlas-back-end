@@ -81,8 +81,10 @@ public class BoneController extends AbstractController {
     }
 
     public Response getQuestionAboutBone(int questionId) {
+        return null;
     }
 
     public Response getQuizTestsAboutBone(int boneId) {
+        return null;
     }
 }

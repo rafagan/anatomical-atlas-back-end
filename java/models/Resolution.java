@@ -31,13 +31,19 @@ public class Resolution {
     @JoinColumn(name="Student_idStudent")
     @JsonBackReference
     public Student getOwner() {return owner;}
-    public void setOwner(Student owner) {this.owner = owner;}
+    public void setOwner(Student owner) {
+        this.owner = owner;
+        owner.getMyResolutions().add(this);
+    }
 
     @ManyToOne
     @JoinColumn(name="QuizTest_idQuizTest")
     @JsonBackReference
     public QuizTest getRelatedQuiz() {return relatedQuiz;}
-    public void setRelatedQuiz(QuizTest relatedQuiz) {this.relatedQuiz = relatedQuiz;}
+    public void setRelatedQuiz(QuizTest relatedQuiz) {
+        this.relatedQuiz = relatedQuiz;
+        relatedQuiz.getResolutions().add(this);
+    }
 
     @Basic
     @Column(name = "TotalCorrectAnswers", nullable = false, insertable = true, updatable = true)
@@ -77,6 +83,8 @@ public class Resolution {
         if (totalCorrectAnswers != that.totalCorrectAnswers) return false;
         if (totalQuestions != that.totalQuestions) return false;
         if (totalWrongAnswers != that.totalWrongAnswers) return false;
+        if (owner != null ? !owner.equals(that.owner) : that.owner != null) return false;
+        if (relatedQuiz != null ? !relatedQuiz.equals(that.relatedQuiz) : that.relatedQuiz != null) return false;
 
         return true;
     }
@@ -87,6 +95,8 @@ public class Resolution {
         result = 31 * result + totalCorrectAnswers;
         result = 31 * result + totalWrongAnswers;
         result = 31 * result + totalQuestions;
+        result = 31 * result + owner.getIdStudent();
+        result = 31 * result + relatedQuiz.getIdQuizTest();
         return result;
     }
 }

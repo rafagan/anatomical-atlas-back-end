@@ -47,6 +47,10 @@ public class Teacher {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Organization> getWorkingOrganizations() { return workingOrganizations; }
     public void setWorkingOrganizations(Set<Organization> workingOrganizations) { this.workingOrganizations = workingOrganizations; }
+    public void addWorkingOrganization(Organization organization) {
+        workingOrganizations.add(organization);
+        organization.getTeachers().add(this);
+    }
 
     @OneToMany(mappedBy = "owner")
     @JsonManagedReference
@@ -68,6 +72,10 @@ public class Teacher {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Clazz> getMonitoratedClasses() {return monitoratedClasses;}
     public void setMonitoratedClasses(Set<Clazz> monitoratedClasses) {this.monitoratedClasses = monitoratedClasses;}
+    public void addMonitoratedClasses(Clazz clazz) {
+        monitoratedClasses.add(clazz);
+        clazz.getMonitors().add(this);
+    }
 
     @OneToMany(mappedBy = "author")
     @JsonManagedReference
@@ -82,6 +90,10 @@ public class Teacher {
     )
     public Set<Question> getMyQuestions() {return myQuestions;}
     public void setMyQuestions(Set<Question> questionsAuthor) {this.myQuestions = questionsAuthor;}
+    public void addQuestion(Question question) {
+        myQuestions.add(question);
+        question.getAuthors().add(this);
+    }
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
@@ -156,7 +168,11 @@ public class Teacher {
         if (scholarity != null ? !scholarity.equals(teacher.scholarity) : teacher.scholarity != null) return false;
         if (sex != null ? !sex.equals(teacher.sex) : teacher.sex != null) return false;
         if (workingOrganizations != null ? !workingOrganizations.equals(teacher.workingOrganizations) : teacher.workingOrganizations != null) return false;
-
+        if (ownerOfOrganizations != null ? !ownerOfOrganizations.equals(teacher.ownerOfOrganizations) : teacher.ownerOfOrganizations != null) return false;
+        if (ownerOfClasses != null ? !ownerOfClasses.equals(teacher.ownerOfClasses) : teacher.ownerOfClasses != null) return false;
+        if (monitoratedClasses != null ? !monitoratedClasses.equals(teacher.monitoratedClasses) : teacher.workingOrganizations != null) return false;
+        if (myQuizTests != null ? !myQuizTests.equals(teacher.myQuizTests) : teacher.workingOrganizations != null) return false;
+        if (myQuestions != null ? !myQuestions.equals(teacher.myQuestions) : teacher.myQuestions != null) return false;
         return true;
     }
 
@@ -174,8 +190,21 @@ public class Teacher {
         if(workingOrganizations != null)
             for(Organization org : workingOrganizations)
                 result = 31 * result + org.getIdOrganization();
-        else
-            result *= 31;
+        if(ownerOfOrganizations != null)
+            for(Organization org : ownerOfOrganizations)
+                result = 31 * result + org.getIdOrganization();
+        if(ownerOfClasses != null)
+            for(Clazz c : ownerOfClasses)
+                result = 31 * result + c.getIdClass();
+        if(monitoratedClasses != null)
+            for(Clazz c : monitoratedClasses)
+                result = 31 * result + c.getIdClass();
+        if(myQuizTests != null)
+            for(QuizTest c : myQuizTests)
+                result = 31 * result + c.getIdQuizTest();
+        if(myQuestions != null)
+            for(Question c : myQuestions)
+                result = 31 * result + c.getIdQuestion();
 
         return result;
     }

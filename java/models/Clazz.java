@@ -42,6 +42,10 @@ public abstract class Clazz {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Student> getClassStudents() {return classStudents;}
     public void setClassStudents(Set<Student> classStudents) {this.classStudents = classStudents;}
+    public void addClassStudent(Student student) {
+        classStudents.add(student);
+        student.getMyClasses().add(this);
+    }
 
     @Basic
     @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
@@ -67,6 +71,8 @@ public abstract class Clazz {
         if (idClass != clazz.idClass) return false;
         if (numberOfStudents != clazz.numberOfStudents) return false;
         if (name != null ? !name.equals(clazz.name) : clazz.name != null) return false;
+        if (monitors != null ? !monitors.equals(clazz.monitors) : clazz.monitors != null) return false;
+        if (classStudents != null ? !classStudents.equals(clazz.classStudents) : clazz.classStudents != null) return false;
 
         return true;
     }
@@ -76,6 +82,12 @@ public abstract class Clazz {
         int result = idClass;
         result = 31 * result + numberOfStudents;
         result = 31 * result + (name != null ? name.hashCode() : 0);
+        if(monitors != null)
+            for(Teacher t : monitors)
+                result = 31 * result + t.getIdTeacher();
+        if(classStudents != null)
+            for(Student c : classStudents)
+                result = 31 * result + c.getIdStudent();
 
         return result;
     }

@@ -1,9 +1,6 @@
 package models;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,11 +33,14 @@ public abstract class Question {
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<BoneSet> getCategories() {return categories;}
     public void setCategories(Set<BoneSet> categories) {this.categories = categories;}
+    public void addCategory(BoneSet category) {
+        categories.add(category);
+        category.getRelatedQuestions().add(this);
+    }
 
     @ManyToMany(mappedBy = "questions", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     public Set<QuizTest> getQuizTests() {return quizTests;}
     public void setQuizTests(Set<QuizTest> quizTests) {this.quizTests = quizTests;}
-
 
     @ManyToMany(mappedBy = "myQuestions", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     public Set<Teacher> getAuthors() {return authors;}
@@ -60,6 +60,9 @@ public abstract class Question {
 
         if (idQuestion != question.idQuestion) return false;
         if (publicDomain != question.publicDomain) return false;
+        if(quizTests != null ? !quizTests.equals(question.quizTests) : question.quizTests != null) return false;
+        if(categories != null ? !categories.equals(question.categories) : question.categories != null) return false;
+        if(authors != null ? !authors.equals(question.authors) : question.authors != null) return false;
 
         return true;
     }
@@ -68,6 +71,15 @@ public abstract class Question {
     public int hashCode() {
         int result = idQuestion;
         result = 31 * result + (int) publicDomain;
+        if(quizTests != null)
+            for(QuizTest q : quizTests)
+                result = 31 * result + q.getIdQuizTest();
+        if(categories != null)
+            for(BoneSet b : categories)
+                result = 31 * result + b.getIdBoneSet();
+        if(authors != null)
+            for(Teacher t : authors)
+                result = 31 * result + t.getIdTeacher();
         return result;
     }
 }

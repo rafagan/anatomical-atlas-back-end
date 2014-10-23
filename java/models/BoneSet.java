@@ -51,7 +51,10 @@ public class BoneSet {
     @JoinColumn(name="BoneSet_idParent")
     @JsonBackReference
     public BoneSet getParent() { return parent; }
-    public void setParent(BoneSet parent) { this.parent = parent; }
+    public void setParent(BoneSet parent) {
+        this.parent = parent;
+        parent.getSonBonesSets().add(this);
+    }
 
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     public Set<Question> getRelatedQuestions() {return relatedQuestions;}
@@ -109,6 +112,7 @@ public class BoneSet {
         if (sonBones != null ? !sonBones.equals(boneSet.sonBones) : boneSet.sonBones != null) return false;
         if (sonBonesSets != null ? !sonBonesSets.equals(boneSet.sonBonesSets) : boneSet.sonBonesSets != null) return false;
         if (parent != null ? !parent.equals(boneSet.parent) : boneSet.parent != null) return false;
+        if (relatedQuestions != null ? !relatedQuestions.equals(boneSet.relatedQuestions) : boneSet.relatedQuestions != null) return false;
 
         return true;
     }
@@ -128,6 +132,9 @@ public class BoneSet {
         if(sonBonesSets != null)
             for(BoneSet s : sonBonesSets)
                 result = 31 * result + s.getIdBoneSet();
+        if(relatedQuestions != null)
+            for(Question q : relatedQuestions)
+                result = 31 * result + q.getIdQuestion();
         return result;
     }
 }

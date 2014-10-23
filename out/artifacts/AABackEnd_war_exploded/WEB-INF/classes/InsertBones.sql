@@ -144,7 +144,7 @@ INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (42,"Description","
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (42,"Description","Right 3 Foot Distal Phalanx");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (42,"Description","Right 4 Foot Distal Phalanx");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (42,"Description","Right 5 Foot Distal Phalanx");
-INSERT INTO Bone (BoneSet_idBoneSet,Description,Name,Synonymous) VALUES (44,"Description","Left Humerus","Arm");
+INSERT INTO Bone (BoneSet_idBoneSet,Description,Name,Synonymous) VALUES (44,"Description","Left Humerus","Left Arm");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (44,"Description","Left Ulna");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (44,"Description","Left Radius");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (47,"Description","Left Lunate");
@@ -174,7 +174,7 @@ INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (49,"Description","
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (49,"Description","Left 3 Hand Distal Phalanx");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (49,"Description","Left 4 Hand Distal Phalanx");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (49,"Description","Left 5 Hand Distal Phalanx");
-INSERT INTO Bone (BoneSet_idBoneSet,Description,Name,Synonymous) VALUES (50,"Description","Right Humerus","Arm");
+INSERT INTO Bone (BoneSet_idBoneSet,Description,Name,Synonymous) VALUES (50,"Description","Right Humerus","Right Arm");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (50,"Description","Right Ulna");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (50,"Description","Right Radius");
 INSERT INTO Bone (BoneSet_idBoneSet,Description,Name) VALUES (53,"Description","Right Lunate");

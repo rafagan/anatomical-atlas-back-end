@@ -39,7 +39,10 @@ public class BoneTest {
 
         if(bones.size() == 0)
             fail("Não encontrou nenhum Bone no banco");
+        if(bones.size() != 238)
+            fail("A base não possui todos os 206 ossos + 32 dentes do corpo humano");
 
+        //Testando Lazy Binding
         for (Bone bone : bones) {
             for (BonePart part : bone.getBoneParts())
                 System.out.println(part.getName());
