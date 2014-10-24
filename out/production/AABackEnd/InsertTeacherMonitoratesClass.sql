@@ -1,0 +1,10 @@
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (1,1000);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (1,1001);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (1,1002);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (2,1003);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (1,1004);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (2,1005);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (2,1006);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (2,1007);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (2,1008);
+INSERT INTO TeacherMonitoratesClass (Teacher_idTeacher, Class_idClass) VALUES (2,1009);

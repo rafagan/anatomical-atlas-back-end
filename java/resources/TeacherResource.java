@@ -48,10 +48,17 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id}/classes")
+    @Path("{id}/monitoratedClasses")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getTeacherClasses(@PathParam("id") int teacherId) {
-        return teacherController.getTeacherClasses(teacherId);
+    public Response getTeacherMonitoratedClasses(@PathParam("id") int teacherId) {
+        return teacherController.getTeacherMonitoratedClasses(teacherId);
+    }
+
+    @GET
+    @Path("{id}/ownerClasses")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response getTeacherOwnerClasses(@PathParam("id") int teacherId) {
+        return teacherController.getTeacherOwnerClasses(teacherId);
     }
 
     @POST
@@ -104,7 +111,7 @@ public class TeacherResource extends AbstractResource {
     @Path("{id1}/question/{id2}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherQuestion(@PathParam("id1") int teacherId,@PathParam("id2") int questionId) {
-        return teacherController.getTeacherQuestion(teacherId,questionId);
+        return teacherController.getTeacherQuestion(teacherId, questionId);
     }
 
     @GET

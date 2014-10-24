@@ -14,7 +14,7 @@ import java.util.Set;
 public abstract class Clazz {
     protected int idClass;
     protected String name;
-    protected int numberOfStudents;
+    protected int classSize;
 
     private Set<Teacher> monitors = new HashSet<>();
     private Set<Student> classStudents = new HashSet<>();
@@ -53,12 +53,12 @@ public abstract class Clazz {
     public void setName(String name) { this.name = name; }
 
     @Basic
-    @Column(name = "NumberOfStudents", nullable = true, insertable = true, updatable = true)
-    public int getNumberOfStudents() {
-        return numberOfStudents;
+    @Column(name = "ClassSize", nullable = true, insertable = true, updatable = true)
+    public int getClassSize() {
+        return classSize;
     }
-    public void setNumberOfStudents(int numberOfStudents) {
-        this.numberOfStudents = numberOfStudents;
+    public void setClassSize(int numberOfStudents) {
+        this.classSize = numberOfStudents;
     }
 
     @Override
@@ -69,7 +69,7 @@ public abstract class Clazz {
         Clazz clazz = (Clazz) o;
 
         if (idClass != clazz.idClass) return false;
-        if (numberOfStudents != clazz.numberOfStudents) return false;
+        if (classSize != clazz.classSize) return false;
         if (name != null ? !name.equals(clazz.name) : clazz.name != null) return false;
         if (monitors != null ? !monitors.equals(clazz.monitors) : clazz.monitors != null) return false;
         if (classStudents != null ? !classStudents.equals(clazz.classStudents) : clazz.classStudents != null) return false;
@@ -80,14 +80,8 @@ public abstract class Clazz {
     @Override
     public int hashCode() {
         int result = idClass;
-        result = 31 * result + numberOfStudents;
+        result = 31 * result + classSize;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        if(monitors != null)
-            for(Teacher t : monitors)
-                result = 31 * result + t.getIdTeacher();
-        if(classStudents != null)
-            for(Student c : classStudents)
-                result = 31 * result + c.getIdStudent();
 
         return result;
     }

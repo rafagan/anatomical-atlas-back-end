@@ -36,7 +36,7 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idTeacher", nullable = false, insertable = true, updatable = true)
     public int getIdTeacher() { return this.idTeacher; }
-    public void setIdTeacher(int idTeacher) { this.idTeacher = idTeacher; }
+    private void setIdTeacher(int idTeacher) { this.idTeacher = idTeacher; }
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
@@ -105,7 +105,7 @@ public class Teacher {
     }
 
     @Basic
-    @Column(name = "Photo", nullable = true, insertable = true, updatable = true)
+    @Column(name = "Photo", nullable = true, insertable = true, updatable = true, length = 16777217)
     public byte[] getPhoto() {
         return photo;
     }
@@ -186,25 +186,6 @@ public class Teacher {
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (scholarity != null ? scholarity.hashCode() : 0);
-
-        if(workingOrganizations != null)
-            for(Organization org : workingOrganizations)
-                result = 31 * result + org.getIdOrganization();
-        if(ownerOfOrganizations != null)
-            for(Organization org : ownerOfOrganizations)
-                result = 31 * result + org.getIdOrganization();
-        if(ownerOfClasses != null)
-            for(Clazz c : ownerOfClasses)
-                result = 31 * result + c.getIdClass();
-        if(monitoratedClasses != null)
-            for(Clazz c : monitoratedClasses)
-                result = 31 * result + c.getIdClass();
-        if(myQuizTests != null)
-            for(QuizTest c : myQuizTests)
-                result = 31 * result + c.getIdQuizTest();
-        if(myQuestions != null)
-            for(Question c : myQuestions)
-                result = 31 * result + c.getIdQuestion();
 
         return result;
     }

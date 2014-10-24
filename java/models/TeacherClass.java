@@ -36,7 +36,6 @@ public class TeacherClass extends Clazz {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = result * 31 + creator.getIdTeacher();
 
         return result;
     }

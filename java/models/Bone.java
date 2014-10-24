@@ -129,13 +129,6 @@ public class Bone {
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);
         result = 31 * result + (parentBoneSet != null ? parentBoneSet.getIdBoneSet() : 0);
 
-        if(boneParts != null)
-            for(BonePart p : boneParts)
-                result = 31 * result + p.getIdBonePart();
-        if(neighbors != null)
-            for(Bone b : neighbors)
-                result = 31 * result + b.getIdBone();
-
         return result;
     }
 }

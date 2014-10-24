@@ -84,13 +84,7 @@ public class QuizTest {
     public int hashCode() {
         int result = idQuizTest;
         result = 31 * result + (difficultLevel != null ? difficultLevel.hashCode() : 0);
-        result = 31 * result + (author != null ? author.getIdTeacher() : 0);
-        if(questions != null)
-            for(Question q : questions)
-                result = 31 * result + q.getIdQuestion();
-        if(resolutions != null)
-            for(Resolution r : resolutions)
-                result = 31 * result + r.getIdResolution();
+
         return result;
     }
 }

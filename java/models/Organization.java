@@ -94,17 +94,6 @@ public class Organization {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (acronym != null ? acronym.hashCode() : 0);
-        result = 31 * result + (owner != null ? owner.hashCode() : 0);
-
-        if(teachers != null)
-            for(Teacher t : teachers)
-                result = 31 * result + t.getIdTeacher();
-        if(ownerOfClasses != null)
-            for(Clazz c : ownerOfClasses)
-                result = 31 * result + c.getIdClass();
-        if(students != null)
-            for(Student s : students)
-                result = 31 * result + s.getIdStudent();
 
         return result;
     }

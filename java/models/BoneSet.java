@@ -126,15 +126,6 @@ public class BoneSet {
         result = 31 * result + boneNumber;
         result = 31 * result + (parent != null ? parent.getIdBoneSet() : 0);
 
-        if(sonBones != null)
-            for(Bone b : sonBones)
-                result = 31 * result + b.getIdBone();
-        if(sonBonesSets != null)
-            for(BoneSet s : sonBonesSets)
-                result = 31 * result + s.getIdBoneSet();
-        if(relatedQuestions != null)
-            for(Question q : relatedQuestions)
-                result = 31 * result + q.getIdQuestion();
         return result;
     }
 }

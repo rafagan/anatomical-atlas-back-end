@@ -71,15 +71,7 @@ public abstract class Question {
     public int hashCode() {
         int result = idQuestion;
         result = 31 * result + (int) publicDomain;
-        if(quizTests != null)
-            for(QuizTest q : quizTests)
-                result = 31 * result + q.getIdQuizTest();
-        if(categories != null)
-            for(BoneSet b : categories)
-                result = 31 * result + b.getIdBoneSet();
-        if(authors != null)
-            for(Teacher t : authors)
-                result = 31 * result + t.getIdTeacher();
+
         return result;
     }
 }

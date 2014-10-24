@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1881605764">
+  <component name="DataSourceManagerImpl" format="xml" hash="2075505062">
     <data-source source="LOCAL" name="MySQL - AnatomicalAtlas@localhost" uuid="3a9b1807-38a9-482a-8d66-29c25a17eb7e">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>

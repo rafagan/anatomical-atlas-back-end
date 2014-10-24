@@ -49,7 +49,7 @@ public class TeacherController extends AbstractController {
         return Response.ok("").build();
     }
 
-    public Response getTeacherClasses(int teacherId) {
+    public Response getTeacherMonitoratedClasses(int teacherId) {
         return Response.ok("").build();
     }
 
@@ -78,6 +78,10 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherMultipleChoiceQuestions(int teacherId) {
+        return Response.ok("").build();
+    }
+
+    public Response getTeacherOwnerClasses(int teacherId) {
         return Response.ok("").build();
     }
 }

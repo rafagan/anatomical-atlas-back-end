@@ -95,8 +95,7 @@ public class Resolution {
         result = 31 * result + totalCorrectAnswers;
         result = 31 * result + totalWrongAnswers;
         result = 31 * result + totalQuestions;
-        result = 31 * result + owner.getIdStudent();
-        result = 31 * result + relatedQuiz.getIdQuizTest();
+
         return result;
     }
 }

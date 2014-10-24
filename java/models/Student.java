@@ -73,7 +73,7 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "Photo", nullable = true, insertable = true, updatable = true)
+    @Column(name = "Photo", nullable = true, insertable = true, updatable = true, length = 16777217)
     public byte[] getPhoto() {
         return photo;
     }
@@ -162,14 +162,6 @@ public class Student {
         result = 31 * result + (birthday != null ? birthday.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (scholarity != null ? scholarity.hashCode() : 0);
-        result = 31 * result + (studentOrganization != null ? studentOrganization.getIdOrganization() : 0);
-
-        if(myClasses != null)
-            for(Clazz c : myClasses)
-                result = 31 * result + c.getIdClass();
-        if(myResolutions != null)
-            for(Resolution r : myResolutions)
-                result = 31 * result + r.getIdResolution();
 
         return result;
     }
