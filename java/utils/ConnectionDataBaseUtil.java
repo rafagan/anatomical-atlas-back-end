@@ -9,7 +9,7 @@ public class ConnectionDataBaseUtil {
     private static final String URL_MYSQL = "jdbc:mysql://localhost/";
     private static final String DRIVER_CLASS = "com.mysql.jdbc.Driver";
     private static final String USER = "root";
-    private static final String PASS = "";
+    private static final String PASS = "rafagan@root";
 
     public static Connection getConnection(String dbName) {
         try {

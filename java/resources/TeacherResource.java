@@ -48,7 +48,7 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id}/monitoratedClasses")
+    @Path("{id}/monitorated_classes")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherMonitoratedClasses(@PathParam("id") int teacherId) {
         return teacherController.getTeacherMonitoratedClasses(teacherId);
@@ -65,39 +65,39 @@ public class TeacherResource extends AbstractResource {
     @Path("{id}/classes")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertTeacherClass(@PathParam("id") int teacherId) {
+    public Response insertTeacherMonitoratedClass(@PathParam("id") int teacherId) {
         return Response.ok("").build();
     }
 
     @GET
     @Path("{id}/classes/students")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getTeacherStudents(@PathParam("id") int teacherId) {
-        return teacherController.getTeacherStudents(teacherId);
+    public Response getTeacherMonitoratedStudents(@PathParam("id") int teacherId) {
+        return teacherController.getTeacherMonitoratedStudents(teacherId);
     }
 
     @GET
     @Path("{id1}/classes/{id2}/students")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getTeacherClassStudents(@PathParam("id1") int teacherId,
-                                            @PathParam("id2") int classId) {
-        return teacherController.getTeacherClassStudents(teacherId,classId);
+    public Response getTeacherMonitoratedClassStudents(@PathParam("id1") int teacherId,
+                                                       @PathParam("id2") int classId) {
+        return teacherController.getTeacherMonitoratedClassStudents(teacherId, classId);
     }
 
     @POST
     @Path("{id1}/classes/{id2}/students")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertStudentInTeacherClass(@PathParam("id1") int teacherId,
-                                         @PathParam("id2") int classId) {
+    public Response insertStudentInTeacherMonitoratedClass(@PathParam("id1") int teacherId,
+                                                           @PathParam("id2") int classId) {
         return Response.ok("").build();
     }
 
     @GET
     @Path("{id1}/classes/{id2}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getTeacherClass(@PathParam("id1") int teacherId, @PathParam("id2") int classId) {
-        return teacherController.getTeacherClass(teacherId, classId);
+    public Response getTeacherMonitoratedClass(@PathParam("id1") int teacherId, @PathParam("id2") int classId) {
+        return teacherController.getTeacherMonitoratedClass(teacherId, classId);
     }
 
     @GET
@@ -115,15 +115,14 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id}/questions/trueorfalse")
+    @Path("{id}/questions/true_or_false")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherTrueOrFalseQuestions(@PathParam("id") int teacherId) {
         return teacherController.getTeacherTrueOrFalseQuestions(teacherId);
     }
 
-    //Verificar se a questão será pública ou não
     @POST
-    @Path("{id}/questions/trueorfalse")
+    @Path("{id}/questions/true_or_false")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertTeacherTrueOrFalseQuestion(@PathParam("id") long teacherId) {
@@ -131,18 +130,31 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id}/questions/multiplechoice")
+    @Path("{id}/questions/multiple_choice")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherMultipleChoiceQuestions(@PathParam("id") int teacherId) {
         return teacherController.getTeacherMultipleChoiceQuestions(teacherId);
     }
 
-    //Verificar se a questão será pública ou não
     @POST
-    @Path("{id}/questions/multiplechoice")
+    @Path("{id}/questions/multiple_choice")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertTeacherMultipleChoiceQuestion(@PathParam("id") long teacherId) {
         return Response.ok("").build();
+    }
+
+    @GET
+    @Path("{id1}/quiz_tests")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response getTeacherQuizTests(@PathParam("id1") int teacherId) {
+        return teacherController.getTeacherQuizTests(teacherId);
+    }
+
+    @GET
+    @Path("{id1}/quiz_tests/{id2}")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response getTeacherQuizTest(@PathParam("id1") int teacherId, @PathParam("id2") int quizTestId) {
+        return teacherController.getTeacherQuizTest(teacherId, quizTestId);
     }
 }

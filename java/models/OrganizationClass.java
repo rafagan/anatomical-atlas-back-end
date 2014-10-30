@@ -19,16 +19,12 @@ public class OrganizationClass extends Clazz {
     public Organization getCreator() { return creator; }
     public void setCreator(Organization creator) {
         this.creator = creator;
-        creator.getOwnerOfClasses().add(this);
+        if(creator != null) creator.getOwnerOfClasses().add(this);
     }
 
     @Override
     public boolean equals(Object o) {
         if(!super.equals(o)) return false;
-
-        OrganizationClass clazz = (OrganizationClass) o;
-
-        if (creator != null ? !creator.equals(clazz.creator) : clazz.creator != null) return false;
 
         return true;
     }

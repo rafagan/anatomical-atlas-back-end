@@ -29,6 +29,7 @@ public class Student {
     private Set<Clazz> myClasses = new HashSet<>();
     private Set<Resolution> myResolutions = new HashSet<>();
     private Organization studentOrganization;
+    private StudentLogin login;
 
     @Id
     @Column(name = "idStudent", nullable = false, insertable = true, updatable = true)
@@ -51,7 +52,16 @@ public class Student {
     public Organization getStudentOrganization() {return studentOrganization;}
     public void setStudentOrganization(Organization studentOrganization) {
         this.studentOrganization = studentOrganization;
-        studentOrganization.getStudents().add(this);
+        if(studentOrganization != null) studentOrganization.getStudents().add(this);
+    }
+
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="Login_idLogin", unique = true)
+    @JsonBackReference
+    public StudentLogin getLogin() {return login;}
+    public void setLogin(StudentLogin login) {
+        this.login = login;
+        if(login != null) login.setOwner(this);
     }
 
     @Basic
@@ -133,20 +143,7 @@ public class Student {
         if (o == null || getClass() != o.getClass()) return false;
 
         Student student = (Student) o;
-
         if (idStudent != student.idStudent) return false;
-        if (birthday != null ? !birthday.equals(student.birthday) : student.birthday != null) return false;
-        if (country != null ? !country.equals(student.country) : student.country != null) return false;
-        if (generalKnowledge != null ? !generalKnowledge.equals(student.generalKnowledge) : student.generalKnowledge != null)
-            return false;
-        if (name != null ? !name.equals(student.name) : student.name != null) return false;
-        if (!Arrays.equals(photo, student.photo)) return false;
-        if (resume != null ? !resume.equals(student.resume) : student.resume != null) return false;
-        if (scholarity != null ? !scholarity.equals(student.scholarity) : student.scholarity != null) return false;
-        if (sex != null ? !sex.equals(student.sex) : student.sex != null) return false;
-        if (studentOrganization != null ? !studentOrganization.equals(student.studentOrganization) : student.studentOrganization != null) return false;
-        if (myClasses != null ? !myClasses.equals(student.myClasses) : student.myClasses != null) return false;
-        if (myResolutions != null ? !myResolutions.equals(student.myResolutions) : student.myResolutions != null) return false;
 
         return true;
     }

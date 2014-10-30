@@ -2,15 +2,12 @@ package resources;
 
 import controllers.TeacherController;
 import dao.TeacherDao;
-import models.Clazz;
-import models.Organization;
-import models.Teacher;
+import models.*;
 import models.utils.Sex;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import utils.EntityManagerUtil;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -50,9 +47,6 @@ public class TeacherTest {
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Teacher> teachers = dao.queryTeachers();
-
-        if(teachers.size() == 0)
-            fail("Não encontrou nenhum Teacher no banco");
 
         //Testando Lazy Binding
         for (Teacher teacher : teachers) {
@@ -143,7 +137,7 @@ public class TeacherTest {
 
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            List<Organization> orgs = dao.queryTeacherOrganizations(2);
+            List<Organization> orgs = dao.queryOrganizations(2);
 
             for(Organization org : orgs)
                 org.getCountry();
@@ -161,9 +155,9 @@ public class TeacherTest {
     }
 
     @Test
-    public void testGetTeacherClasses() throws Exception {
+    public void testGetTeacherMonitoratedClasses() throws Exception {
         try {
-            tc.getTeacherMonitoratedClasses(1);
+            tc.getTeacherMonitoratedClasses(2);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -171,7 +165,7 @@ public class TeacherTest {
 
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            List<Clazz> classes = dao.queryTeacherMonitoratedClasses(1);
+            List<Clazz> classes = dao.queryMonitoratedClasses(2);
 
             for(Clazz c : classes)
                 c.getName();
@@ -184,18 +178,54 @@ public class TeacherTest {
     }
 
     @Test
-    public void testInsertTeacherClass() throws Exception {
+    public void testInsertTeacherMonitoratedClass() throws Exception {
 
     }
 
     @Test
-    public void testGetTeacherStudents() throws Exception {
+    public void testGetTeacherMonitoratedStudents() throws Exception {
+        try {
+            tc.getTeacherMonitoratedStudents(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<Student> students = dao.queryMonitoratedStudents(2);
+
+            for(Student s : students)
+                s.getName();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
-    public void testGetTeacherClassStudents() throws Exception {
+    public void testGetTeacherMonitoratedClassStudents() throws Exception {
+        try {
+            tc.getTeacherMonitoratedClassStudents(1, 1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<Student> students = dao.queryMonitoratedClassStudents(2, 1006);
+
+            for(Student s : students)
+                s.getName();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
@@ -204,23 +234,93 @@ public class TeacherTest {
     }
 
     @Test
-    public void testGetTeacherClass() throws Exception {
+    public void testGetTeacherMonitoratedClass() throws Exception {
+        try {
+            tc.getTeacherMonitoratedClass(1, 1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            Clazz clazz = dao.queryMonitoratedClass(2, 1006);
+
+            clazz.getClassSize();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
     public void testGetTeacherQuestions() throws Exception {
+        try {
+            tc.getTeacherQuestions(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<Question> questions = dao.queryQuestions(2);
+
+            for(Question q : questions)
+                q.getPublicDomain();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
     public void testGetTeacherQuestion() throws Exception {
+        try {
+            tc.getTeacherQuestion(1,1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            Question question = dao.queryQuestion(2, 1014);
+
+            question.getPublicDomain();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
     public void testGetTeacherTrueOrFalseQuestions() throws Exception {
+        try {
+            tc.getTeacherTrueOrFalseQuestions(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<TrueOrFalse> questions = dao.queryTFQuestions(2);
+
+            for(Question q : questions)
+                q.getPublicDomain();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
@@ -230,11 +330,97 @@ public class TeacherTest {
 
     @Test
     public void testGetTeacherMultipleChoiceQuestions() throws Exception {
+        try {
+            tc.getTeacherMultipleChoiceQuestions(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
 
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<MultipleChoice> questions = dao.queryMCQuestions(2);
+
+            for(Question q : questions)
+                q.getPublicDomain();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
     public void testInsertTeacherMultipleChoiceQuestion() throws Exception {
 
+    }
+
+    @Test
+    public void testGetTeacherOwnerClasses() throws Exception{
+        try {
+            tc.getTeacherOwnerClasses(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<TeacherClass> classes = dao.queryOwnerClasses(2);
+
+            for(Clazz c : classes)
+                c.getName();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testGetTeacherQuizTests() {
+        try {
+            tc.getTeacherQuizTests(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            List<QuizTest> quizTests = dao.queryQuizTests(2);
+
+            for(QuizTest qt : quizTests)
+                qt.getDifficultLevel();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testGetTeacherQuizTest() {
+        try {
+            tc.getTeacherQuizTest(1,1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+
+        try {
+            dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+            QuizTest qt = dao.queryQuizTest(2, 5);
+
+            qt.getDifficultLevel();
+
+            dao.get().closeConnection();
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 }

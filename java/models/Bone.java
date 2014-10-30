@@ -51,6 +51,8 @@ public class Bone {
     public void setNeighbors(Set<Bone> neighbors) { this.neighbors = neighbors; }
 
     public void addNeighbor(Bone neighbor) {
+        if(neighbor == null) return;
+
         neighbors.add(neighbor);
         neighbor.getNeighbors().add(this);
     }
@@ -61,7 +63,7 @@ public class Bone {
     public BoneSet getParentBoneSet() { return parentBoneSet; }
     public void setParentBoneSet(BoneSet parent) {
         this.parentBoneSet = parent;
-        parent.getSonBones().add(this);
+        if(parent != null) parent.getSonBones().add(this);
     }
 
     @Basic
@@ -107,15 +109,7 @@ public class Bone {
         if (o == null || getClass() != o.getClass()) return false;
 
         Bone bone = (Bone) o;
-
         if (idBone != bone.idBone) return false;
-        if (bonePartNumber != bone.bonePartNumber) return false;
-        if (description != null ? !description.equals(bone.description) : bone.description != null) return false;
-        if (name != null ? !name.equals(bone.name) : bone.name != null) return false;
-        if (synonymous != null ? !synonymous.equals(bone.synonymous) : bone.synonymous != null) return false;
-        if (parentBoneSet != null ? !parentBoneSet.equals(bone.parentBoneSet) : bone.parentBoneSet != null) return false;
-        if(boneParts != null ? !boneParts.equals(bone.boneParts) : bone.boneParts != null) return false;
-        if(neighbors != null ? !neighbors.equals(bone.neighbors) : bone.neighbors != null) return false;
 
         return true;
     }

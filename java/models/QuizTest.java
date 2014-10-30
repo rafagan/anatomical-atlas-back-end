@@ -40,17 +40,19 @@ public class QuizTest {
     public Set<Question> getQuestions() {return questions;}
     public void setQuestions(Set<Question> questions) {this.questions = questions;}
     public void addQuestion(Question question) {
+        if(question == null) return;
+
         questions.add(question);
         question.getQuizTests().add(this);
     }
 
     @ManyToOne
-    @JoinColumn(name="Teacher_idQuestionOwner")
+    @JoinColumn(name="Teacher_idCreator")
     @JsonBackReference
     public Teacher getAuthor() {return author;}
     public void setAuthor(Teacher author) {
         this.author = author;
-        author.getMyQuizTests().add(this);
+        if(author != null) author.getMyQuizTests().add(this);
     }
 
     @OneToMany(mappedBy = "relatedQuiz")
@@ -69,13 +71,7 @@ public class QuizTest {
         if (o == null || getClass() != o.getClass()) return false;
 
         QuizTest quizTest = (QuizTest) o;
-
         if (idQuizTest != quizTest.idQuizTest) return false;
-        if (difficultLevel != null ? !difficultLevel.equals(quizTest.difficultLevel) : quizTest.difficultLevel != null)
-            return false;
-        if (author != null ? !author.equals(quizTest.author) : quizTest.author != null) return false;
-        if (questions != null ? !questions.equals(quizTest.questions) : quizTest.questions != null) return false;
-        if (resolutions != null ? !resolutions.equals(quizTest.resolutions) : quizTest.resolutions != null) return false;
 
         return true;
     }

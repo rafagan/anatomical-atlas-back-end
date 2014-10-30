@@ -53,7 +53,7 @@ public class BoneSet {
     public BoneSet getParent() { return parent; }
     public void setParent(BoneSet parent) {
         this.parent = parent;
-        parent.getSonBonesSets().add(this);
+        if(parent != null)  parent.getSonBonesSets().add(this);
     }
 
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
@@ -103,16 +103,7 @@ public class BoneSet {
         if (o == null || getClass() != o.getClass()) return false;
 
         BoneSet boneSet = (BoneSet) o;
-
-        if (boneNumber != boneSet.boneNumber) return false;
         if (idBoneSet != boneSet.idBoneSet) return false;
-        if (category != null ? !category.equals(boneSet.category) : boneSet.category != null) return false;
-        if (description != null ? !description.equals(boneSet.description) : boneSet.description != null) return false;
-        if (synonymous != null ? !synonymous.equals(boneSet.synonymous) : boneSet.synonymous != null) return false;
-        if (sonBones != null ? !sonBones.equals(boneSet.sonBones) : boneSet.sonBones != null) return false;
-        if (sonBonesSets != null ? !sonBonesSets.equals(boneSet.sonBonesSets) : boneSet.sonBonesSets != null) return false;
-        if (parent != null ? !parent.equals(boneSet.parent) : boneSet.parent != null) return false;
-        if (relatedQuestions != null ? !relatedQuestions.equals(boneSet.relatedQuestions) : boneSet.relatedQuestions != null) return false;
 
         return true;
     }

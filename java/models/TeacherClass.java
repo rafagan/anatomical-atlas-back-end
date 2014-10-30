@@ -19,16 +19,12 @@ public class TeacherClass extends Clazz {
     public Teacher getCreator() { return creator; }
     public void setCreator(Teacher creator) {
         this.creator = creator;
-        creator.getOwnerOfClasses().add(this);
+        if(creator != null) creator.getOwnerOfClasses().add(this);
     }
 
     @Override
     public boolean equals(Object o) {
         if(!super.equals(o)) return false;
-
-        TeacherClass clazz = (TeacherClass) o;
-
-        if (creator != null ? !creator.equals(clazz.creator) : clazz.creator != null) return false;
 
         return true;
     }

@@ -34,6 +34,8 @@ public abstract class Question {
     public Set<BoneSet> getCategories() {return categories;}
     public void setCategories(Set<BoneSet> categories) {this.categories = categories;}
     public void addCategory(BoneSet category) {
+        if(category == null) return;
+
         categories.add(category);
         category.getRelatedQuestions().add(this);
     }
@@ -57,12 +59,7 @@ public abstract class Question {
         if (o == null || getClass() != o.getClass()) return false;
 
         Question question = (Question) o;
-
         if (idQuestion != question.idQuestion) return false;
-        if (publicDomain != question.publicDomain) return false;
-        if(quizTests != null ? !quizTests.equals(question.quizTests) : question.quizTests != null) return false;
-        if(categories != null ? !categories.equals(question.categories) : question.categories != null) return false;
-        if(authors != null ? !authors.equals(question.authors) : question.authors != null) return false;
 
         return true;
     }

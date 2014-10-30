@@ -13,7 +13,6 @@ import javax.ws.rs.core.Response;
 
 @Path("quiztests")
 public class QuizTestResource extends AbstractResource {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
     QuizTestController quizTestController = new QuizTestController();
 
     @GET

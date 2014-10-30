@@ -99,19 +99,6 @@ public class MultipleChoice extends Question {
     public boolean equals(Object o) {
         if(!super.equals(o))
             return false;
-
-        MultipleChoice that = (MultipleChoice) o;
-
-        if (answerA != null ? !answerA.equals(that.answerA) : that.answerA != null) return false;
-        if (answerB != null ? !answerB.equals(that.answerB) : that.answerB != null) return false;
-        if (answerC != null ? !answerC.equals(that.answerC) : that.answerC != null) return false;
-        if (answerD != null ? !answerD.equals(that.answerD) : that.answerD != null) return false;
-        if (answerE != null ? !answerE.equals(that.answerE) : that.answerE != null) return false;
-        if (correctAnswer != null ? !correctAnswer.equals(that.correctAnswer) : that.correctAnswer != null)
-            return false;
-        if (!Arrays.equals(figure, that.figure)) return false;
-        if (statement != null ? !statement.equals(that.statement) : that.statement != null) return false;
-
         return true;
     }
 

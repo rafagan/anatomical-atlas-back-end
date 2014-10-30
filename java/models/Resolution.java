@@ -33,7 +33,7 @@ public class Resolution {
     public Student getOwner() {return owner;}
     public void setOwner(Student owner) {
         this.owner = owner;
-        owner.getMyResolutions().add(this);
+        if(owner != null) owner.getMyResolutions().add(this);
     }
 
     @ManyToOne
@@ -42,7 +42,7 @@ public class Resolution {
     public QuizTest getRelatedQuiz() {return relatedQuiz;}
     public void setRelatedQuiz(QuizTest relatedQuiz) {
         this.relatedQuiz = relatedQuiz;
-        relatedQuiz.getResolutions().add(this);
+        if(relatedQuiz != null) relatedQuiz.getResolutions().add(this);
     }
 
     @Basic
@@ -78,13 +78,7 @@ public class Resolution {
         if (o == null || getClass() != o.getClass()) return false;
 
         Resolution that = (Resolution) o;
-
         if (idResolution != that.idResolution) return false;
-        if (totalCorrectAnswers != that.totalCorrectAnswers) return false;
-        if (totalQuestions != that.totalQuestions) return false;
-        if (totalWrongAnswers != that.totalWrongAnswers) return false;
-        if (owner != null ? !owner.equals(that.owner) : that.owner != null) return false;
-        if (relatedQuiz != null ? !relatedQuiz.equals(that.relatedQuiz) : that.relatedQuiz != null) return false;
 
         return true;
     }

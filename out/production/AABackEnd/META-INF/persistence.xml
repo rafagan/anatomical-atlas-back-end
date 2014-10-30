@@ -19,7 +19,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value=""/>
+            <property name="hibernate.connection.password" value="rafagan@root"/>
             <property name="hibernate.archive.autodetection" value="class"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>

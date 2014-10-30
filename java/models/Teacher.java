@@ -1,6 +1,7 @@
 package models;
 
 import models.utils.Sex;
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
@@ -31,6 +32,7 @@ public class Teacher {
     private Set<Clazz> monitoratedClasses = new HashSet<>();
     private Set<QuizTest> myQuizTests = new HashSet<>();
     private Set<Question> myQuestions = new HashSet<>();
+    private TeacherLogin login;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,6 +50,8 @@ public class Teacher {
     public Set<Organization> getWorkingOrganizations() { return workingOrganizations; }
     public void setWorkingOrganizations(Set<Organization> workingOrganizations) { this.workingOrganizations = workingOrganizations; }
     public void addWorkingOrganization(Organization organization) {
+        if(organization == null) return;
+
         workingOrganizations.add(organization);
         organization.getTeachers().add(this);
     }
@@ -73,12 +77,15 @@ public class Teacher {
     public Set<Clazz> getMonitoratedClasses() {return monitoratedClasses;}
     public void setMonitoratedClasses(Set<Clazz> monitoratedClasses) {this.monitoratedClasses = monitoratedClasses;}
     public void addMonitoratedClasses(Clazz clazz) {
+        if(clazz == null) return;
+
         monitoratedClasses.add(clazz);
         clazz.getMonitors().add(this);
     }
 
     @OneToMany(mappedBy = "author")
     @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<QuizTest> getMyQuizTests() {return myQuizTests;}
     public void setMyQuizTests(Set<QuizTest> quizTestsAuthor) {this.myQuizTests = quizTestsAuthor;}
 
@@ -91,56 +98,47 @@ public class Teacher {
     public Set<Question> getMyQuestions() {return myQuestions;}
     public void setMyQuestions(Set<Question> questionsAuthor) {this.myQuestions = questionsAuthor;}
     public void addQuestion(Question question) {
+        if(question == null) return;
+
         myQuestions.add(question);
         question.getAuthors().add(this);
     }
 
-    @Basic
-    @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
+    @OneToOne
+    @JoinColumn(name="Login_idLogin")
+    @JsonBackReference
+    public TeacherLogin getLogin() {return login;}
+    public void setLogin(TeacherLogin login) {
+        this.login = login;
+        if(login != null) login.setOwner(this);
     }
 
     @Basic
+    @Column(name = "Name", nullable = false, insertable = true, updatable = true, length = 128)
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+
+    @Basic
     @Column(name = "Photo", nullable = true, insertable = true, updatable = true, length = 16777217)
-    public byte[] getPhoto() {
-        return photo;
-    }
-    public void setPhoto(byte[] photo) {
-        this.photo = photo;
-    }
+    public byte[] getPhoto() {return photo;}
+    public void setPhoto(byte[] photo) {this.photo = photo;}
 
     @Basic
     @Column(name = "Resume", nullable = true, insertable = true, updatable = true)
     @Type(type = "text")
-    public String getResume() {
-        return resume;
-    }
-    public void setResume(String resume) {
-        this.resume = resume;
-    }
+    public String getResume() {return resume;}
+    public void setResume(String resume) {this.resume = resume;}
 
     @Basic
     @Column(name = "Sex", nullable = true, insertable = true, updatable = true, columnDefinition = "enum('MALE','FEMALE')")
     @Enumerated(EnumType.STRING)
-    public Sex getSex() {
-        return sex;
-    }
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
+    public Sex getSex() {return sex;}
+    public void setSex(Sex sex) {this.sex = sex;}
 
     @Basic
     @Column(name = "Birthday", nullable = true, insertable = true, updatable = true)
-    public Date getBirthday() {
-        return birthday;
-    }
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
+    public Date getBirthday() {return birthday;}
+    public void setBirthday(Date birthday) {this.birthday = birthday;}
 
     @Basic
     @Column(name = "Country", nullable = true, insertable = true, updatable = true, length = 128)
@@ -158,21 +156,8 @@ public class Teacher {
         if (o == null || getClass() != o.getClass()) return false;
 
         Teacher teacher = (Teacher) o;
-
         if (idTeacher != teacher.idTeacher) return false;
-        if (birthday != null ? !birthday.equals(teacher.birthday) : teacher.birthday != null) return false;
-        if (country != null ? !country.equals(teacher.country) : teacher.country != null) return false;
-        if (name != null ? !name.equals(teacher.name) : teacher.name != null) return false;
-        if (!Arrays.equals(photo, teacher.photo)) return false;
-        if (resume != null ? !resume.equals(teacher.resume) : teacher.resume != null) return false;
-        if (scholarity != null ? !scholarity.equals(teacher.scholarity) : teacher.scholarity != null) return false;
-        if (sex != null ? !sex.equals(teacher.sex) : teacher.sex != null) return false;
-        if (workingOrganizations != null ? !workingOrganizations.equals(teacher.workingOrganizations) : teacher.workingOrganizations != null) return false;
-        if (ownerOfOrganizations != null ? !ownerOfOrganizations.equals(teacher.ownerOfOrganizations) : teacher.ownerOfOrganizations != null) return false;
-        if (ownerOfClasses != null ? !ownerOfClasses.equals(teacher.ownerOfClasses) : teacher.ownerOfClasses != null) return false;
-        if (monitoratedClasses != null ? !monitoratedClasses.equals(teacher.monitoratedClasses) : teacher.workingOrganizations != null) return false;
-        if (myQuizTests != null ? !myQuizTests.equals(teacher.myQuizTests) : teacher.workingOrganizations != null) return false;
-        if (myQuestions != null ? !myQuestions.equals(teacher.myQuestions) : teacher.myQuestions != null) return false;
+
         return true;
     }
 

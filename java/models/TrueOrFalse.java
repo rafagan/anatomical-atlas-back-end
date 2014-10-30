@@ -46,13 +46,6 @@ public class TrueOrFalse extends Question {
     public boolean equals(Object o) {
         if(!super.equals(o))
             return false;
-
-        TrueOrFalse that = (TrueOrFalse) o;
-
-        if (correctAnswer != that.correctAnswer) return false;
-        if (!Arrays.equals(figure, that.figure)) return false;
-        if (statement != null ? !statement.equals(that.statement) : that.statement != null) return false;
-
         return true;
     }
 

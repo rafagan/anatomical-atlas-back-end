@@ -42,6 +42,7 @@
     <orderEntry type="library" name="Jersey old" level="project" />
     <orderEntry type="library" name="JUnit" level="project" />
     <orderEntry type="library" name="Guice" level="project" />
+    <orderEntry type="library" name="Spring" level="project" />
   </component>
 </module>
 

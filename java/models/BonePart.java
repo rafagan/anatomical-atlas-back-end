@@ -15,6 +15,7 @@ public class BonePart {
     private String description;
     private String name;
     private String synonymous;
+
     private Bone parentBone;
 
     @Id
@@ -31,7 +32,7 @@ public class BonePart {
     public Bone getParentBone() { return parentBone; }
     public void setParentBone(Bone parentBone) {
         this.parentBone = parentBone;
-        parentBone.getBoneParts().add(this);
+        if(parentBone != null) parentBone.getBoneParts().add(this);
     }
 
     @Basic
@@ -68,13 +69,7 @@ public class BonePart {
         if (o == null || getClass() != o.getClass()) return false;
 
         BonePart bonePart = (BonePart) o;
-
         if (idBonePart != bonePart.idBonePart) return false;
-        if (description != null ? !description.equals(bonePart.description) : bonePart.description != null)
-            return false;
-        if (name != null ? !name.equals(bonePart.name) : bonePart.name != null) return false;
-        if (synonymous != null ? !synonymous.equals(bonePart.synonymous) : bonePart.synonymous != null) return false;
-        if (parentBone != null ? !parentBone.equals(bonePart.parentBone) : bonePart.parentBone != null) return false;
 
         return true;
     }

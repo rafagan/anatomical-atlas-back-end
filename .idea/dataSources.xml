@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2075505062">
+  <component name="DataSourceManagerImpl" format="xml" hash="2239495972">
     <data-source source="LOCAL" name="MySQL - AnatomicalAtlas@localhost" uuid="3a9b1807-38a9-482a-8d66-29c25a17eb7e">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/AnatomicalAtlas</jdbc-url>
       <user-name>root</user-name>
+      <user-password>dfd8dfcbdfccdfcbdfcddfcbdfc4dfeadfd8dfc5dfc5dfde</user-password>
       <schema-pattern>AnatomicalAtlas.* hello-world.*</schema-pattern>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />

@@ -39,7 +39,7 @@ public class Organization {
     public Teacher getOwner() { return owner; }
     public void setOwner(Teacher owner) {
         this.owner = owner;
-        owner.getOwnerOfOrganizations().add(this);
+        if(owner != null) owner.getOwnerOfOrganizations().add(this);
     }
 
     @OneToMany(mappedBy = "creator")
@@ -75,15 +75,7 @@ public class Organization {
         if (o == null || getClass() != o.getClass()) return false;
 
         Organization that = (Organization) o;
-
         if (idOrganization != that.idOrganization) return false;
-        if (teachers != null ? !teachers.equals(that.teachers) : that.teachers != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (acronym != null ? !acronym.equals(that.name) : that.acronym != null) return false;
-        if (country != null ? !country.equals(that.country) : that.country != null) return false;
-        if (owner != null ? !owner.equals(that.owner) : that.owner != null) return false;
-        if (ownerOfClasses != null ? !ownerOfClasses.equals(that.ownerOfClasses) : that.ownerOfClasses != null) return false;
-        if (students != null ? !students.equals(that.students) : that.students != null) return false;
 
         return true;
     }

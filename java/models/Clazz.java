@@ -44,7 +44,7 @@ public abstract class Clazz {
     public void setClassStudents(Set<Student> classStudents) {this.classStudents = classStudents;}
     public void addClassStudent(Student student) {
         classStudents.add(student);
-        student.getMyClasses().add(this);
+        if(student != null) student.getMyClasses().add(this);
     }
 
     @Basic
@@ -67,12 +67,7 @@ public abstract class Clazz {
         if (o == null || getClass() != o.getClass()) return false;
 
         Clazz clazz = (Clazz) o;
-
         if (idClass != clazz.idClass) return false;
-        if (classSize != clazz.classSize) return false;
-        if (name != null ? !name.equals(clazz.name) : clazz.name != null) return false;
-        if (monitors != null ? !monitors.equals(clazz.monitors) : clazz.monitors != null) return false;
-        if (classStudents != null ? !classStudents.equals(clazz.classStudents) : clazz.classStudents != null) return false;
 
         return true;
     }
