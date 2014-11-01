@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
     <persistence-unit name="AtlasPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <!--<jta-data-source></jta-data-source>-->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>models.Bone</class>
-        <class>models.BonePart</class>
-        <class>models.BoneSet</class>
-        <class>models.Clazz</class>
-        <class>models.MultipleChoice</class>
-        <class>models.Organization</class>
-        <class>models.Question</class>
-        <class>models.QuizTest</class>
-        <class>models.Resolution</class>
-        <class>models.Student</class>
-        <class>models.Teacher</class>
-        <class>models.TrueOrFalse</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <!--<class>models.Bone</class>-->
+        <!--<class>models.BonePart</class>-->
+        <!--<class>models.BoneSet</class>-->
+        <!--<class>models.Clazz</class>-->
+        <!--<class>models.MultipleChoice</class>-->
+        <!--<class>models.Organization</class>-->
+        <!--<class>models.Question</class>-->
+        <!--<class>models.QuizTest</class>-->
+        <!--<class>models.Resolution</class>-->
+        <!--<class>models.Student</class>-->
+        <!--<class>models.Teacher</class>-->
+        <!--<class>models.TrueOrFalse</class>-->
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost/AnatomicalAtlas" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

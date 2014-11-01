@@ -1,5 +1,3 @@
-import insert.InsertTest;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
