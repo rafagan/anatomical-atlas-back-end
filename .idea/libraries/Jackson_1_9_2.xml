@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Jackson 1.9.2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-core-asl-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-jaxrs-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-mapper-asl-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-xc-1.9.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

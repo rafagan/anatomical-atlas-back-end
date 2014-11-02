@@ -3,6 +3,12 @@
     <output-path>$PROJECT_DIR$/out/artifacts/AABackEnd_war</output-path>
     <root id="archive" name="AABackEnd_war.war">
       <element id="artifact" artifact-name="AABackEnd:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Jackson 1.9.2" />
+          <element id="library" level="project" name="jersey-apache-client-1.18" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

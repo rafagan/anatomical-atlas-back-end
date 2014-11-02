@@ -39,9 +39,9 @@
     <orderEntry type="library" name="Java EE 6" level="project" />
     <orderEntry type="library" name="javax.json-1.0.4" level="project" />
     <orderEntry type="library" name="Log4j, Apache Utils and MySQL Connector" level="project" />
-    <orderEntry type="library" name="Jersey old" level="project" />
     <orderEntry type="library" name="JUnit" level="project" />
-    <orderEntry type="library" name="Guice" level="project" />
+    <orderEntry type="library" name="Jackson 1.9.2" level="project" />
+    <orderEntry type="library" name="jersey-apache-client-1.18" level="project" />
   </component>
 </module>
 
