@@ -21,6 +21,9 @@ public class DaoManager {
     public EntityManager getEntityManager() {
         return em;
     }
+    public void setEntityManager(EntityManager em) {
+        this.em = em;
+    }
 
     public DaoManager insertObject(Object obj) {
         EntityTransaction tx = getEntityManager().getTransaction();

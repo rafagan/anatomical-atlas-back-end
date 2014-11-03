@@ -12,7 +12,6 @@ public class Resolution {
     private int idResolution;
     private int totalCorrectAnswers;
     private int totalWrongAnswers;
-    private int totalQuestions;
 
     private Student owner;
     private QuizTest relatedQuiz;
@@ -27,7 +26,7 @@ public class Resolution {
         this.idResolution = idResolution;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name="Student_idStudent")
     @JsonBackReference
     public Student getOwner() {return owner;}
@@ -63,15 +62,6 @@ public class Resolution {
         this.totalWrongAnswers = totalWrongAnswers;
     }
 
-    @Basic
-    @Column(name = "TotalQuestions", nullable = false, insertable = true, updatable = true)
-    public int getTotalQuestions() {
-        return totalQuestions;
-    }
-    public void setTotalQuestions(int totalQuestions) {
-        this.totalQuestions = totalQuestions;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,7 +78,6 @@ public class Resolution {
         int result = idResolution;
         result = 31 * result + totalCorrectAnswers;
         result = 31 * result + totalWrongAnswers;
-        result = 31 * result + totalQuestions;
 
         return result;
     }

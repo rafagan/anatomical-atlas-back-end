@@ -12,7 +12,6 @@ import java.util.Arrays;
 public class TrueOrFalse extends Question {
     private byte correctAnswer;
     private String statement;
-    private byte[] figure;
 
     @Basic
     @Column(name = "CorrectAnswer", nullable = false, insertable = true, updatable = true)
@@ -33,15 +32,6 @@ public class TrueOrFalse extends Question {
         this.statement = statement;
     }
 
-    @Basic
-    @Column(name = "Figure", nullable = true, insertable = true, updatable = true)
-    public byte[] getFigure() {
-        return figure;
-    }
-    public void setFigure(byte[] figure) {
-        this.figure = figure;
-    }
-
     @Override
     public boolean equals(Object o) {
         if(!super.equals(o))
@@ -54,7 +44,7 @@ public class TrueOrFalse extends Question {
         int result = super.hashCode();
         result = 31 * result + (int) correctAnswer;
         result = 31 * result + (statement != null ? statement.hashCode() : 0);
-        result = 31 * result + (figure != null ? Arrays.hashCode(figure) : 0);
+
         return result;
     }
 }

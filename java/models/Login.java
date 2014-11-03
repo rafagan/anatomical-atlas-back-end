@@ -14,7 +14,8 @@ public abstract class Login {
     protected Date createdAt;
     protected Date updatedAt;
     protected java.util.Date lastLoginAt;
-    protected int passwordHash;
+    protected String passwordHash;
+    protected String salt;
 
     @Id
     @Column(name = "idLogin", nullable = false, insertable = true, updatable = true)
@@ -44,9 +45,14 @@ public abstract class Login {
     public void setLastLoginAt(java.util.Date lastLoginAt) {this.lastLoginAt = lastLoginAt;}
 
     @Basic
-    @Column(name = "PasswordHash", nullable = false, insertable = true, updatable = true)
-    public int getPasswordHash() {return passwordHash;}
-    public void setPasswordHash(int passwordHash) {this.passwordHash = passwordHash;}
+    @Column(name = "PasswordHash", nullable = false, insertable = true, updatable = true, length = 64)
+    public String getPasswordHash() {return passwordHash;}
+    public void setPasswordHash(String passwordHash) {this.passwordHash = passwordHash;}
+
+    @Basic
+    @Column(name = "Salt", nullable = false, insertable = true, updatable = true, length = 64)
+    public String getSalt() {return passwordHash;}
+    public void setSalt(String salt) {this.salt = salt;}
 
     @Override
     public boolean equals(Object o) {
@@ -66,7 +72,8 @@ public abstract class Login {
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (updatedAt != null ? updatedAt.hashCode() : 0);
         result = 31 * result + (lastLoginAt != null ? lastLoginAt.hashCode() : 0);
-        result = 31 * result + passwordHash;
+        result = 31 * result + (passwordHash != null ? passwordHash.hashCode() : 0);
+        result = 31 * result + (salt != null ? salt.hashCode() : 0);
 
         return result;
     }

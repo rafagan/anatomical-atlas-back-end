@@ -2,6 +2,7 @@ package models;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import java.util.Set;
 public abstract class Question {
     private int idQuestion;
     private byte publicDomain;
+    private byte[] figure;
 
     private Set<QuizTest> quizTests = new HashSet<>();
     private Set<BoneSet> categories = new HashSet<>();
@@ -35,7 +37,6 @@ public abstract class Question {
     public void setCategories(Set<BoneSet> categories) {this.categories = categories;}
     public void addCategory(BoneSet category) {
         if(category == null) return;
-
         categories.add(category);
         category.getRelatedQuestions().add(this);
     }
@@ -53,6 +54,15 @@ public abstract class Question {
     public byte getPublicDomain() {return publicDomain;}
     public void setPublicDomain(byte publicDomain) {this.publicDomain = publicDomain;}
 
+    @Basic
+    @Column(name = "Figure", nullable = true, insertable = true, updatable = true, length = 16777217)
+    public byte[] getFigure() {
+        return figure;
+    }
+    public void setFigure(byte[] figure) {
+        this.figure = figure;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +78,7 @@ public abstract class Question {
     public int hashCode() {
         int result = idQuestion;
         result = 31 * result + (int) publicDomain;
+        result = 31 * result + (figure != null ? Arrays.hashCode(figure) : 0);
 
         return result;
     }

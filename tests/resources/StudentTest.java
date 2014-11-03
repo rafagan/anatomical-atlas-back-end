@@ -4,7 +4,6 @@ import controllers.StudentController;
 import dao.StudentDao;
 import models.Resolution;
 import models.Student;
-import models.Teacher;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -112,7 +111,7 @@ public class StudentTest {
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
             Resolution r = dao.queryResolution(1,1);
-            r.getTotalQuestions();
+            r.getTotalCorrectAnswers();
             dao.get().closeConnection();
         } catch(Exception e) {
             e.printStackTrace();

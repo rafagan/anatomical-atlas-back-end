@@ -29,11 +29,11 @@ public abstract class Clazz {
         this.idClass = idClass;
     }
 
-    @ManyToMany(mappedBy = "monitoratedClasses", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToMany(mappedBy = "monitoratedClasses")
     public Set<Teacher> getMonitors() { return monitors; }
     public void setMonitors(Set<Teacher> monitors) { this.monitors = monitors; }
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(
             name="ClassHasStudent",
             joinColumns={@JoinColumn(name="Class_idClass")},

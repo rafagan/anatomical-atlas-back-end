@@ -29,7 +29,7 @@ public class Organization {
     public int getIdOrganization() { return this.idOrganization; }
     public void setIdOrganization(int idOrganization) { this.idOrganization = idOrganization; }
 
-    @ManyToMany(mappedBy = "workingOrganizations", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToMany(mappedBy = "workingOrganizations")
     public Set<Teacher> getTeachers() { return teachers; }
     public void setTeachers(Set<Teacher> teachers) { this.teachers = teachers; }
 
@@ -39,7 +39,10 @@ public class Organization {
     public Teacher getOwner() { return owner; }
     public void setOwner(Teacher owner) {
         this.owner = owner;
-        if(owner != null) owner.getOwnerOfOrganizations().add(this);
+        if(owner != null) {
+            owner.getOwnerOfOrganizations().add(this);
+            owner.addWorkingOrganization(this);
+        }
     }
 
     @OneToMany(mappedBy = "creator")

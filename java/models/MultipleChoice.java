@@ -17,7 +17,6 @@ public class MultipleChoice extends Question {
     private String answerD;
     private String answerE;
     private String statement;
-    private byte[] figure;
 
     @Basic
     @Column(name = "CorrectAnswer", nullable = false, insertable = true, updatable = true, length = 2)
@@ -86,15 +85,6 @@ public class MultipleChoice extends Question {
         this.statement = statement;
     }
 
-    @Basic
-    @Column(name = "Figure", nullable = true, insertable = true, updatable = true)
-    public byte[] getFigure() {
-        return figure;
-    }
-    public void setFigure(byte[] figure) {
-        this.figure = figure;
-    }
-
     @Override
     public boolean equals(Object o) {
         if(!super.equals(o))
@@ -112,7 +102,6 @@ public class MultipleChoice extends Question {
         result = 31 * result + (answerD != null ? answerD.hashCode() : 0);
         result = 31 * result + (answerE != null ? answerE.hashCode() : 0);
         result = 31 * result + (statement != null ? statement.hashCode() : 0);
-        result = 31 * result + (figure != null ? Arrays.hashCode(figure) : 0);
         return result;
     }
 }

@@ -40,7 +40,7 @@ public class Teacher {
     public int getIdTeacher() { return this.idTeacher; }
     private void setIdTeacher(int idTeacher) { this.idTeacher = idTeacher; }
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany
     @JoinTable(
             name="TeacherWorkAtOrganization",
             joinColumns={@JoinColumn(name="Teacher_idEmployee")},
@@ -104,7 +104,7 @@ public class Teacher {
         question.getAuthors().add(this);
     }
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="Login_idLogin")
     @JsonBackReference
     public TeacherLogin getLogin() {return login;}

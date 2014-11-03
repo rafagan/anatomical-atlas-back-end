@@ -1,5 +1,6 @@
 package models;
 
+import models.utils.Sex;
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -21,7 +22,7 @@ public class Student {
     private Float generalKnowledge;
     private byte[] photo;
     private String resume;
-    private String sex;
+    private Sex sex;
     private Date birthday;
     private String country;
     private String scholarity;
@@ -37,7 +38,7 @@ public class Student {
     public int getIdStudent() {return idStudent;}
     public void setIdStudent(int idStudent) {this.idStudent = idStudent;}
 
-    @ManyToMany(mappedBy = "classStudents", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @ManyToMany(mappedBy = "classStudents")
     public Set<Clazz> getMyClasses() {return myClasses;}
     public void setMyClasses(Set<Clazz> myClasses) {this.myClasses = myClasses;}
 
@@ -102,11 +103,12 @@ public class Student {
     }
 
     @Basic
-    @Column(name = "Sex", nullable = true, insertable = true, updatable = true, length = 6)
-    public String getSex() {
+    @Column(name = "Sex", nullable = true, insertable = true, updatable = true, columnDefinition = "enum('MALE','FEMALE')")
+    @Enumerated(EnumType.STRING)
+    public Sex getSex() {
         return sex;
     }
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 

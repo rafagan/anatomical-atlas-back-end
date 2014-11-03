@@ -14,7 +14,8 @@ import java.util.Set;
 @Entity
 public class QuizTest {
     private int idQuizTest;
-    private Byte difficultLevel;
+    private int difficultLevel;
+    private int maxQuestions;
 
     private Set<Question> questions = new HashSet<>();
     private Teacher author;
@@ -62,8 +63,17 @@ public class QuizTest {
 
     @Basic
     @Column(name = "DifficultLevel", nullable = true, insertable = true, updatable = true)
-    public Byte getDifficultLevel() {return difficultLevel;}
-    public void setDifficultLevel(Byte difficultLevel) {this.difficultLevel = difficultLevel;}
+    public int getDifficultLevel() {return difficultLevel;}
+    public void setDifficultLevel(int difficultLevel) {this.difficultLevel = difficultLevel;}
+
+    @Basic
+    @Column(name = "MaxQuestions", nullable = false, insertable = true, updatable = true)
+    public int getMaxQuestions() {
+        return maxQuestions;
+    }
+    public void setMaxQuestions(int totalQuestions) {
+        this.maxQuestions = totalQuestions;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -79,7 +89,8 @@ public class QuizTest {
     @Override
     public int hashCode() {
         int result = idQuizTest;
-        result = 31 * result + (difficultLevel != null ? difficultLevel.hashCode() : 0);
+        result = 31 * result + difficultLevel;
+        result = 31 * result + maxQuestions;
 
         return result;
     }
