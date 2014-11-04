@@ -41,7 +41,7 @@ public class Organization {
         this.owner = owner;
         if(owner != null) {
             owner.getOwnerOfOrganizations().add(this);
-            owner.addWorkingOrganization(this);
+            //owner.addWorkingOrganization(this);
         }
     }
 

@@ -50,7 +50,7 @@ public class Teacher {
     public Set<Organization> getWorkingOrganizations() { return workingOrganizations; }
     public void setWorkingOrganizations(Set<Organization> workingOrganizations) { this.workingOrganizations = workingOrganizations; }
     public void addWorkingOrganization(Organization organization) {
-        if(organization == null) return;
+        if(organization == null || workingOrganizations.contains(organization)) return;
 
         workingOrganizations.add(organization);
         organization.getTeachers().add(this);

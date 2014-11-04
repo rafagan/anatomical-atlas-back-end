@@ -6,6 +6,7 @@ import models.*;
 import models.utils.Sex;
 
 import javax.imageio.ImageIO;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -389,14 +390,26 @@ public class DummyInsertion {
 
         Organization o1 = oDao.queryOrganization(1);
         Organization o2 = oDao.queryOrganization(2);
-        s1.setStudentOrganization(o1);
-        s2.setStudentOrganization(o1);
-        s3.setStudentOrganization(o2);
-        //s4 e s5 não possuirão organization de propósito
 
-        oDao.get().changeOrInsertObject(s1);
-        oDao.get().changeOrInsertObject(s2);
-        oDao.get().changeOrInsertObject(s3);
+        EntityTransaction tx = oDao.get().getEntityManager().getTransaction();
+        try {
+            tx.begin();
+            EntityManager em = oDao.get().getEntityManager();
+
+            s1.setStudentOrganization(o1);
+            s2.setStudentOrganization(o1);
+            s3.setStudentOrganization(o2);
+            //s4 e s5 não possuirão organization de propósito
+
+            tx.commit();
+        } catch (Throwable t) {
+            t.printStackTrace();
+            tx.rollback();
+        }
+
+//        oDao.get().changeOrInsertObject(s1);
+//        oDao.get().changeOrInsertObject(s2);
+//        oDao.get().changeOrInsertObject(s3);
 
         oDao.get().closeConnection();
 
@@ -587,30 +600,38 @@ public class DummyInsertion {
         tDao.get().insertObject(o4);
         tDao.get().insertObject(o5);
 
-//        Teacher t1 = tDao.queryTeacher(1);
-//        Teacher t2 = tDao.queryTeacher(2);
-//
-//        o1.setOwner(t1);
-//        o2.setOwner(t1);
-//        o3.setOwner(t1);
-//        o4.setOwner(t1);
-//        o5.setOwner(t2);
+        /* ------------------------------------- */
 
-//        Teacher t3 = tDao.queryTeacher(3);
-//        Teacher t4 = tDao.queryTeacher(4);
-//        Teacher t5 = tDao.queryTeacher(5);
-//
-//        t3.addWorkingOrganization(o1);
-//        t4.addWorkingOrganization(o2);
-//        t5.addWorkingOrganization(o1);
-//        t5.addWorkingOrganization(o2);
-//        t5.addWorkingOrganization(o3);
+        Teacher t1 = tDao.queryTeacher(1);
+        Teacher t2 = tDao.queryTeacher(2);
 
-//        tDao.get().changeOrInsertObject(o1);
-//        tDao.get().changeOrInsertObject(o2);
-//        tDao.get().changeOrInsertObject(o3);
-//        tDao.get().changeOrInsertObject(o4);
-//        tDao.get().changeOrInsertObject(o5);
+        o1.setOwner(t1);
+        o2.setOwner(t1);
+        o3.setOwner(t1);
+        o4.setOwner(t1);
+        o5.setOwner(t2);
+
+        Teacher t3 = tDao.queryTeacher(3);
+        Teacher t4 = tDao.queryTeacher(4);
+        Teacher t5 = tDao.queryTeacher(5);
+
+        t1.addWorkingOrganization(o1);
+        t1.addWorkingOrganization(o2);
+        t1.addWorkingOrganization(o3);
+        t1.addWorkingOrganization(o4);
+        t2.addWorkingOrganization(o5);
+
+        t3.addWorkingOrganization(o1);
+        t4.addWorkingOrganization(o2);
+        t5.addWorkingOrganization(o1);
+        t5.addWorkingOrganization(o2);
+        t5.addWorkingOrganization(o3);
+
+        tDao.get().changeOrInsertObject(o1);
+        tDao.get().changeOrInsertObject(o2);
+        tDao.get().changeOrInsertObject(o3);
+        tDao.get().changeOrInsertObject(o4);
+        tDao.get().changeOrInsertObject(o5);
 
         tDao.get().closeConnection();
     }

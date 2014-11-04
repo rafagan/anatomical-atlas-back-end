@@ -63,15 +63,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DummyInsertion.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="DummyInsertion.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/utils/DummyInsertion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40789473" vertical-offset="6969" max-vertical-offset="7770">
-              <caret line="600" column="44" selection-start-line="600" selection-start-column="44" selection-end-line="600" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="7177" max-vertical-offset="8670">
+              <caret line="620" column="38" selection-start-line="620" selection-start-column="38" selection-end-line="620" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#insertTeachers#0;class#DummyInsertion#0" expanded="false" />
-                <element signature="method#executeSQLFile#0;class#DummyInsertion#0" expanded="false" />
+                <element signature="e#21668#21669#0" expanded="true" />
+                <element signature="e#21739#21740#0" expanded="true" />
+                <element signature="e#21776#21777#0" expanded="true" />
+                <element signature="e#21843#21844#0" expanded="true" />
+                <element signature="e#21879#21880#0" expanded="true" />
+                <element signature="e#21945#21946#0" expanded="true" />
+                <element signature="e#21978#21979#0" expanded="true" />
+                <element signature="e#22041#22042#0" expanded="true" />
                 <element signature="method#loadImage#0;class#DummyInsertion#0" expanded="false" />
                 <element signature="method#validateEmail#0;class#DummyInsertion#0" expanded="false" />
                 <element signature="method#setPassword#0;class#DummyInsertion#0" expanded="false" />
@@ -80,44 +87,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DaoManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/dao/DaoManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1145" max-vertical-offset="1635">
-              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-              <folding>
-                <element signature="e#502#503#0" expanded="true" />
-                <element signature="e#527#528#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Teacher.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/models/Teacher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="2595">
-              <caret line="28" column="50" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="50" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="894" max-vertical-offset="2595">
+              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Student.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/models/Student.java">
+      <file leaf-file-name="Organization.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/java/models/Organization.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="440" max-vertical-offset="1965">
-              <caret line="55" column="84" selection-start-line="55" selection-start-column="84" selection-end-line="55" selection-end-column="84" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StudentDao.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/dao/StudentDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="215" max-vertical-offset="1215">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.47921762" vertical-offset="359" max-vertical-offset="1425">
+              <caret line="43" column="49" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -133,7 +117,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/java/resources/BoneSetResource.java" />
         <option value="$PROJECT_DIR$/java/models/BoneSet.java" />
         <option value="$PROJECT_DIR$/java/utils/MyApplication.java" />
@@ -157,8 +140,6 @@
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..BoneHasBone" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..BonePart" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..ClassHasStudent" />
-        <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Organization" />
-        <option value="$PROJECT_DIR$/java/dao/DaoManager.java" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TrueOrFalse" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..MultipleChoice" />
         <option value="$PROJECT_DIR$/java/models/TrueOrFalse.java" />
@@ -170,11 +151,8 @@
         <option value="$PROJECT_DIR$/java/models/QuizTest.java" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..QuizTestHasQuestion" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..StudentLogin" />
-        <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherMonitoratesClass" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherClass" />
         <option value="$PROJECT_DIR$/java/models/Clazz.java" />
-        <option value="$PROJECT_DIR$/java/models/Organization.java" />
-        <option value="$PROJECT_DIR$/java/models/Teacher.java" />
         <option value="$PROJECT_DIR$/java/models/Resolution.java" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Bone" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Teacher" />
@@ -182,8 +160,14 @@
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Resolution" />
         <option value="$PROJECT_DIR$/java/models/Student.java" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherWorkAtOrganization" />
-        <option value="$PROJECT_DIR$/java/utils/DummyInsertion.java" />
         <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..OrganizationClass" />
+        <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherMonitoratesClass" />
+        <option value="$PROJECT_DIR$/resources/helpers.sql" />
+        <option value="dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Organization" />
+        <option value="$PROJECT_DIR$/java/dao/DaoManager.java" />
+        <option value="$PROJECT_DIR$/java/models/Teacher.java" />
+        <option value="$PROJECT_DIR$/java/models/Organization.java" />
+        <option value="$PROJECT_DIR$/java/utils/DummyInsertion.java" />
       </list>
     </option>
   </component>
@@ -307,6 +291,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2033,12 +2031,12 @@
       <workItem from="1414863987876" duration="6318000" />
       <workItem from="1414876213971" duration="15614000" />
       <workItem from="1415016727853" duration="18698000" />
-      <workItem from="1415037429665" duration="3132000" />
+      <workItem from="1415037429665" duration="8760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253501000" />
+    <option name="totallyTimeSpent" value="259129000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2073,13 +2071,13 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2360515" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4071703" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41613317" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38795182" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32650447" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32522407" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24939759" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2087,7 +2085,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2067239" sideWeight="0.49799198" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36363637" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4238156" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="AWS Explorer" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5937053" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2130,8 +2128,14 @@
           <properties />
           <option name="timeStamp" value="100" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/java/utils/DummyInsertion.java</url>
+          <line>417</line>
+          <properties />
+          <option name="timeStamp" value="149" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="145" />
+      <option name="time" value="150" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -2139,13 +2143,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tests/resources/OrganizationTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5319149" vertical-offset="210" max-vertical-offset="3060">
-          <caret line="39" column="67" selection-start-line="39" selection-start-column="67" selection-end-line="39" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/controllers/TeacherController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5381166" vertical-offset="0" max-vertical-offset="3150">
@@ -2221,16 +2218,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="181" max-vertical-offset="1200">
           <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Organization">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/models/TrueOrFalse.java">
@@ -2333,17 +2320,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/utils/InsertionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67933494" vertical-offset="44" max-vertical-offset="465">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..StudentLogin">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
@@ -2384,16 +2360,6 @@
           <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherMonitoratesClass">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
-        <state />
       </provider>
     </entry>
     <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherClass">
@@ -2514,36 +2480,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/models/Organization.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.027586207" vertical-offset="222" max-vertical-offset="1425">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="33" />
+    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherMonitoratesClass">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/helpers.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20179372" vertical-offset="0" max-vertical-offset="446">
+          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Organization">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.persistence.database.editor.DatabaseTableFileEditorProvider">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/dao/DaoManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1002" max-vertical-offset="1635">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="e#502#503#0" expanded="true" />
-            <element signature="e#527#528#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/models/Teacher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="2595">
-          <caret line="28" column="50" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.47393364" vertical-offset="1030" max-vertical-offset="1605">
+          <caret line="88" column="23" selection-start-line="88" selection-start-column="23" selection-end-line="88" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherWorkAtOrganization">
+    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..OrganizationClass">
       <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -2563,9 +2540,27 @@
         <state />
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..OrganizationClass">
+    <entry file="file://$PROJECT_DIR$/tests/utils/InsertionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="435">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#368#369#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/models/Teacher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="894" max-vertical-offset="2595">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/ed4f013f/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..TeacherWorkAtOrganization">
       <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="210">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
@@ -2576,16 +2571,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/utils/DummyInsertion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40789473" vertical-offset="6969" max-vertical-offset="7770">
-          <caret line="600" column="44" selection-start-line="600" selection-start-column="44" selection-end-line="600" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="7177" max-vertical-offset="8670">
+          <caret line="620" column="38" selection-start-line="620" selection-start-column="38" selection-end-line="620" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#insertTeachers#0;class#DummyInsertion#0" expanded="false" />
-            <element signature="method#executeSQLFile#0;class#DummyInsertion#0" expanded="false" />
+            <element signature="e#21668#21669#0" expanded="true" />
+            <element signature="e#21739#21740#0" expanded="true" />
+            <element signature="e#21776#21777#0" expanded="true" />
+            <element signature="e#21843#21844#0" expanded="true" />
+            <element signature="e#21879#21880#0" expanded="true" />
+            <element signature="e#21945#21946#0" expanded="true" />
+            <element signature="e#21978#21979#0" expanded="true" />
+            <element signature="e#22041#22042#0" expanded="true" />
             <element signature="method#loadImage#0;class#DummyInsertion#0" expanded="false" />
             <element signature="method#validateEmail#0;class#DummyInsertion#0" expanded="false" />
             <element signature="method#setPassword#0;class#DummyInsertion#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/models/Organization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47921762" vertical-offset="359" max-vertical-offset="1425">
+          <caret line="43" column="49" selection-start-line="43" selection-start-column="49" selection-end-line="43" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
