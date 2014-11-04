@@ -31,17 +31,17 @@ public class DummyInsertion {
 
     public void run() {
         insertTeachers();
-//        insertOrganizations();
-//
-//        insertBoneSets();
-//        insertBones();
-//        insertBoneParts();
-//        relateNeighbors();
-//
-//        insertQuestions();
-//        insertQuizTests();
-//        insertStudents();
-//        insertClasses();
+        insertOrganizations();
+
+        insertBoneSets();
+        insertBones();
+        insertBoneParts();
+        relateNeighbors();
+
+        insertQuestions();
+        insertQuizTests();
+        insertStudents();
+        insertClasses();
     }
 
     private void insertQuizTests() {
@@ -137,7 +137,7 @@ public class DummyInsertion {
             question.setFigure(loadImage("Foto", "jpg"));
             question.addCategory(b1);
 
-            if(i < 1010) t1.addQuestion(question);
+            t1.addQuestion(question);
 
             qDao.get().changeOrInsertObject(question);
         }

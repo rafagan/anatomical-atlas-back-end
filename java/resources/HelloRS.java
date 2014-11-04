@@ -1,5 +1,7 @@
 package resources;
 
+import utils.DummyInsertion;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
@@ -17,6 +19,7 @@ public class HelloRS extends AbstractResource {
     @POST
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response loadDummyData() {
+        new DummyInsertion().run();
         return Response.ok("Conteúdo adicionado com sucesso ao banco").build();
     }
 

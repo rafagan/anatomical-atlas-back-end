@@ -8,7 +8,6 @@ import utils.WSResponseFactory;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -120,6 +119,23 @@ public class BoneSetController extends AbstractController {
             for(Teacher t : q.getAuthors()) {
                 dto.getAuthorsId().add(t.getIdTeacher());
                 dto.getAuthorsName().add(t.getName());
+            }
+
+            if(q instanceof TrueOrFalse) {
+                TrueOrFalse tf = (TrueOrFalse) q;
+
+                dto.setStatement(tf.getStatement());
+                dto.setCorrectAnswerB(tf.getCorrectAnswer());
+            } else if(q instanceof MultipleChoice) {
+                MultipleChoice mc = (MultipleChoice) q;
+
+                dto.setStatement(mc.getStatement());
+                dto.setCorrectAnswer(mc.getCorrectAnswer());
+                dto.setAnswerA(mc.getAnswerA());
+                dto.setAnswerB(mc.getAnswerB());
+                dto.setAnswerC(mc.getAnswerC());
+                dto.setAnswerD(mc.getAnswerD());
+                dto.setAnswerE(mc.getAnswerE());
             }
 
             dtos.add(dto);

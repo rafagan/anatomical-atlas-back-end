@@ -85,7 +85,7 @@ public class BoneSetDao extends AbstractDao {
                 dao.getEntityManager().createQuery(
                         "SELECT q FROM Question AS q " +
                                 "JOIN q.categories AS bs ON bs.idBoneSet = :id " +
-                                "WHERE q.publicDomain = 0", Question.class);
+                                "WHERE q.publicDomain = 1", Question.class);
         query.setParameter("id",id);
         List<Question> questions = null;
 
