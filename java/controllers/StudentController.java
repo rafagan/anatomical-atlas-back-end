@@ -4,7 +4,7 @@ import dao.StudentDao;
 import models.Resolution;
 import models.Student;
 import utils.EntityManagerUtil;
-import utils.WebserviceResponseFactory;
+import utils.WSResponseFactory;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -20,8 +20,8 @@ public class StudentController extends AbstractController {
     }
 
     public Response getAllStudents() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Student> students = sDao.queryStudents();
@@ -34,12 +34,12 @@ public class StudentController extends AbstractController {
     }
 
     public Response getStudent(int studentId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Student student = sDao.queryStudent(studentId);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(student);
+        wResponse = WSResponseFactory.normalSingleResponse(student);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -47,8 +47,8 @@ public class StudentController extends AbstractController {
     }
 
     public Response getStudentResolutions(int studentId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Resolution> resolutions = sDao.queryResolutions(studentId);
@@ -61,12 +61,12 @@ public class StudentController extends AbstractController {
     }
 
     public Response getStudentResolution(int studentId, int resolutionId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Resolution resolution = sDao.queryResolution(studentId,resolutionId);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(resolution);
+        wResponse = WSResponseFactory.normalSingleResponse(resolution);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 

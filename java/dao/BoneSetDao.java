@@ -2,6 +2,8 @@ package dao;
 
 import models.Bone;
 import models.BoneSet;
+import models.Question;
+import models.QuizTest;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -62,7 +64,7 @@ public class BoneSetDao extends AbstractDao {
     public BoneSet queryBoneSetParent(int id) {
         TypedQuery<BoneSet> query =
                 dao.getEntityManager().createQuery(
-                        "SELECT bs FROM BoneSet AS bs WHERE bs.parent.idBoneSet = :id", BoneSet.class);
+                        "SELECT bs.parent FROM BoneSet AS bs WHERE bs.idBoneSet = :id", BoneSet.class);
         query.setParameter("id",id);
         BoneSet boneSet = null;
 
@@ -75,5 +77,28 @@ public class BoneSetDao extends AbstractDao {
         }
 
         return boneSet;
+    }
+
+
+    public List<Question> queryQuestionsAbout(int id) {
+        TypedQuery<Question> query =
+                dao.getEntityManager().createQuery(
+                        "SELECT q FROM Question AS q " +
+                                "JOIN q.categories AS bs ON bs.idBoneSet = :id " +
+                                "WHERE q.publicDomain = 0", Question.class);
+        query.setParameter("id",id);
+        List<Question> questions = null;
+
+        try {
+            questions = query.getResultList();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return questions;
+    }
+
+    public List<QuizTest> queryQuizTestsAbout(int id) {
+        return null;
     }
 }

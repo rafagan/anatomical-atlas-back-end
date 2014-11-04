@@ -75,11 +75,6 @@ public class BoneTest {
     }
 
     @Test
-    public void shouldGetQuestionAboutBone() throws Exception {
-
-    }
-
-    @Test
     public void shouldGetBoneNeighbors() throws Exception {
         try {
             new BoneController().getBoneNeighbors(1);
@@ -95,10 +90,5 @@ public class BoneTest {
             fail("Não encontrou nenhum BoneNeighbour no banco");
 
         dao.get().closeConnection();
-    }
-
-    @Test
-    public void shouldGetQuizTestsAboutBone() throws Exception {
-
     }
 }

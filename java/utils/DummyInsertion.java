@@ -31,17 +31,17 @@ public class DummyInsertion {
 
     public void run() {
         insertTeachers();
-        insertOrganizations();
-
-        insertBoneSets();
-        insertBones();
-        insertBoneParts();
-        relateNeighbors();
-
-        insertQuestions();
-        insertQuizTests();
-        insertStudents();
-        insertClasses();
+//        insertOrganizations();
+//
+//        insertBoneSets();
+//        insertBones();
+//        insertBoneParts();
+//        relateNeighbors();
+//
+//        insertQuestions();
+//        insertQuizTests();
+//        insertStudents();
+//        insertClasses();
     }
 
     private void insertQuizTests() {

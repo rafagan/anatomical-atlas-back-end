@@ -5,7 +5,8 @@ import models.MultipleChoice;
 import models.Question;
 import models.TrueOrFalse;
 import utils.EntityManagerUtil;
-import utils.WebserviceResponseFactory;
+import utils.WSResponseFactory;
+
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getAllPublicQuestions() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Question> questions = qDao.queryPublicQuestions();
@@ -34,12 +35,12 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getPublicQuestion(int id) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Question question = qDao.queryPublicQuestion(id);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(question);
+        wResponse = WSResponseFactory.normalSingleResponse(question);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -47,8 +48,8 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getTrueOrFalsePublicQuestions() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<TrueOrFalse> questions = qDao.queryTFPublicQuestions();
@@ -61,8 +62,8 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getMultipleChoicePublicQuestions() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<MultipleChoice> questions = qDao.queryMCPublicQuestions();

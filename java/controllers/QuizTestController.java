@@ -2,9 +2,8 @@ package controllers;
 
 import dao.QuizTestDao;
 import models.QuizTest;
-import models.Teacher;
 import utils.EntityManagerUtil;
-import utils.WebserviceResponseFactory;
+import utils.WSResponseFactory;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -20,8 +19,8 @@ public class QuizTestController extends AbstractController {
     }
 
     public Response getAllPublicQuizTests() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = qtDao.queryPublicQuizTests();
@@ -34,12 +33,12 @@ public class QuizTestController extends AbstractController {
     }
 
     public Response getPublicQuizTest(int quizTestId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         QuizTest quizTest = qtDao.queryPublicQuizTest(quizTestId);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(quizTest);
+        wResponse = WSResponseFactory.normalSingleResponse(quizTest);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 

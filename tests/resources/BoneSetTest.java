@@ -63,11 +63,21 @@ public class BoneSetTest {
 
     @Test
     public void shouldGetQuestionsAboutBoneSet() throws Exception {
-
+        try {
+            new BoneSetController().getQuestionsAboutBoneSet(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 
     @Test
     public void shouldGetQuizTestsAboutBoneSet() throws Exception {
-
+        try {
+            new BoneSetController().getQuizTestsAboutBoneSet(1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail();
+        }
     }
 }

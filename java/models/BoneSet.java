@@ -18,10 +18,10 @@ public class BoneSet {
     private String category;
     private String description;
     private String synonymous;
-    private int boneNumber;
+    private int totalBones;
 
-    private Set<Bone> sonBones = new HashSet<>();
-    private Set<BoneSet> sonBonesSets = new HashSet<>();
+    private Set<Bone> boneChildren = new HashSet<>();
+    private Set<BoneSet> boneSetChildren = new HashSet<>();
     private BoneSet parent;
     private Set<Question> relatedQuestions = new HashSet<>();
 
@@ -38,14 +38,14 @@ public class BoneSet {
     @OneToMany(mappedBy = "parentBoneSet")
     @JsonManagedReference
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    public Set<Bone> getSonBones() { return sonBones; }
-    public void setSonBones(Set<Bone> sonBones) { this.sonBones = sonBones; }
+    public Set<Bone> getBoneChildren() { return boneChildren; }
+    public void setBoneChildren(Set<Bone> sonBones) { this.boneChildren = sonBones; }
 
     @OneToMany(mappedBy = "parent")
     @JsonManagedReference
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    public Set<BoneSet> getSonBonesSets() { return sonBonesSets; }
-    public void setSonBonesSets(Set<BoneSet> sonBonesSets) { this.sonBonesSets = sonBonesSets; }
+    public Set<BoneSet> getBoneSetChildren() { return boneSetChildren; }
+    public void setBoneSetChildren(Set<BoneSet> sonBonesSets) { this.boneSetChildren = sonBonesSets; }
 
     @ManyToOne
     @JoinColumn(name="BoneSet_idParent")
@@ -53,10 +53,11 @@ public class BoneSet {
     public BoneSet getParent() { return parent; }
     public void setParent(BoneSet parent) {
         this.parent = parent;
-        if(parent != null)  parent.getSonBonesSets().add(this);
+        if(parent != null)  parent.getBoneSetChildren().add(this);
     }
 
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Question> getRelatedQuestions() {return relatedQuestions;}
     public void setRelatedQuestions(Set<Question> relatedQuestions) {this.relatedQuestions = relatedQuestions;}
 
@@ -80,6 +81,7 @@ public class BoneSet {
     }
 
     @Basic
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @Column(name = "Synonymous", nullable = true, insertable = true, updatable = true, length = 128)
     public String getSynonymous() {
         return synonymous;
@@ -90,11 +92,11 @@ public class BoneSet {
 
     @Basic
     @Column(name = "BoneNumber", nullable = false, insertable = true, updatable = true)
-    public int getBoneNumber() {
-        return boneNumber;
+    public int getTotalBones() {
+        return totalBones;
     }
-    public void setBoneNumber(int boneNumber) {
-        this.boneNumber = boneNumber;
+    public void setTotalBones(int boneNumber) {
+        this.totalBones = boneNumber;
     }
 
     @Override
@@ -114,7 +116,7 @@ public class BoneSet {
         result = 31 * result + (category != null ? category.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);
-        result = 31 * result + boneNumber;
+        result = 31 * result + totalBones;
         result = 31 * result + (parent != null ? parent.getIdBoneSet() : 0);
 
         return result;

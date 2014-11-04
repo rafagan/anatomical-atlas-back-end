@@ -2,6 +2,7 @@ package models;
 
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -55,6 +56,7 @@ public class BonePart {
     }
 
     @Basic
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @Column(name = "Synonymous", nullable = true, insertable = true, updatable = true, length = 128)
     public String getSynonymous() {
         return synonymous;

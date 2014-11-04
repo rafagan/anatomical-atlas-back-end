@@ -1,21 +1,36 @@
 package resources;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 /**
  * Created by rafaganabreu on 20/09/14.
  */
 @Path("hello_rs")
-public class HelloRS {
-    private static final String CONTENT_TYPE_APPLICATION_JSON = MediaType.APPLICATION_JSON + ";charset=utf-8";
-
+public class HelloRS extends AbstractResource {
     @GET
 	@Produces(CONTENT_TYPE_APPLICATION_JSON)
 	public Response responseOk() {
 		return Response.ok("Hello Jersey!").build();
 	}
+
+    @POST
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response loadDummyData() {
+        return Response.ok("Conteúdo adicionado com sucesso ao banco").build();
+    }
+
+    @PUT
+    @Path("{id}")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response responseOkPut(@PathParam("id") int value, @QueryParam("q") int qValue) {
+        return Response.ok(value + qValue).build();
+    }
+
+    @DELETE
+    @Path("{id}")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response responseOkDelete(@PathParam("id") int value, @QueryParam("q") int qValue) {
+        return Response.ok(value - qValue).build();
+    }
 }

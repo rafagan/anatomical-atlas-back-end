@@ -29,7 +29,6 @@ public class OrganizationResource extends AbstractResource {
         return controller.getOrganizationTeachers(organizationId);
     }
 
-    //Add new teacher to organization
     @POST
     @Path("{id}/teachers")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)

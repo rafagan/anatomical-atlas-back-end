@@ -3,7 +3,7 @@ package controllers;
 import dao.TeacherDao;
 import models.*;
 import utils.EntityManagerUtil;
-import utils.WebserviceResponseFactory;
+import utils.WSResponseFactory;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -19,8 +19,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getAllTeachers() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Teacher> teachers = tDao.queryTeachers();
@@ -33,12 +33,12 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacher(int id) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Teacher teacher = tDao.queryTeacher(id);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(teacher);
+        wResponse = WSResponseFactory.normalSingleResponse(teacher);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -46,8 +46,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherOrganizations(int id) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Organization> organizations = tDao.queryOrganizations(id);
@@ -60,8 +60,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherMonitoratedClasses(int id) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Clazz> classes = tDao.queryMonitoratedClasses(id);
@@ -74,8 +74,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherMonitoratedStudents(int id) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Student> students = tDao.queryMonitoratedStudents(id);
@@ -88,8 +88,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherMonitoratedClassStudents(int teacherId, int classId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Student> students = tDao.queryMonitoratedClassStudents(teacherId, classId);
@@ -102,12 +102,12 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherMonitoratedClass(int teacherId, int classId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Clazz c = tDao.queryMonitoratedClass(teacherId, classId);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(c);
+        wResponse = WSResponseFactory.normalSingleResponse(c);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -115,8 +115,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherQuestions(int teacherId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Question> questions = tDao.queryQuestions(teacherId);
@@ -129,12 +129,12 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherQuestion(int teacherId, int questionId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Question qt = tDao.queryQuestion(teacherId, questionId);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(qt);
+        wResponse = WSResponseFactory.normalSingleResponse(qt);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -142,8 +142,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherTrueOrFalseQuestions(int teacherId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<TrueOrFalse> questions = tDao.queryTFQuestions(teacherId);
@@ -156,8 +156,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherMultipleChoiceQuestions(int teacherId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<MultipleChoice> questions = tDao.queryMCQuestions(teacherId);
@@ -170,8 +170,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherOwnerClasses(int teacherId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<TeacherClass> classes = tDao.queryOwnerClasses(teacherId);
@@ -184,8 +184,8 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherQuizTests(int teacherId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = tDao.queryQuizTests(teacherId);
@@ -198,12 +198,12 @@ public class TeacherController extends AbstractController {
     }
 
     public Response getTeacherQuizTest(int teacherId, int quizTestId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+        WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         QuizTest qt = tDao.queryQuizTest(teacherId, quizTestId);
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(qt);
+        wResponse = WSResponseFactory.normalSingleResponse(qt);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 

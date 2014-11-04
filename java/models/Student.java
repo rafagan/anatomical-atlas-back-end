@@ -2,6 +2,7 @@ package models;
 
 import models.utils.Sex;
 import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
@@ -58,6 +59,7 @@ public class Student {
 
     @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="Login_idLogin", unique = true)
+    @JsonIgnore
     @JsonBackReference
     public StudentLogin getLogin() {return login;}
     public void setLogin(StudentLogin login) {

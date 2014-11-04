@@ -1,6 +1,5 @@
 package models;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
@@ -18,7 +17,7 @@ public class Bone {
     private String description;
     private String name;
     private String synonymous;
-    private int bonePartNumber;
+    private int totalBoneParts;
 
     private Set<BonePart> boneParts = new HashSet<BonePart>();
     private Set<Bone> neighbors = new HashSet<Bone>();
@@ -47,6 +46,7 @@ public class Bone {
             inverseJoinColumns={@JoinColumn(name="Bone_idNeighbor")}
     )
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    @JsonManagedReference
     public Set<Bone> getNeighbors() { return neighbors; }
     public void setNeighbors(Set<Bone> neighbors) { this.neighbors = neighbors; }
 
@@ -59,11 +59,12 @@ public class Bone {
 
     @ManyToOne
     @JoinColumn(name="BoneSet_idBoneSet")
-    @JsonBackReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
+    //@JsonBackReference
     public BoneSet getParentBoneSet() { return parentBoneSet; }
     public void setParentBoneSet(BoneSet parent) {
         this.parentBoneSet = parent;
-        if(parent != null) parent.getSonBones().add(this);
+        if(parent != null) parent.getBoneChildren().add(this);
     }
 
     @Basic
@@ -86,6 +87,7 @@ public class Bone {
     }
 
     @Basic
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @Column(name = "Synonymous", nullable = true, insertable = true, updatable = true, length = 128)
     public String getSynonymous() {
         return synonymous;
@@ -96,11 +98,11 @@ public class Bone {
 
     @Basic
     @Column(name = "BonePartNumber", nullable = true, insertable = true, updatable = true, columnDefinition="int default '0'")
-    public int getBonePartNumber() {
-        return bonePartNumber;
+    public int getTotalBoneParts() {
+        return totalBoneParts;
     }
-    public void setBonePartNumber(int bonePartNumber) {
-        this.bonePartNumber = bonePartNumber;
+    public void setTotalBoneParts(int bonePartNumber) {
+        this.totalBoneParts = bonePartNumber;
     }
 
     @Override
@@ -117,7 +119,7 @@ public class Bone {
     @Override
     public int hashCode() {
         int result = idBone;
-        result = 31 * result + bonePartNumber;
+        result = 31 * result + totalBoneParts;
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);

@@ -1,12 +1,14 @@
 package controllers;
 
+import controllers.dto.QuestionDto;
 import dao.BoneSetDao;
-import models.Bone;
-import models.BoneSet;
+import models.*;
 import utils.EntityManagerUtil;
-import utils.WebserviceResponseFactory;
+import utils.WSResponseFactory;
 
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,11 +22,18 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getAllBoneSets() {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<BoneSet> bonesSets = bsDao.queryBoneSets();
+
+        for (BoneSet set : bonesSets) {
+            set.setRelatedQuestions(null);
+            set.setParent(null);
+            set.setBoneChildren(null);
+            set.setBoneSetChildren(null);
+        }
 
         wResponse.setResult(bonesSets);
         Response r = Response.ok(wResponse).build();
@@ -33,12 +42,38 @@ public class BoneSetController extends AbstractController {
         return r;
     }
 
+    public Response getBoneSet(int id) {
+        WSResponseFactory.WSResponse wResponse;
+
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        BoneSet set = bsDao.queryBoneSet(id);
+
+        set.setRelatedQuestions(null);
+        set.setParent(null);
+        set.setBoneChildren(null);
+        set.setBoneSetChildren(null);
+
+        wResponse = WSResponseFactory.normalSingleResponse(set);
+        Response r = Response.ok(wResponse).build();
+        bsDao.get().closeConnection();
+
+        return r;
+    }
+
     public Response getBoneSetBones(int boneSetId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Bone> bones = bsDao.queryBoneSetsBones(boneSetId);
+
+        for (Bone bone : bones) {
+            bone.setNeighbors(null);
+            bone.setParentBoneSet(null);
+
+            if (bone.getBoneParts().size() == 0)
+                bone.setBoneParts(null);
+        }
 
         wResponse.setResult(bones);
         Response r = Response.ok(wResponse).build();
@@ -48,40 +83,65 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getBoneSetParent(int boneSetId) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
-        wResponse = WebserviceResponseFactory.normalListResponse();
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        BoneSet boneSet = bsDao.queryBoneSetParent(boneSetId);
+        BoneSet set = bsDao.queryBoneSetParent(boneSetId);
 
-        wResponse.setResult(boneSet);
+        if(set != null) {
+            set.setRelatedQuestions(null);
+            set.setParent(null);
+            set.setBoneChildren(null);
+            set.setBoneSetChildren(null);
+        }
+
+        wResponse.setResult(set);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
         return r;
     }
 
-    public Response getQuestionsAboutBoneSet(int boneId) {
-        return Response.ok("").build();
-    }
+    public Response getQuestionsAboutBoneSet(int id) {
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
 
-    public Response getQuizTestsAboutBoneSet(int boneId) {
-        return Response.ok("").build();
-    }
+        dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        List<Question> questions = bsDao.queryQuestionsAbout(id);
+        List<QuestionDto> dtos = new ArrayList<>();
 
+        for(Question q : questions) {
+            QuestionDto dto = new QuestionDto();
 
-    public Response getBoneSet(int id) {
-        WebserviceResponseFactory.WebserviceResponse wResponse;
+            dto.setId(q.getIdQuestion());
+            dto.setFigure(q.getFigure());
 
-        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        BoneSet boneSet = bsDao.queryBoneSet(id);
+            for(Teacher t : q.getAuthors()) {
+                dto.getAuthorsId().add(t.getIdTeacher());
+                dto.getAuthorsName().add(t.getName());
+            }
 
-        wResponse = WebserviceResponseFactory.normalSingleResponse(boneSet);
+            dtos.add(dto);
+        }
 
-        // TODO: Anular referência aos boneSets filhos do Parent
-
+        wResponse.setResult(dtos);
         Response r = Response.ok(wResponse).build();
-        bsDao.get().closeConnection();
+        dao.get().closeConnection();
+
+        return r;
+    }
+
+    public Response getQuizTestsAboutBoneSet(int id) {
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
+
+        dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        List<QuizTest> quizTests = bsDao.queryQuizTestsAbout(id);
+
+        wResponse.setResult(quizTests);
+        Response r = Response.ok(wResponse).build();
+        dao.get().closeConnection();
 
         return r;
     }
