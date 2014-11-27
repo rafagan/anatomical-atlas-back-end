@@ -102,12 +102,12 @@ public class BoneSetController extends AbstractController {
         return r;
     }
 
-    public Response getQuestionsAboutBoneSet(int id) {
+    public Response getPublicQuestionsAboutBoneSet(int id) {
         WSResponseFactory.WSResponse wResponse;
         wResponse = WSResponseFactory.normalListResponse();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<Question> questions = bsDao.queryQuestionsAbout(id);
+        List<Question> questions = bsDao.queryPublicQuestionsAbout(id);
         List<QuestionDto> dtos = new ArrayList<>();
 
         for(Question q : questions) {

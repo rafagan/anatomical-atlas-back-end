@@ -236,7 +236,7 @@ public class TeacherTest {
     @Test
     public void testGetTeacherMonitoratedClass() throws Exception {
         try {
-            tc.getTeacherMonitoratedClass(1, 1000);
+            tc.getTeacherMonitoratedClass(1, 1);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -244,7 +244,7 @@ public class TeacherTest {
 
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            Clazz clazz = dao.queryMonitoratedClass(2, 1006);
+            Clazz clazz = dao.queryMonitoratedClass(1, 2);
 
             clazz.getClassSize();
 
@@ -281,7 +281,7 @@ public class TeacherTest {
     @Test
     public void testGetTeacherQuestion() throws Exception {
         try {
-            tc.getTeacherQuestion(1,1000);
+            tc.getTeacherQuestion(3,1001);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -289,7 +289,7 @@ public class TeacherTest {
 
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            Question question = dao.queryQuestion(2, 1014);
+            Question question = dao.queryQuestion(3, 1000);
 
             question.getPublicDomain();
 
@@ -413,7 +413,7 @@ public class TeacherTest {
 
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            QuizTest qt = dao.queryQuizTest(2, 5);
+            QuizTest qt = dao.queryQuizTest(2, 2);
 
             qt.getDifficultLevel();
 

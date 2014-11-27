@@ -80,7 +80,7 @@ public class BoneSetDao extends AbstractDao {
     }
 
 
-    public List<Question> queryQuestionsAbout(int id) {
+    public List<Question> queryPublicQuestionsAbout(int id) {
         TypedQuery<Question> query =
                 dao.getEntityManager().createQuery(
                         "SELECT q FROM Question AS q " +

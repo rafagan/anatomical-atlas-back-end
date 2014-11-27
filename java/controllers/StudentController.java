@@ -1,6 +1,8 @@
 package controllers;
 
 import dao.StudentDao;
+import models.Organization;
+import models.QuizTest;
 import models.Resolution;
 import models.Student;
 import utils.EntityManagerUtil;
@@ -26,6 +28,21 @@ public class StudentController extends AbstractController {
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Student> students = sDao.queryStudents();
 
+        for (Student s : students) {
+            s.setLogin(null);
+            s.setMyResolutions(null);
+            s.setMyClasses(null);
+
+            Organization org = s.getStudentOrganization();
+
+            if(org == null) continue;
+
+            org.setTeachers(null);
+            org.setOwner(null);
+            org.setOwnerOfClasses(null);
+            org.setStudents(null);
+        }
+
         wResponse.setResult(students);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
@@ -37,9 +54,20 @@ public class StudentController extends AbstractController {
         WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        Student student = sDao.queryStudent(studentId);
+        Student s = sDao.queryStudent(studentId);
 
-        wResponse = WSResponseFactory.normalSingleResponse(student);
+        s.setLogin(null);
+        s.setMyResolutions(null);
+        s.setMyClasses(null);
+
+        Organization org = s.getStudentOrganization();
+
+        org.setTeachers(null);
+        org.setOwner(null);
+        org.setOwnerOfClasses(null);
+        org.setStudents(null);
+
+        wResponse = WSResponseFactory.normalSingleResponse(s);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -53,6 +81,15 @@ public class StudentController extends AbstractController {
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Resolution> resolutions = sDao.queryResolutions(studentId);
 
+        for(Resolution rs : resolutions) {
+            rs.setOwner(null);
+            QuizTest qt = rs.getRelatedQuiz();
+
+            qt.setQuestions(null);
+            qt.setAuthor(null);
+            qt.setResolutions(null);
+        }
+
         wResponse.setResult(resolutions);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
@@ -64,9 +101,16 @@ public class StudentController extends AbstractController {
         WSResponseFactory.WSResponse wResponse;
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        Resolution resolution = sDao.queryResolution(studentId,resolutionId);
+        Resolution rs = sDao.queryResolution(studentId,resolutionId);
 
-        wResponse = WSResponseFactory.normalSingleResponse(resolution);
+        rs.setOwner(null);
+        QuizTest qt = rs.getRelatedQuiz();
+
+        qt.setQuestions(null);
+        qt.setAuthor(null);
+        qt.setResolutions(null);
+
+        wResponse = WSResponseFactory.normalSingleResponse(rs);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 

@@ -9,7 +9,7 @@ import java.util.List;
  * Created by rafaganabreu on 04/11/14.
  */
 public class QuestionDto {
-    private int id;
+    private int idQuestion;
     private byte[] figure;
     private List<String> authorsName = new ArrayList<>();
     private List<Integer> authorsId = new ArrayList<>();
@@ -26,8 +26,8 @@ public class QuestionDto {
     private String answerD;
     private String answerE;
 
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public int getId() {return idQuestion;}
+    public void setId(int id) {this.idQuestion = id;}
 
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     @JsonIgnore

@@ -51,7 +51,7 @@ public class QuizTestTest {
     @Test
     public void testGetPublicQuizTest() throws Exception {
         try {
-            qtc.getPublicQuizTest(6);
+            qtc.getPublicQuizTest(4);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -59,7 +59,7 @@ public class QuizTestTest {
 
         try {
             qtd.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            QuizTest qt = qtd.queryPublicQuizTest(7);
+            QuizTest qt = qtd.queryPublicQuizTest(1);
             qt.getDifficultLevel();
             qtd.get().closeConnection();
         } catch(Exception e) {

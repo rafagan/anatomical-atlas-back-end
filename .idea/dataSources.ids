@@ -10,10 +10,10 @@
     <schema name="" catalog="hello-world"/>
     <table name="Bone" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idBone" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="BonePartNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
       <column name="Description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
       <column name="Name" sqlType="VARCHAR" precision="128" scale="0" nullable="false" jdbcType="12"/>
       <column name="Synonymous" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BonePartNumber" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
       <column name="BoneSet_idBoneSet" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idBone"/>
       <foreign-key name="FK_8hg6a6hjb0cv26ftykjqje880" columns="BoneSet_idBoneSet" ref-table="BoneSet" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBoneSet" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -42,10 +42,10 @@
     </table>
     <table name="BoneSet" schema="" catalog="AnatomicalAtlas" type="TABLE">
       <column name="idBoneSet" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
-      <column name="BoneNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="Category" sqlType="VARCHAR" precision="45" scale="0" nullable="false" jdbcType="12"/>
       <column name="Description" sqlType="LONGTEXT" precision="2147483647" scale="0" nullable="false" jdbcType="-1"/>
       <column name="Synonymous" sqlType="VARCHAR" precision="128" scale="0" nullable="true" jdbcType="12"/>
+      <column name="BoneNumber" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="BoneSet_idParent" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idBoneSet"/>
       <foreign-key name="FK_561aqk5nu18gsdk11utpp443k" columns="BoneSet_idParent" ref-table="BoneSet" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idBoneSet" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -127,8 +127,8 @@
       <column name="Student_idStudent" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="QuizTest_idQuizTest" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idResolution"/>
-      <foreign-key name="FK_qfexufchk5we2nk474pa04wfn" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_lf91oacs0n6glsde7f4tcp5yy" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_qfexufchk5we2nk474pa04wfn" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_lf91oacs0n6glsde7f4tcp5yy" unique="false" columns="Student_idStudent"/>
       <index name="FK_qfexufchk5we2nk474pa04wfn" unique="false" columns="QuizTest_idQuizTest"/>
     </table>

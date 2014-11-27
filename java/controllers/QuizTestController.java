@@ -1,6 +1,7 @@
 package controllers;
 
 import dao.QuizTestDao;
+import models.Question;
 import models.QuizTest;
 import utils.EntityManagerUtil;
 import utils.WSResponseFactory;
@@ -25,6 +26,12 @@ public class QuizTestController extends AbstractController {
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = qtDao.queryPublicQuizTests();
 
+        for(QuizTest qt : quizTests) {
+            qt.setResolutions(null);
+            qt.setAuthor(null); //Se é pública, o autor será nulo de qualquer maneira
+            qt.setQuestions(null);
+        }
+
         wResponse.setResult(quizTests);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
@@ -37,6 +44,16 @@ public class QuizTestController extends AbstractController {
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         QuizTest quizTest = qtDao.queryPublicQuizTest(quizTestId);
+
+        quizTest.setResolutions(null);
+        quizTest.setAuthor(null); //Se é pública, o autor será nulo de qualquer maneira
+
+        for(Question q : quizTest.getQuestions()){
+            q.setQuizTests(null);
+            q.setCategories(null);
+            q.setAuthors(null);
+            q.setFigure(null);
+        }
 
         wResponse = WSResponseFactory.normalSingleResponse(quizTest);
         Response r = Response.ok(wResponse).build();

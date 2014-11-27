@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register descriptions</title>
+
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <script type="application/javascript" src="angular/angular.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-app ng-controller="descriptionController">
+    <div id="container">
+        <h1>Cadastro de descrições das estruturas anatômicas</h1>
+
+        <div class="half">
+            <p>Escolha o assunto sobre o qual deseja falar: </p>
+            <select id="knowledgeArea" class="form-control" ng-model="knowledgeArea" ng-change="onChangeKnowledgeArea()">
+                <option value="parte de um osso">Parte de osso</option>
+                <option value="conjunto de ossos">Conjunto de Osso</option>
+                <option value="osso">Osso</option>
+            </select>
+        </div>
+
+        <div class="half" ng-show="knowledgeArea">
+            <p>Escolha qual <span ng-bind="knowledgeArea"></span> você deseja atualizar a descrição: </p>
+            <select id="structureSelection" class="form-control" ng-model="structureSelection" >
+                <option ng-repeat="name in names | orderBy:'name'">{{name}}</option>
+            </select>
+        </div>
+
+        <div class="sWidth" ng-show="knowledgeArea && structureSelection">
+            <textarea name="description" class="form-control" ng-model="description"></textarea>
+            <button class="btn btn-default floatRight" type="submit" ng-click="onClickSubmit()">Salvar</button>
+        </div>
+    </div>
+
+    <div id="procedureDetails" class="alert alert-danger" role="alert" ng-show="error">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        Teste
+    </div>
+
+    <script type="application/javascript" src="jquery/jquery.min.js"></script>
+    <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="js/descriptionController.js"></script>
+</body>
+</html>

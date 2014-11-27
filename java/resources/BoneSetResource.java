@@ -42,8 +42,8 @@ public class BoneSetResource extends AbstractResource {
     @GET
     @Path("{id}/questions")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getQuestionsAboutBoneSet(@PathParam("id") int boneSetId) {
-        return boneSetController.getQuestionsAboutBoneSet(boneSetId);
+    public Response getPublicQuestionsAboutBoneSet(@PathParam("id") int boneSetId) {
+        return boneSetController.getPublicQuestionsAboutBoneSet(boneSetId);
     }
 
     @GET

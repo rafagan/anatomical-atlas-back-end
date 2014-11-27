@@ -64,7 +64,7 @@ public class BoneSetTest {
     @Test
     public void shouldGetQuestionsAboutBoneSet() throws Exception {
         try {
-            new BoneSetController().getQuestionsAboutBoneSet(1);
+            new BoneSetController().getPublicQuestionsAboutBoneSet(1);
         } catch (Exception e) {
             e.printStackTrace();
             fail();

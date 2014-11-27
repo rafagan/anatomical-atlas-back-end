@@ -1,0 +1,20 @@
+
+div#container {
+    margin: 50px;
+}
+
+div#container div.half {
+    width: 50%;
+
+    margin-top: 20px;
+}
+
+div#container div.sWidth {
+    width: 70%;
+
+    margin-top: 20px;
+}
+
+.floatRight {
+    float: right;
+}

@@ -81,14 +81,5 @@ public class BoneTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        BoneDao dao = new BoneDao();
-        dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<Bone> neighbors = dao.queryBoneNeighbors(1);
-
-        if(neighbors.size() == 0)
-            fail("Não encontrou nenhum BoneNeighbour no banco");
-
-        dao.get().closeConnection();
     }
 }

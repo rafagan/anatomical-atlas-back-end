@@ -165,7 +165,7 @@ public class OrganizationTest {
     @Test
     public void testGetOrganizationClass() throws Exception {
         try {
-            oc.getOrganizationClass(1,1000);
+            oc.getOrganizationClass(1,1);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -173,7 +173,7 @@ public class OrganizationTest {
 
         try {
             od.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            Clazz c = od.queryClass(1, 1000);
+            Clazz c = od.queryClass(2, 2);
             c.getName();
             od.get().closeConnection();
         } catch(Exception e) {
@@ -185,14 +185,14 @@ public class OrganizationTest {
     @Test
     public void testGetOrganizationClassStudents() throws Exception {
         try {
-            oc.getOrganizationClassStudents(1,1000);
+            oc.getOrganizationClassStudents(1,1);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
         }
 
         od.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<Student> students = od.queryStudentsInOrganizationClass(1,1000);
+        List<Student> students = od.queryStudentsInOrganizationClass(1,1);
 
         //Testando Lazy Binding
         for (Student student : students) {
