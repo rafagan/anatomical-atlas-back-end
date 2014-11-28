@@ -1,6 +1,7 @@
 package resources;
 
 import controllers.BoneController;
+import dtos.BoneStructureDescriptionDto;
 import utils.WSOptionsResponse;
 import utils.WSResponseFactory;
 
@@ -45,6 +46,15 @@ public class BoneResource extends AbstractResource {
 
         WSResponseFactory.WSResponse wr = WSResponseFactory.normalSingleResponse(r);
         return Response.ok(wr).build();
+    }
+
+    @PUT
+    @Path("{id}/description")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    @Consumes(CONTENT_TYPE_APPLICATION_JSON)
+    public Response updateBone(@PathParam("id") int boneId, BoneStructureDescriptionDto dto) {
+        boneController.updateDescription(boneId,dto.description);
+        return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
     }
 
     @GET

@@ -39,4 +39,14 @@ public class BonePartController extends AbstractController {
 
         return r;
     }
+
+    public void updateDescription(int bonePartId, String description) {
+        bpd.get().startConnection(EntityManagerUtil.ATLAS_PU);
+
+        BonePart b = (BonePart) bpd.get().findObject(BonePart.class,bonePartId);
+        b.setDescription(description);
+        bpd.get().changeOrInsertObject(b);
+
+        bpd.get().closeConnection();
+    }
 }

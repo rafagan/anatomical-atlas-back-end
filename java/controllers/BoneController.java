@@ -8,6 +8,7 @@ import utils.WSResponseFactory;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by rafaganabreu on 22/09/14.
@@ -99,5 +100,15 @@ public class BoneController extends AbstractController {
         dao.get().closeConnection();
 
         return r;
+    }
+
+    public void updateDescription(int boneId, String description) {
+        bDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+
+        Bone b = (Bone) bDao.get().findObject(Bone.class,boneId);
+        b.setDescription(description);
+        bDao.get().changeOrInsertObject(b);
+
+        bDao.get().closeConnection();
     }
 }

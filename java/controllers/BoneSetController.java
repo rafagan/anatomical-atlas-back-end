@@ -1,6 +1,6 @@
 package controllers;
 
-import controllers.dto.QuestionDto;
+import dtos.QuestionDto;
 import dao.BoneSetDao;
 import models.*;
 import utils.EntityManagerUtil;
@@ -160,5 +160,15 @@ public class BoneSetController extends AbstractController {
         dao.get().closeConnection();
 
         return r;
+    }
+
+    public void updateDescription(int boneSetId, String description) {
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+
+        BoneSet b = (BoneSet) bsDao.get().findObject(BoneSet.class,boneSetId);
+        b.setDescription(description);
+        bsDao.get().changeOrInsertObject(b);
+
+        bsDao.get().closeConnection();
     }
 }

@@ -1,6 +1,6 @@
 package controllers;
 
-import controllers.dto.QuestionDto;
+import dtos.QuestionDto;
 import dao.QuestionDao;
 import models.MultipleChoice;
 import models.Question;

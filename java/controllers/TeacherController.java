@@ -1,6 +1,6 @@
 package controllers;
 
-import controllers.dto.QuestionDto;
+import dtos.QuestionDto;
 import dao.TeacherDao;
 import models.*;
 import utils.EntityManagerUtil;

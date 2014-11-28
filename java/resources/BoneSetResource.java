@@ -1,11 +1,10 @@
 package resources;
 
 import controllers.BoneSetController;
+import dtos.BoneStructureDescriptionDto;
+import utils.WSResponseFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path("bonesets")
@@ -51,5 +50,14 @@ public class BoneSetResource extends AbstractResource {
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getQuizTestsAboutBoneSet(@PathParam("id") int boneSetId) {
         return boneSetController.getQuizTestsAboutBoneSet(boneSetId);
+    }
+
+    @PUT
+    @Path("{id}/description")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    @Consumes(CONTENT_TYPE_APPLICATION_JSON)
+    public Response updateBone(@PathParam("id") int boneSetId, BoneStructureDescriptionDto dto) {
+        boneSetController.updateDescription(boneSetId,dto.description);
+        return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
     }
 }
