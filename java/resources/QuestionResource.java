@@ -23,14 +23,14 @@ public class QuestionResource extends AbstractResource {
     }
 
     @GET
-    @Path("trueorfalse")
+    @Path("true_or_false")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTrueOrFalsePublicQuestions() {
         return questionController.getTrueOrFalsePublicQuestions();
     }
 
     @GET
-    @Path("multiplechoice")
+    @Path("multiple_choice")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getMultipleChoicePublicQuestions() {
         return questionController.getMultipleChoicePublicQuestions();

@@ -1,4 +1,5 @@
 import com.sun.javaws.exceptions.InvalidArgumentException;
+import utils.DummyInsertion;
 import utils.PasswordHash;
 import utils.Sha256SaltAuth;
 
@@ -17,7 +18,6 @@ public class Main {
     }
 
     void test() {
-        for(int i =0; i < 100; i++)
-            System.out.println(new Random().nextInt());
+        new DummyInsertion().run();
     }
 }

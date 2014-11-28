@@ -127,8 +127,8 @@
       <column name="Student_idStudent" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="QuizTest_idQuizTest" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idResolution"/>
-      <foreign-key name="FK_lf91oacs0n6glsde7f4tcp5yy" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_qfexufchk5we2nk474pa04wfn" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_lf91oacs0n6glsde7f4tcp5yy" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_lf91oacs0n6glsde7f4tcp5yy" unique="false" columns="Student_idStudent"/>
       <index name="FK_qfexufchk5we2nk474pa04wfn" unique="false" columns="QuizTest_idQuizTest"/>
     </table>

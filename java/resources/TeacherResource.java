@@ -62,7 +62,7 @@ public class TeacherResource extends AbstractResource {
     }
 
     @POST
-    @Path("{id}/classes")
+    @Path("{id}/monitorated_classes")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertTeacherMonitoratedClass(@PathParam("id") int teacherId) {
@@ -70,14 +70,14 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id}/classes/students")
+    @Path("{id}/monitorated_classes/students")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherMonitoratedStudents(@PathParam("id") int teacherId) {
         return teacherController.getTeacherMonitoratedStudents(teacherId);
     }
 
     @GET
-    @Path("{id1}/classes/{id2}/students")
+    @Path("{id1}/monitorated_classes/{id2}/students")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherMonitoratedClassStudents(@PathParam("id1") int teacherId,
                                                        @PathParam("id2") int classId) {
@@ -85,7 +85,7 @@ public class TeacherResource extends AbstractResource {
     }
 
     @POST
-    @Path("{id1}/classes/{id2}/students")
+    @Path("{id1}/monitorated_classes/{id2}/students")
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertStudentInTeacherMonitoratedClass(@PathParam("id1") int teacherId,
@@ -94,7 +94,7 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id1}/classes/{id2}")
+    @Path("{id1}/monitorated_classes/{id2}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getTeacherMonitoratedClass(@PathParam("id1") int teacherId, @PathParam("id2") int classId) {
         return teacherController.getTeacherMonitoratedClass(teacherId, classId);
@@ -145,9 +145,9 @@ public class TeacherResource extends AbstractResource {
     }
 
     @GET
-    @Path("{id1}/quiz_tests")
+    @Path("{id}/quiz_tests")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getTeacherQuizTests(@PathParam("id1") int teacherId) {
+    public Response getTeacherQuizTests(@PathParam("id") int teacherId) {
         return teacherController.getTeacherQuizTests(teacherId);
     }
 
