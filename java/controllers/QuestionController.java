@@ -1,11 +1,10 @@
 package controllers;
 
+import dtos.MultipleChoiceDto;
 import dtos.QuestionDto;
 import dao.QuestionDao;
-import models.MultipleChoice;
-import models.Question;
-import models.Teacher;
-import models.TrueOrFalse;
+import dtos.TrueOrFalseDto;
+import models.*;
 import utils.EntityManagerUtil;
 import utils.WSResponseFactory;
 
@@ -183,5 +182,51 @@ public class QuestionController extends AbstractController {
         dao.get().closeConnection();
 
         return r;
+    }
+
+    public void insertTrueOrFalsePublicQuestion(TrueOrFalseDto dto) {
+        qDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+
+        TrueOrFalse tf = new TrueOrFalse();
+        tf.setCorrectAnswer(dto.correctAnswer);
+        tf.setStatement(dto.statement);
+        tf.setFigure(dto.figure);
+        tf.setPublicDomain((byte) 1);
+
+        for(Integer id : dto.categories) {
+            BoneSet bs = (BoneSet) qDao.get().findObject(BoneSet.class,id);
+            tf.addCategory(bs);
+        }
+
+        Teacher t = (Teacher) qDao.get().findObject(Teacher.class,6);
+        t.addQuestion(tf);
+
+        qDao.get().insertObject(tf);
+        qDao.get().closeConnection();
+    }
+
+    public void insertMultipleChoicePublicQuestion(MultipleChoiceDto dto) {
+        qDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+
+        MultipleChoice mc = new MultipleChoice();
+        mc.setStatement(dto.statement);
+        mc.setFigure(dto.figure);
+        mc.setAnswerA(dto.answerA);
+        mc.setAnswerB(dto.answerB);
+        mc.setAnswerC(dto.answerC);
+        mc.setAnswerD(dto.answerD);
+        mc.setAnswerE(dto.answerE);
+        mc.setCorrectAnswer(dto.correctAnswer);
+
+        for(Integer id : dto.categories) {
+            BoneSet bs = (BoneSet) qDao.get().findObject(BoneSet.class,id);
+            mc.addCategory(bs);
+        }
+
+        Teacher t = (Teacher) qDao.get().findObject(Teacher.class,6);
+        t.addQuestion(mc);
+
+        qDao.get().insertObject(mc);
+        qDao.get().closeConnection();
     }
 }

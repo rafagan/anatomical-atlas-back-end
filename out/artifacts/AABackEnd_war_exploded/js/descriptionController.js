@@ -91,6 +91,7 @@ function descriptionController($scope, $http) {
                         $scope.error = false;
                         $scope.loading = false;
                         $scope.success = true;
+                        $scope.queryResult[id-1] = $scope.description;
                     }).error(function(response) {
                         $scope.error = true;
                         $scope.loading = false;
@@ -103,6 +104,7 @@ function descriptionController($scope, $http) {
                         $scope.error = false;
                         $scope.loading = false;
                         $scope.success = true;
+                        $scope.queryResult[id-1] = $scope.description;
                     }).error(function(response) {
                         $scope.error = true;
                         $scope.loading = false;
@@ -115,6 +117,7 @@ function descriptionController($scope, $http) {
                         $scope.error = false;
                         $scope.loading = false;
                         $scope.success = true;
+                        $scope.queryResult[id-1] = $scope.description;
                     }).error(function(response) {
                         $scope.error = true;
                         $scope.loading = false;

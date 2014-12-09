@@ -15,6 +15,10 @@ div#container div.sWidth {
     margin-top: 20px;
 }
 
+.little {
+    width: 20%;
+}
+
 .floatRight {
     float: right;
 }
@@ -62,4 +66,28 @@ div#container div.sWidth {
           transform: scale(1.0);
           -webkit-transform: scale(1.0);
       }
+}
+
+label {
+    margin-top: 10px;
+}
+
+input.search-input{
+    box-sizing: border-box;
+    -moz-box-sizing:border-box;
+    width: 100%;
+    margin-bottom: 5px;
+    height: auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 4px 6px;
+}
+
+
+label.btn > input[type='radio']
+{
+    display: none;
 }

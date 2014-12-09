@@ -28,7 +28,7 @@
         <h1>Cadastro de descrições das estruturas anatômicas</h1>
 
         <div class="half">
-            <p>Escolha o assunto sobre o qual deseja falar: </p>
+            <label for="knowledgeArea">Escolha o assunto sobre o qual deseja falar: </label>
             <select id="knowledgeArea" class="form-control" ng-model="knowledgeArea" ng-change="onChangeKnowledgeArea()">
                 <option value="parte de um osso">Parte de osso</option>
                 <option value="conjunto de ossos">Conjunto de Osso</option>
@@ -37,14 +37,16 @@
         </div>
 
         <div class="half" ng-show="knowledgeArea">
-            <p>Escolha qual <span ng-bind="knowledgeArea"></span> você deseja atualizar a descrição (descrição em inglês): </p>
+            <label for="structureSelection">Escolha qual <span ng-bind="knowledgeArea"></span> você deseja atualizar a descrição (descrição em inglês):</label>
             <select id="structureSelection" class="form-control" ng-model="structureSelection" ng-change="onChangeStructureSelection()" >
                 <option ng-repeat="name in names">{{name}}</option>
             </select>
         </div>
 
         <div class="sWidth" ng-show="structureSelection">
-            <textarea name="description" class="form-control" ng-model="description"></textarea>
+            <label>
+                <textarea name="description" class="form-control" ng-model="description"></textarea>
+            </label>
             <button class="btn btn-default floatRight" type="submit" ng-click="onClickSubmit()">Salvar</button>
         </div>
     </div>

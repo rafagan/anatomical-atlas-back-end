@@ -385,8 +385,6 @@ public class DummyInsertion {
         s1 = sDao.queryStudent(1);
         s2 = sDao.queryStudent(2);
         s3 = sDao.queryStudent(3);
-        //s4 = sDao.queryStudent(4);
-        //s5 = sDao.queryStudent(5);
 
         Organization o1 = oDao.queryOrganization(1);
         Organization o2 = oDao.queryOrganization(2);
@@ -406,10 +404,6 @@ public class DummyInsertion {
             t.printStackTrace();
             tx.rollback();
         }
-
-//        oDao.get().changeOrInsertObject(s1);
-//        oDao.get().changeOrInsertObject(s2);
-//        oDao.get().changeOrInsertObject(s3);
 
         oDao.get().closeConnection();
 
@@ -453,6 +447,7 @@ public class DummyInsertion {
         Teacher t3 = new Teacher();
         Teacher t4 = new Teacher();
         Teacher t5 = new Teacher();
+        Teacher t6 = new Teacher();
 
         try {
             t1.setBirthday(createDate("01/01/1993",df));
@@ -460,6 +455,7 @@ public class DummyInsertion {
             t3.setBirthday(createDate("01/03/2004",df));
             t4.setBirthday(createDate("20/09/1500",df));
             t5.setBirthday(createDate("07/07/1997",df));
+            t6.setBirthday(createDate("01/01/2015",df));
         } catch (ParseException e) {
             e.printStackTrace();
             fail();
@@ -470,36 +466,42 @@ public class DummyInsertion {
         t3.setCountry("Finlândia");
         t4.setCountry("Austrália");
         t5.setCountry("Cuba");
+        t6.setCountry("Brasil");
 
         t1.setName("João da Silva");
         t2.setName("Maria dos Santos");
         t3.setName("Pedro Abreu");
         t4.setName("Carlos Lacerda");
         t5.setName("Amarildo Roberto Pinto");
+        t6.setName("System Teacher");
 
         t1.setResume("Best teacher ever");
         t2.setResume("Ser ou não ser eis a questão");
         t3.setResume("Penso, logo existo");
         t4.setResume("Mais mole que pegar em minhoquinha");
         t5.setResume(DummyText.LOREM_IPSUM);
+        t6.setResume("The Anatomical Atlas system app teacher");
 
         t1.setScholarity("Mestrado");
         t2.setScholarity("Doutorado");
         t3.setScholarity("Pós doutorado");
         t4.setScholarity("Pós graduado");
         t5.setScholarity("Graduado");
+        t6.setScholarity("None");
 
         t1.setSex(Sex.MALE);
         t2.setSex(Sex.FEMALE);
         t3.setSex(Sex.MALE);
         t4.setSex(Sex.FEMALE);
         t5.setSex(Sex.MALE);
+        t6.setSex(Sex.MALE);
 
         t1.setPhoto(loadImage("Foto", "jpg"));
         t2.setPhoto(loadImage("LennaSnow", "jpg"));
         t3.setPhoto(loadImage("Lenna", "png"));
         t4.setPhoto(loadImage("Itachi", "jpg"));
         t5.setPhoto(loadImage("Workstation", "jpg"));
+        t6.setPhoto(null);
 
         /* ---------------------------------------------- */
 
@@ -508,6 +510,7 @@ public class DummyInsertion {
         TeacherLogin l3 = new TeacherLogin();
         TeacherLogin l4 = new TeacherLogin();
         TeacherLogin l5 = new TeacherLogin();
+        TeacherLogin l6 = new TeacherLogin();
 
         try {
             Date currentDate = createDate(df.format(new java.util.Date()), df);
@@ -518,18 +521,21 @@ public class DummyInsertion {
             l3.setCreatedAt(currentDate);
             l4.setCreatedAt(currentDate);
             l5.setCreatedAt(currentDate);
+            l6.setCreatedAt(currentDate);
 
             l1.setLastLoginAt(currentDateTime);
             l2.setLastLoginAt(currentDateTime);
             l3.setLastLoginAt(currentDateTime);
             l4.setLastLoginAt(currentDateTime);
             l5.setLastLoginAt(currentDateTime);
+            l6.setLastLoginAt(currentDateTime);
 
             l1.setUpdatedAt(currentDate);
             l2.setUpdatedAt(currentDate);
             l3.setUpdatedAt(currentDate);
             l4.setUpdatedAt(currentDate);
             l5.setUpdatedAt(currentDate);
+            l6.setUpdatedAt(currentDate);
         } catch (ParseException e) {
             e.printStackTrace();
             fail();
@@ -541,6 +547,7 @@ public class DummyInsertion {
             l3.setEmail(validateEmail("jose.messias@outlook.com.br"));
             l4.setEmail(validateEmail("amarildo@abreu.com.br"));
             l5.setEmail(validateEmail("celio1959595@suquinho.com"));
+            l6.setEmail(validateEmail("system@anatomicalatlas.com"));
         } catch (InvalidArgumentException e) {
             e.printStackTrace();
         }
@@ -550,18 +557,21 @@ public class DummyInsertion {
         setPassword("frutas123&",l3);
         setPassword("t0d1nh0*",l4);
         setPassword("B&PiD",l5);
+        setPassword("adminAABE",l6);
 
         t1.setLogin(l1);
         t2.setLogin(l2);
         t3.setLogin(l3);
         t4.setLogin(l4);
         t5.setLogin(l5);
+        t6.setLogin(l6);
 
         dao.get().changeOrInsertObject(t1);
         dao.get().changeOrInsertObject(t2);
         dao.get().changeOrInsertObject(t3);
         dao.get().changeOrInsertObject(t4);
         dao.get().changeOrInsertObject(t5);
+        dao.get().changeOrInsertObject(t6);
 
         dao.get().closeConnection();
     }
