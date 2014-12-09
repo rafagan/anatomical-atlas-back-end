@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Questions</title>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/fileinput.min.css" rel="stylesheet">
+    <link href="css/multi-select.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body ng-app id="questionController" ng-controller="questionController">
+    <div id="container">
+        <h1>Cadastro de questões</h1>
+
+        <div class="sWidth">
+            <label for="questionType">Escolha qual é o tipo de questão que deseja cadastrar:</label>
+            <select id="questionType" class="form-control" ng-model="questionType" ng-change="onChangeQuestionType()">
+                <option value="1">Múltipla Escolha</option>
+                <option value="2">Verdadeiro ou falso</option>
+            </select>
+
+            <label for="statement">Enunciado: </label>
+            <textarea id="statement" class="form-control" ng-model="statement"></textarea>
+
+            <div>
+                <label for="figure">Selecione uma imagem de referência para a questão (opcional):</label>
+                <input id="figure" type="file" accept="image/*" onchange="onFigureLoaded()">
+            </div>
+
+            <label for="custom-headers">Escolha as categorias da questão:</label>
+            <select id='custom-headers' multiple='multiple' class='searchable'>
+                <optgroup label='Conjuntos de ossos'>
+                    <option>teste</option>
+                </optgroup>
+                <!--<optgroup label='Ossos'>-->
+                    <!--<option ng-repeat="s in bones" ng-value="s">{{s}}</option>-->
+                <!--</optgroup>-->
+                <!--<optgroup label='Partes de um osso'>-->
+                    <!--<option ng-repeat="s in boneParts" ng-value="s">{{s}}</option>-->
+                <!--</optgroup>-->
+            </select>
+        </div>
+
+        <div ng-show="questionType" class="sWidth">
+            <div ng-show="qTypeV == 0">
+                <label for="assertion1">Assertiva 1:</label>
+                <textarea id="assertion1" class="form-control" ng-model="assertion1"></textarea>
+
+                <label for="assertion2">Assertiva 2:</label>
+                <textarea id="assertion2" class="form-control" ng-model="assertion2"></textarea>
+
+                <label for="assertion3">Assertiva 3:</label>
+                <textarea id="assertion3" class="form-control" ng-model="assertion3"></textarea>
+
+                <label for="assertion4">Assertiva 4:</label>
+                <textarea id="assertion4" class="form-control" ng-model="assertion4"></textarea>
+
+                <label for="assertion5">Assertiva 5:</label>
+                <textarea id="assertion5" class="form-control" ng-model="assertion5"></textarea>
+
+                <div class="little">
+                    <label for="answer">Alternativa correta: </label>
+                    <select id="answer" class="form-control" ng-model="answer">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div ng-show="qTypeV == 1">
+                <p><b>Alternativa correta: </b></p>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-info active">
+                        <input type="radio" name="options" id="option1" checked> Verdadeiro
+                    </label>
+                    <label class="btn btn-info">
+                        <input type="radio" name="options" id="option2"> Falso
+                    </label>
+                </div>
+            </div>
+
+            <button class="btn btn-default floatRight" type="submit" ng-click="onClickSubmit()">Salvar</button>
+        </div>
+
+        <div id="procedureDetails" class="alert alert-danger" role="alert" ng-show="error">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{errorMessage}}
+        </div>
+
+        <div ng-show="success" class="alert alert-success">
+            Alteração salva com sucesso
+        </div>
+
+        <div ng-show="loading" class="spinner">
+            <div class="bounce1"></div>
+            <div class="bounce2"></div>
+            <div class="bounce3"></div>
+        </div>
+
+        <script type="application/javascript" src="jquery/jquery.min.js"></script>
+        <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+        <script type="application/javascript" src="js/fileinput.min.js"></script>
+        <script type="application/javascript" src="jquery/jquery.multi-select.js"></script>
+        <script type="application/javascript" src="js/FileSaver.min.js"></script>
+        <script type="application/javascript" src="angular/angular.min.js"></script>
+        <script type="application/javascript" src="js/questionController.js"></script>
+    </div>
+</body>
+</html>

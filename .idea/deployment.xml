@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="AABE/tomcat" />
+  <component name="PublishConfigData" autoUpload="Always" serverName="AABE Amazon">
+    <serverData>
+      <paths name="AABE Amazon">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/ROOT" local="$PROJECT_DIR$/web" web="/" />
+            <mapping deploy="/ROOT" local="$PROJECT_DIR$/ware" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/ware/WEB-INF/lib" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="AABE/tomcat">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/web" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ALWAYS" />
+  </component>
 </project>
 

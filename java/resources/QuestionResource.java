@@ -9,6 +9,7 @@ import utils.WSResponseFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.Arrays;
 
 @Path("questions")
 public class QuestionResource extends AbstractResource {
@@ -46,6 +47,7 @@ public class QuestionResource extends AbstractResource {
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertTrueOrFalsePublicQuestion(TrueOrFalseDto dto) {
+        System.out.println(Arrays.toString(dto.figure));
         questionController.insertTrueOrFalsePublicQuestion(dto);
         return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
     }
