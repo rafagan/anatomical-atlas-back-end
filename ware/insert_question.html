@@ -19,7 +19,7 @@
     <![endif]-->
 </head>
 <body ng-app id="questionController" ng-controller="questionController">
-    <div id="container">
+    <div id="container" ng-cloak>
         <h1>Cadastro de questões</h1>
 
         <div class="sWidth">
@@ -38,16 +38,12 @@
             </div>
 
             <label for="custom-headers">Escolha as categorias da questão:</label>
-            <select id='custom-headers' multiple='multiple' class='searchable'>
+            <select id='custom-headers' multiple='multiple'>
                 <optgroup label='Conjuntos de ossos'>
                     <option>teste</option>
                 </optgroup>
-                <!--<optgroup label='Ossos'>-->
-                    <!--<option ng-repeat="s in bones" ng-value="s">{{s}}</option>-->
-                <!--</optgroup>-->
-                <!--<optgroup label='Partes de um osso'>-->
-                    <!--<option ng-repeat="s in boneParts" ng-value="s">{{s}}</option>-->
-                <!--</optgroup>-->
+                <optgroup label='Ossos'></optgroup>
+                <optgroup label='Partes de um osso'></optgroup>
             </select>
         </div>
 

@@ -1,5 +1,7 @@
 package models;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import javax.persistence.*;
 import java.util.Arrays;

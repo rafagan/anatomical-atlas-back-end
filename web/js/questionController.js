@@ -9,7 +9,7 @@
 $("#figure").fileinput({
     previewFileType: "image",
     browseClass: "btn btn-success",
-    browseLabel: "Pick Image",
+    browseLabel: "Escolha a imagem",
     browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
     removeClass: "btn btn-danger",
     removeLabel: "Delete",
@@ -21,13 +21,59 @@ $("#figure").fileinput({
 
 $(".kv-fileinput-upload").hide();
 
-$('.searchable').multiSelect({
+$('#custom-headers').multiSelect({
     selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
     selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
-    selectableOptgroup: true
+    afterInit: function(ms){
+
+    },
+    cssClass: "categoriesStyle"
 });
 
-function questionController($scope, $http) {
+function loadStructuresToCategories($scope, $http) {
+    var cat = $('#custom-headers');
+
+    $http.get("http://rafagan.com.br/api/bonesets")
+        .success(function(response1) {
+            $.each(response1.result, function(index, value) {
+                cat.multiSelect('addOption',{
+                    value: value.idBoneSet,
+                    text: value.category ,
+                    index: 0,
+                    nested: 'Conjuntos de ossos'
+                });
+            });
+
+            $http.get("http://rafagan.com.br/api/bones")
+                .success(function(response2) {
+                    $.each(response2.result, function(index, value) {
+                        cat.multiSelect('addOption', {
+                            value: value.idBone + response1.result.length,
+                            text: value.name,
+                            index: 0,
+                            nested: 'Ossos'
+                        });
+                    });
+
+                    $http.get("http://rafagan.com.br/api/boneparts")
+                        .success(function(response3) {
+                            $.each(response3.result, function (index, value) {
+                                cat.multiSelect('addOption', {
+                                    value: value.idBonePart  + response1.result.length + response2.result.length,
+                                    text: value.name,
+                                    index: 0,
+                                    nested: 'Partes de um osso'
+                                });
+                            });
+                        });
+
+                });
+        }).error(function(response) {
+
+        });
+}
+
+function QuestionController($scope, $http) {
     $scope.qTypeV = 0;
     $("#questionType").prop("selectedIndex", -1);
     $scope.error = false;
@@ -42,8 +88,7 @@ function questionController($scope, $http) {
 
     $scope.onClickSubmit = function() {
         var qStr = questionType == 0 ? "multiple_choice" : "true_or_false";
-        var requestStr = "localhost:8080/aabe/api/questions/"+qStr;
-        //var requestStr = "http://rafagan.com.br/aabe/api/questions/"+qStr;
+        var requestStr = "http://rafagan.com.br/api/questions/"+qStr;
 
         var json = {
             figure : $scope.figure,
@@ -77,19 +122,21 @@ function questionController($scope, $http) {
                     "Houve algum problema no servidor ao adicionar a questão. Contate o administrador.";
             });
     };
+
+    loadStructuresToCategories($scope, $http);
 }
 
 onFigureLoaded = function() {
     var file = $("#figure").prop("files")[0];
-
     if(!file) return;
-
     var reader = new FileReader();
 
     reader.onload = (function(inputHtmlFileData) {
         return function(e) {
             var $scope = angular.element($('#questionController')).scope();
-            $scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
+            $scope.figure = e.target.result.split(',')[1];
+            console.log($scope.figure);
+            //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
             //saveAs(dataURItoBlob($scope.figure, inputHtmlFileData.type), "figure.jpg");
         };
     })(file);

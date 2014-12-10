@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class TrueOrFalseDto {
     public byte correctAnswer;
-    public byte[] figure;
+    public String figure;
     public String statement;
     public List<Integer> categories;
 

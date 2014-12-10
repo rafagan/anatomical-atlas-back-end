@@ -30,7 +30,7 @@ public class QuestionDto {
     public void setId(int id) {this.idQuestion = id;}
 
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    @JsonIgnore
+    //@JsonIgnore
     public byte[] getFigure() {return figure;}
     public void setFigure(byte[] figure) {this.figure = figure;}
 

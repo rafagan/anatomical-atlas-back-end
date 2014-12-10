@@ -9,7 +9,7 @@
 $("#figure").fileinput({
     previewFileType: "image",
     browseClass: "btn btn-success",
-    browseLabel: "Pick Image",
+    browseLabel: "Escolha a imagem",
     browseIcon: '<i class="glyphicon glyphicon-picture"></i>',
     removeClass: "btn btn-danger",
     removeLabel: "Delete",
@@ -21,10 +21,9 @@ $("#figure").fileinput({
 
 $(".kv-fileinput-upload").hide();
 
-$('.searchable').multiSelect({
+$('#custom-headers').multiSelect({
     selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
-    selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
-    selectableOptgroup: true
+    selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>"
 });
 
 function questionController($scope, $http) {
@@ -42,8 +41,7 @@ function questionController($scope, $http) {
 
     $scope.onClickSubmit = function() {
         var qStr = questionType == 0 ? "multiple_choice" : "true_or_false";
-        var requestStr = "localhost:8080/aabe/api/questions/"+qStr;
-        //var requestStr = "http://rafagan.com.br/aabe/api/questions/"+qStr;
+        var requestStr = "http://rafagan.com.br/api/questions/"+qStr;
 
         var json = {
             figure : $scope.figure,
@@ -76,20 +74,65 @@ function questionController($scope, $http) {
                 $scope.errorMessage =
                     "Houve algum problema no servidor ao adicionar a questão. Contate o administrador.";
             });
+
+//    $http.get("http://rafagan.com.br/api/boneparts")
+//        .success(function(response1) {
+//            $.each(response1.result, function(index, value) {
+//                searcheable.multiSelect('addOption',{
+//                    value: value.idBonePart,
+//                    text: value.name ,
+//                    index: customIndex,
+//                    nested: 'Partes de um osso'
+//                });
+//                customIndex++;
+//            });
+//
+//            $http.get("http://rafagan.com.br/api/bones")
+//                .success(function(response2) {
+//                    $.each(response2.result, function(index, value) {
+//                        searcheable.multiSelect('addOption',{
+//                            value: value.idBone + response1.length ,
+//                            text: value.name ,
+//                            index: customIndex,
+//                            nested: 'Ossos'
+//                        });
+//                        customIndex++;
+//
+//                        $http.get("http://rafagan.com.br/api/bonesets")
+//                            .success(function(response3) {
+//                                $.each(response3.result, function(index, value) {
+//                                    searcheable.multiSelect('addOption',{
+//                                        value: value.idBoneSet + response1.length + response2.length ,
+//                                        text: value.category ,
+//                                        index: customIndex,
+//                                        nested: 'Conjuntos de ossos'
+//                                    });
+//                                    customIndex++;
+//                                });
+//                            }).error(function(response) {
+//
+//                            });
+//                    });
+//                }).error(function(response) {
+//
+//                });
+//        }).error(function(response) {
+//
+//        });
     };
 }
 
 onFigureLoaded = function() {
     var file = $("#figure").prop("files")[0];
-
     if(!file) return;
-
     var reader = new FileReader();
 
     reader.onload = (function(inputHtmlFileData) {
         return function(e) {
             var $scope = angular.element($('#questionController')).scope();
-            $scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
+            $scope.figure = e.target.result.split(',')[1];
+            console.log($scope.figure);
+            //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
             //saveAs(dataURItoBlob($scope.figure, inputHtmlFileData.type), "figure.jpg");
         };
     })(file);

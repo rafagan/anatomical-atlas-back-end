@@ -17,7 +17,7 @@ function descriptionController($scope, $http) {
 
         switch(knowledgeArea.selectedIndex) {
             case 0:
-                $http.get("http://rafagan.com.br/aabe/api/boneparts")
+                $http.get("http://rafagan.com.br/api/boneparts")
                     .success(function(response) {
                         $scope.names = [];
                         $scope.queryResult = response.result;
@@ -35,7 +35,7 @@ function descriptionController($scope, $http) {
                     });
                 break;
             case 1:
-                $http.get("http://rafagan.com.br/aabe/api/bonesets")
+                $http.get("http://rafagan.com.br/api/bonesets")
                     .success(function(response) {
                         $scope.names = [];
                         $scope.queryResult = response.result;
@@ -53,7 +53,7 @@ function descriptionController($scope, $http) {
                     });
                 break;
             case 2:
-                $http.get("http://rafagan.com.br/aabe/api/bones")
+                $http.get("http://rafagan.com.br/api/bones")
                     .success(function(response) {
                         $scope.names = [];
                         $scope.queryResult = response.result;
@@ -86,7 +86,7 @@ function descriptionController($scope, $http) {
 
         switch(knowledgeArea.selectedIndex) {
             case 0:
-                $http.put("http://rafagan.com.br/aabe/api/boneparts/"+id+"/description", {description: $scope.description})
+                $http.put("http://rafagan.com.br/api/boneparts/"+id+"/description", {description: $scope.description})
                     .success(function(response) {
                         $scope.error = false;
                         $scope.loading = false;
@@ -99,7 +99,7 @@ function descriptionController($scope, $http) {
                     });
                 break;
             case 1:
-                $http.put("http://rafagan.com.br/aabe/api/bonesets/"+id+"/description", {description: $scope.description})
+                $http.put("http://rafagan.com.br/api/bonesets/"+id+"/description", {description: $scope.description})
                     .success(function(response) {
                         $scope.error = false;
                         $scope.loading = false;
@@ -112,7 +112,7 @@ function descriptionController($scope, $http) {
                     });
                 break;
             case 2:
-                $http.put("http://rafagan.com.br/aabe/api/bones/"+id+"/description", {description: $scope.description})
+                $http.put("http://rafagan.com.br/api/bones/"+id+"/description", {description: $scope.description})
                     .success(function(response) {
                         $scope.error = false;
                         $scope.loading = false;

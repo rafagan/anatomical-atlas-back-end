@@ -1,6 +1,7 @@
 
 div#container {
-    margin: 50px;
+    max-width: 1110px;
+    margin: 0 auto;
 }
 
 div#container div.half {
@@ -86,8 +87,10 @@ input.search-input{
     padding: 4px 6px;
 }
 
-
-label.btn > input[type='radio']
-{
+label.btn > input[type='radio']{
     display: none;
+}
+
+.categoriesStyle {
+    width: 100%;
 }

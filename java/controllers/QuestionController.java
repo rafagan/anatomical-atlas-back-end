@@ -1,14 +1,19 @@
 package controllers;
 
+import com.sun.jersey.core.util.Base64;
 import dtos.MultipleChoiceDto;
 import dtos.QuestionDto;
 import dao.QuestionDao;
 import dtos.TrueOrFalseDto;
 import models.*;
 import utils.EntityManagerUtil;
+import utils.ImageUtils;
 import utils.WSResponseFactory;
 
+import javax.imageio.ImageIO;
 import javax.ws.rs.core.Response;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -190,7 +195,7 @@ public class QuestionController extends AbstractController {
         TrueOrFalse tf = new TrueOrFalse();
         tf.setCorrectAnswer(dto.correctAnswer);
         tf.setStatement(dto.statement);
-        tf.setFigure(dto.figure);
+        tf.setFigure(dto.figure.getBytes());
         tf.setPublicDomain((byte) 1);
 
         for(Integer id : dto.categories) {
@@ -210,7 +215,19 @@ public class QuestionController extends AbstractController {
 
         MultipleChoice mc = new MultipleChoice();
         mc.setStatement(dto.statement);
-        mc.setFigure(dto.figure);
+
+        try {
+            BufferedImage v = ImageUtils.decodeToImage(new String(dto.figure.getBytes()));
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(v, "png", baos);
+            baos.flush();
+            byte[] imageInByte = baos.toByteArray();
+            baos.close();
+            mc.setFigure(imageInByte);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         mc.setAnswerA(dto.answerA);
         mc.setAnswerB(dto.answerB);
         mc.setAnswerC(dto.answerC);
