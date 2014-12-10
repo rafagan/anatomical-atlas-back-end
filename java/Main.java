@@ -24,7 +24,7 @@ public class Main {
     void test() {
         try {
             Client client = Client.create();
-            WebResource webResource2 = client.resource("http://rafagan.com.br/api/questions/65536");
+            WebResource webResource2 = client.resource("http://rafagan.com.br/api/questions/98305");
             ClientResponse response2 = webResource2.accept("application/json").get(ClientResponse.class);
             if (response2.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : " + response2.getStatus());

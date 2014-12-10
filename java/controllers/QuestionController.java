@@ -216,24 +216,26 @@ public class QuestionController extends AbstractController {
         MultipleChoice mc = new MultipleChoice();
         mc.setStatement(dto.statement);
 
-        try {
-            BufferedImage v = ImageUtils.decodeToImage(new String(dto.figure.getBytes()));
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(v, "png", baos);
-            baos.flush();
-            byte[] imageInByte = baos.toByteArray();
-            baos.close();
-            mc.setFigure(imageInByte);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            BufferedImage v = ImageUtils.decodeToImage(new String(dto.figure.getBytes()));
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            ImageIO.write(v, "png", baos);
+//            baos.flush();
+//            byte[] imageInByte = baos.toByteArray();
+//            baos.close();
+//            mc.setFigure(imageInByte);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
+        mc.setFigure(dto.figure.getBytes());
         mc.setAnswerA(dto.answerA);
         mc.setAnswerB(dto.answerB);
         mc.setAnswerC(dto.answerC);
         mc.setAnswerD(dto.answerD);
         mc.setAnswerE(dto.answerE);
         mc.setCorrectAnswer(dto.correctAnswer);
+        mc.setPublicDomain((byte) 1);
 
         for(Integer id : dto.categories) {
             BoneSet bs = (BoneSet) qDao.get().findObject(BoneSet.class,id);

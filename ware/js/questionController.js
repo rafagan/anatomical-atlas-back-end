@@ -34,6 +34,7 @@ function loadStructuresToCategories($scope, $http) {
                     index: 0,
                     nested: 'Conjuntos de ossos'
                 });
+                $scope.categories[value.category] = value.idBoneSet;
             });
 
             $http.get("http://rafagan.com.br/api/bones")
@@ -45,6 +46,12 @@ function loadStructuresToCategories($scope, $http) {
                             index: 0,
                             nested: 'Ossos'
                         });
+                        $scope.categories[value.name] = value.idBone;
+                    });
+
+                    //Temporário até haver suporte a bones
+                    $.each($(".ms-optgroup-container + .ms-optgroup-container ul > li"), function(index, value) {
+                        value.className = value.className + " disabled";
                     });
 
                     $http.get("http://rafagan.com.br/api/boneparts")
@@ -56,6 +63,12 @@ function loadStructuresToCategories($scope, $http) {
                                     index: 0,
                                     nested: 'Partes de um osso'
                                 });
+                                $scope.categories[value.name] = value.idBonePart;
+                            });
+
+                            //Temporário até haver suporte a bones
+                            $.each($(".ms-optgroup-container + .ms-optgroup-container + .ms-optgroup-container ul > li"), function(index, value) {
+                                value.className = value.className + " disabled";
                             });
                         }).error(function(response) {
                             $scope.loading = false;
@@ -82,6 +95,7 @@ function QuestionController($scope, $http) {
     $scope.success = false;
     $scope.errorMessage = "";
     $scope.loading = false;
+    $scope.categories = {};
 
     $scope.onChangeQuestionType = function() {
         $scope.qTypeV = questionType.selectedIndex;
@@ -89,6 +103,8 @@ function QuestionController($scope, $http) {
     };
 
     $scope.onClickSubmit = function() {
+        $scope.loading = true;
+
         var qStr = questionType == 0 ? "multiple_choice" : "true_or_false";
         var requestStr = "http://rafagan.com.br/api/questions/"+qStr;
 
@@ -98,7 +114,14 @@ function QuestionController($scope, $http) {
             categories: []
         };
 
-        switch(questionType) {
+        $(".ms-selected").each(function(){
+            var text = $(this).text();
+
+            if($scope.categories[text] != undefined)
+                json.categories.push($scope.categories[text]);
+        });
+
+        switch($scope.qTypeV) {
             case 0:
                 json["correctAnswer"] = answer.value;
                 json["answerA"] = assertion1.value;
@@ -137,7 +160,6 @@ onFigureLoaded = function() {
         return function(e) {
             var $scope = angular.element($('#QuestionController')).scope();
             $scope.figure = e.target.result.split(',')[1];
-            console.log($scope.figure);
             //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
             //saveAs(dataURItoBlob($scope.figure, inputHtmlFileData.type), "figure.jpg");
         };

@@ -103,8 +103,14 @@ function QuestionController($scope, $http) {
     };
 
     $scope.onClickSubmit = function() {
-        var qStr = questionType == 0 ? "multiple_choice" : "true_or_false";
+        $scope.loading = true;
+        $scope.success = false;
+        $scope.error = false;
+
+        var qStr = $scope.qTypeV == 0 ? "multiple_choice" : "true_or_false";
         var requestStr = "http://rafagan.com.br/api/questions/"+qStr;
+
+        console.log($scope.qTypeV);
 
         var json = {
             figure : $scope.figure,
@@ -119,7 +125,7 @@ function QuestionController($scope, $http) {
                 json.categories.push($scope.categories[text]);
         });
 
-        switch(questionType) {
+        switch($scope.qTypeV) {
             case 0:
                 json["correctAnswer"] = answer.value;
                 json["answerA"] = assertion1.value;
@@ -158,7 +164,6 @@ onFigureLoaded = function() {
         return function(e) {
             var $scope = angular.element($('#QuestionController')).scope();
             $scope.figure = e.target.result.split(',')[1];
-            console.log($scope.figure);
             //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
             //saveAs(dataURItoBlob($scope.figure, inputHtmlFileData.type), "figure.jpg");
         };
