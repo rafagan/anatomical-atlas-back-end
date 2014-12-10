@@ -45,7 +45,7 @@
             </select>
         </div>
 
-        <div ng-show="questionType" class="sWidth">
+        <div ng-show="questionType" class="sWidth divMargin">
             <div ng-show="qTypeV == 0">
                 <label for="assertion1">Assertiva 1:</label>
                 <textarea id="assertion1" class="form-control" ng-model="assertion1"></textarea>
@@ -95,8 +95,8 @@
             {{errorMessage}}
         </div>
 
-        <div ng-show="success" class="alert alert-success">
-            Alteração salva com sucesso
+        <div class="alert alert-success" ng-show="success">
+            Questão inserida com sucesso!
         </div>
 
         <div ng-show="loading" class="spinner">
@@ -109,6 +109,7 @@
         <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
         <script type="application/javascript" src="js/fileinput.min.js"></script>
         <script type="application/javascript" src="jquery/jquery.multi-select.js"></script>
+        <script type="application/javascript" src="jquery/jquery.quicksearch.js"></script>
         <script type="application/javascript" src="js/FileSaver.min.js"></script>
         <script type="application/javascript" src="angular/angular.min.js"></script>
         <script type="application/javascript" src="js/questionController.js"></script>

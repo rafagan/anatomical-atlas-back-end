@@ -21,16 +21,8 @@ $("#figure").fileinput({
 
 $(".kv-fileinput-upload").hide();
 
-$('#custom-headers').multiSelect({
-    selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
-    selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
-    afterInit: function(ms){
-
-    },
-    cssClass: "categoriesStyle"
-});
-
 function loadStructuresToCategories($scope, $http) {
+    $scope.loading = true;
     var cat = $('#custom-headers');
 
     $http.get("http://rafagan.com.br/api/bonesets")
@@ -42,6 +34,7 @@ function loadStructuresToCategories($scope, $http) {
                     index: 0,
                     nested: 'Conjuntos de ossos'
                 });
+                $scope.categories[value.category] = value.idBoneSet;
             });
 
             $http.get("http://rafagan.com.br/api/bones")
@@ -53,6 +46,12 @@ function loadStructuresToCategories($scope, $http) {
                             index: 0,
                             nested: 'Ossos'
                         });
+                        $scope.categories[value.name] = value.idBone;
+                    });
+
+                    //Temporário até haver suporte a bones
+                    $.each($(".ms-optgroup-container + .ms-optgroup-container ul > li"), function(index, value) {
+                        value.className = value.className + " disabled";
                     });
 
                     $http.get("http://rafagan.com.br/api/boneparts")
@@ -64,12 +63,28 @@ function loadStructuresToCategories($scope, $http) {
                                     index: 0,
                                     nested: 'Partes de um osso'
                                 });
+                                $scope.categories[value.name] = value.idBonePart;
                             });
-                        });
 
+                            //Temporário até haver suporte a bones
+                            $.each($(".ms-optgroup-container + .ms-optgroup-container + .ms-optgroup-container ul > li"), function(index, value) {
+                                value.className = value.className + " disabled";
+                            });
+                        }).error(function(response) {
+                            $scope.loading = false;
+                            $scope.error = true;
+                            $scope.errorMessage = "Houve problemas para carregar as categorias do servidor. Contate o administrador.";
+                        });
+                    $scope.loading = false;
+                }).error(function(response) {
+                    $scope.loading = false;
+                    $scope.error = true;
+                    $scope.errorMessage = "Houve problemas para carregar as categorias do servidor. Contate o administrador.";
                 });
         }).error(function(response) {
-
+            $scope.loading = false;
+            $scope.error = true;
+            $scope.errorMessage = "Houve problemas para carregar as categorias do servidor. Contate o administrador.";
         });
 }
 
@@ -78,12 +93,13 @@ function QuestionController($scope, $http) {
     $("#questionType").prop("selectedIndex", -1);
     $scope.error = false;
     $scope.success = false;
-    $scope.description = "";
     $scope.errorMessage = "";
     $scope.loading = false;
+    $scope.categories = {};
 
     $scope.onChangeQuestionType = function() {
         $scope.qTypeV = questionType.selectedIndex;
+        $scope.success = false;
     };
 
     $scope.onClickSubmit = function() {
@@ -95,6 +111,13 @@ function QuestionController($scope, $http) {
             statement: statement.value,
             categories: []
         };
+
+        $(".ms-selected").each(function(){
+            var text = $(this).text();
+
+            if($scope.categories[text] != undefined)
+                json.categories.push($scope.categories[text]);
+        });
 
         switch(questionType) {
             case 0:
@@ -133,7 +156,7 @@ onFigureLoaded = function() {
 
     reader.onload = (function(inputHtmlFileData) {
         return function(e) {
-            var $scope = angular.element($('#questionController')).scope();
+            var $scope = angular.element($('#QuestionController')).scope();
             $scope.figure = e.target.result.split(',')[1];
             console.log($scope.figure);
             //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
@@ -158,3 +181,55 @@ function dataURItoBlob(dataURI, dataTYPE) {
     for(var i = 0; i < binary.length; i++) array.push(binary.charCodeAt(i));
     return new Blob([new Uint8Array(array)], {type: dataTYPE});
 }
+
+
+$('#custom-headers').multiSelect({
+    selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar' ng-model='selectableText'>",
+    selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar' ng-model='selectionText'>",
+    cssClass: "categoriesStyle",
+    afterInit: function(ms){
+        var that = this,
+            $selectableSearch = that.$selectableUl.prev(),
+            $selectionSearch = that.$selectionUl.prev(),
+            selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
+            selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
+
+        that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+            .on('keyup', function(e){
+                if (e.which === 40){
+                    that.$selectableUl.focus();
+                    return false;
+                }
+
+                var $scope = angular.element($('#QuestionController')).scope();
+
+                $(".ms-elem-selectable").each(function(){
+                    var text = $(this).text();
+                    (text.indexOf($scope.selectableText) != -1) ? $(this).show() : $(this).hide();
+                });
+            });
+
+        that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+            .on('keyup', function(e){
+                if (e.which === 40){
+                    that.$selectionUl.focus();
+                    return false;
+                }
+
+                var $scope = angular.element($('#QuestionController')).scope();
+
+                $(".ms-selected").each(function(){
+                    var text = $(this).text();
+                    (text.indexOf($scope.selectionText) != -1) ? $(this).show() : $(this).hide();
+                });
+            });
+    },
+    afterSelect: function(){
+        this.qs1.cache();
+        this.qs2.cache();
+    },
+    afterDeselect: function(){
+        this.qs1.cache();
+        this.qs2.cache();
+    }
+});

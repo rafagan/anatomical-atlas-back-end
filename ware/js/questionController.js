@@ -21,22 +21,71 @@ $("#figure").fileinput({
 
 $(".kv-fileinput-upload").hide();
 
-$('#custom-headers').multiSelect({
-    selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>",
-    selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar'>"
-});
+function loadStructuresToCategories($scope, $http) {
+    $scope.loading = true;
+    var cat = $('#custom-headers');
 
-function questionController($scope, $http) {
+    $http.get("http://rafagan.com.br/api/bonesets")
+        .success(function(response1) {
+            $.each(response1.result, function(index, value) {
+                cat.multiSelect('addOption',{
+                    value: value.idBoneSet,
+                    text: value.category ,
+                    index: 0,
+                    nested: 'Conjuntos de ossos'
+                });
+            });
+
+            $http.get("http://rafagan.com.br/api/bones")
+                .success(function(response2) {
+                    $.each(response2.result, function(index, value) {
+                        cat.multiSelect('addOption', {
+                            value: value.idBone + response1.result.length,
+                            text: value.name,
+                            index: 0,
+                            nested: 'Ossos'
+                        });
+                    });
+
+                    $http.get("http://rafagan.com.br/api/boneparts")
+                        .success(function(response3) {
+                            $.each(response3.result, function (index, value) {
+                                cat.multiSelect('addOption', {
+                                    value: value.idBonePart  + response1.result.length + response2.result.length,
+                                    text: value.name,
+                                    index: 0,
+                                    nested: 'Partes de um osso'
+                                });
+                            });
+                        }).error(function(response) {
+                            $scope.loading = false;
+                            $scope.error = true;
+                            $scope.errorMessage = "Houve problemas para carregar as categorias do servidor. Contate o administrador.";
+                        });
+                    $scope.loading = false;
+                }).error(function(response) {
+                    $scope.loading = false;
+                    $scope.error = true;
+                    $scope.errorMessage = "Houve problemas para carregar as categorias do servidor. Contate o administrador.";
+                });
+        }).error(function(response) {
+            $scope.loading = false;
+            $scope.error = true;
+            $scope.errorMessage = "Houve problemas para carregar as categorias do servidor. Contate o administrador.";
+        });
+}
+
+function QuestionController($scope, $http) {
     $scope.qTypeV = 0;
     $("#questionType").prop("selectedIndex", -1);
     $scope.error = false;
     $scope.success = false;
-    $scope.description = "";
     $scope.errorMessage = "";
     $scope.loading = false;
 
     $scope.onChangeQuestionType = function() {
         $scope.qTypeV = questionType.selectedIndex;
+        $scope.success = false;
     };
 
     $scope.onClickSubmit = function() {
@@ -74,52 +123,9 @@ function questionController($scope, $http) {
                 $scope.errorMessage =
                     "Houve algum problema no servidor ao adicionar a questão. Contate o administrador.";
             });
-
-//    $http.get("http://rafagan.com.br/api/boneparts")
-//        .success(function(response1) {
-//            $.each(response1.result, function(index, value) {
-//                searcheable.multiSelect('addOption',{
-//                    value: value.idBonePart,
-//                    text: value.name ,
-//                    index: customIndex,
-//                    nested: 'Partes de um osso'
-//                });
-//                customIndex++;
-//            });
-//
-//            $http.get("http://rafagan.com.br/api/bones")
-//                .success(function(response2) {
-//                    $.each(response2.result, function(index, value) {
-//                        searcheable.multiSelect('addOption',{
-//                            value: value.idBone + response1.length ,
-//                            text: value.name ,
-//                            index: customIndex,
-//                            nested: 'Ossos'
-//                        });
-//                        customIndex++;
-//
-//                        $http.get("http://rafagan.com.br/api/bonesets")
-//                            .success(function(response3) {
-//                                $.each(response3.result, function(index, value) {
-//                                    searcheable.multiSelect('addOption',{
-//                                        value: value.idBoneSet + response1.length + response2.length ,
-//                                        text: value.category ,
-//                                        index: customIndex,
-//                                        nested: 'Conjuntos de ossos'
-//                                    });
-//                                    customIndex++;
-//                                });
-//                            }).error(function(response) {
-//
-//                            });
-//                    });
-//                }).error(function(response) {
-//
-//                });
-//        }).error(function(response) {
-//
-//        });
     };
+
+    loadStructuresToCategories($scope, $http);
 }
 
 onFigureLoaded = function() {
@@ -129,7 +135,7 @@ onFigureLoaded = function() {
 
     reader.onload = (function(inputHtmlFileData) {
         return function(e) {
-            var $scope = angular.element($('#questionController')).scope();
+            var $scope = angular.element($('#QuestionController')).scope();
             $scope.figure = e.target.result.split(',')[1];
             console.log($scope.figure);
             //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
@@ -154,3 +160,55 @@ function dataURItoBlob(dataURI, dataTYPE) {
     for(var i = 0; i < binary.length; i++) array.push(binary.charCodeAt(i));
     return new Blob([new Uint8Array(array)], {type: dataTYPE});
 }
+
+
+$('#custom-headers').multiSelect({
+    selectableHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar' ng-model='selectableText'>",
+    selectionHeader: "<input type='text' class='search-input' autocomplete='off' placeholder='Pesquisar' ng-model='selectionText'>",
+    cssClass: "categoriesStyle",
+    afterInit: function(ms){
+        var that = this,
+            $selectableSearch = that.$selectableUl.prev(),
+            $selectionSearch = that.$selectionUl.prev(),
+            selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
+            selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
+
+        that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+            .on('keyup', function(e){
+                if (e.which === 40){
+                    that.$selectableUl.focus();
+                    return false;
+                }
+
+                var $scope = angular.element($('#QuestionController')).scope();
+
+                $(".ms-elem-selectable").each(function(){
+                    var text = $(this).text();
+                    (text.indexOf($scope.selectableText) != -1) ? $(this).show() : $(this).hide();
+                });
+            });
+
+        that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+            .on('keyup', function(e){
+                if (e.which === 40){
+                    that.$selectionUl.focus();
+                    return false;
+                }
+
+                var $scope = angular.element($('#QuestionController')).scope();
+
+                $(".ms-selected").each(function(){
+                    var text = $(this).text();
+                    (text.indexOf($scope.selectionText) != -1) ? $(this).show() : $(this).hide();
+                });
+            });
+    },
+    afterSelect: function(){
+        this.qs1.cache();
+        this.qs2.cache();
+    },
+    afterDeselect: function(){
+        this.qs1.cache();
+        this.qs2.cache();
+    }
+});

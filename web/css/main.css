@@ -1,4 +1,8 @@
 
+body {
+    margin-bottom: 10px;
+}
+
 div#container {
     max-width: 1110px;
     margin: 0 auto;
@@ -93,4 +97,8 @@ label.btn > input[type='radio']{
 
 .categoriesStyle {
     width: 100%;
+}
+
+.divMargin {
+    margin-bottom: 50px;
 }
