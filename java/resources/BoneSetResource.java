@@ -18,6 +18,13 @@ public class BoneSetResource extends AbstractResource {
     }
 
     @GET
+    @Path("full")
+    @Produces(CONTENT_TYPE_APPLICATION_JSON)
+    public Response getFullBoneSets() {
+        return boneSetController.getFullBoneSets();
+    }
+
+    @GET
     @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     public Response getBoneSet(@PathParam("id") int boneSetId) {

@@ -3,6 +3,7 @@ package controllers;
 import dtos.QuestionDto;
 import dao.BoneSetDao;
 import models.*;
+import org.hibernate.Hibernate;
 import utils.EntityManagerUtil;
 import utils.WSResponseFactory;
 
@@ -39,6 +40,35 @@ public class BoneSetController extends AbstractController {
         bsDao.get().closeConnection();
 
         return r;
+    }
+
+    public Response getFullBoneSets() {
+        WSResponseFactory.WSResponse wResponse;
+        wResponse = WSResponseFactory.normalListResponse();
+
+        bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
+        BoneSet skeleton = bsDao.queryBoneSet(1);
+
+        helper(skeleton);
+
+        wResponse.setResult(skeleton);
+        Response r = Response.ok(wResponse).build();
+        bsDao.get().closeConnection();
+
+        return r;
+    }
+
+    private void helper(BoneSet bs) {
+        bs.setRelatedQuestions(null);
+
+        for(Bone b : bs.getBoneChildren()) {
+            b.setNeighbors(null);
+
+            Hibernate.initialize(b.getBoneParts());
+        }
+        for(BoneSet nbs : bs.getBoneSetChildren()) {
+            helper(nbs);
+        }
     }
 
     public Response getBoneSet(int id) {

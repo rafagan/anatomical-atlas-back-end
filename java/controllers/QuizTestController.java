@@ -29,7 +29,13 @@ public class QuizTestController extends AbstractController {
         for(QuizTest qt : quizTests) {
             qt.setResolutions(null);
             qt.setAuthor(null); //Se é pública, o autor será nulo de qualquer maneira
-            qt.setQuestions(null);
+
+            for(Question q : qt.getQuestions()){
+                q.setQuizTests(null);
+                q.setCategories(null);
+                q.setAuthors(null);
+                q.setFigure(null);
+            }
         }
 
         wResponse.setResult(quizTests);
