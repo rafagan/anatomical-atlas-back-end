@@ -34,24 +34,6 @@ public class Main {
             ObjectMapper mapper = new ObjectMapper();
             Wrapper map = mapper.readValue(output2,new TypeReference<Wrapper>(){});
 
-            System.out.println(output2);
-
-//            byte[] img = null;
-//            try {
-//                BufferedImage v = ImageUtils.decodeToImage(new String(map.result.getFigure()));
-//                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//                ImageIO.write(v, "png", baos);
-//                baos.flush();
-//                byte[] imageInByte = baos.toByteArray();
-//                baos.close();
-//                img = imageInByte;
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//
-//            ByteArrayInputStream bais = new ByteArrayInputStream(img);
-//            BufferedImage newImg = ImageIO.read(bais);
-
             BufferedImage newImg = ImageUtils.decodeToImage(new String(map.result.getFigure()));
             System.out.println(newImg);
             File outputfile = new File("image.png");

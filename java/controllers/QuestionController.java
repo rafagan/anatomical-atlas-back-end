@@ -216,18 +216,6 @@ public class QuestionController extends AbstractController {
         MultipleChoice mc = new MultipleChoice();
         mc.setStatement(dto.statement);
 
-//        try {
-//            BufferedImage v = ImageUtils.decodeToImage(new String(dto.figure.getBytes()));
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            ImageIO.write(v, "png", baos);
-//            baos.flush();
-//            byte[] imageInByte = baos.toByteArray();
-//            baos.close();
-//            mc.setFigure(imageInByte);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
         mc.setFigure(dto.figure.getBytes());
         mc.setAnswerA(dto.answerA);
         mc.setAnswerB(dto.answerB);

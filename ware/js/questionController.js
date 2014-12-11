@@ -104,9 +104,13 @@ function QuestionController($scope, $http) {
 
     $scope.onClickSubmit = function() {
         $scope.loading = true;
+        $scope.success = false;
+        $scope.error = false;
 
-        var qStr = questionType == 0 ? "multiple_choice" : "true_or_false";
+        var qStr = $scope.qTypeV == 0 ? "multiple_choice" : "true_or_false";
         var requestStr = "http://rafagan.com.br/api/questions/"+qStr;
+
+        console.log($scope.qTypeV);
 
         var json = {
             figure : $scope.figure,
