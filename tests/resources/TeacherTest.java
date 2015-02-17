@@ -7,7 +7,7 @@ import models.utils.Sex;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import utils.EntityManagerUtil;
+import src.utils.EntityManagerUtil;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;

@@ -1,17 +1,14 @@
 package resources;
 
 import controllers.QuestionController;
-import dtos.BoneStructureDescriptionDto;
 import dtos.MultipleChoiceDto;
 import dtos.TrueOrFalseDto;
-import models.MultipleChoice;
-import utils.WSResponseFactory;
+import src.utils.WSRN;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.Arrays;
 
-@Path("questions")
+@Path("v1/questions")
 public class QuestionResource extends AbstractResource {
     QuestionController questionController = new QuestionController();
 
@@ -48,7 +45,7 @@ public class QuestionResource extends AbstractResource {
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertTrueOrFalsePublicQuestion(TrueOrFalseDto dto) {
         questionController.insertTrueOrFalsePublicQuestion(dto);
-        return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
+        return Response.ok(new WSRN.Response(dto)).build();
     }
 
     @POST
@@ -57,6 +54,6 @@ public class QuestionResource extends AbstractResource {
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     public Response insertMultipleChoicePublicQuestion(MultipleChoiceDto dto) {
         questionController.insertMultipleChoicePublicQuestion(dto);
-        return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
+        return Response.ok(new WSRN.Response(dto)).build();
     }
 }

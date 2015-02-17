@@ -6,7 +6,7 @@ import models.Teacher;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("teachers")
+@Path("v1/teachers")
 public class TeacherResource extends AbstractResource {
     TeacherController teacherController = new TeacherController();
 

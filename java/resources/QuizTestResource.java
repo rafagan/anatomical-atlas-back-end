@@ -11,7 +11,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("quiztests")
+@Path("v1/quiztests")
 public class QuizTestResource extends AbstractResource {
     QuizTestController quizTestController = new QuizTestController();
 

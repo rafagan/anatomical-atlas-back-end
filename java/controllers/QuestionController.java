@@ -1,19 +1,14 @@
 package controllers;
 
-import com.sun.jersey.core.util.Base64;
 import dtos.MultipleChoiceDto;
 import dtos.QuestionDto;
 import dao.QuestionDao;
 import dtos.TrueOrFalseDto;
 import models.*;
-import utils.EntityManagerUtil;
-import utils.ImageUtils;
-import utils.WSResponseFactory;
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 
-import javax.imageio.ImageIO;
 import javax.ws.rs.core.Response;
-import java.awt.image.BufferedImage;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +23,7 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getAllPublicQuestions() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Question> questions = qDao.queryPublicQuestions();
@@ -67,6 +61,7 @@ public class QuestionController extends AbstractController {
         }
 
         wResponse.setResult(dtos);
+        wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -74,13 +69,12 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getPublicQuestion(int id) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Question q = qDao.queryPublicQuestion(id);
 
         if(q == null) {
-            wResponse = WSResponseFactory.normalSingleResponse(null);
             Response r = Response.ok(wResponse).build();
             dao.get().closeConnection();
 
@@ -114,7 +108,7 @@ public class QuestionController extends AbstractController {
             dto.setAnswerE(mc.getAnswerE());
         }
 
-        wResponse = WSResponseFactory.normalSingleResponse(dto);
+        wResponse.setResult(q);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -122,8 +116,7 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getTrueOrFalsePublicQuestions() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<TrueOrFalse> questions = qDao.queryTFPublicQuestions();
@@ -153,8 +146,7 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getMultipleChoicePublicQuestions() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<MultipleChoice> questions = qDao.queryMCPublicQuestions();
@@ -195,7 +187,7 @@ public class QuestionController extends AbstractController {
         TrueOrFalse tf = new TrueOrFalse();
         tf.setCorrectAnswer(dto.correctAnswer);
         tf.setStatement(dto.statement);
-        tf.setFigure(dto.figure.getBytes());
+        if(tf.getFigure() != null) tf.setFigure(dto.figure.getBytes());
         tf.setPublicDomain((byte) 1);
 
         for(Integer id : dto.categories) {
@@ -216,7 +208,7 @@ public class QuestionController extends AbstractController {
         MultipleChoice mc = new MultipleChoice();
         mc.setStatement(dto.statement);
 
-        mc.setFigure(dto.figure.getBytes());
+        if(mc.getFigure() != null) mc.setFigure(dto.figure.getBytes());
         mc.setAnswerA(dto.answerA);
         mc.setAnswerB(dto.answerB);
         mc.setAnswerC(dto.answerC);

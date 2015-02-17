@@ -1,8 +1,11 @@
 package dao;
 
-import utils.EntityManagerUtil;
+import src.utils.EntityManagerUtil;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by rafaganabreu on 25/07/14.
@@ -52,6 +55,62 @@ public class DaoManager {
         }
 
         return obj;
+    }
+
+    public <T> T findEntity(Class<T> clss, String queryString, Map<String, T> parameters) {
+        TypedQuery<T> query = getEntityManager().createQuery(queryString, clss);
+
+        for(Map.Entry<String, T> item : parameters.entrySet()) {
+            query.setParameter(item.getKey(),item.getValue());
+        }
+
+        T entity = null;
+        try {
+            entity = query.getSingleResult();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+    public <T> T findEntity(TypedQuery<T> query) {
+        T entity = null;
+        try {
+            entity = query.getSingleResult();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return entity;
+    }
+
+    public <T> List<T> findEntities(Class<T> clss, String queryString, Map<String, T> parameters) {
+        TypedQuery<T> query = getEntityManager().createQuery(queryString, clss);
+
+        for(Map.Entry<String, T> item : parameters.entrySet()) {
+            query.setParameter(item.getKey(),item.getValue());
+        }
+
+        List<T> entities = null;
+        try {
+            entities = query.getResultList();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return entities;
+    }
+
+    public <T> List<T> findEntities(TypedQuery<T> query) {
+        List<T> entities = null;
+        try {
+            entities = query.getResultList();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+
+        return entities;
     }
 
     public DaoManager removeObject(Class clss, int id) {

@@ -1,5 +1,5 @@
 SET foreign_key_checks = 0;
-TRUNCATE Bone;
+TRUNCATE QuizTest;
 SET foreign_key_checks = 1;
 
 DROP DATABASE AnatomicalAtlas;

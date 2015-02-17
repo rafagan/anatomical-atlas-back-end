@@ -1,6 +1,6 @@
 package resources;
 
-import utils.DummyInsertion;
+import src.utils.DummyInsertion;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -8,7 +8,7 @@ import javax.ws.rs.core.Response;
 /**
  * Created by rafaganabreu on 20/09/14.
  */
-@Path("hello_rs")
+@Path("v1/hello_rs")
 public class HelloRS extends AbstractResource {
     @GET
 	@Produces(CONTENT_TYPE_APPLICATION_JSON)

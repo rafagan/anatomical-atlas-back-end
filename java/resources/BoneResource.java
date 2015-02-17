@@ -2,19 +2,21 @@ package resources;
 
 import controllers.BoneController;
 import dtos.BoneStructureDescriptionDto;
-import utils.WSOptionsResponse;
-import utils.WSResponseFactory;
+import src.utils.WSOptionsResponse;
+import src.utils.WSRN;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("bones")
+@Path("v1/bones")
 public class BoneResource extends AbstractResource {
     BoneController boneController = new BoneController();
 
     @GET
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getAllBones() { return boneController.getAllBones(); }
+    public Response getAllBones() {
+        return boneController.getAllBones();
+    }
 
     @OPTIONS
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
@@ -24,8 +26,9 @@ public class BoneResource extends AbstractResource {
         r.how = "GET api/bones";
         r.includes = "BoneParts, ParentBoneSet";
 
-        WSResponseFactory.WSResponse wr = WSResponseFactory.normalSingleResponse(r);
-        return Response.ok(wr).build();
+        WSRN.Response wResponse = new WSRN.Response();
+        wResponse.setResult(r);
+        return Response.ok(r).build();
     }
 
     @GET
@@ -44,8 +47,9 @@ public class BoneResource extends AbstractResource {
         r.how = "GET api/bones/" + boneId;
         r.includes = "BoneParts, ParentBoneSet, BoneNeighbors";
 
-        WSResponseFactory.WSResponse wr = WSResponseFactory.normalSingleResponse(r);
-        return Response.ok(wr).build();
+        WSRN.Response wResponse = new WSRN.Response();
+        wResponse.setResult(r);
+        return Response.ok(r).build();
     }
 
     @PUT
@@ -54,7 +58,7 @@ public class BoneResource extends AbstractResource {
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     public Response updateBone(@PathParam("id") int boneId, BoneStructureDescriptionDto dto) {
         boneController.updateDescription(boneId,dto.description);
-        return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
+        return Response.ok(new WSRN.Response(dto)).build();
     }
 
     @GET
@@ -73,8 +77,7 @@ public class BoneResource extends AbstractResource {
         r.how = "GET api/bones/" + boneId + "/neighbors";
         r.includes = "the neighbors of bone " + boneId;
 
-        WSResponseFactory.WSResponse wr = WSResponseFactory.normalSingleResponse(r);
-        return Response.ok(wr).build();
+        return Response.ok(new WSRN.Response(r)).build();
     }
 
     @GET

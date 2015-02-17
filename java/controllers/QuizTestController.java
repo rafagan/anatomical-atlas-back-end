@@ -3,8 +3,8 @@ package controllers;
 import dao.QuizTestDao;
 import models.Question;
 import models.QuizTest;
-import utils.EntityManagerUtil;
-import utils.WSResponseFactory;
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -20,8 +20,7 @@ public class QuizTestController extends AbstractController {
     }
 
     public Response getAllPublicQuizTests() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = qtDao.queryPublicQuizTests();
@@ -39,6 +38,7 @@ public class QuizTestController extends AbstractController {
         }
 
         wResponse.setResult(quizTests);
+        wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -46,7 +46,7 @@ public class QuizTestController extends AbstractController {
     }
 
     public Response getPublicQuizTest(int quizTestId) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         QuizTest quizTest = qtDao.queryPublicQuizTest(quizTestId);
@@ -61,7 +61,8 @@ public class QuizTestController extends AbstractController {
             q.setFigure(null);
         }
 
-        wResponse = WSResponseFactory.normalSingleResponse(quizTest);
+        wResponse.setResult(quizTest);
+        wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 

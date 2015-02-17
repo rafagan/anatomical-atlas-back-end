@@ -25,6 +25,48 @@
         <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
+    <facet type="web" name="Web2">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/ware/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/ware" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/java" />
+          <root url="file://$MODULE_DIR$/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web3">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/web/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/java" />
+          <root url="file://$MODULE_DIR$/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
+    <facet type="web" name="Web4">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/ware/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/ware" relative="/" />
+        </webroots>
+        <sourceRoots>
+          <root url="file://$MODULE_DIR$/java" />
+          <root url="file://$MODULE_DIR$/resources" />
+        </sourceRoots>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -45,6 +87,11 @@
     <orderEntry type="library" name="JUnit" level="project" />
     <orderEntry type="library" name="Jackson 1.9.2" level="project" />
     <orderEntry type="library" name="jersey-apache-client-1.18" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="jaxrs-jersey" level="project" />
+    <orderEntry type="library" name="Log4j_ApacheUtils_MySQLConnector" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="jUnit" level="project" />
+    <orderEntry type="library" name="jaxrs-jersey2" level="project" />
   </component>
 </module>
-

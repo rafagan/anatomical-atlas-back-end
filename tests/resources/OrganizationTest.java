@@ -6,7 +6,7 @@ import models.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import utils.EntityManagerUtil;
+import src.utils.EntityManagerUtil;
 
 import java.util.List;
 

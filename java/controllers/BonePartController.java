@@ -3,9 +3,8 @@ package controllers;
 import dao.BonePartDao;
 import models.Bone;
 import models.BonePart;
-import models.BoneSet;
-import utils.EntityManagerUtil;
-import utils.WSResponseFactory;
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -19,8 +18,7 @@ public class BonePartController extends AbstractController {
     public BonePartController() {dao = bpd = new BonePartDao();}
 
     public Response getAllBoneParts() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<BonePart> boneParts = bpd.queryBoneParts();

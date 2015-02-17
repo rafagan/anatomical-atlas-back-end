@@ -1,7 +1,6 @@
 package dao;
 
 import models.Bone;
-import utils.EntityManagerUtil;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

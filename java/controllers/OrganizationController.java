@@ -2,9 +2,8 @@ package controllers;
 
 import dao.OrganizationDao;
 import models.*;
-import utils.EntityManagerUtil;
-import utils.WSResponseFactory;
-
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -19,8 +18,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getAllOrganizations() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Organization> organizations = oDao.queryOrganizations();
@@ -68,7 +66,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganization(int id) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Organization o = oDao.queryOrganization(id);
@@ -106,7 +104,7 @@ public class OrganizationController extends AbstractController {
             oc.setMonitors(null);
         }
 
-        wResponse = WSResponseFactory.normalSingleResponse(o);
+        wResponse.setResult(o);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -114,8 +112,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganizationTeachers(int id) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Teacher> teachers = oDao.queryTeachers(id);
@@ -138,8 +135,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganizationStudents(int id) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Student> students = oDao.queryStudents(id);
@@ -159,7 +155,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganizationStudent(int organizationId, int studentId) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Student s = oDao.queryStudent(organizationId, studentId);
@@ -169,7 +165,7 @@ public class OrganizationController extends AbstractController {
         s.setStudentOrganization(null);
         s.setLogin(null);
 
-        wResponse = WSResponseFactory.normalSingleResponse(s);
+        wResponse.setResult(s);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -177,8 +173,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganizationClasses(int organizationId) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<OrganizationClass> classes = oDao.queryClasses(organizationId);
@@ -197,7 +192,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganizationClass(int organizationId, int classId) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         OrganizationClass oc = oDao.queryClass(organizationId, classId);
@@ -206,7 +201,7 @@ public class OrganizationController extends AbstractController {
         oc.setClassStudents(null);
         oc.setMonitors(null);
 
-        wResponse = WSResponseFactory.normalSingleResponse(oc);
+        wResponse.setResult(oc);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -214,8 +209,7 @@ public class OrganizationController extends AbstractController {
     }
 
     public Response getOrganizationClassStudents(int organizationId, int classId) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Student> students = oDao.queryStudentsInOrganizationClass(organizationId, classId);

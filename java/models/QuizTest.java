@@ -16,6 +16,7 @@ public class QuizTest {
     private int idQuizTest;
     private int difficultLevel;
     private int maxQuestions;
+    private String title;
 
     private Set<Question> questions = new HashSet<>();
     private Teacher author;
@@ -65,6 +66,11 @@ public class QuizTest {
     @Column(name = "DifficultLevel", nullable = true, insertable = true, updatable = true)
     public int getDifficultLevel() {return difficultLevel;}
     public void setDifficultLevel(int difficultLevel) {this.difficultLevel = difficultLevel;}
+
+    @Basic
+    @Column(name = "Title", nullable = true, insertable = true, updatable = true)
+    public String getTitle() {return title;}
+    public void setTitle(String title) {this.title = title;}
 
     @Basic
     @Column(name = "MaxQuestions", nullable = false, insertable = true, updatable = true)

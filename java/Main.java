@@ -4,7 +4,7 @@ import com.sun.jersey.api.client.WebResource;
 import dtos.Wrapper;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
-import utils.ImageUtils;
+import src.utils.ImageUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

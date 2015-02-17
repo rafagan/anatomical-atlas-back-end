@@ -10,7 +10,7 @@ GetStudentResolutions, PostStudentResolution: /students/resolutions
 GetStudentResolution: /students/resolutions/{id}
  */
 
-@Path("students")
+@Path("v1/students")
 public class StudentResource extends AbstractResource {
     StudentController studentController = new StudentController();
 

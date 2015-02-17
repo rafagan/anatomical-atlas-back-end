@@ -4,8 +4,8 @@ import dtos.QuestionDto;
 import dao.BoneSetDao;
 import models.*;
 import org.hibernate.Hibernate;
-import utils.EntityManagerUtil;
-import utils.WSResponseFactory;
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -22,8 +22,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getAllBoneSets() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<BoneSet> bonesSets = bsDao.queryBoneSets();
@@ -43,8 +42,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getFullBoneSets() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet skeleton = bsDao.queryBoneSet(1);
@@ -72,7 +70,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getBoneSet(int id) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet set = bsDao.queryBoneSet(id);
@@ -82,7 +80,7 @@ public class BoneSetController extends AbstractController {
         set.setBoneChildren(null);
         set.setBoneSetChildren(null);
 
-        wResponse = WSResponseFactory.normalSingleResponse(set);
+        wResponse.setResult(set);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
@@ -90,8 +88,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getBoneSetBones(int boneSetId) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Bone> bones = bsDao.queryBoneSetsBones(boneSetId);
@@ -112,8 +109,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getBoneSetParent(int boneSetId) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet set = bsDao.queryBoneSetParent(boneSetId);
@@ -133,8 +129,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getPublicQuestionsAboutBoneSet(int id) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Question> questions = bsDao.queryPublicQuestionsAbout(id);
@@ -179,8 +174,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getQuizTestsAboutBoneSet(int id) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = bsDao.queryQuizTestsAbout(id);

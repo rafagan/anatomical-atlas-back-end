@@ -2,12 +2,12 @@ package resources;
 
 import controllers.BoneSetController;
 import dtos.BoneStructureDescriptionDto;
-import utils.WSResponseFactory;
+import src.utils.WSRN;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("bonesets")
+@Path("v1/bonesets")
 public class BoneSetResource extends AbstractResource {
     BoneSetController boneSetController = new BoneSetController();
 
@@ -65,6 +65,6 @@ public class BoneSetResource extends AbstractResource {
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
     public Response updateBone(@PathParam("id") int boneSetId, BoneStructureDescriptionDto dto) {
         boneSetController.updateDescription(boneSetId,dto.description);
-        return Response.ok(WSResponseFactory.normalSingleResponse(dto)).build();
+        return Response.ok(new WSRN.Response(dto)).build();
     }
 }

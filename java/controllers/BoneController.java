@@ -3,12 +3,11 @@ package controllers;
 import dao.BoneDao;
 import models.Bone;
 import models.BoneSet;
-import utils.EntityManagerUtil;
-import utils.WSResponseFactory;
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 
 import javax.ws.rs.core.Response;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by rafaganabreu on 22/09/14.
@@ -21,11 +20,11 @@ public class BoneController extends AbstractController {
     }
 
     public Response getAllBones() {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.ResponseBone wResponse = new WSRN.ResponseBone();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<Bone> bones = bDao.queryBones();
+        List<Bone> bones = bDao.get().findEntities(
+                bDao.getEM().createQuery("SELECT b FROM Bone AS b", Bone.class));
 
         for (Bone bone : bones) {
             bone.setNeighbors(null);
@@ -40,7 +39,8 @@ public class BoneController extends AbstractController {
             parentBoneSet.setRelatedQuestions(null);
         }
 
-        wResponse.setResult(bones);
+        wResponse.setBones(bones);
+        wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -50,12 +50,10 @@ public class BoneController extends AbstractController {
     //Hibernate.initialize(bone.getBoneParts());
 
     public Response getBone(int id) {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Bone bone = bDao.queryBone(id);
-
-        wResponse = WSResponseFactory.normalSingleResponse(bone);
 
         if(bone.getBoneParts().size() == 0)
             bone.setBoneParts(null);
@@ -76,6 +74,8 @@ public class BoneController extends AbstractController {
             }
         }
 
+        wResponse.setResult(bone);
+        wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
@@ -83,8 +83,7 @@ public class BoneController extends AbstractController {
     }
 
     public Response getBoneNeighbors(int boneId) {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalListResponse();
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Bone> neighbors = bDao.queryBoneNeighbors(boneId);
@@ -96,6 +95,8 @@ public class BoneController extends AbstractController {
             bone.setParentBoneSet(null);
         }
 
+        wResponse.setResult(neighbors);
+        wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 

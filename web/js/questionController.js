@@ -25,7 +25,7 @@ function loadStructuresToCategories($scope, $http) {
     $scope.loading = true;
     var cat = $('#custom-headers');
 
-    $http.get("http://rafagan.com.br/api/bonesets")
+    $http.get("http://rafagan.com.br/api/v1/bonesets")
         .success(function(response1) {
             $.each(response1.result, function(index, value) {
                 cat.multiSelect('addOption',{
@@ -37,7 +37,7 @@ function loadStructuresToCategories($scope, $http) {
                 $scope.categories[value.category] = value.idBoneSet;
             });
 
-            $http.get("http://rafagan.com.br/api/bones")
+            $http.get("http://rafagan.com.br/api/v1/bones")
                 .success(function(response2) {
                     $.each(response2.result, function(index, value) {
                         cat.multiSelect('addOption', {
@@ -54,7 +54,7 @@ function loadStructuresToCategories($scope, $http) {
                         value.className = value.className + " disabled";
                     });
 
-                    $http.get("http://rafagan.com.br/api/boneparts")
+                    $http.get("http://rafagan.com.br/api/v1/boneparts")
                         .success(function(response3) {
                             $.each(response3.result, function (index, value) {
                                 cat.multiSelect('addOption', {
@@ -108,7 +108,7 @@ function QuestionController($scope, $http) {
         $scope.error = false;
 
         var qStr = $scope.qTypeV == 0 ? "multiple_choice" : "true_or_false";
-        var requestStr = "http://rafagan.com.br/api/questions/"+qStr;
+        var requestStr = "http://rafagan.com.br/api/v1/questions/"+qStr;
 
         console.log($scope.qTypeV);
 

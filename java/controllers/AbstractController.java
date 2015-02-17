@@ -1,8 +1,8 @@
 package controllers;
 
 import dao.AbstractDao;
-import utils.EntityManagerUtil;
-import utils.WSResponseFactory;
+import src.utils.EntityManagerUtil;
+import src.utils.WSRN;
 
 import javax.ws.rs.core.Response;
 
@@ -14,8 +14,7 @@ public class AbstractController {
 
     public Response add(Object newObj)
     {
-        WSResponseFactory.WSResponse wResponse;
-        wResponse = WSResponseFactory.normalSingleResponse(newObj);
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         dao.get().insertObject(newObj);
@@ -28,10 +27,10 @@ public class AbstractController {
 
     public Response remove(Class clss,int id)
     {
-        WSResponseFactory.WSResponse wResponse;
+        WSRN.Response wResponse = new WSRN.Response();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        wResponse = WSResponseFactory.normalSingleResponse(dao.get().findObject(clss, id));
+        wResponse.setResult(dao.get().findObject(clss, id));
         dao.get().removeObject(clss,id);
         wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();

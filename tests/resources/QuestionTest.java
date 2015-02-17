@@ -4,12 +4,11 @@ import controllers.QuestionController;
 import dao.QuestionDao;
 import models.MultipleChoice;
 import models.Question;
-import models.Teacher;
 import models.TrueOrFalse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import utils.EntityManagerUtil;
+import src.utils.EntityManagerUtil;
 
 import java.util.List;
 

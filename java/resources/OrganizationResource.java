@@ -5,7 +5,7 @@ import controllers.OrganizationController;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
-@Path("organizations")
+@Path("v1/organizations")
 public class OrganizationResource extends AbstractResource {
     OrganizationController controller = new OrganizationController();
 
