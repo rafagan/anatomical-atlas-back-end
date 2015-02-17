@@ -11,18 +11,7 @@ import java.util.Set;
  */
 public class TeacherDao extends AbstractDao {
     public List<Teacher> queryTeachers() {
-        TypedQuery<Teacher> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT t FROM Teacher AS t", Teacher.class);
-        List<Teacher> teachers = null;
-
-        try {
-            teachers = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teachers;
+        return dao.findEntities(getEM().createQuery("SELECT t FROM Teacher AS t", Teacher.class));
     }
 
     public Teacher queryTeacher(int id) {
@@ -31,15 +20,8 @@ public class TeacherDao extends AbstractDao {
                         "SELECT t FROM Teacher AS t " +
                                 "WHERE t.idTeacher = :id", Teacher.class);
         query.setParameter("id",id);
-        Teacher teacher = null;
 
-        try {
-            teacher = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacher;
+        return dao.findEntity(query);
     }
 
     public List<Organization> queryOrganizations(int id) {
@@ -48,15 +30,8 @@ public class TeacherDao extends AbstractDao {
                         "SELECT o FROM Organization AS o " +
                                 "WHERE o.owner.idTeacher = :id", Organization.class);
         query.setParameter("id",id);
-        List<Organization> teacherOrganizations = null;
 
-        try {
-            teacherOrganizations = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherOrganizations;
+        return dao.findEntities(query);
     }
 
     public List<Clazz> queryMonitoratedClasses(int id) {
@@ -66,15 +41,8 @@ public class TeacherDao extends AbstractDao {
                                 "JOIN c.monitors AS t " +
                                 "ON t.idTeacher = :id", Clazz.class);
         query.setParameter("id",id);
-        List<Clazz> teacherClasses = null;
 
-        try {
-            teacherClasses = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherClasses;
+        return dao.findEntities(query);
     }
 
     public List<Student> queryMonitoratedStudents(int id) {
@@ -85,15 +53,8 @@ public class TeacherDao extends AbstractDao {
                                 "JOIN c.monitors AS t " +
                                 "WHERE t.idTeacher = :id", Student.class);
         query.setParameter("id",id);
-        List<Student> teacherStudents = null;
 
-        try {
-            teacherStudents = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherStudents;
+        return dao.findEntities(query);
     }
 
     public List<Student> queryMonitoratedClassStudents(int idTeacher, int idClass) {
@@ -105,15 +66,8 @@ public class TeacherDao extends AbstractDao {
                                 "WHERE t.idTeacher = :id", Student.class);
         query.setParameter("id",idTeacher);
         query.setParameter("idClass",idClass);
-        List<Student> teacherStudents = null;
 
-        try {
-            teacherStudents = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherStudents;
+        return dao.findEntities(query);
     }
 
     public Clazz queryMonitoratedClass(int idTeacher, int idClass) {
@@ -124,15 +78,8 @@ public class TeacherDao extends AbstractDao {
                                 "WHERE c.idClass = :idClass", Clazz.class);
         query.setParameter("id",idTeacher);
         query.setParameter("idClass",idClass);
-        Clazz teacherClass = null;
 
-        try {
-            teacherClass = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherClass;
+        return dao.findEntity(query);
     }
 
     public List<Question> queryQuestions(int id) {
@@ -142,15 +89,8 @@ public class TeacherDao extends AbstractDao {
                                 "JOIN q.authors AS t " +
                                 "ON t.idTeacher = :id", Question.class);
         query.setParameter("id",id);
-        List<Question> teacherQuestions = null;
 
-        try {
-            teacherQuestions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherQuestions;
+        return dao.findEntities(query);
     }
 
     public Question queryQuestion(int teacherId, int questionId) {
@@ -162,15 +102,8 @@ public class TeacherDao extends AbstractDao {
                                 "WHERE q.idQuestion = :idQuestion", Question.class);
         query.setParameter("id",teacherId);
         query.setParameter("idQuestion",questionId);
-        Question teacherQuestion = null;
 
-        try {
-            teacherQuestion = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherQuestion;
+        return dao.findEntity(query);
     }
 
     public List<TrueOrFalse> queryTFQuestions(int id) {
@@ -180,15 +113,8 @@ public class TeacherDao extends AbstractDao {
                                 "JOIN q.authors AS t " +
                                 "ON t.idTeacher = :id", TrueOrFalse.class);
         query.setParameter("id",id);
-        List<TrueOrFalse> teacherQuestions = null;
 
-        try {
-            teacherQuestions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherQuestions;
+        return dao.findEntities(query);
     }
 
     public List<MultipleChoice> queryMCQuestions(int id) {
@@ -198,15 +124,8 @@ public class TeacherDao extends AbstractDao {
                                 "JOIN q.authors AS t " +
                                 "ON t.idTeacher = :id", MultipleChoice.class);
         query.setParameter("id",id);
-        List<MultipleChoice> teacherQuestions = null;
 
-        try {
-            teacherQuestions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherQuestions;
+        return dao.findEntities(query);
     }
 
     public List<TeacherClass> queryOwnerClasses(int id) {
@@ -215,15 +134,8 @@ public class TeacherDao extends AbstractDao {
                         "SELECT c FROM TeacherClass AS c " +
                                 "WHERE c.creator.idTeacher = :id", TeacherClass.class);
         query.setParameter("id",id);
-        List<TeacherClass> teacherClass = null;
 
-        try {
-            teacherClass = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teacherClass;
+        return dao.findEntities(query);
     }
 
     public List<QuizTest> queryQuizTests(int id) {
@@ -232,15 +144,8 @@ public class TeacherDao extends AbstractDao {
                         "SELECT qt FROM QuizTest AS qt " +
                                 "WHERE qt.author.idTeacher = :id", QuizTest.class);
         query.setParameter("id",id);
-        List<QuizTest> quizTests = null;
 
-        try {
-            quizTests = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return quizTests;
+        return dao.findEntities(query);
     }
 
     public QuizTest queryQuizTest(int teacherId, int quizTestId) {
@@ -250,14 +155,7 @@ public class TeacherDao extends AbstractDao {
                                 "WHERE qt.author.idTeacher = :id AND qt.idQuizTest = :idQuizTest", QuizTest.class);
         query.setParameter("id",teacherId);
         query.setParameter("idQuizTest",quizTestId);
-        QuizTest quizTest = null;
 
-        try {
-            quizTest = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return quizTest;
+        return dao.findEntity(query);
     }
 }

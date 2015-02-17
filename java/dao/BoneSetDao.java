@@ -14,18 +14,7 @@ import java.util.List;
  */
 public class BoneSetDao extends AbstractDao {
     public List<BoneSet> queryBoneSets() {
-        TypedQuery<BoneSet> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT bs FROM BoneSet AS bs ", BoneSet.class);
-        List<BoneSet> boneSets = null;
-
-        try {
-            boneSets = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return boneSets;
+        return dao.findEntities(getEM().createQuery("SELECT bs FROM BoneSet AS bs", BoneSet.class));
     }
 
     public BoneSet queryBoneSet(int id) {
@@ -33,15 +22,8 @@ public class BoneSetDao extends AbstractDao {
                 dao.getEntityManager().createQuery(
                         "SELECT bs FROM BoneSet AS bs WHERE bs.idBoneSet = :id", BoneSet.class);
         query.setParameter("id",id);
-        BoneSet boneSet = null;
 
-        try {
-            boneSet = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return boneSet;
+        return dao.findEntity(query);
     }
 
     public List<Bone> queryBoneSetsBones(int id) {
@@ -50,15 +32,8 @@ public class BoneSetDao extends AbstractDao {
                         "SELECT b FROM Bone AS b " +
                         "WHERE b.parentBoneSet.idBoneSet = :id", Bone.class);
         query.setParameter("id",id);
-        List<Bone> sonBones = null;
 
-        try {
-            sonBones = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return sonBones;
+        return dao.findEntities(query);
     }
 
     public BoneSet queryBoneSetParent(int id) {
@@ -66,17 +41,8 @@ public class BoneSetDao extends AbstractDao {
                 dao.getEntityManager().createQuery(
                         "SELECT bs.parent FROM BoneSet AS bs WHERE bs.idBoneSet = :id", BoneSet.class);
         query.setParameter("id",id);
-        BoneSet boneSet = null;
 
-        try {
-            boneSet = query.getSingleResult();
-        } catch (NoResultException nre) {
-            return null; //Expected result
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return boneSet;
+        return dao.findEntity(query);
     }
 
 
@@ -87,15 +53,8 @@ public class BoneSetDao extends AbstractDao {
                                 "JOIN q.categories AS bs ON bs.idBoneSet = :id " +
                                 "WHERE q.publicDomain = 1", Question.class);
         query.setParameter("id",id);
-        List<Question> questions = null;
 
-        try {
-            questions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return questions;
+        return dao.findEntities(query);
     }
 
     public List<QuizTest> queryQuizTestsAbout(int id) {

@@ -11,18 +11,7 @@ import java.util.List;
  */
 public class StudentDao extends AbstractDao {
     public List<Student> queryStudents() {
-        TypedQuery<Student> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT s FROM Student AS s", Student.class);
-        List<Student> teachers = null;
-
-        try {
-            teachers = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return teachers;
+        return dao.findEntities(getEM().createQuery("SELECT s FROM Student AS s", Student.class));
     }
 
     public Student queryStudent(int id) {
@@ -31,15 +20,8 @@ public class StudentDao extends AbstractDao {
                         "SELECT s FROM Student AS s " +
                                 "WHERE s.idStudent = :id", Student.class);
         query.setParameter("id",id);
-        Student student = null;
 
-        try {
-            student = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return student;
+        return dao.findEntity(query);
     }
 
     public List<Resolution> queryResolutions(int id) {
@@ -48,15 +30,8 @@ public class StudentDao extends AbstractDao {
                         "SELECT r FROM Resolution AS r " +
                                 "WHERE r.owner.idStudent = :id", Resolution.class);
         query.setParameter("id",id);
-        List<Resolution> resolutions = null;
 
-        try {
-            resolutions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return resolutions;
+        return dao.findEntities(query);
     }
 
     public Resolution queryResolution(int studentId, int resolutionId) {
@@ -66,14 +41,7 @@ public class StudentDao extends AbstractDao {
                                 "WHERE r.owner.idStudent = :id AND r.idResolution = :idResolution", Resolution.class);
         query.setParameter("id",studentId);
         query.setParameter("idResolution",resolutionId);
-        Resolution resolution = null;
 
-        try {
-            resolution = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return resolution;
+        return dao.findEntity(query);
     }
 }

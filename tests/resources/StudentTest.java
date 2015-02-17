@@ -102,7 +102,7 @@ public class StudentTest {
     @Test
     public void testGetStudentResolution() throws Exception {
         try {
-            sc.getStudentResolution(2,1);
+            sc.getStudentResolution(3,10);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
@@ -110,7 +110,7 @@ public class StudentTest {
 
         try {
             dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-            Resolution r = dao.queryResolution(2,1);
+            Resolution r = dao.queryResolution(3,10);
             r.getTotalCorrectAnswers();
             dao.get().closeConnection();
         } catch(Exception e) {

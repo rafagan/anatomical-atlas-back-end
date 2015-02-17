@@ -12,51 +12,18 @@ import java.util.List;
  */
 public class QuestionDao extends AbstractDao {
     public List<Question> queryPublicQuestions() {
-        TypedQuery<Question> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT q FROM Question AS q " +
-                                "WHERE q.publicDomain = 1", Question.class);
-        List<Question> questions = null;
-
-        try {
-            questions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return questions;
+        return dao.findEntities(getEM().createQuery("SELECT q FROM Question AS q " +
+                "WHERE q.publicDomain = 1", Question.class));
     }
 
     public List<TrueOrFalse> queryTFPublicQuestions() {
-        TypedQuery<TrueOrFalse> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT q FROM TrueOrFalse AS q " +
-                                "WHERE q.publicDomain = 1", TrueOrFalse.class);
-        List<TrueOrFalse> questions = null;
-
-        try {
-            questions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return questions;
+        return dao.findEntities(getEM().createQuery("SELECT q FROM TrueOrFalse AS q " +
+                "WHERE q.publicDomain = 1", TrueOrFalse.class));
     }
 
     public List<MultipleChoice> queryMCPublicQuestions() {
-        TypedQuery<MultipleChoice> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT q FROM MultipleChoice AS q " +
-                                "WHERE q.publicDomain = 1", MultipleChoice.class);
-        List<MultipleChoice> questions = null;
-
-        try {
-            questions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return questions;
+        return dao.findEntities(getEM().createQuery("SELECT q FROM MultipleChoice AS q " +
+                "WHERE q.publicDomain = 1", MultipleChoice.class));
     }
 
     public Question queryPublicQuestion(int id) {
@@ -65,14 +32,7 @@ public class QuestionDao extends AbstractDao {
                         "SELECT q FROM Question AS q " +
                                 "WHERE q.idQuestion = :id AND q.publicDomain = 1", Question.class);
         query.setParameter("id",id);
-        Question question = null;
 
-        try {
-            question = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return question;
+        return dao.findEntity(query);
     }
 }

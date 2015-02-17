@@ -11,18 +11,7 @@ import java.util.List;
  */
 public class OrganizationDao extends AbstractDao {
     public List<Organization> queryOrganizations() {
-        TypedQuery<Organization> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT q FROM Organization AS q", Organization.class);
-        List<Organization> organizations = null;
-
-        try {
-            organizations = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return organizations;
+        return dao.findEntities(getEM().createQuery("SELECT q FROM Organization AS q", Organization.class));
     }
 
     public Organization queryOrganization(int id) {
@@ -31,15 +20,8 @@ public class OrganizationDao extends AbstractDao {
                         "SELECT o FROM Organization AS o " +
                                 "WHERE o.idOrganization = :id", Organization.class);
         query.setParameter("id",id);
-        Organization organization = null;
 
-        try {
-            organization = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return organization;
+        return dao.findEntity(query);
     }
 
     public List<Teacher> queryTeachers(int id) {
@@ -49,15 +31,8 @@ public class OrganizationDao extends AbstractDao {
                                 "JOIN t.workingOrganizations AS o " +
                                 "ON o.idOrganization = :id", Teacher.class);
         query.setParameter("id",id);
-        List<Teacher> orgTeachers = null;
 
-        try {
-            orgTeachers = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return orgTeachers;
+        return dao.findEntities(query);
     }
 
     public List<Student> queryStudents(int id) {
@@ -66,15 +41,8 @@ public class OrganizationDao extends AbstractDao {
                         "SELECT s FROM Student AS s " +
                                 "WHERE s.studentOrganization.idOrganization = :id", Student.class);
         query.setParameter("id",id);
-        List<Student> orgStudents = null;
 
-        try {
-            orgStudents = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return orgStudents;
+        return dao.findEntities(query);
     }
 
     public Student queryStudent(int organizationId, int studentId) {
@@ -85,15 +53,8 @@ public class OrganizationDao extends AbstractDao {
                                 "AND s.idStudent = :idStudent", Student.class);
         query.setParameter("id",organizationId);
         query.setParameter("idStudent",studentId);
-        Student orgStudent = null;
 
-        try {
-            orgStudent = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return orgStudent;
+        return dao.findEntity(query);
     }
 
     public List<OrganizationClass> queryClasses(int id) {
@@ -102,15 +63,8 @@ public class OrganizationDao extends AbstractDao {
                         "SELECT c FROM OrganizationClass AS c " +
                                 "WHERE c.creator.idOrganization = :id", OrganizationClass.class);
         query.setParameter("id",id);
-        List<OrganizationClass> orgClasses = null;
 
-        try {
-            orgClasses = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return orgClasses;
+        return dao.findEntities(query);
     }
 
     public OrganizationClass queryClass(int organizationId, int classId) {
@@ -121,15 +75,8 @@ public class OrganizationDao extends AbstractDao {
                                 "AND c.idClass = :idClass", OrganizationClass.class);
         query.setParameter("id",organizationId);
         query.setParameter("idClass",classId);
-        OrganizationClass orgClass = null;
 
-        try {
-            orgClass = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return orgClass;
+        return dao.findEntity(query);
     }
 
     public List<Student> queryStudentsInOrganizationClass(int organizationId, int classId) {

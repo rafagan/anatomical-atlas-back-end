@@ -23,8 +23,7 @@ public class BoneController extends AbstractController {
         WSRN.ResponseBone wResponse = new WSRN.ResponseBone();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
-        List<Bone> bones = bDao.get().findEntities(
-                bDao.getEM().createQuery("SELECT b FROM Bone AS b", Bone.class));
+        List<Bone> bones = bDao.queryBones();
 
         for (Bone bone : bones) {
             bone.setNeighbors(null);

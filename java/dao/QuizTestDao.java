@@ -10,19 +10,8 @@ import java.util.List;
  */
 public class QuizTestDao extends AbstractDao {
     public List<QuizTest> queryPublicQuizTests() {
-        TypedQuery<QuizTest> query =
-                dao.getEntityManager().createQuery(
-                        "SELECT qt FROM QuizTest AS qt " +
-                                "WHERE qt.author = NULL", QuizTest.class);
-        List<QuizTest> questions = null;
-
-        try {
-            questions = query.getResultList();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return questions;
+        return dao.findEntities(getEM().createQuery("SELECT qt FROM QuizTest AS qt " +
+                "WHERE qt.author = NULL", QuizTest.class));
     }
 
     public QuizTest queryPublicQuizTest(int id) {
@@ -31,14 +20,7 @@ public class QuizTestDao extends AbstractDao {
                         "SELECT qt FROM QuizTest AS qt " +
                                 "WHERE qt.idQuizTest = :id AND qt.author = NULL", QuizTest.class);
         query.setParameter("id",id);
-        QuizTest question = null;
 
-        try {
-            question = query.getSingleResult();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-
-        return question;
+        return dao.findEntity(query);
     }
 }
