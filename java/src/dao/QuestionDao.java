@@ -1,8 +1,8 @@
 package src.dao;
 
-import models.MultipleChoice;
-import models.Question;
-import models.TrueOrFalse;
+import src.models.MultipleChoice;
+import src.models.Question;
+import src.models.TrueOrFalse;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

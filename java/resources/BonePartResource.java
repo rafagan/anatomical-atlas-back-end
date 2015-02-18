@@ -1,7 +1,7 @@
 package resources;
 
-import controllers.BonePartController;
-import dtos.BoneStructureDescriptionDto;
+import src.controllers.BonePartController;
+import src.dtos.BoneStructureDescriptionDto;
 import src.utils.WSRN;
 
 import javax.ws.rs.*;

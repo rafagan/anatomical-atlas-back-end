@@ -1,9 +1,9 @@
 package src.dao;
 
-import models.Bone;
-import models.BoneSet;
-import models.Question;
-import models.QuizTest;
+import src.models.Bone;
+import src.models.BoneSet;
+import src.models.Question;
+import src.models.QuizTest;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

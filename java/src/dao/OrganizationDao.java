@@ -1,6 +1,6 @@
 package src.dao;
 
-import models.*;
+import src.models.*;
 
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;

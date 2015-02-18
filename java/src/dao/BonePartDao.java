@@ -1,6 +1,6 @@
 package src.dao;
 
-import models.BonePart;
+import src.models.BonePart;
 
 import java.util.List;
 

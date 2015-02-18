@@ -1,6 +1,6 @@
 package resources;
 
-import controllers.OrganizationController;
+import src.controllers.OrganizationController;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;

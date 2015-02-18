@@ -1,8 +1,8 @@
 package src.controllers;
 
 import src.dao.BoneDao;
-import models.Bone;
-import models.BoneSet;
+import src.models.Bone;
+import src.models.BoneSet;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 

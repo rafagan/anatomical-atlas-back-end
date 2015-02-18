@@ -1,7 +1,7 @@
 package resources;
 
-import controllers.BonePartController;
-import dao.BonePartDao;
+import src.controllers.BonePartController;
+import src.dao.BonePartDao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

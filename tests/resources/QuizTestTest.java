@@ -1,8 +1,8 @@
 package resources;
 
-import controllers.QuizTestController;
-import dao.QuizTestDao;
-import models.QuizTest;
+import src.controllers.QuizTestController;
+import src.dao.QuizTestDao;
+import src.models.QuizTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

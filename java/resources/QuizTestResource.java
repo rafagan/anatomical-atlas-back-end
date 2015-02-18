@@ -1,6 +1,6 @@
 package resources;
 
-import controllers.QuizTestController;
+import src.controllers.QuizTestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;

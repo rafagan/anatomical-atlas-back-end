@@ -2,7 +2,7 @@ package src.controllers;
 
 import src.dtos.QuestionDto;
 import src.dao.TeacherDao;
-import models.*;
+import src.models.*;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 

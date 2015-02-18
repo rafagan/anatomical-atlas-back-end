@@ -1,7 +1,7 @@
 package resources;
 
-import controllers.BoneController;
-import dtos.BoneStructureDescriptionDto;
+import src.controllers.BoneController;
+import src.dtos.BoneStructureDescriptionDto;
 import src.utils.WSOptionsResponse;
 import src.utils.WSRN;
 

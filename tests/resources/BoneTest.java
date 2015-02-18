@@ -1,9 +1,9 @@
 package resources;
 
-import controllers.BoneController;
-import dao.BoneDao;
-import models.Bone;
-import models.BonePart;
+import src.controllers.BoneController;
+import src.dao.BoneDao;
+import src.models.Bone;
+import src.models.BonePart;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

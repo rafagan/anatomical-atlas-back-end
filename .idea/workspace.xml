@@ -7,26 +7,159 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e7f53ca-6e58-41eb-a364-534a55d90626" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/BoneController.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/BoneController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BoneDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BoneDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BonePartDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BonePartDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BoneSetDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BoneSetDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/OrganizationDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/OrganizationDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/QuestionDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/QuestionDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/QuizTestDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/QuizTestDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/StudentDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/StudentDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/TeacherDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/TeacherDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/war/aabe.war" afterPath="$PROJECT_DIR$/war/aabe.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/controllers/BoneController.java" afterPath="$PROJECT_DIR$/java/controllers/BoneController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/BoneDao.java" afterPath="$PROJECT_DIR$/java/dao/BoneDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/BonePartDao.java" afterPath="$PROJECT_DIR$/java/dao/BonePartDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/BoneSetDao.java" afterPath="$PROJECT_DIR$/java/dao/BoneSetDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/OrganizationDao.java" afterPath="$PROJECT_DIR$/java/dao/OrganizationDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/QuestionDao.java" afterPath="$PROJECT_DIR$/java/dao/QuestionDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/QuizTestDao.java" afterPath="$PROJECT_DIR$/java/dao/QuizTestDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/StudentDao.java" afterPath="$PROJECT_DIR$/java/dao/StudentDao.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/ROOT.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/AbstractController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/BoneController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/BonePartController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/BoneSetController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/OrganizationController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/QuestionController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/QuizTestController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/StudentController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/controllers/TeacherController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/AbstractDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/BoneDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/BonePartDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/BoneSetDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/DaoManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/OrganizationDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/QuestionDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/QuizTestDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/StudentDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dao/TeacherDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dtos/BoneStructureDescriptionDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dtos/MultipleChoiceDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dtos/QuestionDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dtos/TrueOrFalseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/dtos/Wrapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Bone.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/BonePart.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/BoneSet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Clazz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Login.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/MultipleChoice.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Organization.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/OrganizationClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Question.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/QuizTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Resolution.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Student.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/StudentLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/Teacher.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/TeacherClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/TeacherLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/TrueOrFalse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/models/utils/Sex.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/war/aabe.war" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/AbstractController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/BoneController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/BonePartController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/BoneSetController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/OrganizationController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/QuestionController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/QuizTestController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/StudentController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/controllers/TeacherController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/AbstractDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BoneDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BonePartDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/BoneSetDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/DaoManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/OrganizationDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/QuestionDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/QuizTestDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/StudentDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dao/TeacherDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dtos/BoneStructureDescriptionDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dtos/MultipleChoiceDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dtos/QuestionDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dtos/TrueOrFalseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/dtos/Wrapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Bone.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/BonePart.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/BoneSet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Clazz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Login.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/MultipleChoice.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Organization.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/OrganizationClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Question.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/QuizTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Resolution.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Student.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/StudentLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/Teacher.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/TeacherClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/TeacherLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/TrueOrFalse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/models/utils/Sex.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/BonePartResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/BonePartResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/BonePartResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/BonePartResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/BonePartTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/BonePartTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/BoneResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/BoneResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/BoneResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/BoneResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/BoneSetResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/BoneSetResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/BoneSetResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/BoneSetResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/BoneSetTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/BoneSetTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/BoneTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/BoneTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/DummyInsertion.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/DummyInsertion.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/DummyInsertion.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/DummyInsertion.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/HelloRS.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/HelloRS.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/Main$1.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/Main$1.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/Main.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/Main.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/OrganizationResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/OrganizationResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/OrganizationResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/OrganizationResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/OrganizationTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/OrganizationTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/QuestionResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/QuestionResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/QuestionResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/QuestionResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/QuestionTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/QuestionTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/QuizTestResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/QuizTestResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/QuizTestResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/QuizTestResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/QuizTestTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/QuizTestTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/StudentResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/StudentResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/StudentResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/StudentResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/StudentTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/StudentTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/resources/TeacherResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/resources/TeacherResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/TeacherResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/resources/TeacherResource.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/resources/TeacherTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/resources/TeacherTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/BoneController.java" afterPath="$PROJECT_DIR$/java/src/controllers/BoneController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/BoneDao.java" afterPath="$PROJECT_DIR$/java/src/dao/BoneDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/BonePartController.java" afterPath="$PROJECT_DIR$/java/src/controllers/BonePartController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/BonePartDao.java" afterPath="$PROJECT_DIR$/java/src/dao/BonePartDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/BonePartResource.java" afterPath="$PROJECT_DIR$/java/resources/BonePartResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/BonePartTest.java" afterPath="$PROJECT_DIR$/tests/resources/BonePartTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/BoneResource.java" afterPath="$PROJECT_DIR$/java/resources/BoneResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/BoneSetController.java" afterPath="$PROJECT_DIR$/java/src/controllers/BoneSetController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/BoneSetDao.java" afterPath="$PROJECT_DIR$/java/src/dao/BoneSetDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/BoneSetResource.java" afterPath="$PROJECT_DIR$/java/resources/BoneSetResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/BoneSetTest.java" afterPath="$PROJECT_DIR$/tests/resources/BoneSetTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/BoneTest.java" afterPath="$PROJECT_DIR$/tests/resources/BoneTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/utils/DummyInsertion.java" afterPath="$PROJECT_DIR$/java/src/utils/DummyInsertion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/HelloRS.java" afterPath="$PROJECT_DIR$/java/resources/HelloRS.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/Main.java" afterPath="$PROJECT_DIR$/java/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/OrganizationController.java" afterPath="$PROJECT_DIR$/java/src/controllers/OrganizationController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/OrganizationDao.java" afterPath="$PROJECT_DIR$/java/src/dao/OrganizationDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/OrganizationResource.java" afterPath="$PROJECT_DIR$/java/resources/OrganizationResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/OrganizationTest.java" afterPath="$PROJECT_DIR$/tests/resources/OrganizationTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/QuestionController.java" afterPath="$PROJECT_DIR$/java/src/controllers/QuestionController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/QuestionDao.java" afterPath="$PROJECT_DIR$/java/src/dao/QuestionDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/QuestionResource.java" afterPath="$PROJECT_DIR$/java/resources/QuestionResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/QuestionTest.java" afterPath="$PROJECT_DIR$/tests/resources/QuestionTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" afterPath="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/QuizTestDao.java" afterPath="$PROJECT_DIR$/java/src/dao/QuizTestDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/QuizTestResource.java" afterPath="$PROJECT_DIR$/java/resources/QuizTestResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/QuizTestTest.java" afterPath="$PROJECT_DIR$/tests/resources/QuizTestTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/StudentController.java" afterPath="$PROJECT_DIR$/java/src/controllers/StudentController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/StudentDao.java" afterPath="$PROJECT_DIR$/java/src/dao/StudentDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/StudentResource.java" afterPath="$PROJECT_DIR$/java/resources/StudentResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/StudentTest.java" afterPath="$PROJECT_DIR$/tests/resources/StudentTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/dao/TeacherDao.java" afterPath="$PROJECT_DIR$/java/dao/TeacherDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/TeacherController.java" afterPath="$PROJECT_DIR$/java/src/controllers/TeacherController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/TeacherDao.java" afterPath="$PROJECT_DIR$/java/src/dao/TeacherDao.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/resources/TeacherResource.java" afterPath="$PROJECT_DIR$/java/resources/TeacherResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/resources/TeacherTest.java" afterPath="$PROJECT_DIR$/tests/resources/TeacherTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AABackEnd.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,7 +275,18 @@
     <favorites_list name="AABackEnd" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="HelloRS.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/java/resources/HelloRS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.36649215" vertical-offset="0" max-vertical-offset="600">
+              <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -155,30 +299,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/java/utils/WSResponseSpecialization.java" />
-        <option value="$PROJECT_DIR$/java/utils/WSRS.java" />
-        <option value="$PROJECT_DIR$/java/utils/WSResponseFactory.java" />
-        <option value="$PROJECT_DIR$/java/controllers/AbstractController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/BonePartController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/BoneSetController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/OrganizationController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/QuestionController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/QuizTestController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/StudentController.java" />
-        <option value="$PROJECT_DIR$/java/controllers/TeacherController.java" />
-        <option value="$PROJECT_DIR$/java/resources/BonePartResource.java" />
-        <option value="$PROJECT_DIR$/java/resources/BoneSetResource.java" />
-        <option value="$PROJECT_DIR$/java/resources/HelloRS.java" />
-        <option value="$PROJECT_DIR$/java/resources/OrganizationResource.java" />
-        <option value="$PROJECT_DIR$/java/resources/QuestionResource.java" />
-        <option value="$PROJECT_DIR$/java/resources/QuizTestResource.java" />
-        <option value="$PROJECT_DIR$/java/resources/StudentResource.java" />
-        <option value="$PROJECT_DIR$/java/resources/TeacherResource.java" />
-        <option value="$PROJECT_DIR$/web/index.html" />
         <option value="$PROJECT_DIR$/java/resources/HelloServletHtml.java" />
         <option value="$PROJECT_DIR$/java/resources/HelloServlet.java" />
         <option value="$PROJECT_DIR$/java/utils/WSRN.java" />
-        <option value="$PROJECT_DIR$/java/resources/BoneResource.java" />
         <option value="$PROJECT_DIR$/web/js/descriptionController.js" />
         <option value="$PROJECT_DIR$/web/js/questionController.js" />
         <option value="$PROJECT_DIR$/java/dao/AbstractDao.java" />
@@ -192,7 +315,41 @@
         <option value="$PROJECT_DIR$/java/dao/QuizTestDao.java" />
         <option value="$PROJECT_DIR$/java/dao/StudentDao.java" />
         <option value="$PROJECT_DIR$/java/dao/TeacherDao.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/OrganizationController.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/OrganizationDao.java" />
+        <option value="$PROJECT_DIR$/java/resources/QuestionResource.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/QuestionController.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/QuestionDao.java" />
+        <option value="$PROJECT_DIR$/java/resources/QuizTestResource.java" />
+        <option value="$PROJECT_DIR$/java/resources/BonePartResource.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/BonePartController.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/QuizTestDao.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/BoneController.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/BoneSetController.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/StudentController.java" />
+        <option value="$PROJECT_DIR$/java/src/controllers/TeacherController.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/BoneDao.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/BonePartDao.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/BoneSetDao.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/StudentDao.java" />
+        <option value="$PROJECT_DIR$/java/src/dao/TeacherDao.java" />
+        <option value="$PROJECT_DIR$/java/resources/OrganizationResource.java" />
+        <option value="$PROJECT_DIR$/java/resources/StudentResource.java" />
+        <option value="$PROJECT_DIR$/java/resources/TeacherResource.java" />
+        <option value="$PROJECT_DIR$/tests/resources/BoneSetTest.java" />
+        <option value="$PROJECT_DIR$/java/src/utils/DummyInsertion.java" />
+        <option value="$PROJECT_DIR$/tests/resources/BonePartTest.java" />
+        <option value="$PROJECT_DIR$/tests/resources/BoneTest.java" />
+        <option value="$PROJECT_DIR$/tests/resources/OrganizationTest.java" />
+        <option value="$PROJECT_DIR$/tests/resources/QuestionTest.java" />
+        <option value="$PROJECT_DIR$/tests/resources/QuizTestTest.java" />
         <option value="$PROJECT_DIR$/tests/resources/StudentTest.java" />
+        <option value="$PROJECT_DIR$/tests/resources/TeacherTest.java" />
+        <option value="$PROJECT_DIR$/java/Main.java" />
+        <option value="$PROJECT_DIR$/java/resources/BoneResource.java" />
+        <option value="$PROJECT_DIR$/java/resources/BoneSetResource.java" />
+        <option value="$PROJECT_DIR$/java/resources/HelloRS.java" />
       </list>
     </option>
   </component>
@@ -372,8 +529,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -434,7 +589,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
+              <option name="myItemId" value="ware" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -445,6 +608,18 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ware" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="classes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -480,12 +655,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1900,7 +2095,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.StudentTest.testGetStudentResolution">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 7">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Main" />
@@ -2307,7 +2502,7 @@
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="aabe">
+        <artifact name="ROOT">
           <settings />
         </artifact>
       </deployment>
@@ -2374,7 +2569,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="aabe" />
+          <artifact name="ROOT" />
         </option>
       </method>
     </configuration>
@@ -2384,7 +2579,7 @@
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="aabe">
+        <artifact name="ROOT">
           <settings>
             <option name="CONTEXT_PATH" value="/" />
           </settings>
@@ -2453,7 +2648,7 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="aabe" />
+          <artifact name="ROOT" />
         </option>
       </method>
     </configuration>
@@ -2542,11 +2737,13 @@
       <workItem from="1423573820698" duration="2569000" />
       <workItem from="1423759473790" duration="11086000" />
       <workItem from="1424139842562" duration="7256000" />
+      <workItem from="1424228984768" duration="915000" />
+      <workItem from="1424230111231" duration="2032000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="421692000" />
+    <option name="totallyTimeSpent" value="424639000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2572,10 +2769,10 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20958512" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20958512" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19027181" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -2587,17 +2784,17 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24939759" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17739628" sideWeight="0.49799198" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14337349" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27403846" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47710842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27349398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19638555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2759036" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17951807" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27349398" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45421687" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32409638" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2637,20 +2834,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/bootstrap/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7008" max-vertical-offset="95070">
-          <caret line="494" column="1" selection-start-line="494" selection-start-column="1" selection-end-line="494" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ware/js/questionController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9188361" vertical-offset="390" max-vertical-offset="1605">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/fileinput.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="627">
@@ -2679,25 +2862,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2020958" vertical-offset="0" max-vertical-offset="675">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/insert_question.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.80982566" vertical-offset="629" max-vertical-offset="1845">
           <caret line="76" column="32" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/models/QuizTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="639" max-vertical-offset="1425">
-          <caret line="71" column="44" selection-start-line="71" selection-start-column="44" selection-end-line="71" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2708,140 +2876,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/models/Bone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
-          <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="23" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/models/Teacher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="637" max-vertical-offset="2610">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/TeacherController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="48" max-vertical-offset="6000">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/OrganizationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54268295" vertical-offset="3" max-vertical-offset="3510">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/QuizTestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54268295" vertical-offset="33" max-vertical-offset="1125">
-          <caret line="22" column="8" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/BonePartController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56880736" vertical-offset="52" max-vertical-offset="840">
-          <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/AbstractController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4878049" vertical-offset="0" max-vertical-offset="705">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/QuestionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54268295" vertical-offset="78" max-vertical-offset="3525">
-          <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/resources/AbstractResource.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45731708" vertical-offset="0" max-vertical-offset="492">
           <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/BonePartResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="33" max-vertical-offset="525">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/TeacherResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65762" vertical-offset="0" max-vertical-offset="2295">
-          <caret line="30" column="55" selection-start-line="30" selection-start-column="55" selection-end-line="30" selection-end-column="55" />
-          <folding>
-            <element signature="e#781#782#0" expanded="false" />
-            <element signature="e#843#844#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/OrganizationResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12526096" vertical-offset="0" max-vertical-offset="1440">
-          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/QuestionResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3131524" vertical-offset="0" max-vertical-offset="885">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/QuizTestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12195122" vertical-offset="0" max-vertical-offset="492">
-          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/StudentResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27439025" vertical-offset="0" max-vertical-offset="810">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2852,19 +2890,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/resources/HelloRS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21341464" vertical-offset="0" max-vertical-offset="600">
-          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/resources/HelloServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
           <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2872,7 +2901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
           <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2880,7 +2908,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5940594" vertical-offset="0" max-vertical-offset="555">
           <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2888,7 +2915,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33263597" vertical-offset="1491" max-vertical-offset="3675">
           <caret line="110" column="33" selection-start-line="110" selection-start-column="26" selection-end-line="110" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2896,14 +2922,304 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33263597" vertical-offset="1551" max-vertical-offset="2055">
           <caret line="114" column="34" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/utils/WSRN.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3179551" vertical-offset="0" max-vertical-offset="802">
+          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Resolution">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ware/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="791">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/BoneSetController.java">
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/OrganizationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35643566" vertical-offset="150" max-vertical-offset="3030">
-          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3510">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/OrganizationDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3" max-vertical-offset="1395">
+          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/QuestionResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="96" max-vertical-offset="885">
+          <caret line="45" column="52" selection-start-line="45" selection-start-column="52" selection-end-line="45" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/QuestionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3525">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/QuestionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <caret line="15" column="61" selection-start-line="15" selection-start-column="61" selection-end-line="15" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/QuizTestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/BonePartResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="525">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/QuizTestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1125">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/BonePartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="840">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/QuizTestDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <caret line="3" column="11" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/BoneController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1770">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/BoneSetController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3030">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/StudentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/TeacherController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6000">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/BoneDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/BonePartDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/BoneSetDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="990">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/StudentDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/dao/TeacherDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2490">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/OrganizationResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1485">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/StudentResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/TeacherResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/BoneSetTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1335">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/utils/DummyInsertion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="11205">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/BonePartTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/BoneTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/OrganizationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3210">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/QuestionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1740">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/QuizTestTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1110">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/StudentTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1890">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/resources/TeacherTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6465">
+          <caret line="23" column="25" selection-start-line="23" selection-start-column="25" selection-end-line="23" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
@@ -2912,162 +3228,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/java/resources/BoneSetResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02970297" vertical-offset="225" max-vertical-offset="1050">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5798005" vertical-offset="0" max-vertical-offset="1050">
+          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/DaoManager.java">
+    <entry file="file://$PROJECT_DIR$/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4430895" vertical-offset="0" max-vertical-offset="2445">
-          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.056109726" vertical-offset="0" max-vertical-offset="802">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/models/BonePart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14962594" vertical-offset="0" max-vertical-offset="1110">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/BonePartDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.13092269" vertical-offset="0" max-vertical-offset="802">
-          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/BoneSetDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="98" max-vertical-offset="900">
-          <caret line="56" column="39" selection-start-line="56" selection-start-column="39" selection-end-line="56" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/OrganizationDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16832918" vertical-offset="0" max-vertical-offset="1335">
-          <caret line="13" column="108" selection-start-line="13" selection-start-column="108" selection-end-line="13" selection-end-column="108" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/QuestionDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37406483" vertical-offset="0" max-vertical-offset="802">
-          <caret line="25" column="67" selection-start-line="25" selection-start-column="67" selection-end-line="25" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/QuizTestDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39276809" vertical-offset="0" max-vertical-offset="802">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/utils/WSRN.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3179551" vertical-offset="0" max-vertical-offset="802">
-          <caret line="21" column="29" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/TeacherDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.16832918" vertical-offset="0" max-vertical-offset="2445">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..Resolution">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/resources/StudentTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36934674" vertical-offset="1248" max-vertical-offset="1725">
-          <caret line="104" column="40" selection-start-line="104" selection-start-column="40" selection-end-line="104" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/StudentDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34114203" vertical-offset="52" max-vertical-offset="735">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/StudentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1083455" vertical-offset="120" max-vertical-offset="1875">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/BoneDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4172767" vertical-offset="0" max-vertical-offset="683">
-          <caret line="22" column="54" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/dao/AbstractDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
-          <caret line="0" column="12" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/controllers/BoneController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27818447" vertical-offset="185" max-vertical-offset="1800">
-          <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#363#364#0" expanded="true" />
-            <element signature="e#405#406#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/java/resources/BoneResource.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21522693" vertical-offset="108" max-vertical-offset="1470">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#431#432#0" expanded="true" />
-            <element signature="e#482#483#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.05703422" vertical-offset="0" max-vertical-offset="1440">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/resources/HelloRS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36649215" vertical-offset="0" max-vertical-offset="600">
+          <caret line="19" column="44" selection-start-line="19" selection-start-column="44" selection-end-line="19" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3077,7 +3266,7 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>aabe</last-edited>
+          <last-edited>aabee</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

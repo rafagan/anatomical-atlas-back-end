@@ -1,8 +1,8 @@
 package resources;
 
-import controllers.QuestionController;
-import dtos.MultipleChoiceDto;
-import dtos.TrueOrFalseDto;
+import src.controllers.QuestionController;
+import src.dtos.MultipleChoiceDto;
+import src.dtos.TrueOrFalseDto;
 import src.utils.WSRN;
 
 import javax.ws.rs.*;

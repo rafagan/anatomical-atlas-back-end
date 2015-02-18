@@ -1,7 +1,7 @@
 package src.dao;
 
-import models.Resolution;
-import models.Student;
+import src.models.Resolution;
+import src.models.Student;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

@@ -1,6 +1,6 @@
 package resources;
 
-import controllers.BoneSetController;
+import src.controllers.BoneSetController;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

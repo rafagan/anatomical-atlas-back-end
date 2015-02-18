@@ -1,6 +1,6 @@
 package src.dao;
 
-import models.Bone;
+import src.models.Bone;
 
 import javax.persistence.TypedQuery;
 import java.util.List;

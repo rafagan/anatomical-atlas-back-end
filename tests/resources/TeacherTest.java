@@ -1,9 +1,9 @@
 package resources;
 
-import controllers.TeacherController;
-import dao.TeacherDao;
-import models.*;
-import models.utils.Sex;
+import src.controllers.TeacherController;
+import src.dao.TeacherDao;
+import src.models.*;
+import src.models.utils.Sex;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

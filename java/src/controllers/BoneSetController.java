@@ -2,7 +2,7 @@ package src.controllers;
 
 import src.dtos.QuestionDto;
 import src.dao.BoneSetDao;
-import models.*;
+import src.models.*;
 import org.hibernate.Hibernate;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;

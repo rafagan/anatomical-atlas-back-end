@@ -1,10 +1,10 @@
 package resources;
 
-import controllers.QuestionController;
-import dao.QuestionDao;
-import models.MultipleChoice;
-import models.Question;
-import models.TrueOrFalse;
+import src.controllers.QuestionController;
+import src.dao.QuestionDao;
+import src.models.MultipleChoice;
+import src.models.Question;
+import src.models.TrueOrFalse;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

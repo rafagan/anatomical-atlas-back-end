@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="ROOT">
+    <output-path>$PROJECT_DIR$/war</output-path>
+    <root id="archive" name="ROOT.war">
+      <element id="artifact" artifact-name="aabee" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Jackson 1.9.2" />
+          <element id="library" level="project" name="jersey-apache-client-1.18" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/resources/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

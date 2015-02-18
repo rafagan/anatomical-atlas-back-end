@@ -1,10 +1,10 @@
 package src.controllers;
 
 import src.dao.StudentDao;
-import models.Organization;
-import models.QuizTest;
-import models.Resolution;
-import models.Student;
+import src.models.Organization;
+import src.models.QuizTest;
+import src.models.Resolution;
+import src.models.Student;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 

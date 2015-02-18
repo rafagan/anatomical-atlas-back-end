@@ -1,9 +1,9 @@
 package src.utils;
 
 import com.sun.javaws.exceptions.InvalidArgumentException;
-import dao.*;
-import models.*;
-import models.utils.Sex;
+import src.dao.*;
+import src.models.*;
+import src.models.utils.Sex;
 
 import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;

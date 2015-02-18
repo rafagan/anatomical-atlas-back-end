@@ -1,7 +1,7 @@
 package resources;
 
-import controllers.TeacherController;
-import models.Teacher;
+import src.controllers.TeacherController;
+import src.models.Teacher;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;

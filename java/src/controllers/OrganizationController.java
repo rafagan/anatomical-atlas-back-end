@@ -1,7 +1,7 @@
 package src.controllers;
 
 import src.dao.OrganizationDao;
-import models.*;
+import src.models.*;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 import javax.ws.rs.core.Response;

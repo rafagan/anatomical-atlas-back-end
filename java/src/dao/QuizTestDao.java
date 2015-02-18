@@ -1,7 +1,7 @@
 package src.dao;
 
 
-import models.QuizTest;
+import src.models.QuizTest;
 import javax.persistence.TypedQuery;
 import java.util.List;
 

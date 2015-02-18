@@ -4,7 +4,7 @@ import src.dtos.MultipleChoiceDto;
 import src.dtos.QuestionDto;
 import src.dao.QuestionDao;
 import src.dtos.TrueOrFalseDto;
-import models.*;
+import src.models.*;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 

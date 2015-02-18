@@ -1,8 +1,8 @@
 package src.controllers;
 
 import src.dao.QuizTestDao;
-import models.Question;
-import models.QuizTest;
+import src.models.Question;
+import src.models.QuizTest;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 

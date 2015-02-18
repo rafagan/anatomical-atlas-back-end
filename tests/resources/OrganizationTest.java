@@ -1,8 +1,8 @@
 package resources;
 
-import controllers.OrganizationController;
-import dao.OrganizationDao;
-import models.*;
+import src.controllers.OrganizationController;
+import src.dao.OrganizationDao;
+import src.models.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

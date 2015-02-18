@@ -1,9 +1,9 @@
 package resources;
 
-import controllers.StudentController;
-import dao.StudentDao;
-import models.Resolution;
-import models.Student;
+import src.controllers.StudentController;
+import src.dao.StudentDao;
+import src.models.Resolution;
+import src.models.Student;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

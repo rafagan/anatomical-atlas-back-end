@@ -1,6 +1,6 @@
 package resources;
 
-import controllers.StudentController;
+import src.controllers.StudentController;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
