@@ -13,7 +13,7 @@ public class HelloRS extends AbstractResource {
     @GET
 	@Produces(CONTENT_TYPE_APPLICATION_JSON)
 	public Response responseOk() {
-		return Response.ok("Hello Jersey Testando!").build();
+		return Response.ok("Hello Jersey!").build();
 	}
 
     @POST
