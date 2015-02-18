@@ -1,4 +1,4 @@
-package resources;
+package src.resources;
 
 import src.controllers.BonePartController;
 import src.dao.BonePartDao;

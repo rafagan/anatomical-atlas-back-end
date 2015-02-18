@@ -1,4 +1,4 @@
-package resources;
+package src.resources;
 
 import src.controllers.OrganizationController;
 

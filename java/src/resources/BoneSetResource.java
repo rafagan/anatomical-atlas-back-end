@@ -1,4 +1,4 @@
-package resources;
+package src.resources;
 
 import src.controllers.BoneSetController;
 import src.dtos.BoneStructureDescriptionDto;

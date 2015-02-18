@@ -1,4 +1,4 @@
-package resources;
+package src.resources;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
