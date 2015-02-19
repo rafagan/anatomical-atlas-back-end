@@ -51,10 +51,7 @@ public class BoneSet {
     @JoinColumn(name="BoneSet_idParent")
     @JsonBackReference
     public BoneSet getParent() { return parent; }
-    public void setParent(BoneSet parent) {
-        this.parent = parent;
-        if(parent != null)  parent.getBoneSetChildren().add(this);
-    }
+    public void setParent(BoneSet parent) { this.parent = parent ;}
 
     @ManyToMany(mappedBy = "categories", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)

@@ -51,4 +51,21 @@ public class WSRN {
             this.result = result;
         }
     }
+
+    public static class ResponseBoneSet extends AbstractResponse {
+        private Object boneSets;
+
+        public ResponseBoneSet() { }
+        public ResponseBoneSet(Object result) {
+            this.boneSets = result;
+        }
+
+        public Object getBoneSets() {
+            return boneSets;
+        }
+
+        public void setBoneSets(Object result) {
+            this.boneSets = result;
+        }
+    }
 }

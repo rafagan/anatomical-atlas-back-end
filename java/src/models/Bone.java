@@ -1,5 +1,6 @@
 package src.models;
 
+import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
@@ -60,7 +61,7 @@ public class Bone {
     @ManyToOne
     @JoinColumn(name="BoneSet_idBoneSet")
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    //@JsonBackReference
+    @JsonBackReference
     public BoneSet getParentBoneSet() { return parentBoneSet; }
     public void setParentBoneSet(BoneSet parent) {
         this.parentBoneSet = parent;

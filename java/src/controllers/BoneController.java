@@ -49,7 +49,7 @@ public class BoneController extends AbstractController {
     //Hibernate.initialize(bone.getBoneParts());
 
     public Response getBone(int id) {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseBone wResponse = new WSRN.ResponseBone();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Bone bone = bDao.queryBone(id);
@@ -73,7 +73,7 @@ public class BoneController extends AbstractController {
             }
         }
 
-        wResponse.setResult(bone);
+        wResponse.setBones(bone);
         wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();

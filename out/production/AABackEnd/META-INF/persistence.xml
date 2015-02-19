@@ -4,18 +4,6 @@
         <!--<jta-data-source></jta-data-source>-->
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <!--<class>models.Bone</class>-->
-        <!--<class>models.BonePart</class>-->
-        <!--<class>models.BoneSet</class>-->
-        <!--<class>models.Clazz</class>-->
-        <!--<class>models.MultipleChoice</class>-->
-        <!--<class>models.Organization</class>-->
-        <!--<class>models.Question</class>-->
-        <!--<class>models.QuizTest</class>-->
-        <!--<class>models.Resolution</class>-->
-        <!--<class>models.Student</class>-->
-        <!--<class>models.Teacher</class>-->
-        <!--<class>models.TrueOrFalse</class>-->
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost/AnatomicalAtlas" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
@@ -26,7 +14,6 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
-
             <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
     </persistence-unit>

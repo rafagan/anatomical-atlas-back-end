@@ -22,55 +22,60 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getAllBoneSets() {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseBoneSet wResponse = new WSRN.ResponseBoneSet();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<BoneSet> bonesSets = bsDao.queryBoneSets();
 
         for (BoneSet set : bonesSets) {
             set.setRelatedQuestions(null);
-            set.setParent(null);
             set.setBoneChildren(null);
             set.setBoneSetChildren(null);
         }
 
-        wResponse.setResult(bonesSets);
+        wResponse.setBoneSets(bonesSets);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
         return r;
     }
 
-    public Response getFullBoneSets() {
-        WSRN.Response wResponse = new WSRN.Response();
+    public Response getFullBoneSets(boolean loadBones) {
+        WSRN.ResponseBoneSet wResponse = new WSRN.ResponseBoneSet();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet skeleton = bsDao.queryBoneSet(1);
 
-        helper(skeleton);
+        loadBoneSetsWithBones(skeleton,loadBones);
 
-        wResponse.setResult(skeleton);
+        wResponse.setBoneSets(skeleton);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
         return r;
     }
 
-    private void helper(BoneSet bs) {
+    private void loadBoneSetsWithBones(BoneSet bs, boolean loadBones) {
         bs.setRelatedQuestions(null);
+        bs.setParent(null);
 
-        for(Bone b : bs.getBoneChildren()) {
-            b.setNeighbors(null);
-
-            Hibernate.initialize(b.getBoneParts());
+        if(loadBones) {
+            for (Bone b : bs.getBoneChildren()) {
+                b.setNeighbors(null);
+                b.setParentBoneSet(null);
+                Hibernate.initialize(b.getBoneParts());
+            }
+        } else {
+            bs.setBoneChildren(null);
         }
+
         for(BoneSet nbs : bs.getBoneSetChildren()) {
-            helper(nbs);
+            loadBoneSetsWithBones(nbs,loadBones);
         }
     }
 
     public Response getBoneSet(int id) {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseBoneSet wResponse = new WSRN.ResponseBoneSet();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet set = bsDao.queryBoneSet(id);
@@ -80,7 +85,7 @@ public class BoneSetController extends AbstractController {
         set.setBoneChildren(null);
         set.setBoneSetChildren(null);
 
-        wResponse.setResult(set);
+        wResponse.setBoneSets(set);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
@@ -88,7 +93,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getBoneSetBones(int boneSetId) {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseBone wResponse = new WSRN.ResponseBone();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Bone> bones = bsDao.queryBoneSetsBones(boneSetId);
@@ -101,7 +106,7 @@ public class BoneSetController extends AbstractController {
                 bone.setBoneParts(null);
         }
 
-        wResponse.setResult(bones);
+        wResponse.setBones(bones);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
@@ -109,7 +114,7 @@ public class BoneSetController extends AbstractController {
     }
 
     public Response getBoneSetParent(int boneSetId) {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseBoneSet wResponse = new WSRN.ResponseBoneSet();
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet set = bsDao.queryBoneSetParent(boneSetId);
@@ -121,7 +126,7 @@ public class BoneSetController extends AbstractController {
             set.setBoneSetChildren(null);
         }
 
-        wResponse.setResult(set);
+        wResponse.setBoneSets(set);
         Response r = Response.ok(wResponse).build();
         bsDao.get().closeConnection();
 
