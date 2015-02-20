@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source source="LOCAL" name="MySQL - AnatomicalAtlas@localhost" uuid="3a9b1807-38a9-482a-8d66-29c25a17eb7e">
+  <data-source name="MySQL - AnatomicalAtlas@localhost" uuid="3a9b1807-38a9-482a-8d66-29c25a17eb7e">
     <database-info product="MySQL" version="5.6.19" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.31 ( Revision: alexander.soklakov@oracle.com-20140520065950-groqzzbvxprqdmnz )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
@@ -108,6 +108,7 @@
       <column name="DifficultLevel" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="MaxQuestions" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="Teacher_idCreator" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="Title" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="idQuizTest"/>
       <foreign-key name="FK_b77x4egst5rbmk2e4sfkamlf0" columns="Teacher_idCreator" ref-table="Teacher" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idTeacher" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="FK_4qmrbv17uamdvn7whhvi1fi6v" table="QuizTestHasQuestion" schema="" catalog="AnatomicalAtlas" columns="QuizTest_idQuizTest"/>
@@ -127,8 +128,8 @@
       <column name="Student_idStudent" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="QuizTest_idQuizTest" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="idResolution"/>
-      <foreign-key name="FK_qfexufchk5we2nk474pa04wfn" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="FK_lf91oacs0n6glsde7f4tcp5yy" columns="Student_idStudent" ref-table="Student" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idStudent" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FK_qfexufchk5we2nk474pa04wfn" columns="QuizTest_idQuizTest" ref-table="QuizTest" ref-schema="" ref-catalog="AnatomicalAtlas" ref-columns="idQuizTest" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="FK_lf91oacs0n6glsde7f4tcp5yy" unique="false" columns="Student_idStudent"/>
       <index name="FK_qfexufchk5we2nk474pa04wfn" unique="false" columns="QuizTest_idQuizTest"/>
     </table>

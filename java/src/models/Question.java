@@ -1,6 +1,8 @@
 package src.models;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -15,6 +17,7 @@ public abstract class Question {
     private int idQuestion;
     private byte publicDomain;
     private byte[] figure;
+    private String statement;
 
     private Set<QuizTest> quizTests = new HashSet<>();
     private Set<BoneSet> categories = new HashSet<>();
@@ -63,6 +66,16 @@ public abstract class Question {
         this.figure = figure;
     }
 
+    @Basic
+    @Column(name = "Statement", nullable = false, insertable = true, updatable = true)
+    @Type(type="text")
+    public String getStatement() {
+        return statement;
+    }
+    public void setStatement(String statement) {
+        this.statement = statement;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,6 +92,7 @@ public abstract class Question {
         int result = idQuestion;
         result = 31 * result + (int) publicDomain;
         result = 31 * result + (figure != null ? Arrays.hashCode(figure) : 0);
+        result = 31 * result + (statement != null ? statement.hashCode() : 0);
 
         return result;
     }

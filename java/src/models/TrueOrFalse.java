@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 public class TrueOrFalse extends Question {
     private byte correctAnswer;
-    private String statement;
 
     @Basic
     @Column(name = "CorrectAnswer", nullable = false, insertable = true, updatable = true)
@@ -19,16 +18,6 @@ public class TrueOrFalse extends Question {
     }
     public void setCorrectAnswer(byte correctAnswer) {
         this.correctAnswer = correctAnswer;
-    }
-
-    @Basic
-    @Column(name = "Statement", nullable = false, insertable = true, updatable = true)
-    @Type(type="text")
-    public String getStatement() {
-        return statement;
-    }
-    public void setStatement(String statement) {
-        this.statement = statement;
     }
 
     @Override
@@ -42,7 +31,6 @@ public class TrueOrFalse extends Question {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (int) correctAnswer;
-        result = 31 * result + (statement != null ? statement.hashCode() : 0);
 
         return result;
     }

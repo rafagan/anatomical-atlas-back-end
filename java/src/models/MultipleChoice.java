@@ -15,7 +15,6 @@ public class MultipleChoice extends Question {
     private String answerC;
     private String answerD;
     private String answerE;
-    private String statement;
 
     @Basic
     @Column(name = "CorrectAnswer", nullable = false, insertable = true, updatable = true, length = 2)
@@ -74,16 +73,6 @@ public class MultipleChoice extends Question {
         this.answerE = answerE;
     }
 
-    @Basic
-    @Column(name = "Statement", nullable = false, insertable = true, updatable = true)
-    @Type(type="text")
-    public String getStatement() {
-        return statement;
-    }
-    public void setStatement(String statement) {
-        this.statement = statement;
-    }
-
     @Override
     public boolean equals(Object o) {
         if(!super.equals(o))
@@ -100,7 +89,6 @@ public class MultipleChoice extends Question {
         result = 31 * result + (answerC != null ? answerC.hashCode() : 0);
         result = 31 * result + (answerD != null ? answerD.hashCode() : 0);
         result = 31 * result + (answerE != null ? answerE.hashCode() : 0);
-        result = 31 * result + (statement != null ? statement.hashCode() : 0);
         return result;
     }
 }
