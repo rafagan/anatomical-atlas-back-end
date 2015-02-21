@@ -18,23 +18,6 @@ public class WSRN {
         }
     }
 
-    public static class ResponseBone extends AbstractResponse {
-        private Object bones;
-
-        public ResponseBone() { }
-        public ResponseBone(Object result) {
-            this.bones = result;
-        }
-
-        public Object getBones() {
-            return bones;
-        }
-
-        public void setBones(Object bones) {
-            this.bones = bones;
-        }
-    }
-
     public static class Response extends AbstractResponse {
         private Object result;
 
@@ -52,6 +35,23 @@ public class WSRN {
         }
     }
 
+    public static class ResponseBone extends AbstractResponse {
+        private Object bones;
+
+        public ResponseBone() { }
+        public ResponseBone(Object result) {
+            this.bones = result;
+        }
+
+        public Object getBones() {
+            return bones;
+        }
+
+        public void setBones(Object bones) {
+            this.bones = bones;
+        }
+    }
+
     public static class ResponseBoneSet extends AbstractResponse {
         private Object boneSets;
 
@@ -66,6 +66,23 @@ public class WSRN {
 
         public void setBoneSets(Object result) {
             this.boneSets = result;
+        }
+    }
+
+    public static class ResponseQuizTest extends AbstractResponse {
+        private Object quizTests;
+
+        public ResponseQuizTest() { }
+        public ResponseQuizTest(Object result) {
+            this.quizTests = result;
+        }
+
+        public Object getQuizTests() {
+            return quizTests;
+        }
+
+        public void setQuizTests(Object result) {
+            this.quizTests = result;
         }
     }
 }

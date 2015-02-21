@@ -2,10 +2,7 @@ package src.resources;
 
 import src.controllers.QuizTestController;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
 @Path("v1/quiztests")
@@ -21,7 +18,7 @@ public class QuizTestResource extends AbstractResource {
     @GET
     @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getPublicQuizTest(@PathParam("id") int quizTestId) {
-        return quizTestController.getPublicQuizTest(quizTestId);
+    public Response getPublicQuizTest(@PathParam("id") int quizTestId, @QueryParam("full") boolean full) {
+        return quizTestController.getPublicQuizTest(quizTestId,full);
     }
 }

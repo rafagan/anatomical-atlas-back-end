@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="CORS">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/CORS/cors-filter-2.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/CORS/java-property-utils-1.9.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

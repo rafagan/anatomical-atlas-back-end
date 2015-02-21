@@ -27,7 +27,7 @@ function loadStructuresToCategories($scope, $http) {
 
     $http.get("http://rafagan.com.br/api/v1/bonesets")
         .success(function(response1) {
-            $.each(response1.result, function(index, value) {
+            $.each(response1.boneSets, function(index, value) {
                 cat.multiSelect('addOption',{
                     value: value.idBoneSet,
                     text: value.category ,
@@ -39,9 +39,9 @@ function loadStructuresToCategories($scope, $http) {
 
             $http.get("http://rafagan.com.br/api/v1/bones")
                 .success(function(response2) {
-                    $.each(response2.result, function(index, value) {
+                    $.each(response2.bones, function(index, value) {
                         cat.multiSelect('addOption', {
-                            value: value.idBone + response1.result.length,
+                            value: value.idBone + response2.bones.length,
                             text: value.name,
                             index: 0,
                             nested: 'Ossos'
@@ -58,7 +58,7 @@ function loadStructuresToCategories($scope, $http) {
                         .success(function(response3) {
                             $.each(response3.result, function (index, value) {
                                 cat.multiSelect('addOption', {
-                                    value: value.idBonePart  + response1.result.length + response2.result.length,
+                                    value: value.idBonePart  + response1.boneSets.length + response2.bones.length,
                                     text: value.name,
                                     index: 0,
                                     nested: 'Partes de um osso'
@@ -164,8 +164,6 @@ onFigureLoaded = function() {
         return function(e) {
             var $scope = angular.element($('#QuestionController')).scope();
             $scope.figure = e.target.result.split(',')[1];
-            //$scope.figure = dataURItoBlob(e.target.result, inputHtmlFileData.type);
-            //saveAs(dataURItoBlob($scope.figure, inputHtmlFileData.type), "figure.jpg");
         };
     })(file);
 

@@ -1,8 +1,10 @@
 package src.controllers;
 
 import src.dao.QuizTestDao;
+import src.models.BoneSet;
 import src.models.Question;
 import src.models.QuizTest;
+import src.models.Teacher;
 import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 
@@ -20,7 +22,7 @@ public class QuizTestController extends AbstractController {
     }
 
     public Response getAllPublicQuizTests() {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseQuizTest wResponse = new WSRN.ResponseQuizTest();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = qtDao.queryPublicQuizTests();
@@ -28,16 +30,10 @@ public class QuizTestController extends AbstractController {
         for(QuizTest qt : quizTests) {
             qt.setResolutions(null);
             qt.setAuthor(null); //Se é pública, o autor será nulo de qualquer maneira
-
-            for(Question q : qt.getQuestions()){
-                q.setQuizTests(null);
-                q.setCategories(null);
-                q.setAuthors(null);
-                q.setFigure(null);
-            }
+            qt.setQuestions(null);
         }
 
-        wResponse.setResult(quizTests);
+        wResponse.setQuizTests(quizTests);
         wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
@@ -45,8 +41,8 @@ public class QuizTestController extends AbstractController {
         return r;
     }
 
-    public Response getPublicQuizTest(int quizTestId) {
-        WSRN.Response wResponse = new WSRN.Response();
+    public Response getPublicQuizTest(int quizTestId, boolean full) {
+        WSRN.ResponseQuizTest wResponse = new WSRN.ResponseQuizTest();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         QuizTest quizTest = qtDao.queryPublicQuizTest(quizTestId);
@@ -54,14 +50,31 @@ public class QuizTestController extends AbstractController {
         quizTest.setResolutions(null);
         quizTest.setAuthor(null); //Se é pública, o autor será nulo de qualquer maneira
 
-        for(Question q : quizTest.getQuestions()){
-            q.setQuizTests(null);
-            q.setCategories(null);
-            q.setAuthors(null);
-            q.setFigure(null);
-        }
+        if(!full)
+            quizTest.setQuestions(null);
+        else
+            for(Question q : quizTest.getQuestions()){
+                q.setQuizTests(null);
 
-        wResponse.setResult(quizTest);
+                for(BoneSet cat : q.getCategories()) {
+                    cat.setBoneChildren(null);
+                    cat.setParent(null);
+                    cat.setRelatedQuestions(null);
+                    cat.setBoneSetChildren(null);
+                }
+
+                for(Teacher author : q.getAuthors()) {
+                    author.setWorkingOrganizations(null);
+                    author.setOwnerOfOrganizations(null);
+                    author.setOwnerOfClasses(null);
+                    author.setMonitoratedClasses(null);
+                    author.setMyQuizTests(null);
+                    author.setMyQuestions(null);
+                    author.setLogin(null);
+                }
+            }
+
+        wResponse.setQuizTests(quizTest);
         wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
