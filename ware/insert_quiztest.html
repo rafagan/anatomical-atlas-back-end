@@ -64,9 +64,9 @@
 
         <!-- Mostrar somente questões públicas se isPublic estiver selecionado-->
         <!-- Possibilitar acesso às questões do professor caso seja quiz test privado -->
-        <div class="sWidth" ng-show="!isAutomatic">
+        <div class="sWidth" ng-show="!isAutomatic && publicQuestions.length > 0">
             <label>Quais questões serão associadas?</label>
-            <select multiple="multiple" title="Selecione as questões desejadas">
+            <select id="questionPrototype" multiple="multiple" title="Selecione as questões desejadas">
                 <!--<option value="">Teste</option>-->
             </select>
         </div>
@@ -94,7 +94,7 @@
 
     <script type="application/javascript" src="js/svgcheckbx.js"></script>
     <script src="js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="js/jquery.asmselect.js"></script>
     <script type="text/javascript" src="js/quizTestController.js"></script>
+    <script type="text/javascript" src="js/jquery.asmselect.js"></script>
 </body>
 </html>

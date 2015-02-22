@@ -2,8 +2,8 @@ package src.controllers;
 
 import src.dao.QuestionDao;
 import src.dao.QuizTestDao;
-import src.dtos.PublicQuizTestDto;
-import src.dtos.QuizTestDto;
+import src.dtos.PublicQuizTestDtoPost;
+import src.dtos.QuizTestDtoGetAll;
 import src.models.BoneSet;
 import src.models.Question;
 import src.models.QuizTest;
@@ -27,14 +27,14 @@ public class QuizTestController extends AbstractController {
     }
 
     public Response getAllPublicQuizTests() { //Preciso que o quiz test volte com suas respectivas categorias
-        WSRN.ResponseQuizTestDto wResponse = new WSRN.ResponseQuizTestDto();
+        WSRN.ResponseQuizTestDtoGetAll wResponse = new WSRN.ResponseQuizTestDtoGetAll();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<QuizTest> quizTests = qtDao.queryPublicQuizTests();
-        List<QuizTestDto> result = new ArrayList<>();
+        List<QuizTestDtoGetAll> result = new ArrayList<>();
 
         for(QuizTest qt : quizTests) {
-            QuizTestDto qtdto = new QuizTestDto();
+            QuizTestDtoGetAll qtdto = new QuizTestDtoGetAll();
             qtdto.setMaxQuestions(qt.getMaxQuestions());
             qtdto.setDifficultLevel(qt.getDifficultLevel());
             qtdto.setTitle(qt.getTitle());
@@ -104,7 +104,7 @@ public class QuizTestController extends AbstractController {
         return r;
     }
 
-    public void insertPublicQuizTest(PublicQuizTestDto dto) {
+    public void insertPublicQuizTest(PublicQuizTestDtoPost dto) {
         qtDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
 
         QuizTest qt = new QuizTest();

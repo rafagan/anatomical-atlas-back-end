@@ -1,7 +1,7 @@
 package src.resources;
 
 import src.controllers.QuizTestController;
-import src.dtos.PublicQuizTestDto;
+import src.dtos.PublicQuizTestDtoPost;
 import src.utils.WSRN;
 
 import javax.ws.rs.*;
@@ -20,7 +20,7 @@ public class QuizTestResource extends AbstractResource {
     @POST
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
     @Consumes(CONTENT_TYPE_APPLICATION_JSON)
-    public Response insertPublicQuizTest(PublicQuizTestDto dto) {
+    public Response insertPublicQuizTest(PublicQuizTestDtoPost dto) {
         quizTestController.insertPublicQuizTest(dto);
         return Response.ok(new WSRN.Response(dto)).build();
     }

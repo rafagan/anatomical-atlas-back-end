@@ -110,8 +110,6 @@ function QuestionController($scope, $http) {
         var qStr = $scope.qTypeV == 0 ? "multiple_choice" : "true_or_false";
         var requestStr = "http://rafagan.com.br/api/v1/questions/"+qStr;
 
-        console.log($scope.qTypeV);
-
         var json = {
             figure : $scope.figure,
             statement: statement.value,

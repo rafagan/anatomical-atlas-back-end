@@ -2,6 +2,11 @@
  * Created by rafaganabreu on 20/02/15.
  */
 
+//jquery.asmselect: https://code.google.com/p/jquery-asmselect/
+
+// TODO: Implementar sistema para visualizar questões que vem do servidor
+// TODO: Verificar se as informações de envio para o servidor estão sendo validadas no JS
+
 function insertQuizTestController($scope, $http, $timeout) {
     $scope.publicQuestions = [];
     $scope.error = false;
@@ -42,9 +47,45 @@ function insertQuizTestController($scope, $http, $timeout) {
 
     $scope.onClickSubmit = function() {
 
+        // TODO: Considerar depois que nem todo quiz test é público
+
+        $scope.loading = true;
+        $scope.success = false;
+        $scope.error = false;
+        var requestStr = "http://rafagan.com.br/api/v1/quiztests/"
+
+        var json = {
+            title : quizTitle.value,
+            difficult : quizLevel.value,
+            maxQuestions: maxQuestions.value,
+            automatic: isAutomatic.checked,
+            questions: []
+        };
+
+        if(!isAutomatic.checked) {
+            $("#questionPrototype").find("option:selected").each(function (index, value) {
+                json.questions.push(value.value);
+            });
+        }
+
+        $http.post(requestStr, json)
+            .success(function(response) {
+                $scope.error = false;
+                $scope.loading = false;
+                $scope.success = true;
+            }).error(function(response) {
+                $scope.error = true;
+                $scope.loading = false;
+                $scope.errorMessage =
+                    "Houve algum problema no servidor ao adicionar o quiz test. Contate o administrador.";
+            });
     };
 
     $scope.onChangedPublicCheckbox = function() {
-        console.log(isPublic.checked);
+        $scope.success = false;
+    }
+
+    $scope.onQuestionValueChanged = function() {
+        $scope.success = false;
     }
 }

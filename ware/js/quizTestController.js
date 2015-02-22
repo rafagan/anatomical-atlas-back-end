@@ -2,15 +2,10 @@
  * Created by rafaganabreu on 20/02/15.
  */
 
-function insertQuizTestController($scope, $http, $timeout) {
-    $("select[multiple]").asmSelect({
-        animate: true,
-        hideWhenAdded: true,
-        removeLabel: "",
-        selectClass: "form-control questionSelect",
-        listItemClass: "form-control listItemCustom"
-    });
+// TODO: Implementar sistema para visualizar questões que vem do servidor
+// TODO: Verificar se as informações de envio para o servidor estão sendo validadas no JS
 
+function insertQuizTestController($scope, $http, $timeout) {
     $scope.publicQuestions = [];
     $scope.error = false;
     $scope.success = false;
@@ -29,13 +24,18 @@ function insertQuizTestController($scope, $http, $timeout) {
             $scope.publicQuestions = response.questions;
             $scope.loading = false;
 
-            var questionSelect = $(".questionSelect");
-            var prototype = $("select[multiple]");
+            var prototype = $("#questionPrototype");
+
             $.each(response.questions, function(index, value) {
-                var option = new Option(value.statement, value.id);
-                questionSelect.append(option);
-                console.log(questionSelect);
-                prototype.append(option);
+                prototype.append(new Option(value.statement, value.id));
+            });
+
+            prototype.asmSelect({
+                animate: true,
+                hideWhenAdded: true,
+                removeLabel: "",
+                selectClass: "form-control questionSelect",
+                listItemClass: "form-control listItemCustom"
             });
         }).error(function(response){
             $scope.error = true;
@@ -44,10 +44,43 @@ function insertQuizTestController($scope, $http, $timeout) {
         });
 
     $scope.onClickSubmit = function() {
+        $scope.loading = true;
+        $scope.success = false;
+        $scope.error = false;
+        var requestStr = "http://rafagan.com.br/api/v1/quiztests/"
 
-    }
+        var json = {
+            title : quizTitle.value,
+            difficult : quizLevel.value,
+            maxQuestions: maxQuestions.value,
+            automatic: isAutomatic.checked,
+            questions: []
+        };
+
+        if(!isAutomatic.checked) {
+            $("#questionPrototype").find("option:selected").each(function (index, value) {
+                json.questions.push(value.value);
+            });
+        }
+
+        $http.post(requestStr, json)
+            .success(function(response) {
+                $scope.error = false;
+                $scope.loading = false;
+                $scope.success = true;
+            }).error(function(response) {
+                $scope.error = true;
+                $scope.loading = false;
+                $scope.errorMessage =
+                    "Houve algum problema no servidor ao adicionar o quiz test. Contate o administrador.";
+            });
+    };
 
     $scope.onChangedPublicCheckbox = function() {
-        console.log(isPublic.checked);
+        //console.log(isPublic.checked);
+    }
+
+    $scope.onQuestionValueChanged = function() {
+        console.log($( "#myselect").find("option:selected" ).text());
     }
 }
