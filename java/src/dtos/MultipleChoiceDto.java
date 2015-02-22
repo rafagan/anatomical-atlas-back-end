@@ -1,5 +1,6 @@
 package src.dtos;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class MultipleChoiceDto {
     public String answerC;
     public String answerD;
     public String answerE;
-    public List<Integer> categories;
+    public List<Integer> categories = new ArrayList<>();
 
     public MultipleChoiceDto() {}
 }

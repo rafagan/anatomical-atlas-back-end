@@ -22,6 +22,7 @@ public class QuestionController extends AbstractController {
         dao = qDao = new QuestionDao();
     }
 
+    // TODO: Receber um query param que determina se o resultado será com ou sem imagens
     public Response getAllPublicQuestions() {
         WSRN.ResponseQuestion wResponse = new WSRN.ResponseQuestion();
 

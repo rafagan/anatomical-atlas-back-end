@@ -69,6 +69,23 @@ public class WSRN {
         }
     }
 
+    public static class ResponseQuizTestDto extends AbstractResponse {
+        private Object quizTestsDto;
+
+        public ResponseQuizTestDto() { }
+        public ResponseQuizTestDto(Object result) {
+            this.quizTestsDto = result;
+        }
+
+        public Object getQuizTestsDto() {
+            return quizTestsDto;
+        }
+
+        public void setQuizTestsDto(Object result) {
+            this.quizTestsDto = result;
+        }
+    }
+
     public static class ResponseQuizTest extends AbstractResponse {
         private Object quizTests;
 
