@@ -88,7 +88,7 @@ if( document.createElement('svg').getAttributeNS ) {
 			case 'swirl': pathDef = pathDefs.swirl; animDef = animDefs.swirl; break;
 			case 'diagonal': pathDef = pathDefs.diagonal; animDef = animDefs.diagonal; break;
 			case 'list': pathDef = pathDefs.list; animDef = animDefs.list; break;
-		};
+		}
 		
 		paths.push( document.createElementNS('http://www.w3.org/2000/svg', 'path' ) );
 

@@ -44,9 +44,10 @@
         </div>
 
         <div class="sWidth" ng-show="structureSelection">
-            <label>
-                <textarea name="description" class="form-control" ng-model="description"></textarea>
-            </label>
+            <label for="description"></label>
+            <textarea id="description" name="description" class="form-control" ng-model="description"></textarea>
+        </div>
+        <div>
             <button class="btn btn-default floatRight" type="submit" ng-click="onClickSubmit()">Salvar</button>
         </div>
     </div>

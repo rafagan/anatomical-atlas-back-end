@@ -7,42 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e7f53ca-6e58-41eb-a364-534a55d90626" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/CORS.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/java/src/CorsResponseFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/demo.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/donwloadExample.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/insert_quiztest.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/modernizr.custom.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/css/normalize.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/quizTestController.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/svgcheckbx.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/teste.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/war/ROOT.war" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/image.png" afterPath="$PROJECT_DIR$/web/image.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/QuizTestController.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/QuizTestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/controllers/QuizTestController.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/controllers/QuizTestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/QuizTestResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/QuizTestResource.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/resources/QuizTestResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/resources/QuizTestResource.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/QuizTestTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/QuizTestTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$Response.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$Response.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/WSRN$Response.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/WSRN$Response.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseBone.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseBone.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/WSRN$ResponseBone.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/WSRN$ResponseBone.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/WSRN.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/utils/WSRN.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" afterPath="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/resources/QuizTestResource.java" afterPath="$PROJECT_DIR$/java/src/resources/QuizTestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/src/resources/QuizTestTest.java" afterPath="$PROJECT_DIR$/tests/src/resources/QuizTestTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/utils/WSRN.java" afterPath="$PROJECT_DIR$/java/src/utils/WSRN.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/index.html" afterPath="$PROJECT_DIR$/ware/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.html" afterPath="$PROJECT_DIR$/web/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/js/questionController.js" afterPath="$PROJECT_DIR$/ware/js/questionController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/questionController.js" afterPath="$PROJECT_DIR$/web/js/questionController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/ware/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/css/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ware/img/switch.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/css/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/img/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/web/img/switch.png" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/ware/image.png" afterPath="$PROJECT_DIR$/ware/img/image.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/war/ROOT.war" afterPath="$PROJECT_DIR$/war/ROOT.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/war/aabe.war" afterPath="$PROJECT_DIR$/war/aabe.war" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/css/component.css" afterPath="$PROJECT_DIR$/ware/css/component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/component.css" afterPath="$PROJECT_DIR$/web/css/component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/css/demo.css" afterPath="$PROJECT_DIR$/ware/css/demo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/demo.css" afterPath="$PROJECT_DIR$/web/css/demo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/js/descriptionController.js" afterPath="$PROJECT_DIR$/ware/js/descriptionController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/descriptionController.js" afterPath="$PROJECT_DIR$/web/js/descriptionController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/insert_quiztest.html" afterPath="$PROJECT_DIR$/ware/insert_quiztest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/insert_quiztest.html" afterPath="$PROJECT_DIR$/web/insert_quiztest.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/css/main.css" afterPath="$PROJECT_DIR$/ware/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/main.css" afterPath="$PROJECT_DIR$/web/css/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/js/svgcheckbx.js" afterPath="$PROJECT_DIR$/ware/js/svgcheckbx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/svgcheckbx.js" afterPath="$PROJECT_DIR$/web/js/svgcheckbx.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/update_description.html" afterPath="$PROJECT_DIR$/ware/update_description.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/update_description.html" afterPath="$PROJECT_DIR$/web/update_description.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AABackEnd.iws" />
@@ -160,21 +147,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="update_description.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/update_description.html">
+      <file leaf-file-name="insert_question.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/insert_question.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.5416667" vertical-offset="509" max-vertical-offset="1125">
-              <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
+            <state vertical-scroll-proportion="11.833333" vertical-offset="794" max-vertical-offset="1845">
+              <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="insert_quiztest.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/insert_quiztest.html">
+      <file leaf-file-name="update_description.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/update_description.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-19.291666" vertical-offset="317" max-vertical-offset="1095">
-              <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
+            <state vertical-scroll-proportion="-14.416667" vertical-offset="389" max-vertical-offset="1140">
+              <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -193,18 +180,28 @@
       <file leaf-file-name="teste.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/teste.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="1950">
-              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+            <state vertical-scroll-proportion="-3.75" vertical-offset="120" max-vertical-offset="1950">
+              <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="50" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="normalize.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/normalize.css">
+      <file leaf-file-name="insert_quiztest.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/insert_quiztest.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2115">
-              <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.63474023" vertical-offset="584" max-vertical-offset="1230">
+              <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="descriptionController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/descriptionController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="2055">
+              <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -213,8 +210,8 @@
       <file leaf-file-name="component.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2895">
-              <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2730">
+              <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -223,18 +220,18 @@
       <file leaf-file-name="demo.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/css/demo.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
-              <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1145" max-vertical-offset="1785">
+              <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/index.html">
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/css/main.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7548701" vertical-offset="0" max-vertical-offset="660">
-              <caret line="31" column="82" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -253,9 +250,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/java/src/utils/DummyInsertion.java" />
-        <option value="$PROJECT_DIR$/tests/resources/BonePartTest.java" />
-        <option value="$PROJECT_DIR$/tests/resources/BoneTest.java" />
         <option value="$PROJECT_DIR$/tests/resources/OrganizationTest.java" />
         <option value="$PROJECT_DIR$/tests/resources/QuestionTest.java" />
         <option value="$PROJECT_DIR$/tests/resources/QuizTestTest.java" />
@@ -283,27 +277,30 @@
         <option value="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" />
         <option value="$PROJECT_DIR$/java/src/FileLocationContextListener.java" />
         <option value="$PROJECT_DIR$/web/insert_question.html" />
-        <option value="$PROJECT_DIR$/web/update_description.html" />
         <option value="$PROJECT_DIR$/java/src/resources/HelloRS.java" />
         <option value="$PROJECT_DIR$/web/js/questionController.js" />
         <option value="$PROJECT_DIR$/web/js/insertQuizTestController" />
         <option value="$PROJECT_DIR$/web/js/insertQuizTestControlle.js" />
         <option value="$PROJECT_DIR$/web/js/insertQuizTestController.js" />
         <option value="$PROJECT_DIR$/web/js/sajdasodijsiaod.js" />
-        <option value="$PROJECT_DIR$/web/index.html" />
-        <option value="$PROJECT_DIR$/web/insert_quiztest.html" />
         <option value="$PROJECT_DIR$/ware/WEB-INF/lll.css" />
         <option value="$PROJECT_DIR$/ware/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/web/css/main.css" />
         <option value="$PROJECT_DIR$/java/src/org/apache/catalina/filters/CorsFilter.java" />
         <option value="$PROJECT_DIR$/java/src/Abc.java" />
         <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/java/src/CorsResponseFilter.java" />
         <option value="$PROJECT_DIR$/web/css/teste.css" />
         <option value="$PROJECT_DIR$/web/teste.html" />
+        <option value="$PROJECT_DIR$/web/index.html" />
+        <option value="$PROJECT_DIR$/web/js/modernizr.custom.js" />
+        <option value="$PROJECT_DIR$/web/css/main.css" />
+        <option value="$PROJECT_DIR$/web/js/svgcheckbx.js" />
+        <option value="$PROJECT_DIR$/web/css/demo.css" />
         <option value="$PROJECT_DIR$/web/css/normalize.css" />
         <option value="$PROJECT_DIR$/web/css/component.css" />
-        <option value="$PROJECT_DIR$/web/css/demo.css" />
+        <option value="$PROJECT_DIR$/web/js/descriptionController.js" />
+        <option value="$PROJECT_DIR$/web/update_description.html" />
+        <option value="$PROJECT_DIR$/web/insert_quiztest.html" />
       </list>
     </option>
   </component>
@@ -551,6 +548,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="css" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -566,6 +581,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="ware" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AABackEnd" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ware" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -671,11 +704,11 @@
       <recent name="controllers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ware/img" />
       <recent name="$PROJECT_DIR$/web" />
       <recent name="$PROJECT_DIR$/web/js" />
       <recent name="$PROJECT_DIR$/web/css" />
       <recent name="$PROJECT_DIR$/web/jquery" />
-      <recent name="$PROJECT_DIR$/web/img" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="models" />
@@ -2693,12 +2726,12 @@
       <workItem from="1424228984768" duration="915000" />
       <workItem from="1424230111231" duration="31772000" />
       <workItem from="1424544346521" duration="329000" />
-      <workItem from="1424544867247" duration="4192000" />
+      <workItem from="1424544867247" duration="10590000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="458900000" />
+    <option name="totallyTimeSpent" value="465298000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2797,25 +2830,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/java/src/resources/BonePartResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31400967" vertical-offset="0" max-vertical-offset="621">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..BonePart">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/models/TeacherClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="645">
@@ -3060,20 +3074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/descriptionController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2055">
-          <caret line="20" column="49" selection-start-line="20" selection-start-column="49" selection-end-line="21" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/insert_question.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.25" vertical-offset="201" max-vertical-offset="1845">
-          <caret line="33" column="0" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ware/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5555556" vertical-offset="0" max-vertical-offset="705">
@@ -3089,25 +3089,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.859375" vertical-offset="995" max-vertical-offset="1635">
-          <caret line="103" column="1" selection-start-line="103" selection-start-column="1" selection-end-line="103" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/utils/WSRN.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.171875" vertical-offset="0" max-vertical-offset="990">
           <caret line="72" column="33" selection-start-line="72" selection-start-column="33" selection-end-line="72" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/update_description.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.5416667" vertical-offset="509" max-vertical-offset="1125">
-          <caret line="38" column="50" selection-start-line="38" selection-start-column="50" selection-end-line="38" selection-end-column="50" />
           <folding />
         </state>
       </provider>
@@ -3122,14 +3107,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/quizTestController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11221945" vertical-offset="0" max-vertical-offset="802">
@@ -3138,50 +3115,100 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/insert_quiztest.html">
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-19.291666" vertical-offset="317" max-vertical-offset="1095">
-          <caret line="52" column="20" selection-start-line="52" selection-start-column="20" selection-end-line="52" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/demo.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1875">
-          <caret line="19" column="16" selection-start-line="19" selection-start-column="16" selection-end-line="19" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/normalize.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1415" max-vertical-offset="2115">
-          <caret line="135" column="0" selection-start-line="135" selection-start-column="0" selection-end-line="135" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="2895">
-          <caret line="30" column="19" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/teste.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.375" vertical-offset="0" max-vertical-offset="1950">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
+          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7548701" vertical-offset="0" max-vertical-offset="660">
-          <caret line="31" column="82" selection-start-line="31" selection-start-column="82" selection-end-line="31" selection-end-column="82" />
+        <state vertical-scroll-proportion="0.17207792" vertical-offset="44" max-vertical-offset="660">
+          <caret line="10" column="82" selection-start-line="10" selection-start-column="82" selection-end-line="10" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/modernizr.custom.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0703125" vertical-offset="0" max-vertical-offset="640">
+          <caret line="3" column="49" selection-start-line="0" selection-start-column="0" selection-end-line="3" selection-end-column="8357" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/svgcheckbx.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.1640625" vertical-offset="15" max-vertical-offset="2130">
+          <caret line="136" column="1" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/demo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1145" max-vertical-offset="1785">
+          <caret line="73" column="19" selection-start-line="73" selection-start-column="19" selection-end-line="73" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2730">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/teste.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.75" vertical-offset="120" max-vertical-offset="1950">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/descriptionController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="99" max-vertical-offset="2055">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/insert_question.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="11.833333" vertical-offset="794" max-vertical-offset="1845">
+          <caret line="34" column="17" selection-start-line="34" selection-start-column="17" selection-end-line="34" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/update_description.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.416667" vertical-offset="389" max-vertical-offset="1140">
+          <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/insert_quiztest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.63474023" vertical-offset="584" max-vertical-offset="1230">
+          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
           <folding />
         </state>
       </provider>

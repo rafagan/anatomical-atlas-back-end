@@ -38,9 +38,9 @@ function descriptionController($scope, $http) {
                 $http.get("http://rafagan.com.br/api/v1/bonesets")
                     .success(function(response) {
                         $scope.names = [];
-                        $scope.queryResult = response.result;
+                        $scope.queryResult = response.boneSets;
 
-                        $.each(response.result, function(index, value) {
+                        $.each(response.boneSets, function(index, value) {
                             $scope.names.push(value.category);
                         });
 
@@ -56,9 +56,9 @@ function descriptionController($scope, $http) {
                 $http.get("http://rafagan.com.br/api/v1/bones")
                     .success(function(response) {
                         $scope.names = [];
-                        $scope.queryResult = response.result;
+                        $scope.queryResult = response.bones;
 
-                        $.each(response.result, function(index, value) {
+                        $.each(response.bones, function(index, value) {
                             $scope.names.push(value.name);
                         });
 

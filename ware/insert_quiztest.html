@@ -11,6 +11,9 @@
     <!-- Bootstrap -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="css/demo.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+
     <script type="application/javascript" src="angular/angular.min.js"></script>
     <script type="application/javascript" src="jquery/jquery.min.js"></script>
     <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
@@ -44,25 +47,30 @@
         </div>
 
         <div>
-            <ul>
-                <li>
-                    <label>Quiz Test público? (por enquanto sempre será verdadeiro)
-                        <input type="checkbox" id="isPublic" ng-model="isPublic" />
-                    </label>
-                </li>
-                <li>
-                    <label>O quiz test deverá ser gerado automaticamente?
-                        <input type="checkbox" class="checkbox-inline" id="iaAutomatic" ng-model="isAutomatic" />
-                    </label>
-                </li>
-            </ul>
-        </div>
-
-        <div ng-show="isAutomatic">
-            <label>Quais questões serão associadas?
-
-            </label>
+            <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
+                <ul>
+                    <li>
+                        <label for="isPublic">Quiz Test público? (por enquanto sempre será verdadeiro)</label>
+                        <input id="isPublic" type="checkbox" ng-model="isPublic" />
+                    </li>
+                    <li>
+                        <label for="isAutomatic">O quiz test deverá ser gerado automaticamente?</label>
+                        <input id="isAutomatic" type="checkbox" ng-model="isAutomatic" />
+                    </li>
+                </ul>
+            </form>
         </div>
     </div>
+
+    <!-- Mostrar somente questões públicas se isPublic estiver selecionado-->
+    <!-- Possibilitar acesso às questões do professor caso seja quiz test privado -->
+    <div ng-show="isAutomatic">
+        <label>Quais questões serão associadas?
+
+        </label>
+    </div>
+
+    <script type="application/javascript" src="js/svgcheckbx.js"></script>
+    <script src="js/modernizr.custom.js"></script>
 </body>
 </html>
