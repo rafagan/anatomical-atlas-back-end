@@ -13,11 +13,12 @@
 
     <link rel="stylesheet" type="text/css" href="css/demo.css" />
     <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <link rel="stylesheet" type="text/css" href="css/jquery.asmselect.css" />
 
-    <script type="application/javascript" src="angular/angular.min.js"></script>
-    <script type="application/javascript" src="jquery/jquery.min.js"></script>
-    <script type="application/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="js/quizTestController.js"></script>
+    <script type="text/javascript" src="angular/angular.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery.ui.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -35,23 +36,23 @@
             <textarea id="quizTitle" class="form-control" ng-model="quizTitle"></textarea>
 
             <label for="quizLevel">Dificuldade do quiz: </label>
-            <select id="quizLevel" class="form-control" ng-model="quizLevel" ng-change="onChangeQuizLevel()">
-                <option ng-repeat="item in [1,2,3,4,5,6,7,8,9,10]" ng-value="item">{{item}}</option>
-            </select>
+            <div class="little">
+                <select id="quizLevel" class="form-control" ng-model="quizLevel" ng-change="onChangeQuizLevel()">
+                    <option ng-repeat="item in [1,2,3,4,5,6,7,8,9,10]" ng-value="item">{{item}}</option>
+                </select>
+            </div>
         </div>
 
-        <div>
-            <label>Número máximo de questões (questões não configuradas serão geradas aleatóriamente):
-                <input type="text" class="form-control" id="maxQuestions" ng-model="maxQuestions" />
-            </label>
+        <label for="maxQuestions">Número máximo de questões (questões não configuradas serão geradas aleatóriamente):</label>
+        <div class="little">
+            <input type="text" id="maxQuestions" class="form-control" ng-model="maxQuestions" />
         </div>
-
-        <div>
+        <div class="half">
             <form class="ac-custom ac-checkbox ac-checkmark" autocomplete="off">
                 <ul>
                     <li>
-                        <label for="isPublic">Quiz Test público? (por enquanto sempre será verdadeiro)</label>
-                        <input id="isPublic" type="checkbox" ng-model="isPublic" />
+                        <label for="isPublic">Quiz test público? (quiz test privado ainda não suportado)</label>
+                        <input id="isPublic" type="checkbox" ng-model="isPublic" ng-change="onChangedPublicCheckbox()"/>
                     </li>
                     <li>
                         <label for="isAutomatic">O quiz test deverá ser gerado automaticamente?</label>
@@ -60,17 +61,40 @@
                 </ul>
             </form>
         </div>
+
+        <!-- Mostrar somente questões públicas se isPublic estiver selecionado-->
+        <!-- Possibilitar acesso às questões do professor caso seja quiz test privado -->
+        <div class="sWidth" ng-show="!isAutomatic">
+            <label>Quais questões serão associadas?</label>
+            <select multiple="multiple" title="Selecione as questões desejadas">
+                <!--<option value="">Teste</option>-->
+            </select>
+        </div>
+
+        <div class="sWidth">
+            <button class="btn btn-default floatRight" type="submit" ng-click="onClickSubmit()">Salvar</button>
+        </div>
     </div>
 
-    <!-- Mostrar somente questões públicas se isPublic estiver selecionado-->
-    <!-- Possibilitar acesso às questões do professor caso seja quiz test privado -->
-    <div ng-show="isAutomatic">
-        <label>Quais questões serão associadas?
+    <div id="procedureDetails" class="alert alert-danger" role="alert" ng-show="error">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Error:</span>
+        {{errorMessage}}
+    </div>
 
-        </label>
+    <div ng-show="success" class="alert alert-success">
+        Quiz test criado com sucesso
+    </div>
+
+    <div ng-show="loading" class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
     </div>
 
     <script type="application/javascript" src="js/svgcheckbx.js"></script>
     <script src="js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="js/jquery.asmselect.js"></script>
+    <script type="text/javascript" src="js/quizTestController.js"></script>
 </body>
 </html>

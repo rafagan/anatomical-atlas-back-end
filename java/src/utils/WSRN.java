@@ -85,4 +85,21 @@ public class WSRN {
             this.quizTests = result;
         }
     }
+
+    public static class ResponseQuestion extends AbstractResponse {
+        private Object questions;
+
+        public ResponseQuestion() { }
+        public ResponseQuestion(Object result) {
+            this.questions = result;
+        }
+
+        public Object getQuestions() {
+            return questions;
+        }
+
+        public void setQuestions(Object result) {
+            this.questions = result;
+        }
+    }
 }

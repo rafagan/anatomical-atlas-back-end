@@ -23,7 +23,7 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getAllPublicQuestions() {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseQuestion wResponse = new WSRN.ResponseQuestion();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         List<Question> questions = qDao.queryPublicQuestions();
@@ -60,7 +60,7 @@ public class QuestionController extends AbstractController {
             dtos.add(dto);
         }
 
-        wResponse.setResult(dtos);
+        wResponse.setQuestions(dtos);
         wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
@@ -69,7 +69,7 @@ public class QuestionController extends AbstractController {
     }
 
     public Response getPublicQuestion(int id) {
-        WSRN.Response wResponse = new WSRN.Response();
+        WSRN.ResponseQuestion wResponse = new WSRN.ResponseQuestion();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         Question q = qDao.queryPublicQuestion(id);
@@ -108,7 +108,7 @@ public class QuestionController extends AbstractController {
             dto.setAnswerE(mc.getAnswerE());
         }
 
-        wResponse.setResult(q);
+        wResponse.setQuestions(q);
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();
 
