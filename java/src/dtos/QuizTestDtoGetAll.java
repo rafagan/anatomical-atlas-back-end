@@ -1,7 +1,7 @@
 package src.dtos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 22/02/15.
@@ -11,7 +11,7 @@ public class QuizTestDtoGetAll {
     private int difficultLevel;
     private int maxQuestions;
     private String title;
-    private List<Integer> categories = new ArrayList<>();
+    private Set<Integer> categories = new HashSet<>();
 
     public int getIdQuizTest() {return idQuizTest;}
     public void setIdQuizTest(int idQuizTest) {this.idQuizTest = idQuizTest;}
@@ -26,6 +26,6 @@ public class QuizTestDtoGetAll {
     public void setTitle(String title) {this.title = title;}
 
 
-    public List<Integer> getCategories() {return categories;}
-    public void setCategories(List<Integer> categories) {this.categories = categories;}
+    public Set<Integer> getCategories() {return categories;}
+    public void setCategories(Set<Integer> categories) {this.categories = categories;}
 }

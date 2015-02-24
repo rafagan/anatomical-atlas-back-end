@@ -59,6 +59,7 @@ public class QuizTest {
 
     @OneToMany(mappedBy = "relatedQuiz")
     @JsonManagedReference
+    @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<Resolution> getResolutions() {return resolutions;}
     public void setResolutions(Set<Resolution> resolutions) {this.resolutions = resolutions;}
 

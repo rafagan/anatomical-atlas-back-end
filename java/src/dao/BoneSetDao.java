@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class BoneSetDao extends AbstractDao {
     public List<BoneSet> queryBoneSets() {
-        return dao.findEntities(getEM().createQuery("SELECT bs FROM BoneSet AS bs", BoneSet.class));
+        return dao.findEntities(getEM().createQuery("SELECT bs FROM BoneSet AS bs ORDER BY bs.category", BoneSet.class));
     }
 
     public BoneSet queryBoneSet(int id) {
@@ -29,7 +29,7 @@ public class BoneSetDao extends AbstractDao {
         TypedQuery<Bone> query =
                 dao.getEntityManager().createQuery(
                         "SELECT b FROM Bone AS b " +
-                        "WHERE b.parentBoneSet.idBoneSet = :id", Bone.class);
+                        "WHERE b.parentBoneSet.idBoneSet = :id ORDER BY b.name", Bone.class);
         query.setParameter("id",id);
 
         return dao.findEntities(query);

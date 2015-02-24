@@ -2,6 +2,8 @@
  * Created by rafaganabreu on 20/02/15.
  */
 
+//jquery.asmselect: https://code.google.com/p/jquery-asmselect/
+
 // TODO: Implementar sistema para visualizar questões que vem do servidor
 // TODO: Verificar se as informações de envio para o servidor estão sendo validadas no JS
 
@@ -44,6 +46,9 @@ function insertQuizTestController($scope, $http, $timeout) {
         });
 
     $scope.onClickSubmit = function() {
+
+        // TODO: Considerar depois que nem todo quiz test é público
+
         $scope.loading = true;
         $scope.success = false;
         $scope.error = false;
@@ -77,10 +82,10 @@ function insertQuizTestController($scope, $http, $timeout) {
     };
 
     $scope.onChangedPublicCheckbox = function() {
-        //console.log(isPublic.checked);
+        $scope.success = false;
     }
 
     $scope.onQuestionValueChanged = function() {
-        console.log($( "#myselect").find("option:selected" ).text());
+        $scope.success = false;
     }
 }

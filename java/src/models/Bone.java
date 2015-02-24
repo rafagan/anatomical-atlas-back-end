@@ -3,11 +3,14 @@ package src.models;
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -20,7 +23,7 @@ public class Bone {
     private String synonymous;
     private int totalBoneParts;
 
-    private Set<BonePart> boneParts = new HashSet<BonePart>();
+    private Set<BonePart> boneParts = new TreeSet<>(new BonePart.BonePartComparator());
     private Set<Bone> neighbors = new HashSet<Bone>();
     private BoneSet parentBoneSet;
 
@@ -38,7 +41,9 @@ public class Bone {
     @JsonManagedReference
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
     public Set<BonePart> getBoneParts() { return boneParts; }
-    public void setBoneParts(Set<BonePart> boneParts) { this.boneParts = boneParts; }
+    public void setBoneParts(Set<BonePart> boneParts) {
+        Hibernate.initialize(boneParts);
+        this.boneParts = boneParts; }
 
     @ManyToMany
     @JoinTable(
@@ -127,5 +132,12 @@ public class Bone {
         result = 31 * result + (parentBoneSet != null ? parentBoneSet.getIdBoneSet() : 0);
 
         return result;
+    }
+
+    public static class BoneComparator implements Comparator<Bone> {
+        @Override
+        public int compare(Bone o1, Bone o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
     }
 }

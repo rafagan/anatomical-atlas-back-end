@@ -9,6 +9,6 @@ import java.util.List;
  */
 public class BonePartDao extends AbstractDao {
     public List<BonePart> queryBoneParts() {
-        return dao.findEntities(getEM().createQuery("SELECT bp FROM BonePart AS bp", BonePart.class));
+        return dao.findEntities(getEM().createQuery("SELECT bp FROM BonePart AS bp ORDER BY bp.name", BonePart.class));
     }
 }

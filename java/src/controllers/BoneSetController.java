@@ -10,6 +10,7 @@ import src.utils.WSRN;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by rafaganabreu on 23/09/14.
@@ -45,8 +46,10 @@ public class BoneSetController extends AbstractController {
 
         bsDao.get().startConnection(EntityManagerUtil.ATLAS_PU);
         BoneSet skeleton = bsDao.queryBoneSet(1);
+        BoneSet teeth = bsDao.queryBoneSet(56);
 
         loadBoneSetsWithBones(skeleton,loadBones);
+        loadBoneSetsWithBones(teeth,loadBones); //TODO: Inserir dentes no resultado
 
         wResponse.setBoneSets(skeleton);
         Response r = Response.ok(wResponse).build();
@@ -60,16 +63,18 @@ public class BoneSetController extends AbstractController {
         bs.setParent(null);
 
         if(loadBones) {
-            for (Bone b : bs.getBoneChildren()) {
+            Hibernate.initialize(bs.getBoneChildren());
+            Set<Bone> nextBones = bs.getBoneChildren();
+            for (Bone b : nextBones) {
                 b.setNeighbors(null);
                 b.setParentBoneSet(null);
-                Hibernate.initialize(b.getBoneParts());
             }
         } else {
             bs.setBoneChildren(null);
         }
 
-        for(BoneSet nbs : bs.getBoneSetChildren()) {
+        Set<BoneSet> nextBoneSets = bs.getBoneSetChildren();
+        for(BoneSet nbs : nextBoneSets) {
             loadBoneSetsWithBones(nbs,loadBones);
         }
     }

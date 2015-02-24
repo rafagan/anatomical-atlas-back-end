@@ -3,11 +3,14 @@ package src.models;
 import org.codehaus.jackson.annotate.JsonBackReference;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -20,8 +23,8 @@ public class BoneSet {
     private String synonymous;
     private int totalBones;
 
-    private Set<Bone> boneChildren = new HashSet<>();
-    private Set<BoneSet> boneSetChildren = new HashSet<>();
+    private Set<Bone> boneChildren = new TreeSet<>(new Bone.BoneComparator());
+    private Set<BoneSet> boneSetChildren = new TreeSet<>(new BoneSetComparator());
     private BoneSet parent;
     private Set<Question> relatedQuestions = new HashSet<>();
 
@@ -38,8 +41,13 @@ public class BoneSet {
     @OneToMany(mappedBy = "parentBoneSet")
     @JsonManagedReference
     @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
-    public Set<Bone> getBoneChildren() { return boneChildren; }
-    public void setBoneChildren(Set<Bone> sonBones) { this.boneChildren = sonBones; }
+    public Set<Bone> getBoneChildren() {
+        return boneChildren;
+    }
+    public void setBoneChildren(Set<Bone> sonBones) {
+        Hibernate.initialize(sonBones);
+        this.boneChildren = sonBones;
+    }
 
     @OneToMany(mappedBy = "parent")
     @JsonManagedReference
@@ -117,5 +125,12 @@ public class BoneSet {
         result = 31 * result + (parent != null ? parent.getIdBoneSet() : 0);
 
         return result;
+    }
+
+    public static class BoneSetComparator implements Comparator<BoneSet> {
+        @Override
+        public int compare(BoneSet o1, BoneSet o2) {
+            return o1.getCategory().compareTo(o2.getCategory());
+        }
     }
 }

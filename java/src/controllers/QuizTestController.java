@@ -12,9 +12,7 @@ import src.utils.EntityManagerUtil;
 import src.utils.WSRN;
 
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by rafaganabreu on 23/09/14.
@@ -43,7 +41,7 @@ public class QuizTestController extends AbstractController {
             qt.setResolutions(null);
             qt.setAuthor(null); //Se é pública, o autor será nulo de qualquer maneira
 
-            List<Integer> categories = new ArrayList<>();
+            Set<Integer> categories = new HashSet<>();
             for(Question q : qt.getQuestions()) {
                 for (BoneSet bs : q.getCategories()) {
                     categories.add(bs.getIdBoneSet());
@@ -55,7 +53,7 @@ public class QuizTestController extends AbstractController {
             result.add(qtdto);
         }
 
-        wResponse.setQuizTestsDto(quizTests);
+        wResponse.setQuizTestsDto(result);
         wResponse.setStatus("OK");
         Response r = Response.ok(wResponse).build();
         dao.get().closeConnection();

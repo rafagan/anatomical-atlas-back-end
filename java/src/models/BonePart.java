@@ -5,6 +5,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Comparator;
 
 /**
  * Created by rafaganabreu on 21/09/14.
@@ -82,5 +83,12 @@ public class BonePart {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (synonymous != null ? synonymous.hashCode() : 0);
         return result;
+    }
+
+    public static class BonePartComparator implements Comparator<BonePart> {
+        @Override
+        public int compare(BonePart o1, BonePart o2) {
+            return o1.getName().compareTo(o2.getName());
+        }
     }
 }

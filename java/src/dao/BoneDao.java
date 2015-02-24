@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BoneDao extends AbstractDao {
     public List<Bone> queryBones() {
-        return dao.findEntities(getEM().createQuery("SELECT b FROM Bone AS b", Bone.class));
+        return dao.findEntities(getEM().createQuery("SELECT b FROM Bone AS b ORDER BY b.name", Bone.class));
     }
 
     public Bone queryBone(int id) {
