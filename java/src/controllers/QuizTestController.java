@@ -61,7 +61,7 @@ public class QuizTestController extends AbstractController {
         return r;
     }
 
-    public Response getPublicQuizTest(int quizTestId, boolean full) {
+    public Response getPublicQuizTest(int quizTestId, boolean full, boolean questionFigure, boolean authorFigure) {
         WSRN.ResponseQuizTest wResponse = new WSRN.ResponseQuizTest();
 
         dao.get().startConnection(EntityManagerUtil.ATLAS_PU);
@@ -75,6 +75,8 @@ public class QuizTestController extends AbstractController {
         else
             for(Question q : quizTest.getQuestions()){
                 q.setQuizTests(null);
+
+                if(!questionFigure) q.setFigure(null);
 
                 for(BoneSet cat : q.getCategories()) {
                     cat.setBoneChildren(null);
@@ -91,6 +93,8 @@ public class QuizTestController extends AbstractController {
                     author.setMyQuizTests(null);
                     author.setMyQuestions(null);
                     author.setLogin(null);
+
+                    if(!authorFigure) author.setPhoto(null);
                 }
             }
 

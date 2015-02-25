@@ -28,7 +28,12 @@ public class QuizTestResource extends AbstractResource {
     @GET
     @Path("{id}")
     @Produces(CONTENT_TYPE_APPLICATION_JSON)
-    public Response getPublicQuizTest(@PathParam("id") int quizTestId, @QueryParam("full") boolean full) {
-        return quizTestController.getPublicQuizTest(quizTestId,full);
+    public Response getPublicQuizTest(
+            @PathParam("id") int quizTestId,
+            @QueryParam("full") boolean full,
+            @QueryParam("questionFigure") boolean questionFigure,
+            @QueryParam("authorFigure") boolean authorFigure)
+    {
+        return quizTestController.getPublicQuizTest(quizTestId,full, questionFigure, authorFigure);
     }
 }

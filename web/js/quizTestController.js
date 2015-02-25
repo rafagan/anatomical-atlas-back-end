@@ -83,7 +83,7 @@ function insertQuizTestController($scope, $http, $timeout) {
 
     $scope.onChangedPublicCheckbox = function() {
         $scope.success = false;
-    }
+    };
 
     $scope.onQuestionValueChanged = function() {
         $scope.success = false;

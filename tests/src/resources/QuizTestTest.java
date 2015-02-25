@@ -50,7 +50,7 @@ public class QuizTestTest {
     @Test
     public void testGetPublicQuizTest() throws Exception {
         try {
-            qtc.getPublicQuizTest(4,false);
+            qtc.getPublicQuizTest(4, true, true, true);
         } catch (Exception e) {
             e.printStackTrace();
             fail();
