@@ -1,27 +1,27 @@
 <component name="libraryTable">
-  <library name="jaxrs-jersey2">
+  <library name="jaxrs-jersey">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/javax.inject-2.3.0-b10.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/hk2-locator-2.3.0-b10.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jersey-container-servlet-core.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jersey-container-servlet.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/javax.annotation-api-1.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/javassist-3.18.1-GA.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jersey-client.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/validation-api-1.1.0.Final.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/javax.ws.rs-api-2.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/asm-debug-all-5.0.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/org.osgi.core-4.2.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/aopalliance-repackaged-2.3.0-b10.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/osgi-resource-locator-1.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jersey-common.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jaxb-api-2.2.7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/javax.servlet-api-3.0.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jersey-guava-2.13.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/persistence-api-1.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/jersey-server.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/hk2-api-2.3.0-b10.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey2/hk2-utils-2.3.0-b10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-spring-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-jaxrs-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-multipart-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/asm-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-guice-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-apache-client-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-mapper-asl-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-simple-server-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-core-asl-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jackson-xc-1.9.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-core-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-json-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-client-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jsr311-api-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-servlet-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/oauth-signature-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-server-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jersey-atom-abdera-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/jettison-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/oauth-server-1.18.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxrs-jersey/oauth-client-1.18.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

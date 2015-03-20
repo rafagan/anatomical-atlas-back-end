@@ -43,7 +43,8 @@ public class Bone {
     public Set<BonePart> getBoneParts() { return boneParts; }
     public void setBoneParts(Set<BonePart> boneParts) {
         Hibernate.initialize(boneParts);
-        this.boneParts = boneParts; }
+        this.boneParts = boneParts; 
+    }
 
     @ManyToMany
     @JoinTable(

@@ -7,23 +7,103 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e7f53ca-6e58-41eb-a364-534a55d90626" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BoneDao.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BoneDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/dao/BoneDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/dao/BoneDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BonePartDao.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BonePartDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/dao/BonePartDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/dao/BonePartDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BoneSetDao.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BoneSetDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/dao/BoneSetDao.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/dao/BoneSetDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/QuizTestController.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/QuizTestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/controllers/QuizTestController.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/controllers/QuizTestController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/QuizTestResource.class" afterPath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/QuizTestResource.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ware/WEB-INF/classes/src/resources/QuizTestResource.class" afterPath="$PROJECT_DIR$/ware/WEB-INF/classes/src/resources/QuizTestResource.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/QuizTestTest.class" afterPath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/QuizTestTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/war/ROOT.war" afterPath="$PROJECT_DIR$/war/ROOT.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/war/aabe.war" afterPath="$PROJECT_DIR$/war/aabe.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" afterPath="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/resources/QuizTestResource.java" afterPath="$PROJECT_DIR$/java/src/resources/QuizTestResource.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/src/resources/QuizTestTest.java" afterPath="$PROJECT_DIR$/tests/src/resources/QuizTestTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/quizTestController.js" afterPath="$PROJECT_DIR$/web/js/quizTestController.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/CorsResponseFilter.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/Main$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/AbstractController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/BoneController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/BonePartController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/BoneSetController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/OrganizationController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/QuestionController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/QuizTestController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/StudentController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/controllers/TeacherController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/AbstractDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BoneDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BonePartDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/BoneSetDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/DaoManager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/OrganizationDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/QuestionDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/QuizTestDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/StudentDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dao/TeacherDao.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/BoneStructureDescriptionDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/MultipleChoiceDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/PublicQuizTestDtoPost.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/QuestionDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/QuizTestDtoGetAll.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/TrueOrFalseDto.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/dtos/Wrapper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Bone$BoneComparator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Bone.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/BonePart$BonePartComparator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/BonePart.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/BoneSet$BoneSetComparator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/BoneSet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Clazz.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Login.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/MultipleChoice.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Organization.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/OrganizationClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Question.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/QuizTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Resolution.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Student.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/StudentLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/Teacher.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/TeacherClass.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/TeacherLogin.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/TrueOrFalse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/models/utils/Sex.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/AbstractResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/BonePartResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/BoneResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/BoneSetResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/HelloRS.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/HelloServlet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/HelloServletHtml.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/OrganizationResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/QuestionResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/QuizTestResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/StudentResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/resources/TeacherResource.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/ConnectionDataBaseUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/DummyInsertion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/DummyText.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/EntityManagerUtil.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/ImageUtils.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/PasswordHash.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/Sha256SaltAuth.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/UserAuthentication.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSOptionsResponse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$AbstractResponse.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$Response.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseBone.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseBoneSet.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseQuestion.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseQuizTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN$ResponseQuizTestDtoGetAll.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/AABackEnd/src/utils/WSRN.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/BonePartTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/BoneSetTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/BoneTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/OrganizationTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/QuestionTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/QuizTestTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/StudentTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/resources/TeacherTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/AABackEnd/src/utils/DummyInsertionTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/war/ROOT.war" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/war/aabe.war" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/libraries/JUnit.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jUnit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AABackEnd.iml" afterPath="$PROJECT_DIR$/AABackEnd.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/java/src/dao/DaoManager.java" afterPath="$PROJECT_DIR$/java/src/dao/DaoManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/jaxrs_jersey2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/jaxrs_jersey2.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/AABackEnd/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/out/production/AABackEnd/META-INF/persistence.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/META-INF/persistence.xml" afterPath="$PROJECT_DIR$/resources/META-INF/persistence.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="AABackEnd.iws" />
@@ -56,114 +136,6 @@
       <PATH_ELEMENT>
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="AnatomicalAtlas" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="AnatomicalAtlas" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="StudentLogin" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="AnatomicalAtlas" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="QuizTestHasQuestion" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="AnatomicalAtlas" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="QuizTest" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="AnatomicalAtlas" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MultipleChoice" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="MySQL - AnatomicalAtlas@localhost" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="AnatomicalAtlas" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="BoneSet" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
   </component>
@@ -204,8 +176,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -213,21 +185,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="QuizTestController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/java/src/controllers/QuizTestController.java">
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18099548" vertical-offset="945" max-vertical-offset="2055">
-              <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Question.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/src/models/Question.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1365">
-              <caret line="41" column="36" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.2238806" vertical-offset="0" max-vertical-offset="804">
+              <caret line="12" column="48" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -236,63 +198,31 @@
       <file leaf-file-name="QuestionController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/java/src/controllers/QuestionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="3390">
-              <caret line="24" column="88" selection-start-line="24" selection-start-column="88" selection-end-line="24" selection-end-column="88" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="3390">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MultipleChoice.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/src/models/MultipleChoice.java">
+      <file leaf-file-name="HelloServlet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java/src/resources/HelloServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
-              <caret line="11" column="32" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="372" max-vertical-offset="1650">
-              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quizTestController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/quizTestController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="1440">
-              <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="jquery.asmselect.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/js/jquery.asmselect.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6060">
-              <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuizTestResource.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/java/src/resources/QuizTestResource.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="570">
-              <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="360">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="38" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#435#436#0" expanded="false" />
-                <element signature="e#500#501#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HelloRS.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/java/src/resources/HelloRS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="495" max-vertical-offset="600">
+              <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -310,7 +240,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/web/js/insertQuizTestController" />
         <option value="$PROJECT_DIR$/web/js/insertQuizTestControlle.js" />
         <option value="$PROJECT_DIR$/web/js/insertQuizTestController.js" />
         <option value="$PROJECT_DIR$/web/js/sajdasodijsiaod.js" />
@@ -318,7 +247,6 @@
         <option value="$PROJECT_DIR$/ware/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/java/src/org/apache/catalina/filters/CorsFilter.java" />
         <option value="$PROJECT_DIR$/java/src/Abc.java" />
-        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/java/src/CorsResponseFilter.java" />
         <option value="$PROJECT_DIR$/web/css/teste.css" />
         <option value="$PROJECT_DIR$/web/teste.html" />
@@ -349,7 +277,6 @@
         <option value="$PROJECT_DIR$/web/insert_quiztest.html" />
         <option value="$PROJECT_DIR$/java/src/dtos/QuizTestDtoGetAll.java" />
         <option value="$PROJECT_DIR$/java/src/models/QuizTest.java" />
-        <option value="$PROJECT_DIR$/resources/META-INF/persistence.xml" />
         <option value="$PROJECT_DIR$/java/src/models/BoneSet.java" />
         <option value="$PROJECT_DIR$/java/src/models/BonePart.java" />
         <option value="$PROJECT_DIR$/java/src/models/Bone.java" />
@@ -361,6 +288,9 @@
         <option value="$PROJECT_DIR$/java/src/controllers/QuizTestController.java" />
         <option value="$PROJECT_DIR$/tests/src/resources/QuizTestTest.java" />
         <option value="$PROJECT_DIR$/web/js/quizTestController.js" />
+        <option value="$PROJECT_DIR$/web/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/resources/META-INF/persistence.xml" />
+        <option value="$PROJECT_DIR$/java/src/resources/HelloServlet.java" />
       </list>
     </option>
   </component>
@@ -540,6 +470,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -586,7 +518,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="WEB-INF" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -600,43 +532,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="META-INF" />
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -655,123 +551,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dtos" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AABackEnd" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -783,7 +567,7 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/CORS/java-property-utils-1.9.1.jar!/" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -2391,15 +2175,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="" />
@@ -2421,15 +2196,13 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="Tomcat Catalina" enabled="true" />
-      <predefined_log_file id="Tomcat Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
-      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="FlashRunConfigurationType" factoryName="Flash App">
@@ -2467,6 +2240,17 @@
       <option name="usbDebugPort" value="7936" />
       <method />
     </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings />
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -2493,19 +2277,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="GlassfishConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings>
-        <option name="DOMAIN" value="" />
-        <option name="PRESERVE" value="false" />
-        <option name="VIRTUAL_SERVER" />
-        <option name="USERNAME" value="admin" />
-        <option name="PASSWORD" value="" />
-      </server-settings>
-      <predefined_log_file id="GlassFish" enabled="true" />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <method />
-    </configuration>
     <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -2520,6 +2291,19 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="GlassfishConfiguration" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
+      <deployment />
+      <server-settings>
+        <option name="DOMAIN" value="" />
+        <option name="PRESERVE" value="false" />
+        <option name="VIRTUAL_SERVER" />
+        <option name="USERNAME" value="admin" />
+        <option name="PASSWORD" value="" />
+      </server-settings>
+      <predefined_log_file id="GlassFish" enabled="true" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
     <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" package_name="" scope="Class">
@@ -2570,26 +2354,6 @@
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="LOCAL" value="false" />
-      <deployment />
-      <server-settings>
-        <data>
-          <option name="transportHostId" />
-        </data>
-      </server-settings>
-      <predefined_log_file id="Tomcat" enabled="true" />
-      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="55196" />
-        <option name="TRANSPORT" value="0" />
-        <option name="LOCAL" value="false" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Debug" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -2608,6 +2372,26 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <method />
+    </configuration>
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="LOCAL" value="false" />
+      <deployment />
+      <server-settings>
+        <data>
+          <option name="transportHostId" />
+        </data>
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="55196" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
     <configuration default="false" name="Glassfish 4" type="GlassfishConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="GlassFish 4.0.0" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
@@ -2861,12 +2645,24 @@
       <workItem from="1424760503739" duration="814000" />
       <workItem from="1424787273833" duration="110000" />
       <workItem from="1424806599662" duration="2378000" />
-      <workItem from="1424870620519" duration="2044000" />
+      <workItem from="1424870620519" duration="2117000" />
+      <workItem from="1424969319625" duration="153000" />
+      <workItem from="1425410713180" duration="711000" />
+      <workItem from="1425412242757" duration="401000" />
+      <workItem from="1425415026326" duration="299000" />
+      <workItem from="1425468767268" duration="47000" />
+      <workItem from="1425468888103" duration="1228000" />
+      <workItem from="1425476490967" duration="957000" />
+      <workItem from="1425478748855" duration="700000" />
+      <workItem from="1425491094422" duration="478000" />
+      <workItem from="1425496095444" duration="3058000" />
+      <workItem from="1425930337353" duration="890000" />
+      <workItem from="1425931291316" duration="6000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="506471000" />
+    <option name="totallyTimeSpent" value="515472000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -2892,41 +2688,41 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32891566" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20958512" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19110577" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15808298" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2180723" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2180723" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.3297568" sideWeight="0.5" order="11" side_tool="false" content_ui="combo" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24939759" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19742489" sideWeight="0.49799198" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17349398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16746987" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24939759" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32771084" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19742489" sideWeight="0.49799198" order="0" side_tool="false" content_ui="combo" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29277107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="AWS Explorer" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5937053" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25783134" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17349398" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17951807" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45180723" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32409638" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32409638" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -3049,34 +2845,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..QuizTest">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/css/jquery.asmselect.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.74626863" vertical-offset="255" max-vertical-offset="1125">
           <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..QuizTestHasQuestion">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -3164,26 +2936,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..BoneSet">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/META-INF/persistence.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="390">
-          <caret line="13" column="60" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/java/src/models/BoneSet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.3166926" vertical-offset="0" max-vertical-offset="1680">
@@ -3261,47 +3013,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/resources/QuizTestResource.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="570">
-          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#435#436#0" expanded="false" />
-            <element signature="e#500#501#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ware/insert_quiztest.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61661345" vertical-offset="949" max-vertical-offset="1575">
           <caret line="89" column="27" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="372" max-vertical-offset="1650">
-          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/jquery.asmselect.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6060">
-          <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/quizTestController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="100" max-vertical-offset="1440">
-          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3309,7 +3024,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.5837104" vertical-offset="0" max-vertical-offset="1440">
           <caret line="84" column="13" selection-start-line="84" selection-start-column="13" selection-end-line="84" selection-end-column="13" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/QuizTestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1392" max-vertical-offset="2055">
+          <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/META-INF/persistence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.39534885" vertical-offset="0" max-vertical-offset="645">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -3317,28 +3045,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="1365">
           <caret line="41" column="36" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/653ea9b3/3a9b1807-38a9-482a-8d66-29c25a17eb7e/AnatomicalAtlas..MultipleChoice">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/controllers/QuestionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="3390">
-          <caret line="24" column="88" selection-start-line="24" selection-start-column="88" selection-end-line="24" selection-end-column="88" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3346,14 +3052,74 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1140">
           <caret line="11" column="32" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5860465" vertical-offset="372" max-vertical-offset="1650">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/quizTestController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8914729" vertical-offset="100" max-vertical-offset="1440">
+          <caret line="45" column="11" selection-start-line="45" selection-start-column="11" selection-end-line="45" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/jquery.asmselect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6060">
+          <caret line="111" column="28" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/resources/QuizTestResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6511628" vertical-offset="0" max-vertical-offset="645">
+          <caret line="35" column="4" selection-start-line="35" selection-start-column="4" selection-end-line="35" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/resources/AbstractResource.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34992224" vertical-offset="0" max-vertical-offset="643">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/resources/HelloRS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+          <caret line="38" column="1" selection-start-line="38" selection-start-column="1" selection-end-line="38" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/java/src/controllers/QuizTestController.java">
+    <entry file="file://$PROJECT_DIR$/java/src/resources/HelloServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18099548" vertical-offset="945" max-vertical-offset="2055">
-          <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/java/src/controllers/QuestionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="93" max-vertical-offset="3390">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2238806" vertical-offset="0" max-vertical-offset="804">
+          <caret line="12" column="48" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="48" />
           <folding />
         </state>
       </provider>
@@ -3418,7 +3184,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

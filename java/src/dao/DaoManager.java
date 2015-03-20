@@ -39,6 +39,8 @@ public class DaoManager {
             tx.rollback();
         }
 
+        //TODO: Dar uma olhada se precisa de um Finally aqui!
+
         return this;
     }
 
